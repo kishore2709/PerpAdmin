@@ -11,7 +11,6 @@ import java.util.Map;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.Version;
 
 @Entity(name="vehicle_compliance_status_aud")
 public class VehicleComplianceStatusAud implements Serializable {
@@ -19,48 +18,23 @@ public class VehicleComplianceStatusAud implements Serializable {
     /** Primary key. */
     protected static final String PK = "vehicleCompStatusAudUid";
 
-    /**
-     * The optimistic lock. Available via standard bean get/set operations.
-     */
-    @Version
-    @Column(name="LOCK_FLAG")
-    private Integer lockFlag;
-
-    /**
-     * Access method for the lockFlag property.
-     *
-     * @return the current value of the lockFlag property
-     */
-    public Integer getLockFlag() {
-        return lockFlag;
-    }
-
-    /**
-     * Sets the value of the lockFlag property.
-     *
-     * @param aLockFlag the new value of the lockFlag property
-     */
-    public void setLockFlag(Integer aLockFlag) {
-        lockFlag = aLockFlag;
-    }
-
     @Id
     @Column(name="Vehicle_Comp_Status_Aud_UID", unique=true, nullable=false, precision=10)
-    private int vehicleCompStatusAudUid;
+    private Integer vehicleCompStatusAudUid;
     @Column(name="Vehicle_Compliance_Status_UID", nullable=false, precision=10)
-    private int vehicleComplianceStatusUid;
+    private Integer vehicleComplianceStatusUid;
     @Column(name="Vehicle_UID", nullable=false, precision=10)
-    private int vehicleUid;
+    private Integer vehicleUid;
     @Column(name="Compliance_Information_UID", nullable=false, precision=10)
-    private int complianceInformationUid;
+    private Integer complianceInformationUid;
     @Column(name="Vehicle_Compliance_Lookup_UID", nullable=false, precision=10)
-    private int vehicleComplianceLookupUid;
+    private Integer vehicleComplianceLookupUid;
     @Column(name="Status", length=128)
     private String status;
     @Column(name="Until_Date")
     private Date untilDate;
     @Column(name="Active_Flag", nullable=false, length=1)
-    private String activeFlag;
+    private Character activeFlag;
     @Column(name="Create_Modified_By", nullable=false, length=45)
     private String createModifiedBy;
     @Column(name="Create_Modified_Date", nullable=false)
@@ -78,7 +52,7 @@ public class VehicleComplianceStatusAud implements Serializable {
      *
      * @return the current value of vehicleCompStatusAudUid
      */
-    public int getVehicleCompStatusAudUid() {
+    public Integer getVehicleCompStatusAudUid() {
         return vehicleCompStatusAudUid;
     }
 
@@ -87,7 +61,7 @@ public class VehicleComplianceStatusAud implements Serializable {
      *
      * @param aVehicleCompStatusAudUid the new value for vehicleCompStatusAudUid
      */
-    public void setVehicleCompStatusAudUid(int aVehicleCompStatusAudUid) {
+    public void setVehicleCompStatusAudUid(Integer aVehicleCompStatusAudUid) {
         vehicleCompStatusAudUid = aVehicleCompStatusAudUid;
     }
 
@@ -96,7 +70,7 @@ public class VehicleComplianceStatusAud implements Serializable {
      *
      * @return the current value of vehicleComplianceStatusUid
      */
-    public int getVehicleComplianceStatusUid() {
+    public Integer getVehicleComplianceStatusUid() {
         return vehicleComplianceStatusUid;
     }
 
@@ -105,7 +79,7 @@ public class VehicleComplianceStatusAud implements Serializable {
      *
      * @param aVehicleComplianceStatusUid the new value for vehicleComplianceStatusUid
      */
-    public void setVehicleComplianceStatusUid(int aVehicleComplianceStatusUid) {
+    public void setVehicleComplianceStatusUid(Integer aVehicleComplianceStatusUid) {
         vehicleComplianceStatusUid = aVehicleComplianceStatusUid;
     }
 
@@ -114,7 +88,7 @@ public class VehicleComplianceStatusAud implements Serializable {
      *
      * @return the current value of vehicleUid
      */
-    public int getVehicleUid() {
+    public Integer getVehicleUid() {
         return vehicleUid;
     }
 
@@ -123,7 +97,7 @@ public class VehicleComplianceStatusAud implements Serializable {
      *
      * @param aVehicleUid the new value for vehicleUid
      */
-    public void setVehicleUid(int aVehicleUid) {
+    public void setVehicleUid(Integer aVehicleUid) {
         vehicleUid = aVehicleUid;
     }
 
@@ -132,7 +106,7 @@ public class VehicleComplianceStatusAud implements Serializable {
      *
      * @return the current value of complianceInformationUid
      */
-    public int getComplianceInformationUid() {
+    public Integer getComplianceInformationUid() {
         return complianceInformationUid;
     }
 
@@ -141,7 +115,7 @@ public class VehicleComplianceStatusAud implements Serializable {
      *
      * @param aComplianceInformationUid the new value for complianceInformationUid
      */
-    public void setComplianceInformationUid(int aComplianceInformationUid) {
+    public void setComplianceInformationUid(Integer aComplianceInformationUid) {
         complianceInformationUid = aComplianceInformationUid;
     }
 
@@ -150,7 +124,7 @@ public class VehicleComplianceStatusAud implements Serializable {
      *
      * @return the current value of vehicleComplianceLookupUid
      */
-    public int getVehicleComplianceLookupUid() {
+    public Integer getVehicleComplianceLookupUid() {
         return vehicleComplianceLookupUid;
     }
 
@@ -159,7 +133,7 @@ public class VehicleComplianceStatusAud implements Serializable {
      *
      * @param aVehicleComplianceLookupUid the new value for vehicleComplianceLookupUid
      */
-    public void setVehicleComplianceLookupUid(int aVehicleComplianceLookupUid) {
+    public void setVehicleComplianceLookupUid(Integer aVehicleComplianceLookupUid) {
         vehicleComplianceLookupUid = aVehicleComplianceLookupUid;
     }
 
@@ -204,7 +178,7 @@ public class VehicleComplianceStatusAud implements Serializable {
      *
      * @return the current value of activeFlag
      */
-    public String getActiveFlag() {
+    public Character getActiveFlag() {
         return activeFlag;
     }
 
@@ -213,7 +187,7 @@ public class VehicleComplianceStatusAud implements Serializable {
      *
      * @param aActiveFlag the new value for activeFlag
      */
-    public void setActiveFlag(String aActiveFlag) {
+    public void setActiveFlag(Character aActiveFlag) {
         activeFlag = aActiveFlag;
     }
 
@@ -285,7 +259,9 @@ public class VehicleComplianceStatusAud implements Serializable {
             return false;
         }
         VehicleComplianceStatusAud that = (VehicleComplianceStatusAud) other;
-        if (this.getVehicleCompStatusAudUid() != that.getVehicleCompStatusAudUid()) {
+        Object myVehicleCompStatusAudUid = this.getVehicleCompStatusAudUid();
+        Object yourVehicleCompStatusAudUid = that.getVehicleCompStatusAudUid();
+        if (myVehicleCompStatusAudUid==null ? yourVehicleCompStatusAudUid!=null : !myVehicleCompStatusAudUid.equals(yourVehicleCompStatusAudUid)) {
             return false;
         }
         return true;
@@ -312,7 +288,11 @@ public class VehicleComplianceStatusAud implements Serializable {
     public int hashCode() {
         int i;
         int result = 17;
-        i = getVehicleCompStatusAudUid();
+        if (getVehicleCompStatusAudUid() == null) {
+            i = 0;
+        } else {
+            i = getVehicleCompStatusAudUid().hashCode();
+        }
         result = 37*result + i;
         return result;
     }
@@ -337,7 +317,7 @@ public class VehicleComplianceStatusAud implements Serializable {
      */
     public Map<String, Object> getPrimaryKey() {
         Map<String, Object> ret = new LinkedHashMap<String, Object>(6);
-        ret.put("vehicleCompStatusAudUid", Integer.valueOf(getVehicleCompStatusAudUid()));
+        ret.put("vehicleCompStatusAudUid", getVehicleCompStatusAudUid());
         return ret;
     }
 

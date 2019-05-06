@@ -12,7 +12,6 @@ import java.util.Map;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.Version;
 
 @Entity(name="tse_annual_inv_details")
 public class TseAnnualInvDetails implements Serializable {
@@ -20,74 +19,49 @@ public class TseAnnualInvDetails implements Serializable {
     /** Primary key. */
     protected static final String PK = "tseaidUid";
 
-    /**
-     * The optimistic lock. Available via standard bean get/set operations.
-     */
-    @Version
-    @Column(name="LOCK_FLAG")
-    private Integer lockFlag;
-
-    /**
-     * Access method for the lockFlag property.
-     *
-     * @return the current value of the lockFlag property
-     */
-    public Integer getLockFlag() {
-        return lockFlag;
-    }
-
-    /**
-     * Sets the value of the lockFlag property.
-     *
-     * @param aLockFlag the new value of the lockFlag property
-     */
-    public void setLockFlag(Integer aLockFlag) {
-        lockFlag = aLockFlag;
-    }
-
     @Id
     @Column(name="TSEAID_UID", unique=true, nullable=false, precision=10)
-    private int tseaidUid;
+    private Integer tseaidUid;
     @Column(name="RegItemDet_UID", precision=10)
-    private int regItemDetUid;
+    private Integer regItemDetUid;
     @Column(name="RegItem_UID", precision=10)
-    private int regItemUid;
+    private Integer regItemUid;
     @Column(name="AddEquipInforType_UID", precision=10)
-    private int addEquipInforTypeUid;
+    private Integer addEquipInforTypeUid;
     @Column(name="Adjusted_PM_Factor", precision=10, scale=2)
     private BigDecimal adjustedPmFactor;
     @Column(name="APCE_ExecOrderNo", length=20)
-    private String apceExecOrderNo;
+    private Character apceExecOrderNo;
     @Column(name="APCEFilterType_UID", precision=10)
-    private int apceFilterTypeUid;
+    private Integer apceFilterTypeUid;
     @Column(name="Aux_Engine_Flag", length=1)
-    private String auxEngineFlag;
+    private Character auxEngineFlag;
     @Column(name="BrakeHPRanges_UID", precision=10)
-    private int brakeHpRangesUid;
+    private Integer brakeHpRangesUid;
     @Column(name="BrakeHPRanges_Units_UID", precision=10)
-    private int brakeHpRangesUnitsUid;
+    private Integer brakeHpRangesUnitsUid;
     @Column(name="BrakeHPValue", precision=10)
-    private int brakeHpValue;
+    private Integer brakeHpValue;
     @Column(name="CARB_Cert_PM_Factor_Override", precision=10, scale=2)
     private BigDecimal carbCertPmFactorOverride;
     @Column(name="CCTS_OnHighway", precision=5)
-    private short cctsOnHighway;
+    private Short cctsOnHighway;
     @Column(name="CO", precision=10)
-    private int co;
+    private Integer co;
     @Column(name="CO_Other_Units", length=12)
     private String coOtherUnits;
     @Column(name="CO_Units_UID", precision=10)
-    private int coUnitsUid;
+    private Integer coUnitsUid;
     @Column(name="Company_Unit_ID", length=60)
     private String companyUnitId;
     @Column(name="Crusher_Equiped_Flag", length=1)
-    private String crusherEquipedFlag;
+    private Character crusherEquipedFlag;
     @Column(name="CurrentTier_UID", precision=10)
-    private int currentTierUid;
+    private Integer currentTierUid;
     @Column(name="Description")
     private String description;
     @Column(name="Electrification_Percent", precision=10)
-    private int electrificationPercent;
+    private Integer electrificationPercent;
     @Column(name="Emission_Points")
     private String emissionPoints;
     @Column(name="Engine_Family", length=12)
@@ -95,135 +69,135 @@ public class TseAnnualInvDetails implements Serializable {
     @Column(name="EnginePowersOther")
     private String enginePowersOther;
     @Column(name="EnginePowersType_UID", precision=10)
-    private int enginePowersTypeUid;
+    private Integer enginePowersTypeUid;
     @Column(name="EngineTypeLookup_UID", precision=10)
-    private int engineTypeLookupUid;
+    private Integer engineTypeLookupUid;
     @Column(name="EngineUseType_UID", precision=10)
-    private int engineUseTypeUid;
+    private Integer engineUseTypeUid;
     @Column(name="Equipment_ID", length=70)
     private String equipmentId;
     @Column(name="Flowrate", length=20)
     private String flowrate;
     @Column(name="FlowRate_Units_UID", precision=10)
-    private int flowRateUnitsUid;
+    private Integer flowRateUnitsUid;
     @Column(name="FuelAdd_ExecOrderNo", length=20)
-    private String fuelAddExecOrderNo;
+    private Character fuelAddExecOrderNo;
     @Column(name="FuelAdditive_UID", precision=10)
-    private int fuelAdditiveUid;
+    private Integer fuelAdditiveUid;
     @Column(name="Fuel_Consumption_Rate", precision=15, scale=5)
     private BigDecimal fuelConsumptionRate;
     @Column(name="FuelConsumption_Units_UID", precision=10)
-    private int fuelConsumptionUnitsUid;
+    private Integer fuelConsumptionUnitsUid;
     @Column(name="FuelTypeUsed_UID", precision=10)
-    private int fuelTypeUsedUid;
+    private Integer fuelTypeUsedUid;
     @Column(name="List_Description")
     private String listDescription;
     @Column(name="Manufacturer_UID", precision=10)
-    private int manufacturerUid;
+    private Integer manufacturerUid;
     @Column(name="Manufacturer_Other", length=60)
     private String manufacturerOther;
     @Column(name="Model", length=45)
     private String model;
     @Column(name="ModelYears_UID", precision=10)
-    private int modelYearsUid;
+    private Integer modelYearsUid;
     @Column(name="Monitoring_Other", length=50)
     private String monitoringOther;
     @Column(name="MonitoringMethods_UID", precision=10)
-    private int monitoringMethodsUid;
+    private Integer monitoringMethodsUid;
     @Column(name="Name_Other_Emis_Data", length=40)
     private String nameOtherEmisData;
     @Column(name="Name_Src_Test_Emis_Data", length=40)
     private String nameSrcTestEmisData;
     @Column(name="NOx", precision=10)
-    private int nOx;
+    private Integer nOx;
     @Column(name="NOx_Other_Units", length=12)
     private String nOxOtherUnits;
     @Column(name="NOx_Units_UID", precision=10)
-    private int nOxUnitsUid;
+    private Integer nOxUnitsUid;
     @Column(name="Nozzle_Diameter", length=15)
     private String nozzleDiameter;
     @Column(name="NozzleDiameter_Units_UID", precision=10)
-    private int nozzleDiameterUnitsUid;
+    private Integer nozzleDiameterUnitsUid;
     @Column(name="Nozzle_Pressure", length=15)
     private String nozzlePressure;
     @Column(name="NosslePressure_Units_UID", precision=10)
-    private int nosslePressureUnitsUid;
+    private Integer nosslePressureUnitsUid;
     @Column(name="Number_Of_Units", precision=5)
-    private short numberOfUnits;
+    private Short numberOfUnits;
     @Column(name="PM_Control_Efficiency", precision=10)
-    private int pmControlEfficiency;
+    private Integer pmControlEfficiency;
     @Column(name="PM10", precision=10)
-    private int pm10;
+    private Integer pm10;
     @Column(name="PM10_Other_Units", length=12)
     private String pm10OtherUnits;
     @Column(name="PM10_Units_UID", precision=10)
-    private int pm10UnitsUid;
+    private Integer pm10UnitsUid;
     @Column(name="PowerUoM_UID", precision=10)
-    private int powerUoMUid;
+    private Integer powerUoMUid;
     @Column(name="Power_Rating", precision=15, scale=5)
     private BigDecimal powerRating;
     @Column(name="Pressure_Gauge_Flag", length=1)
-    private String pressureGaugeFlag;
+    private Character pressureGaugeFlag;
     @Column(name="Primary_Component_Indicator", nullable=false, length=10)
     private String primaryComponentIndicator;
     @Column(name="RegItemCompType_UID", precision=10)
-    private int regItemCompTypeUid;
+    private Integer regItemCompTypeUid;
     @Column(name="Resident", length=2)
     private String resident;
     @Column(name="Resident_1995", length=2)
     private String resident1995;
     @Column(name="Self_Propelled_Flag", length=1)
-    private String selfPropelledFlag;
+    private Character selfPropelledFlag;
     @Column(name="Serial_No", length=30)
     private String serialNo;
     @Column(name="Series", length=20)
     private String series;
     @Column(name="Silo_Crusher_Count", precision=10)
-    private int siloCrusherCount;
+    private Integer siloCrusherCount;
     @Column(name="Silo_Crushers")
     private String siloCrushers;
     @Column(name="Source_Emissions_Data", length=10)
     private String sourceEmissionsData;
     @Column(name="SOx", precision=10)
-    private int sOx;
+    private Integer sOx;
     @Column(name="SOx_Other_Units", length=12)
     private String sOxOtherUnits;
     @Column(name="SOx_Units_UID", precision=10)
-    private int sOxUnitsUid;
+    private Integer sOxUnitsUid;
     @Column(name="STWTypes_UID", precision=10)
-    private int stwTypesUid;
+    private Integer stwTypesUid;
     @Column(name="Throughput_Rating", length=40)
     private String throughputRating;
     @Column(name="Tier_UID", precision=10)
-    private int tierUid;
+    private Integer tierUid;
     @Column(name="Transfer_Points")
     private String transferPoints;
     @Column(name="ThroughputRating_Units_UID", precision=10)
-    private int throughputRatingUnitsUid;
+    private Integer throughputRatingUnitsUid;
     @Column(name="Truck_CentralMix_Flag", length=1)
-    private String truckCentralMixFlag;
+    private Character truckCentralMixFlag;
     @Column(name="VOC", precision=10)
-    private int voc;
+    private Integer voc;
     @Column(name="VOC_Other_Units", length=12)
     private String vocOtherUnits;
     @Column(name="VOC_Units_UID", precision=10)
-    private int vocUnitsUid;
+    private Integer vocUnitsUid;
     @Column(name="Wet_Blasting_Percentage", precision=10)
-    private int wetBlastingPercentage;
+    private Integer wetBlastingPercentage;
     @Column(name="WoodProcAck_Date")
     private Date woodProcAckDate;
     @Column(name="WoodProcAck_Flag", length=1)
-    private String woodProcAckFlag;
+    private Character woodProcAckFlag;
     @Column(name="WoodProcAck_User", length=45)
     private String woodProcAckUser;
     @Column(name="Active_Flag", length=1)
-    private String activeFlag;
+    private Character activeFlag;
     @Column(name="Orig_Create_Modified_By", length=45)
     private String origCreateModifiedBy;
     @Column(name="Orig_Create_Modified_Date")
     private Timestamp origCreateModifiedDate;
     @Column(name="AppTransRegRel_UID", nullable=false, precision=10)
-    private int appTransRegRelUid;
+    private Integer appTransRegRelUid;
     @Column(name="TSEAID_Year", nullable=false)
     private Date tseaidYear;
     @Column(name="Create_Modified_By", nullable=false, length=45)
@@ -241,7 +215,7 @@ public class TseAnnualInvDetails implements Serializable {
      *
      * @return the current value of tseaidUid
      */
-    public int getTseaidUid() {
+    public Integer getTseaidUid() {
         return tseaidUid;
     }
 
@@ -250,7 +224,7 @@ public class TseAnnualInvDetails implements Serializable {
      *
      * @param aTseaidUid the new value for tseaidUid
      */
-    public void setTseaidUid(int aTseaidUid) {
+    public void setTseaidUid(Integer aTseaidUid) {
         tseaidUid = aTseaidUid;
     }
 
@@ -259,7 +233,7 @@ public class TseAnnualInvDetails implements Serializable {
      *
      * @return the current value of regItemDetUid
      */
-    public int getRegItemDetUid() {
+    public Integer getRegItemDetUid() {
         return regItemDetUid;
     }
 
@@ -268,7 +242,7 @@ public class TseAnnualInvDetails implements Serializable {
      *
      * @param aRegItemDetUid the new value for regItemDetUid
      */
-    public void setRegItemDetUid(int aRegItemDetUid) {
+    public void setRegItemDetUid(Integer aRegItemDetUid) {
         regItemDetUid = aRegItemDetUid;
     }
 
@@ -277,7 +251,7 @@ public class TseAnnualInvDetails implements Serializable {
      *
      * @return the current value of regItemUid
      */
-    public int getRegItemUid() {
+    public Integer getRegItemUid() {
         return regItemUid;
     }
 
@@ -286,7 +260,7 @@ public class TseAnnualInvDetails implements Serializable {
      *
      * @param aRegItemUid the new value for regItemUid
      */
-    public void setRegItemUid(int aRegItemUid) {
+    public void setRegItemUid(Integer aRegItemUid) {
         regItemUid = aRegItemUid;
     }
 
@@ -295,7 +269,7 @@ public class TseAnnualInvDetails implements Serializable {
      *
      * @return the current value of addEquipInforTypeUid
      */
-    public int getAddEquipInforTypeUid() {
+    public Integer getAddEquipInforTypeUid() {
         return addEquipInforTypeUid;
     }
 
@@ -304,7 +278,7 @@ public class TseAnnualInvDetails implements Serializable {
      *
      * @param aAddEquipInforTypeUid the new value for addEquipInforTypeUid
      */
-    public void setAddEquipInforTypeUid(int aAddEquipInforTypeUid) {
+    public void setAddEquipInforTypeUid(Integer aAddEquipInforTypeUid) {
         addEquipInforTypeUid = aAddEquipInforTypeUid;
     }
 
@@ -331,7 +305,7 @@ public class TseAnnualInvDetails implements Serializable {
      *
      * @return the current value of apceExecOrderNo
      */
-    public String getApceExecOrderNo() {
+    public Character getApceExecOrderNo() {
         return apceExecOrderNo;
     }
 
@@ -340,7 +314,7 @@ public class TseAnnualInvDetails implements Serializable {
      *
      * @param aApceExecOrderNo the new value for apceExecOrderNo
      */
-    public void setApceExecOrderNo(String aApceExecOrderNo) {
+    public void setApceExecOrderNo(Character aApceExecOrderNo) {
         apceExecOrderNo = aApceExecOrderNo;
     }
 
@@ -349,7 +323,7 @@ public class TseAnnualInvDetails implements Serializable {
      *
      * @return the current value of apceFilterTypeUid
      */
-    public int getApceFilterTypeUid() {
+    public Integer getApceFilterTypeUid() {
         return apceFilterTypeUid;
     }
 
@@ -358,7 +332,7 @@ public class TseAnnualInvDetails implements Serializable {
      *
      * @param aApceFilterTypeUid the new value for apceFilterTypeUid
      */
-    public void setApceFilterTypeUid(int aApceFilterTypeUid) {
+    public void setApceFilterTypeUid(Integer aApceFilterTypeUid) {
         apceFilterTypeUid = aApceFilterTypeUid;
     }
 
@@ -367,7 +341,7 @@ public class TseAnnualInvDetails implements Serializable {
      *
      * @return the current value of auxEngineFlag
      */
-    public String getAuxEngineFlag() {
+    public Character getAuxEngineFlag() {
         return auxEngineFlag;
     }
 
@@ -376,7 +350,7 @@ public class TseAnnualInvDetails implements Serializable {
      *
      * @param aAuxEngineFlag the new value for auxEngineFlag
      */
-    public void setAuxEngineFlag(String aAuxEngineFlag) {
+    public void setAuxEngineFlag(Character aAuxEngineFlag) {
         auxEngineFlag = aAuxEngineFlag;
     }
 
@@ -385,7 +359,7 @@ public class TseAnnualInvDetails implements Serializable {
      *
      * @return the current value of brakeHpRangesUid
      */
-    public int getBrakeHpRangesUid() {
+    public Integer getBrakeHpRangesUid() {
         return brakeHpRangesUid;
     }
 
@@ -394,7 +368,7 @@ public class TseAnnualInvDetails implements Serializable {
      *
      * @param aBrakeHpRangesUid the new value for brakeHpRangesUid
      */
-    public void setBrakeHpRangesUid(int aBrakeHpRangesUid) {
+    public void setBrakeHpRangesUid(Integer aBrakeHpRangesUid) {
         brakeHpRangesUid = aBrakeHpRangesUid;
     }
 
@@ -403,7 +377,7 @@ public class TseAnnualInvDetails implements Serializable {
      *
      * @return the current value of brakeHpRangesUnitsUid
      */
-    public int getBrakeHpRangesUnitsUid() {
+    public Integer getBrakeHpRangesUnitsUid() {
         return brakeHpRangesUnitsUid;
     }
 
@@ -412,7 +386,7 @@ public class TseAnnualInvDetails implements Serializable {
      *
      * @param aBrakeHpRangesUnitsUid the new value for brakeHpRangesUnitsUid
      */
-    public void setBrakeHpRangesUnitsUid(int aBrakeHpRangesUnitsUid) {
+    public void setBrakeHpRangesUnitsUid(Integer aBrakeHpRangesUnitsUid) {
         brakeHpRangesUnitsUid = aBrakeHpRangesUnitsUid;
     }
 
@@ -421,7 +395,7 @@ public class TseAnnualInvDetails implements Serializable {
      *
      * @return the current value of brakeHpValue
      */
-    public int getBrakeHpValue() {
+    public Integer getBrakeHpValue() {
         return brakeHpValue;
     }
 
@@ -430,7 +404,7 @@ public class TseAnnualInvDetails implements Serializable {
      *
      * @param aBrakeHpValue the new value for brakeHpValue
      */
-    public void setBrakeHpValue(int aBrakeHpValue) {
+    public void setBrakeHpValue(Integer aBrakeHpValue) {
         brakeHpValue = aBrakeHpValue;
     }
 
@@ -457,7 +431,7 @@ public class TseAnnualInvDetails implements Serializable {
      *
      * @return the current value of cctsOnHighway
      */
-    public short getCctsOnHighway() {
+    public Short getCctsOnHighway() {
         return cctsOnHighway;
     }
 
@@ -466,7 +440,7 @@ public class TseAnnualInvDetails implements Serializable {
      *
      * @param aCctsOnHighway the new value for cctsOnHighway
      */
-    public void setCctsOnHighway(short aCctsOnHighway) {
+    public void setCctsOnHighway(Short aCctsOnHighway) {
         cctsOnHighway = aCctsOnHighway;
     }
 
@@ -475,7 +449,7 @@ public class TseAnnualInvDetails implements Serializable {
      *
      * @return the current value of co
      */
-    public int getCo() {
+    public Integer getCo() {
         return co;
     }
 
@@ -484,7 +458,7 @@ public class TseAnnualInvDetails implements Serializable {
      *
      * @param aCo the new value for co
      */
-    public void setCo(int aCo) {
+    public void setCo(Integer aCo) {
         co = aCo;
     }
 
@@ -511,7 +485,7 @@ public class TseAnnualInvDetails implements Serializable {
      *
      * @return the current value of coUnitsUid
      */
-    public int getCoUnitsUid() {
+    public Integer getCoUnitsUid() {
         return coUnitsUid;
     }
 
@@ -520,7 +494,7 @@ public class TseAnnualInvDetails implements Serializable {
      *
      * @param aCoUnitsUid the new value for coUnitsUid
      */
-    public void setCoUnitsUid(int aCoUnitsUid) {
+    public void setCoUnitsUid(Integer aCoUnitsUid) {
         coUnitsUid = aCoUnitsUid;
     }
 
@@ -547,7 +521,7 @@ public class TseAnnualInvDetails implements Serializable {
      *
      * @return the current value of crusherEquipedFlag
      */
-    public String getCrusherEquipedFlag() {
+    public Character getCrusherEquipedFlag() {
         return crusherEquipedFlag;
     }
 
@@ -556,7 +530,7 @@ public class TseAnnualInvDetails implements Serializable {
      *
      * @param aCrusherEquipedFlag the new value for crusherEquipedFlag
      */
-    public void setCrusherEquipedFlag(String aCrusherEquipedFlag) {
+    public void setCrusherEquipedFlag(Character aCrusherEquipedFlag) {
         crusherEquipedFlag = aCrusherEquipedFlag;
     }
 
@@ -565,7 +539,7 @@ public class TseAnnualInvDetails implements Serializable {
      *
      * @return the current value of currentTierUid
      */
-    public int getCurrentTierUid() {
+    public Integer getCurrentTierUid() {
         return currentTierUid;
     }
 
@@ -574,7 +548,7 @@ public class TseAnnualInvDetails implements Serializable {
      *
      * @param aCurrentTierUid the new value for currentTierUid
      */
-    public void setCurrentTierUid(int aCurrentTierUid) {
+    public void setCurrentTierUid(Integer aCurrentTierUid) {
         currentTierUid = aCurrentTierUid;
     }
 
@@ -601,7 +575,7 @@ public class TseAnnualInvDetails implements Serializable {
      *
      * @return the current value of electrificationPercent
      */
-    public int getElectrificationPercent() {
+    public Integer getElectrificationPercent() {
         return electrificationPercent;
     }
 
@@ -610,7 +584,7 @@ public class TseAnnualInvDetails implements Serializable {
      *
      * @param aElectrificationPercent the new value for electrificationPercent
      */
-    public void setElectrificationPercent(int aElectrificationPercent) {
+    public void setElectrificationPercent(Integer aElectrificationPercent) {
         electrificationPercent = aElectrificationPercent;
     }
 
@@ -673,7 +647,7 @@ public class TseAnnualInvDetails implements Serializable {
      *
      * @return the current value of enginePowersTypeUid
      */
-    public int getEnginePowersTypeUid() {
+    public Integer getEnginePowersTypeUid() {
         return enginePowersTypeUid;
     }
 
@@ -682,7 +656,7 @@ public class TseAnnualInvDetails implements Serializable {
      *
      * @param aEnginePowersTypeUid the new value for enginePowersTypeUid
      */
-    public void setEnginePowersTypeUid(int aEnginePowersTypeUid) {
+    public void setEnginePowersTypeUid(Integer aEnginePowersTypeUid) {
         enginePowersTypeUid = aEnginePowersTypeUid;
     }
 
@@ -691,7 +665,7 @@ public class TseAnnualInvDetails implements Serializable {
      *
      * @return the current value of engineTypeLookupUid
      */
-    public int getEngineTypeLookupUid() {
+    public Integer getEngineTypeLookupUid() {
         return engineTypeLookupUid;
     }
 
@@ -700,7 +674,7 @@ public class TseAnnualInvDetails implements Serializable {
      *
      * @param aEngineTypeLookupUid the new value for engineTypeLookupUid
      */
-    public void setEngineTypeLookupUid(int aEngineTypeLookupUid) {
+    public void setEngineTypeLookupUid(Integer aEngineTypeLookupUid) {
         engineTypeLookupUid = aEngineTypeLookupUid;
     }
 
@@ -709,7 +683,7 @@ public class TseAnnualInvDetails implements Serializable {
      *
      * @return the current value of engineUseTypeUid
      */
-    public int getEngineUseTypeUid() {
+    public Integer getEngineUseTypeUid() {
         return engineUseTypeUid;
     }
 
@@ -718,7 +692,7 @@ public class TseAnnualInvDetails implements Serializable {
      *
      * @param aEngineUseTypeUid the new value for engineUseTypeUid
      */
-    public void setEngineUseTypeUid(int aEngineUseTypeUid) {
+    public void setEngineUseTypeUid(Integer aEngineUseTypeUid) {
         engineUseTypeUid = aEngineUseTypeUid;
     }
 
@@ -763,7 +737,7 @@ public class TseAnnualInvDetails implements Serializable {
      *
      * @return the current value of flowRateUnitsUid
      */
-    public int getFlowRateUnitsUid() {
+    public Integer getFlowRateUnitsUid() {
         return flowRateUnitsUid;
     }
 
@@ -772,7 +746,7 @@ public class TseAnnualInvDetails implements Serializable {
      *
      * @param aFlowRateUnitsUid the new value for flowRateUnitsUid
      */
-    public void setFlowRateUnitsUid(int aFlowRateUnitsUid) {
+    public void setFlowRateUnitsUid(Integer aFlowRateUnitsUid) {
         flowRateUnitsUid = aFlowRateUnitsUid;
     }
 
@@ -781,7 +755,7 @@ public class TseAnnualInvDetails implements Serializable {
      *
      * @return the current value of fuelAddExecOrderNo
      */
-    public String getFuelAddExecOrderNo() {
+    public Character getFuelAddExecOrderNo() {
         return fuelAddExecOrderNo;
     }
 
@@ -790,7 +764,7 @@ public class TseAnnualInvDetails implements Serializable {
      *
      * @param aFuelAddExecOrderNo the new value for fuelAddExecOrderNo
      */
-    public void setFuelAddExecOrderNo(String aFuelAddExecOrderNo) {
+    public void setFuelAddExecOrderNo(Character aFuelAddExecOrderNo) {
         fuelAddExecOrderNo = aFuelAddExecOrderNo;
     }
 
@@ -799,7 +773,7 @@ public class TseAnnualInvDetails implements Serializable {
      *
      * @return the current value of fuelAdditiveUid
      */
-    public int getFuelAdditiveUid() {
+    public Integer getFuelAdditiveUid() {
         return fuelAdditiveUid;
     }
 
@@ -808,7 +782,7 @@ public class TseAnnualInvDetails implements Serializable {
      *
      * @param aFuelAdditiveUid the new value for fuelAdditiveUid
      */
-    public void setFuelAdditiveUid(int aFuelAdditiveUid) {
+    public void setFuelAdditiveUid(Integer aFuelAdditiveUid) {
         fuelAdditiveUid = aFuelAdditiveUid;
     }
 
@@ -835,7 +809,7 @@ public class TseAnnualInvDetails implements Serializable {
      *
      * @return the current value of fuelConsumptionUnitsUid
      */
-    public int getFuelConsumptionUnitsUid() {
+    public Integer getFuelConsumptionUnitsUid() {
         return fuelConsumptionUnitsUid;
     }
 
@@ -844,7 +818,7 @@ public class TseAnnualInvDetails implements Serializable {
      *
      * @param aFuelConsumptionUnitsUid the new value for fuelConsumptionUnitsUid
      */
-    public void setFuelConsumptionUnitsUid(int aFuelConsumptionUnitsUid) {
+    public void setFuelConsumptionUnitsUid(Integer aFuelConsumptionUnitsUid) {
         fuelConsumptionUnitsUid = aFuelConsumptionUnitsUid;
     }
 
@@ -853,7 +827,7 @@ public class TseAnnualInvDetails implements Serializable {
      *
      * @return the current value of fuelTypeUsedUid
      */
-    public int getFuelTypeUsedUid() {
+    public Integer getFuelTypeUsedUid() {
         return fuelTypeUsedUid;
     }
 
@@ -862,7 +836,7 @@ public class TseAnnualInvDetails implements Serializable {
      *
      * @param aFuelTypeUsedUid the new value for fuelTypeUsedUid
      */
-    public void setFuelTypeUsedUid(int aFuelTypeUsedUid) {
+    public void setFuelTypeUsedUid(Integer aFuelTypeUsedUid) {
         fuelTypeUsedUid = aFuelTypeUsedUid;
     }
 
@@ -889,7 +863,7 @@ public class TseAnnualInvDetails implements Serializable {
      *
      * @return the current value of manufacturerUid
      */
-    public int getManufacturerUid() {
+    public Integer getManufacturerUid() {
         return manufacturerUid;
     }
 
@@ -898,7 +872,7 @@ public class TseAnnualInvDetails implements Serializable {
      *
      * @param aManufacturerUid the new value for manufacturerUid
      */
-    public void setManufacturerUid(int aManufacturerUid) {
+    public void setManufacturerUid(Integer aManufacturerUid) {
         manufacturerUid = aManufacturerUid;
     }
 
@@ -943,7 +917,7 @@ public class TseAnnualInvDetails implements Serializable {
      *
      * @return the current value of modelYearsUid
      */
-    public int getModelYearsUid() {
+    public Integer getModelYearsUid() {
         return modelYearsUid;
     }
 
@@ -952,7 +926,7 @@ public class TseAnnualInvDetails implements Serializable {
      *
      * @param aModelYearsUid the new value for modelYearsUid
      */
-    public void setModelYearsUid(int aModelYearsUid) {
+    public void setModelYearsUid(Integer aModelYearsUid) {
         modelYearsUid = aModelYearsUid;
     }
 
@@ -979,7 +953,7 @@ public class TseAnnualInvDetails implements Serializable {
      *
      * @return the current value of monitoringMethodsUid
      */
-    public int getMonitoringMethodsUid() {
+    public Integer getMonitoringMethodsUid() {
         return monitoringMethodsUid;
     }
 
@@ -988,7 +962,7 @@ public class TseAnnualInvDetails implements Serializable {
      *
      * @param aMonitoringMethodsUid the new value for monitoringMethodsUid
      */
-    public void setMonitoringMethodsUid(int aMonitoringMethodsUid) {
+    public void setMonitoringMethodsUid(Integer aMonitoringMethodsUid) {
         monitoringMethodsUid = aMonitoringMethodsUid;
     }
 
@@ -1033,7 +1007,7 @@ public class TseAnnualInvDetails implements Serializable {
      *
      * @return the current value of nOx
      */
-    public int getNOx() {
+    public Integer getNOx() {
         return nOx;
     }
 
@@ -1042,7 +1016,7 @@ public class TseAnnualInvDetails implements Serializable {
      *
      * @param aNOx the new value for nOx
      */
-    public void setNOx(int aNOx) {
+    public void setNOx(Integer aNOx) {
         nOx = aNOx;
     }
 
@@ -1069,7 +1043,7 @@ public class TseAnnualInvDetails implements Serializable {
      *
      * @return the current value of nOxUnitsUid
      */
-    public int getNOxUnitsUid() {
+    public Integer getNOxUnitsUid() {
         return nOxUnitsUid;
     }
 
@@ -1078,7 +1052,7 @@ public class TseAnnualInvDetails implements Serializable {
      *
      * @param aNOxUnitsUid the new value for nOxUnitsUid
      */
-    public void setNOxUnitsUid(int aNOxUnitsUid) {
+    public void setNOxUnitsUid(Integer aNOxUnitsUid) {
         nOxUnitsUid = aNOxUnitsUid;
     }
 
@@ -1105,7 +1079,7 @@ public class TseAnnualInvDetails implements Serializable {
      *
      * @return the current value of nozzleDiameterUnitsUid
      */
-    public int getNozzleDiameterUnitsUid() {
+    public Integer getNozzleDiameterUnitsUid() {
         return nozzleDiameterUnitsUid;
     }
 
@@ -1114,7 +1088,7 @@ public class TseAnnualInvDetails implements Serializable {
      *
      * @param aNozzleDiameterUnitsUid the new value for nozzleDiameterUnitsUid
      */
-    public void setNozzleDiameterUnitsUid(int aNozzleDiameterUnitsUid) {
+    public void setNozzleDiameterUnitsUid(Integer aNozzleDiameterUnitsUid) {
         nozzleDiameterUnitsUid = aNozzleDiameterUnitsUid;
     }
 
@@ -1141,7 +1115,7 @@ public class TseAnnualInvDetails implements Serializable {
      *
      * @return the current value of nosslePressureUnitsUid
      */
-    public int getNosslePressureUnitsUid() {
+    public Integer getNosslePressureUnitsUid() {
         return nosslePressureUnitsUid;
     }
 
@@ -1150,7 +1124,7 @@ public class TseAnnualInvDetails implements Serializable {
      *
      * @param aNosslePressureUnitsUid the new value for nosslePressureUnitsUid
      */
-    public void setNosslePressureUnitsUid(int aNosslePressureUnitsUid) {
+    public void setNosslePressureUnitsUid(Integer aNosslePressureUnitsUid) {
         nosslePressureUnitsUid = aNosslePressureUnitsUid;
     }
 
@@ -1159,7 +1133,7 @@ public class TseAnnualInvDetails implements Serializable {
      *
      * @return the current value of numberOfUnits
      */
-    public short getNumberOfUnits() {
+    public Short getNumberOfUnits() {
         return numberOfUnits;
     }
 
@@ -1168,7 +1142,7 @@ public class TseAnnualInvDetails implements Serializable {
      *
      * @param aNumberOfUnits the new value for numberOfUnits
      */
-    public void setNumberOfUnits(short aNumberOfUnits) {
+    public void setNumberOfUnits(Short aNumberOfUnits) {
         numberOfUnits = aNumberOfUnits;
     }
 
@@ -1177,7 +1151,7 @@ public class TseAnnualInvDetails implements Serializable {
      *
      * @return the current value of pmControlEfficiency
      */
-    public int getPmControlEfficiency() {
+    public Integer getPmControlEfficiency() {
         return pmControlEfficiency;
     }
 
@@ -1186,7 +1160,7 @@ public class TseAnnualInvDetails implements Serializable {
      *
      * @param aPmControlEfficiency the new value for pmControlEfficiency
      */
-    public void setPmControlEfficiency(int aPmControlEfficiency) {
+    public void setPmControlEfficiency(Integer aPmControlEfficiency) {
         pmControlEfficiency = aPmControlEfficiency;
     }
 
@@ -1195,7 +1169,7 @@ public class TseAnnualInvDetails implements Serializable {
      *
      * @return the current value of pm10
      */
-    public int getPm10() {
+    public Integer getPm10() {
         return pm10;
     }
 
@@ -1204,7 +1178,7 @@ public class TseAnnualInvDetails implements Serializable {
      *
      * @param aPm10 the new value for pm10
      */
-    public void setPm10(int aPm10) {
+    public void setPm10(Integer aPm10) {
         pm10 = aPm10;
     }
 
@@ -1231,7 +1205,7 @@ public class TseAnnualInvDetails implements Serializable {
      *
      * @return the current value of pm10UnitsUid
      */
-    public int getPm10UnitsUid() {
+    public Integer getPm10UnitsUid() {
         return pm10UnitsUid;
     }
 
@@ -1240,7 +1214,7 @@ public class TseAnnualInvDetails implements Serializable {
      *
      * @param aPm10UnitsUid the new value for pm10UnitsUid
      */
-    public void setPm10UnitsUid(int aPm10UnitsUid) {
+    public void setPm10UnitsUid(Integer aPm10UnitsUid) {
         pm10UnitsUid = aPm10UnitsUid;
     }
 
@@ -1249,7 +1223,7 @@ public class TseAnnualInvDetails implements Serializable {
      *
      * @return the current value of powerUoMUid
      */
-    public int getPowerUoMUid() {
+    public Integer getPowerUoMUid() {
         return powerUoMUid;
     }
 
@@ -1258,7 +1232,7 @@ public class TseAnnualInvDetails implements Serializable {
      *
      * @param aPowerUoMUid the new value for powerUoMUid
      */
-    public void setPowerUoMUid(int aPowerUoMUid) {
+    public void setPowerUoMUid(Integer aPowerUoMUid) {
         powerUoMUid = aPowerUoMUid;
     }
 
@@ -1285,7 +1259,7 @@ public class TseAnnualInvDetails implements Serializable {
      *
      * @return the current value of pressureGaugeFlag
      */
-    public String getPressureGaugeFlag() {
+    public Character getPressureGaugeFlag() {
         return pressureGaugeFlag;
     }
 
@@ -1294,7 +1268,7 @@ public class TseAnnualInvDetails implements Serializable {
      *
      * @param aPressureGaugeFlag the new value for pressureGaugeFlag
      */
-    public void setPressureGaugeFlag(String aPressureGaugeFlag) {
+    public void setPressureGaugeFlag(Character aPressureGaugeFlag) {
         pressureGaugeFlag = aPressureGaugeFlag;
     }
 
@@ -1321,7 +1295,7 @@ public class TseAnnualInvDetails implements Serializable {
      *
      * @return the current value of regItemCompTypeUid
      */
-    public int getRegItemCompTypeUid() {
+    public Integer getRegItemCompTypeUid() {
         return regItemCompTypeUid;
     }
 
@@ -1330,7 +1304,7 @@ public class TseAnnualInvDetails implements Serializable {
      *
      * @param aRegItemCompTypeUid the new value for regItemCompTypeUid
      */
-    public void setRegItemCompTypeUid(int aRegItemCompTypeUid) {
+    public void setRegItemCompTypeUid(Integer aRegItemCompTypeUid) {
         regItemCompTypeUid = aRegItemCompTypeUid;
     }
 
@@ -1375,7 +1349,7 @@ public class TseAnnualInvDetails implements Serializable {
      *
      * @return the current value of selfPropelledFlag
      */
-    public String getSelfPropelledFlag() {
+    public Character getSelfPropelledFlag() {
         return selfPropelledFlag;
     }
 
@@ -1384,7 +1358,7 @@ public class TseAnnualInvDetails implements Serializable {
      *
      * @param aSelfPropelledFlag the new value for selfPropelledFlag
      */
-    public void setSelfPropelledFlag(String aSelfPropelledFlag) {
+    public void setSelfPropelledFlag(Character aSelfPropelledFlag) {
         selfPropelledFlag = aSelfPropelledFlag;
     }
 
@@ -1429,7 +1403,7 @@ public class TseAnnualInvDetails implements Serializable {
      *
      * @return the current value of siloCrusherCount
      */
-    public int getSiloCrusherCount() {
+    public Integer getSiloCrusherCount() {
         return siloCrusherCount;
     }
 
@@ -1438,7 +1412,7 @@ public class TseAnnualInvDetails implements Serializable {
      *
      * @param aSiloCrusherCount the new value for siloCrusherCount
      */
-    public void setSiloCrusherCount(int aSiloCrusherCount) {
+    public void setSiloCrusherCount(Integer aSiloCrusherCount) {
         siloCrusherCount = aSiloCrusherCount;
     }
 
@@ -1483,7 +1457,7 @@ public class TseAnnualInvDetails implements Serializable {
      *
      * @return the current value of sOx
      */
-    public int getSOx() {
+    public Integer getSOx() {
         return sOx;
     }
 
@@ -1492,7 +1466,7 @@ public class TseAnnualInvDetails implements Serializable {
      *
      * @param aSOx the new value for sOx
      */
-    public void setSOx(int aSOx) {
+    public void setSOx(Integer aSOx) {
         sOx = aSOx;
     }
 
@@ -1519,7 +1493,7 @@ public class TseAnnualInvDetails implements Serializable {
      *
      * @return the current value of sOxUnitsUid
      */
-    public int getSOxUnitsUid() {
+    public Integer getSOxUnitsUid() {
         return sOxUnitsUid;
     }
 
@@ -1528,7 +1502,7 @@ public class TseAnnualInvDetails implements Serializable {
      *
      * @param aSOxUnitsUid the new value for sOxUnitsUid
      */
-    public void setSOxUnitsUid(int aSOxUnitsUid) {
+    public void setSOxUnitsUid(Integer aSOxUnitsUid) {
         sOxUnitsUid = aSOxUnitsUid;
     }
 
@@ -1537,7 +1511,7 @@ public class TseAnnualInvDetails implements Serializable {
      *
      * @return the current value of stwTypesUid
      */
-    public int getStwTypesUid() {
+    public Integer getStwTypesUid() {
         return stwTypesUid;
     }
 
@@ -1546,7 +1520,7 @@ public class TseAnnualInvDetails implements Serializable {
      *
      * @param aStwTypesUid the new value for stwTypesUid
      */
-    public void setStwTypesUid(int aStwTypesUid) {
+    public void setStwTypesUid(Integer aStwTypesUid) {
         stwTypesUid = aStwTypesUid;
     }
 
@@ -1573,7 +1547,7 @@ public class TseAnnualInvDetails implements Serializable {
      *
      * @return the current value of tierUid
      */
-    public int getTierUid() {
+    public Integer getTierUid() {
         return tierUid;
     }
 
@@ -1582,7 +1556,7 @@ public class TseAnnualInvDetails implements Serializable {
      *
      * @param aTierUid the new value for tierUid
      */
-    public void setTierUid(int aTierUid) {
+    public void setTierUid(Integer aTierUid) {
         tierUid = aTierUid;
     }
 
@@ -1609,7 +1583,7 @@ public class TseAnnualInvDetails implements Serializable {
      *
      * @return the current value of throughputRatingUnitsUid
      */
-    public int getThroughputRatingUnitsUid() {
+    public Integer getThroughputRatingUnitsUid() {
         return throughputRatingUnitsUid;
     }
 
@@ -1618,7 +1592,7 @@ public class TseAnnualInvDetails implements Serializable {
      *
      * @param aThroughputRatingUnitsUid the new value for throughputRatingUnitsUid
      */
-    public void setThroughputRatingUnitsUid(int aThroughputRatingUnitsUid) {
+    public void setThroughputRatingUnitsUid(Integer aThroughputRatingUnitsUid) {
         throughputRatingUnitsUid = aThroughputRatingUnitsUid;
     }
 
@@ -1627,7 +1601,7 @@ public class TseAnnualInvDetails implements Serializable {
      *
      * @return the current value of truckCentralMixFlag
      */
-    public String getTruckCentralMixFlag() {
+    public Character getTruckCentralMixFlag() {
         return truckCentralMixFlag;
     }
 
@@ -1636,7 +1610,7 @@ public class TseAnnualInvDetails implements Serializable {
      *
      * @param aTruckCentralMixFlag the new value for truckCentralMixFlag
      */
-    public void setTruckCentralMixFlag(String aTruckCentralMixFlag) {
+    public void setTruckCentralMixFlag(Character aTruckCentralMixFlag) {
         truckCentralMixFlag = aTruckCentralMixFlag;
     }
 
@@ -1645,7 +1619,7 @@ public class TseAnnualInvDetails implements Serializable {
      *
      * @return the current value of voc
      */
-    public int getVoc() {
+    public Integer getVoc() {
         return voc;
     }
 
@@ -1654,7 +1628,7 @@ public class TseAnnualInvDetails implements Serializable {
      *
      * @param aVoc the new value for voc
      */
-    public void setVoc(int aVoc) {
+    public void setVoc(Integer aVoc) {
         voc = aVoc;
     }
 
@@ -1681,7 +1655,7 @@ public class TseAnnualInvDetails implements Serializable {
      *
      * @return the current value of vocUnitsUid
      */
-    public int getVocUnitsUid() {
+    public Integer getVocUnitsUid() {
         return vocUnitsUid;
     }
 
@@ -1690,7 +1664,7 @@ public class TseAnnualInvDetails implements Serializable {
      *
      * @param aVocUnitsUid the new value for vocUnitsUid
      */
-    public void setVocUnitsUid(int aVocUnitsUid) {
+    public void setVocUnitsUid(Integer aVocUnitsUid) {
         vocUnitsUid = aVocUnitsUid;
     }
 
@@ -1699,7 +1673,7 @@ public class TseAnnualInvDetails implements Serializable {
      *
      * @return the current value of wetBlastingPercentage
      */
-    public int getWetBlastingPercentage() {
+    public Integer getWetBlastingPercentage() {
         return wetBlastingPercentage;
     }
 
@@ -1708,7 +1682,7 @@ public class TseAnnualInvDetails implements Serializable {
      *
      * @param aWetBlastingPercentage the new value for wetBlastingPercentage
      */
-    public void setWetBlastingPercentage(int aWetBlastingPercentage) {
+    public void setWetBlastingPercentage(Integer aWetBlastingPercentage) {
         wetBlastingPercentage = aWetBlastingPercentage;
     }
 
@@ -1735,7 +1709,7 @@ public class TseAnnualInvDetails implements Serializable {
      *
      * @return the current value of woodProcAckFlag
      */
-    public String getWoodProcAckFlag() {
+    public Character getWoodProcAckFlag() {
         return woodProcAckFlag;
     }
 
@@ -1744,7 +1718,7 @@ public class TseAnnualInvDetails implements Serializable {
      *
      * @param aWoodProcAckFlag the new value for woodProcAckFlag
      */
-    public void setWoodProcAckFlag(String aWoodProcAckFlag) {
+    public void setWoodProcAckFlag(Character aWoodProcAckFlag) {
         woodProcAckFlag = aWoodProcAckFlag;
     }
 
@@ -1771,7 +1745,7 @@ public class TseAnnualInvDetails implements Serializable {
      *
      * @return the current value of activeFlag
      */
-    public String getActiveFlag() {
+    public Character getActiveFlag() {
         return activeFlag;
     }
 
@@ -1780,7 +1754,7 @@ public class TseAnnualInvDetails implements Serializable {
      *
      * @param aActiveFlag the new value for activeFlag
      */
-    public void setActiveFlag(String aActiveFlag) {
+    public void setActiveFlag(Character aActiveFlag) {
         activeFlag = aActiveFlag;
     }
 
@@ -1825,7 +1799,7 @@ public class TseAnnualInvDetails implements Serializable {
      *
      * @return the current value of appTransRegRelUid
      */
-    public int getAppTransRegRelUid() {
+    public Integer getAppTransRegRelUid() {
         return appTransRegRelUid;
     }
 
@@ -1834,7 +1808,7 @@ public class TseAnnualInvDetails implements Serializable {
      *
      * @param aAppTransRegRelUid the new value for appTransRegRelUid
      */
-    public void setAppTransRegRelUid(int aAppTransRegRelUid) {
+    public void setAppTransRegRelUid(Integer aAppTransRegRelUid) {
         appTransRegRelUid = aAppTransRegRelUid;
     }
 
@@ -1906,7 +1880,9 @@ public class TseAnnualInvDetails implements Serializable {
             return false;
         }
         TseAnnualInvDetails that = (TseAnnualInvDetails) other;
-        if (this.getTseaidUid() != that.getTseaidUid()) {
+        Object myTseaidUid = this.getTseaidUid();
+        Object yourTseaidUid = that.getTseaidUid();
+        if (myTseaidUid==null ? yourTseaidUid!=null : !myTseaidUid.equals(yourTseaidUid)) {
             return false;
         }
         return true;
@@ -1933,7 +1909,11 @@ public class TseAnnualInvDetails implements Serializable {
     public int hashCode() {
         int i;
         int result = 17;
-        i = getTseaidUid();
+        if (getTseaidUid() == null) {
+            i = 0;
+        } else {
+            i = getTseaidUid().hashCode();
+        }
         result = 37*result + i;
         return result;
     }
@@ -1958,7 +1938,7 @@ public class TseAnnualInvDetails implements Serializable {
      */
     public Map<String, Object> getPrimaryKey() {
         Map<String, Object> ret = new LinkedHashMap<String, Object>(6);
-        ret.put("tseaidUid", Integer.valueOf(getTseaidUid()));
+        ret.put("tseaidUid", getTseaidUid());
         return ret;
     }
 

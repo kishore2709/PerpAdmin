@@ -12,38 +12,12 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.Version;
 
 @Entity(name="perp_fee_action_rel")
 public class PerpFeeActionRel implements Serializable {
 
     /** Primary key. */
     protected static final String PK = "PerpFeeActionRelPrimary";
-
-    /**
-     * The optimistic lock. Available via standard bean get/set operations.
-     */
-    @Version
-    @Column(name="LOCK_FLAG")
-    private Integer lockFlag;
-
-    /**
-     * Access method for the lockFlag property.
-     *
-     * @return the current value of the lockFlag property
-     */
-    public Integer getLockFlag() {
-        return lockFlag;
-    }
-
-    /**
-     * Sets the value of the lockFlag property.
-     *
-     * @param aLockFlag the new value of the lockFlag property
-     */
-    public void setLockFlag(Integer aLockFlag) {
-        lockFlag = aLockFlag;
-    }
 
     @Column(name="Create_Modified_By", length=45)
     private String createModifiedBy;
@@ -135,7 +109,7 @@ public class PerpFeeActionRel implements Serializable {
     }
 
     /** Temporary value holder for group key fragment appRegitemActionsUid */
-    private transient int tempAppRegitemActionsUid;
+    private transient Integer tempAppRegitemActionsUid;
 
     /**
      * Gets the key fragment uid for member appRegitemActions.
@@ -147,7 +121,7 @@ public class PerpFeeActionRel implements Serializable {
      * @return Current (or temporary) value of the key fragment
      * @see AppRegitemActions
      */
-    public int getAppRegitemActionsUid() {
+    public Integer getAppRegitemActionsUid() {
         return (getAppRegitemActions() == null ? tempAppRegitemActionsUid : getAppRegitemActions().getUid());
     }
 
@@ -161,7 +135,7 @@ public class PerpFeeActionRel implements Serializable {
      * @param aUid New value for the key fragment
      * @see AppRegitemActions
      */
-    public void setAppRegitemActionsUid(int aUid) {
+    public void setAppRegitemActionsUid(Integer aUid) {
         if (getAppRegitemActions() == null) {
             tempAppRegitemActionsUid = aUid;
         } else {
@@ -170,7 +144,7 @@ public class PerpFeeActionRel implements Serializable {
     }
 
     /** Temporary value holder for group key fragment perpFeesLookupPerpFeeLookupUid */
-    private transient int tempPerpFeesLookupPerpFeeLookupUid;
+    private transient Integer tempPerpFeesLookupPerpFeeLookupUid;
 
     /**
      * Gets the key fragment perpFeeLookupUid for member perpFeesLookup.
@@ -182,7 +156,7 @@ public class PerpFeeActionRel implements Serializable {
      * @return Current (or temporary) value of the key fragment
      * @see PerpFeesLookup
      */
-    public int getPerpFeesLookupPerpFeeLookupUid() {
+    public Integer getPerpFeesLookupPerpFeeLookupUid() {
         return (getPerpFeesLookup() == null ? tempPerpFeesLookupPerpFeeLookupUid : getPerpFeesLookup().getPerpFeeLookupUid());
     }
 
@@ -196,7 +170,7 @@ public class PerpFeeActionRel implements Serializable {
      * @param aPerpFeeLookupUid New value for the key fragment
      * @see PerpFeesLookup
      */
-    public void setPerpFeesLookupPerpFeeLookupUid(int aPerpFeeLookupUid) {
+    public void setPerpFeesLookupPerpFeeLookupUid(Integer aPerpFeeLookupUid) {
         if (getPerpFeesLookup() == null) {
             tempPerpFeesLookupPerpFeeLookupUid = aPerpFeeLookupUid;
         } else {
@@ -218,10 +192,14 @@ public class PerpFeeActionRel implements Serializable {
             return false;
         }
         PerpFeeActionRel that = (PerpFeeActionRel) other;
-        if (this.getAppRegitemActionsUid() != that.getAppRegitemActionsUid()) {
+        Object myAppRegitemActionsUid = this.getAppRegitemActionsUid();
+        Object yourAppRegitemActionsUid = that.getAppRegitemActionsUid();
+        if (myAppRegitemActionsUid==null ? yourAppRegitemActionsUid!=null : !myAppRegitemActionsUid.equals(yourAppRegitemActionsUid)) {
             return false;
         }
-        if (this.getPerpFeesLookupPerpFeeLookupUid() != that.getPerpFeesLookupPerpFeeLookupUid()) {
+        Object myPerpFeesLookupPerpFeeLookupUid = this.getPerpFeesLookupPerpFeeLookupUid();
+        Object yourPerpFeesLookupPerpFeeLookupUid = that.getPerpFeesLookupPerpFeeLookupUid();
+        if (myPerpFeesLookupPerpFeeLookupUid==null ? yourPerpFeesLookupPerpFeeLookupUid!=null : !myPerpFeesLookupPerpFeeLookupUid.equals(yourPerpFeesLookupPerpFeeLookupUid)) {
             return false;
         }
         return true;
@@ -248,9 +226,17 @@ public class PerpFeeActionRel implements Serializable {
     public int hashCode() {
         int i;
         int result = 17;
-        i = getAppRegitemActionsUid();
+        if (getAppRegitemActionsUid() == null) {
+            i = 0;
+        } else {
+            i = getAppRegitemActionsUid().hashCode();
+        }
         result = 37*result + i;
-        i = getPerpFeesLookupPerpFeeLookupUid();
+        if (getPerpFeesLookupPerpFeeLookupUid() == null) {
+            i = 0;
+        } else {
+            i = getPerpFeesLookupPerpFeeLookupUid().hashCode();
+        }
         result = 37*result + i;
         return result;
     }
@@ -276,8 +262,8 @@ public class PerpFeeActionRel implements Serializable {
      */
     public Map<String, Object> getPrimaryKey() {
         Map<String, Object> ret = new LinkedHashMap<String, Object>(6);
-        ret.put("appRegitemActionsUid", Integer.valueOf(getAppRegitemActionsUid()));
-        ret.put("perpFeesLookupPerpFeeLookupUid", Integer.valueOf(getPerpFeesLookupPerpFeeLookupUid()));
+        ret.put("appRegitemActionsUid", getAppRegitemActionsUid());
+        ret.put("perpFeesLookupPerpFeeLookupUid", getPerpFeesLookupPerpFeeLookupUid());
         return ret;
     }
 

@@ -10,7 +10,6 @@ import java.util.Map;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.Version;
 
 @Entity(name="invoices_aud")
 public class InvoicesAud implements Serializable {
@@ -18,40 +17,15 @@ public class InvoicesAud implements Serializable {
     /** Primary key. */
     protected static final String PK = "iAudUid";
 
-    /**
-     * The optimistic lock. Available via standard bean get/set operations.
-     */
-    @Version
-    @Column(name="LOCK_FLAG")
-    private Integer lockFlag;
-
-    /**
-     * Access method for the lockFlag property.
-     *
-     * @return the current value of the lockFlag property
-     */
-    public Integer getLockFlag() {
-        return lockFlag;
-    }
-
-    /**
-     * Sets the value of the lockFlag property.
-     *
-     * @param aLockFlag the new value of the lockFlag property
-     */
-    public void setLockFlag(Integer aLockFlag) {
-        lockFlag = aLockFlag;
-    }
-
     @Id
     @Column(name="IAud_UID", unique=true, nullable=false, precision=10)
-    private int iAudUid;
+    private Integer iAudUid;
     @Column(name="Invoice_UID", nullable=false, precision=10)
-    private int invoiceUid;
+    private Integer invoiceUid;
     @Column(name="Company_UID", nullable=false, precision=10)
-    private int companyUid;
+    private Integer companyUid;
     @Column(name="Active_Flag", nullable=false, length=1)
-    private String activeFlag;
+    private Character activeFlag;
     @Column(name="Create_Modified_By", nullable=false, length=45)
     private String createModifiedBy;
     @Column(name="Create_Modified_Date", nullable=false)
@@ -69,7 +43,7 @@ public class InvoicesAud implements Serializable {
      *
      * @return the current value of iAudUid
      */
-    public int getIAudUid() {
+    public Integer getIAudUid() {
         return iAudUid;
     }
 
@@ -78,7 +52,7 @@ public class InvoicesAud implements Serializable {
      *
      * @param aIAudUid the new value for iAudUid
      */
-    public void setIAudUid(int aIAudUid) {
+    public void setIAudUid(Integer aIAudUid) {
         iAudUid = aIAudUid;
     }
 
@@ -87,7 +61,7 @@ public class InvoicesAud implements Serializable {
      *
      * @return the current value of invoiceUid
      */
-    public int getInvoiceUid() {
+    public Integer getInvoiceUid() {
         return invoiceUid;
     }
 
@@ -96,7 +70,7 @@ public class InvoicesAud implements Serializable {
      *
      * @param aInvoiceUid the new value for invoiceUid
      */
-    public void setInvoiceUid(int aInvoiceUid) {
+    public void setInvoiceUid(Integer aInvoiceUid) {
         invoiceUid = aInvoiceUid;
     }
 
@@ -105,7 +79,7 @@ public class InvoicesAud implements Serializable {
      *
      * @return the current value of companyUid
      */
-    public int getCompanyUid() {
+    public Integer getCompanyUid() {
         return companyUid;
     }
 
@@ -114,7 +88,7 @@ public class InvoicesAud implements Serializable {
      *
      * @param aCompanyUid the new value for companyUid
      */
-    public void setCompanyUid(int aCompanyUid) {
+    public void setCompanyUid(Integer aCompanyUid) {
         companyUid = aCompanyUid;
     }
 
@@ -123,7 +97,7 @@ public class InvoicesAud implements Serializable {
      *
      * @return the current value of activeFlag
      */
-    public String getActiveFlag() {
+    public Character getActiveFlag() {
         return activeFlag;
     }
 
@@ -132,7 +106,7 @@ public class InvoicesAud implements Serializable {
      *
      * @param aActiveFlag the new value for activeFlag
      */
-    public void setActiveFlag(String aActiveFlag) {
+    public void setActiveFlag(Character aActiveFlag) {
         activeFlag = aActiveFlag;
     }
 
@@ -204,7 +178,9 @@ public class InvoicesAud implements Serializable {
             return false;
         }
         InvoicesAud that = (InvoicesAud) other;
-        if (this.getIAudUid() != that.getIAudUid()) {
+        Object myIAudUid = this.getIAudUid();
+        Object yourIAudUid = that.getIAudUid();
+        if (myIAudUid==null ? yourIAudUid!=null : !myIAudUid.equals(yourIAudUid)) {
             return false;
         }
         return true;
@@ -231,7 +207,11 @@ public class InvoicesAud implements Serializable {
     public int hashCode() {
         int i;
         int result = 17;
-        i = getIAudUid();
+        if (getIAudUid() == null) {
+            i = 0;
+        } else {
+            i = getIAudUid().hashCode();
+        }
         result = 37*result + i;
         return result;
     }
@@ -256,7 +236,7 @@ public class InvoicesAud implements Serializable {
      */
     public Map<String, Object> getPrimaryKey() {
         Map<String, Object> ret = new LinkedHashMap<String, Object>(6);
-        ret.put("iAudUid", Integer.valueOf(getIAudUid()));
+        ret.put("iAudUid", getIAudUid());
         return ret;
     }
 

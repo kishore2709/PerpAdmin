@@ -12,7 +12,6 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.Version;
 
 @Entity(name="insp_record_keeping")
 public class InspRecordKeeping implements Serializable {
@@ -20,56 +19,31 @@ public class InspRecordKeeping implements Serializable {
     /** Primary key. */
     protected static final String PK = "inspectionRkUid";
 
-    /**
-     * The optimistic lock. Available via standard bean get/set operations.
-     */
-    @Version
-    @Column(name="LOCK_FLAG")
-    private Integer lockFlag;
-
-    /**
-     * Access method for the lockFlag property.
-     *
-     * @return the current value of the lockFlag property
-     */
-    public Integer getLockFlag() {
-        return lockFlag;
-    }
-
-    /**
-     * Sets the value of the lockFlag property.
-     *
-     * @param aLockFlag the new value of the lockFlag property
-     */
-    public void setLockFlag(Integer aLockFlag) {
-        lockFlag = aLockFlag;
-    }
-
     @Id
     @Column(name="InspectionRK_UID", unique=true, nullable=false, precision=10)
-    private int inspectionRkUid;
+    private Integer inspectionRkUid;
     @Column(name="AmtMaterialProcessed_Flag", length=1)
-    private String amtMaterialProcessedFlag;
+    private Character amtMaterialProcessedFlag;
     @Column(name="AmtMaterialProcByRenter_Flag", length=1)
-    private String amtMaterialProcByRenterFlag;
+    private Character amtMaterialProcByRenterFlag;
     @Column(name="BeenAtSameLoc_Flag", length=1)
-    private String beenAtSameLocFlag;
+    private Character beenAtSameLocFlag;
     @Column(name="DistrictNotified_Flag", length=1)
-    private String districtNotifiedFlag;
+    private Character districtNotifiedFlag;
     @Column(name="HoursOperating_Flag", length=1)
-    private String hoursOperatingFlag;
+    private Character hoursOperatingFlag;
     @Column(name="LocRecordedMontly_Flag", length=1)
-    private String locRecordedMontlyFlag;
+    private Character locRecordedMontlyFlag;
     @Column(name="LocRecordedByRenter_Flag", length=1)
-    private String locRecordedByRenterFlag;
+    private Character locRecordedByRenterFlag;
     @Column(name="LocRecordedEveryMove_Flag", length=1)
-    private String locRecordedEveryMoveFlag;
+    private Character locRecordedEveryMoveFlag;
     @Column(name="NotCarbAb_Desc", length=256)
     private String notCarbAbDesc;
     @Column(name="RecordKeepingAccessible_Flag", length=1)
-    private String recordKeepingAccessibleFlag;
+    private Character recordKeepingAccessibleFlag;
     @Column(name="RentalDocGiven_Flag", length=1)
-    private String rentalDocGivenFlag;
+    private Character rentalDocGivenFlag;
     @Column(name="Create_Modified_By", nullable=false, length=45)
     private String createModifiedBy;
     @Column(name="Create_Modified_Date", nullable=false)
@@ -98,7 +72,7 @@ public class InspRecordKeeping implements Serializable {
      *
      * @return the current value of inspectionRkUid
      */
-    public int getInspectionRkUid() {
+    public Integer getInspectionRkUid() {
         return inspectionRkUid;
     }
 
@@ -107,7 +81,7 @@ public class InspRecordKeeping implements Serializable {
      *
      * @param aInspectionRkUid the new value for inspectionRkUid
      */
-    public void setInspectionRkUid(int aInspectionRkUid) {
+    public void setInspectionRkUid(Integer aInspectionRkUid) {
         inspectionRkUid = aInspectionRkUid;
     }
 
@@ -116,7 +90,7 @@ public class InspRecordKeeping implements Serializable {
      *
      * @return the current value of amtMaterialProcessedFlag
      */
-    public String getAmtMaterialProcessedFlag() {
+    public Character getAmtMaterialProcessedFlag() {
         return amtMaterialProcessedFlag;
     }
 
@@ -125,7 +99,7 @@ public class InspRecordKeeping implements Serializable {
      *
      * @param aAmtMaterialProcessedFlag the new value for amtMaterialProcessedFlag
      */
-    public void setAmtMaterialProcessedFlag(String aAmtMaterialProcessedFlag) {
+    public void setAmtMaterialProcessedFlag(Character aAmtMaterialProcessedFlag) {
         amtMaterialProcessedFlag = aAmtMaterialProcessedFlag;
     }
 
@@ -134,7 +108,7 @@ public class InspRecordKeeping implements Serializable {
      *
      * @return the current value of amtMaterialProcByRenterFlag
      */
-    public String getAmtMaterialProcByRenterFlag() {
+    public Character getAmtMaterialProcByRenterFlag() {
         return amtMaterialProcByRenterFlag;
     }
 
@@ -143,7 +117,7 @@ public class InspRecordKeeping implements Serializable {
      *
      * @param aAmtMaterialProcByRenterFlag the new value for amtMaterialProcByRenterFlag
      */
-    public void setAmtMaterialProcByRenterFlag(String aAmtMaterialProcByRenterFlag) {
+    public void setAmtMaterialProcByRenterFlag(Character aAmtMaterialProcByRenterFlag) {
         amtMaterialProcByRenterFlag = aAmtMaterialProcByRenterFlag;
     }
 
@@ -152,7 +126,7 @@ public class InspRecordKeeping implements Serializable {
      *
      * @return the current value of beenAtSameLocFlag
      */
-    public String getBeenAtSameLocFlag() {
+    public Character getBeenAtSameLocFlag() {
         return beenAtSameLocFlag;
     }
 
@@ -161,7 +135,7 @@ public class InspRecordKeeping implements Serializable {
      *
      * @param aBeenAtSameLocFlag the new value for beenAtSameLocFlag
      */
-    public void setBeenAtSameLocFlag(String aBeenAtSameLocFlag) {
+    public void setBeenAtSameLocFlag(Character aBeenAtSameLocFlag) {
         beenAtSameLocFlag = aBeenAtSameLocFlag;
     }
 
@@ -170,7 +144,7 @@ public class InspRecordKeeping implements Serializable {
      *
      * @return the current value of districtNotifiedFlag
      */
-    public String getDistrictNotifiedFlag() {
+    public Character getDistrictNotifiedFlag() {
         return districtNotifiedFlag;
     }
 
@@ -179,7 +153,7 @@ public class InspRecordKeeping implements Serializable {
      *
      * @param aDistrictNotifiedFlag the new value for districtNotifiedFlag
      */
-    public void setDistrictNotifiedFlag(String aDistrictNotifiedFlag) {
+    public void setDistrictNotifiedFlag(Character aDistrictNotifiedFlag) {
         districtNotifiedFlag = aDistrictNotifiedFlag;
     }
 
@@ -188,7 +162,7 @@ public class InspRecordKeeping implements Serializable {
      *
      * @return the current value of hoursOperatingFlag
      */
-    public String getHoursOperatingFlag() {
+    public Character getHoursOperatingFlag() {
         return hoursOperatingFlag;
     }
 
@@ -197,7 +171,7 @@ public class InspRecordKeeping implements Serializable {
      *
      * @param aHoursOperatingFlag the new value for hoursOperatingFlag
      */
-    public void setHoursOperatingFlag(String aHoursOperatingFlag) {
+    public void setHoursOperatingFlag(Character aHoursOperatingFlag) {
         hoursOperatingFlag = aHoursOperatingFlag;
     }
 
@@ -206,7 +180,7 @@ public class InspRecordKeeping implements Serializable {
      *
      * @return the current value of locRecordedMontlyFlag
      */
-    public String getLocRecordedMontlyFlag() {
+    public Character getLocRecordedMontlyFlag() {
         return locRecordedMontlyFlag;
     }
 
@@ -215,7 +189,7 @@ public class InspRecordKeeping implements Serializable {
      *
      * @param aLocRecordedMontlyFlag the new value for locRecordedMontlyFlag
      */
-    public void setLocRecordedMontlyFlag(String aLocRecordedMontlyFlag) {
+    public void setLocRecordedMontlyFlag(Character aLocRecordedMontlyFlag) {
         locRecordedMontlyFlag = aLocRecordedMontlyFlag;
     }
 
@@ -224,7 +198,7 @@ public class InspRecordKeeping implements Serializable {
      *
      * @return the current value of locRecordedByRenterFlag
      */
-    public String getLocRecordedByRenterFlag() {
+    public Character getLocRecordedByRenterFlag() {
         return locRecordedByRenterFlag;
     }
 
@@ -233,7 +207,7 @@ public class InspRecordKeeping implements Serializable {
      *
      * @param aLocRecordedByRenterFlag the new value for locRecordedByRenterFlag
      */
-    public void setLocRecordedByRenterFlag(String aLocRecordedByRenterFlag) {
+    public void setLocRecordedByRenterFlag(Character aLocRecordedByRenterFlag) {
         locRecordedByRenterFlag = aLocRecordedByRenterFlag;
     }
 
@@ -242,7 +216,7 @@ public class InspRecordKeeping implements Serializable {
      *
      * @return the current value of locRecordedEveryMoveFlag
      */
-    public String getLocRecordedEveryMoveFlag() {
+    public Character getLocRecordedEveryMoveFlag() {
         return locRecordedEveryMoveFlag;
     }
 
@@ -251,7 +225,7 @@ public class InspRecordKeeping implements Serializable {
      *
      * @param aLocRecordedEveryMoveFlag the new value for locRecordedEveryMoveFlag
      */
-    public void setLocRecordedEveryMoveFlag(String aLocRecordedEveryMoveFlag) {
+    public void setLocRecordedEveryMoveFlag(Character aLocRecordedEveryMoveFlag) {
         locRecordedEveryMoveFlag = aLocRecordedEveryMoveFlag;
     }
 
@@ -278,7 +252,7 @@ public class InspRecordKeeping implements Serializable {
      *
      * @return the current value of recordKeepingAccessibleFlag
      */
-    public String getRecordKeepingAccessibleFlag() {
+    public Character getRecordKeepingAccessibleFlag() {
         return recordKeepingAccessibleFlag;
     }
 
@@ -287,7 +261,7 @@ public class InspRecordKeeping implements Serializable {
      *
      * @param aRecordKeepingAccessibleFlag the new value for recordKeepingAccessibleFlag
      */
-    public void setRecordKeepingAccessibleFlag(String aRecordKeepingAccessibleFlag) {
+    public void setRecordKeepingAccessibleFlag(Character aRecordKeepingAccessibleFlag) {
         recordKeepingAccessibleFlag = aRecordKeepingAccessibleFlag;
     }
 
@@ -296,7 +270,7 @@ public class InspRecordKeeping implements Serializable {
      *
      * @return the current value of rentalDocGivenFlag
      */
-    public String getRentalDocGivenFlag() {
+    public Character getRentalDocGivenFlag() {
         return rentalDocGivenFlag;
     }
 
@@ -305,7 +279,7 @@ public class InspRecordKeeping implements Serializable {
      *
      * @param aRentalDocGivenFlag the new value for rentalDocGivenFlag
      */
-    public void setRentalDocGivenFlag(String aRentalDocGivenFlag) {
+    public void setRentalDocGivenFlag(Character aRentalDocGivenFlag) {
         rentalDocGivenFlag = aRentalDocGivenFlag;
     }
 
@@ -467,7 +441,9 @@ public class InspRecordKeeping implements Serializable {
             return false;
         }
         InspRecordKeeping that = (InspRecordKeeping) other;
-        if (this.getInspectionRkUid() != that.getInspectionRkUid()) {
+        Object myInspectionRkUid = this.getInspectionRkUid();
+        Object yourInspectionRkUid = that.getInspectionRkUid();
+        if (myInspectionRkUid==null ? yourInspectionRkUid!=null : !myInspectionRkUid.equals(yourInspectionRkUid)) {
             return false;
         }
         return true;
@@ -494,7 +470,11 @@ public class InspRecordKeeping implements Serializable {
     public int hashCode() {
         int i;
         int result = 17;
-        i = getInspectionRkUid();
+        if (getInspectionRkUid() == null) {
+            i = 0;
+        } else {
+            i = getInspectionRkUid().hashCode();
+        }
         result = 37*result + i;
         return result;
     }
@@ -519,7 +499,7 @@ public class InspRecordKeeping implements Serializable {
      */
     public Map<String, Object> getPrimaryKey() {
         Map<String, Object> ret = new LinkedHashMap<String, Object>(6);
-        ret.put("inspectionRkUid", Integer.valueOf(getInspectionRkUid()));
+        ret.put("inspectionRkUid", getInspectionRkUid());
         return ret;
     }
 

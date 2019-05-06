@@ -10,7 +10,6 @@ import java.util.Map;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.Version;
 
 @Entity(name="address_aud")
 public class AddressAud implements Serializable {
@@ -18,50 +17,25 @@ public class AddressAud implements Serializable {
     /** Primary key. */
     protected static final String PK = "addressAudUid";
 
-    /**
-     * The optimistic lock. Available via standard bean get/set operations.
-     */
-    @Version
-    @Column(name="LOCK_FLAG")
-    private Integer lockFlag;
-
-    /**
-     * Access method for the lockFlag property.
-     *
-     * @return the current value of the lockFlag property
-     */
-    public Integer getLockFlag() {
-        return lockFlag;
-    }
-
-    /**
-     * Sets the value of the lockFlag property.
-     *
-     * @param aLockFlag the new value of the lockFlag property
-     */
-    public void setLockFlag(Integer aLockFlag) {
-        lockFlag = aLockFlag;
-    }
-
     @Id
     @Column(name="Address_Aud_UID", unique=true, nullable=false, precision=10)
-    private int addressAudUid;
+    private Integer addressAudUid;
     @Column(name="Address_UID", nullable=false, precision=10)
-    private int addressUid;
+    private Integer addressUid;
     @Column(name="Address_Type_UID", nullable=false, precision=10)
-    private int addressTypeUid;
+    private Integer addressTypeUid;
     @Column(name="State_Province_UID", nullable=false, precision=10)
-    private int stateProvinceUid;
+    private Integer stateProvinceUid;
     @Column(name="Country_Code_UID", nullable=false, precision=10)
-    private int countryCodeUid;
+    private Integer countryCodeUid;
     @Column(name="Users_UID", precision=10)
-    private int usersUid;
+    private Integer usersUid;
     @Column(name="Terminal_UID", precision=10)
-    private int terminalUid;
+    private Integer terminalUid;
     @Column(name="Company_UID", precision=10)
-    private int companyUid;
+    private Integer companyUid;
     @Column(name="Contact_UID", precision=10)
-    private int contactUid;
+    private Integer contactUid;
     @Column(name="Address1", nullable=false, length=128)
     private String address1;
     @Column(name="Address2", length=128)
@@ -81,7 +55,7 @@ public class AddressAud implements Serializable {
     @Column(name="Operation", nullable=false, length=10)
     private String operation;
     @Column(name="District_UID", precision=10)
-    private int districtUid;
+    private Integer districtUid;
 
     /** Default constructor. */
     public AddressAud() {
@@ -93,7 +67,7 @@ public class AddressAud implements Serializable {
      *
      * @return the current value of addressAudUid
      */
-    public int getAddressAudUid() {
+    public Integer getAddressAudUid() {
         return addressAudUid;
     }
 
@@ -102,7 +76,7 @@ public class AddressAud implements Serializable {
      *
      * @param aAddressAudUid the new value for addressAudUid
      */
-    public void setAddressAudUid(int aAddressAudUid) {
+    public void setAddressAudUid(Integer aAddressAudUid) {
         addressAudUid = aAddressAudUid;
     }
 
@@ -111,7 +85,7 @@ public class AddressAud implements Serializable {
      *
      * @return the current value of addressUid
      */
-    public int getAddressUid() {
+    public Integer getAddressUid() {
         return addressUid;
     }
 
@@ -120,7 +94,7 @@ public class AddressAud implements Serializable {
      *
      * @param aAddressUid the new value for addressUid
      */
-    public void setAddressUid(int aAddressUid) {
+    public void setAddressUid(Integer aAddressUid) {
         addressUid = aAddressUid;
     }
 
@@ -129,7 +103,7 @@ public class AddressAud implements Serializable {
      *
      * @return the current value of addressTypeUid
      */
-    public int getAddressTypeUid() {
+    public Integer getAddressTypeUid() {
         return addressTypeUid;
     }
 
@@ -138,7 +112,7 @@ public class AddressAud implements Serializable {
      *
      * @param aAddressTypeUid the new value for addressTypeUid
      */
-    public void setAddressTypeUid(int aAddressTypeUid) {
+    public void setAddressTypeUid(Integer aAddressTypeUid) {
         addressTypeUid = aAddressTypeUid;
     }
 
@@ -147,7 +121,7 @@ public class AddressAud implements Serializable {
      *
      * @return the current value of stateProvinceUid
      */
-    public int getStateProvinceUid() {
+    public Integer getStateProvinceUid() {
         return stateProvinceUid;
     }
 
@@ -156,7 +130,7 @@ public class AddressAud implements Serializable {
      *
      * @param aStateProvinceUid the new value for stateProvinceUid
      */
-    public void setStateProvinceUid(int aStateProvinceUid) {
+    public void setStateProvinceUid(Integer aStateProvinceUid) {
         stateProvinceUid = aStateProvinceUid;
     }
 
@@ -165,7 +139,7 @@ public class AddressAud implements Serializable {
      *
      * @return the current value of countryCodeUid
      */
-    public int getCountryCodeUid() {
+    public Integer getCountryCodeUid() {
         return countryCodeUid;
     }
 
@@ -174,7 +148,7 @@ public class AddressAud implements Serializable {
      *
      * @param aCountryCodeUid the new value for countryCodeUid
      */
-    public void setCountryCodeUid(int aCountryCodeUid) {
+    public void setCountryCodeUid(Integer aCountryCodeUid) {
         countryCodeUid = aCountryCodeUid;
     }
 
@@ -183,7 +157,7 @@ public class AddressAud implements Serializable {
      *
      * @return the current value of usersUid
      */
-    public int getUsersUid() {
+    public Integer getUsersUid() {
         return usersUid;
     }
 
@@ -192,7 +166,7 @@ public class AddressAud implements Serializable {
      *
      * @param aUsersUid the new value for usersUid
      */
-    public void setUsersUid(int aUsersUid) {
+    public void setUsersUid(Integer aUsersUid) {
         usersUid = aUsersUid;
     }
 
@@ -201,7 +175,7 @@ public class AddressAud implements Serializable {
      *
      * @return the current value of terminalUid
      */
-    public int getTerminalUid() {
+    public Integer getTerminalUid() {
         return terminalUid;
     }
 
@@ -210,7 +184,7 @@ public class AddressAud implements Serializable {
      *
      * @param aTerminalUid the new value for terminalUid
      */
-    public void setTerminalUid(int aTerminalUid) {
+    public void setTerminalUid(Integer aTerminalUid) {
         terminalUid = aTerminalUid;
     }
 
@@ -219,7 +193,7 @@ public class AddressAud implements Serializable {
      *
      * @return the current value of companyUid
      */
-    public int getCompanyUid() {
+    public Integer getCompanyUid() {
         return companyUid;
     }
 
@@ -228,7 +202,7 @@ public class AddressAud implements Serializable {
      *
      * @param aCompanyUid the new value for companyUid
      */
-    public void setCompanyUid(int aCompanyUid) {
+    public void setCompanyUid(Integer aCompanyUid) {
         companyUid = aCompanyUid;
     }
 
@@ -237,7 +211,7 @@ public class AddressAud implements Serializable {
      *
      * @return the current value of contactUid
      */
-    public int getContactUid() {
+    public Integer getContactUid() {
         return contactUid;
     }
 
@@ -246,7 +220,7 @@ public class AddressAud implements Serializable {
      *
      * @param aContactUid the new value for contactUid
      */
-    public void setContactUid(int aContactUid) {
+    public void setContactUid(Integer aContactUid) {
         contactUid = aContactUid;
     }
 
@@ -417,7 +391,7 @@ public class AddressAud implements Serializable {
      *
      * @return the current value of districtUid
      */
-    public int getDistrictUid() {
+    public Integer getDistrictUid() {
         return districtUid;
     }
 
@@ -426,7 +400,7 @@ public class AddressAud implements Serializable {
      *
      * @param aDistrictUid the new value for districtUid
      */
-    public void setDistrictUid(int aDistrictUid) {
+    public void setDistrictUid(Integer aDistrictUid) {
         districtUid = aDistrictUid;
     }
 
@@ -444,7 +418,9 @@ public class AddressAud implements Serializable {
             return false;
         }
         AddressAud that = (AddressAud) other;
-        if (this.getAddressAudUid() != that.getAddressAudUid()) {
+        Object myAddressAudUid = this.getAddressAudUid();
+        Object yourAddressAudUid = that.getAddressAudUid();
+        if (myAddressAudUid==null ? yourAddressAudUid!=null : !myAddressAudUid.equals(yourAddressAudUid)) {
             return false;
         }
         return true;
@@ -471,7 +447,11 @@ public class AddressAud implements Serializable {
     public int hashCode() {
         int i;
         int result = 17;
-        i = getAddressAudUid();
+        if (getAddressAudUid() == null) {
+            i = 0;
+        } else {
+            i = getAddressAudUid().hashCode();
+        }
         result = 37*result + i;
         return result;
     }
@@ -496,7 +476,7 @@ public class AddressAud implements Serializable {
      */
     public Map<String, Object> getPrimaryKey() {
         Map<String, Object> ret = new LinkedHashMap<String, Object>(6);
-        ret.put("addressAudUid", Integer.valueOf(getAddressAudUid()));
+        ret.put("addressAudUid", getAddressAudUid());
         return ret;
     }
 

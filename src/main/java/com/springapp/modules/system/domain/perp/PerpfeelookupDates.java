@@ -14,7 +14,6 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.Version;
 
 @Entity(name="perpfeelookup_dates")
 public class PerpfeelookupDates implements Serializable {
@@ -22,34 +21,9 @@ public class PerpfeelookupDates implements Serializable {
     /** Primary key. */
     protected static final String PK = "pflDatesUid";
 
-    /**
-     * The optimistic lock. Available via standard bean get/set operations.
-     */
-    @Version
-    @Column(name="LOCK_FLAG")
-    private Integer lockFlag;
-
-    /**
-     * Access method for the lockFlag property.
-     *
-     * @return the current value of the lockFlag property
-     */
-    public Integer getLockFlag() {
-        return lockFlag;
-    }
-
-    /**
-     * Sets the value of the lockFlag property.
-     *
-     * @param aLockFlag the new value of the lockFlag property
-     */
-    public void setLockFlag(Integer aLockFlag) {
-        lockFlag = aLockFlag;
-    }
-
     @Id
     @Column(name="PFLDates_UID", unique=true, nullable=false, precision=10)
-    private int pflDatesUid;
+    private Integer pflDatesUid;
     @Column(name="Start_Date")
     private Date startDate;
     @Column(name="End_Date")
@@ -74,7 +48,7 @@ public class PerpfeelookupDates implements Serializable {
      *
      * @return the current value of pflDatesUid
      */
-    public int getPflDatesUid() {
+    public Integer getPflDatesUid() {
         return pflDatesUid;
     }
 
@@ -83,7 +57,7 @@ public class PerpfeelookupDates implements Serializable {
      *
      * @param aPflDatesUid the new value for pflDatesUid
      */
-    public void setPflDatesUid(int aPflDatesUid) {
+    public void setPflDatesUid(Integer aPflDatesUid) {
         pflDatesUid = aPflDatesUid;
     }
 
@@ -209,7 +183,9 @@ public class PerpfeelookupDates implements Serializable {
             return false;
         }
         PerpfeelookupDates that = (PerpfeelookupDates) other;
-        if (this.getPflDatesUid() != that.getPflDatesUid()) {
+        Object myPflDatesUid = this.getPflDatesUid();
+        Object yourPflDatesUid = that.getPflDatesUid();
+        if (myPflDatesUid==null ? yourPflDatesUid!=null : !myPflDatesUid.equals(yourPflDatesUid)) {
             return false;
         }
         return true;
@@ -236,7 +212,11 @@ public class PerpfeelookupDates implements Serializable {
     public int hashCode() {
         int i;
         int result = 17;
-        i = getPflDatesUid();
+        if (getPflDatesUid() == null) {
+            i = 0;
+        } else {
+            i = getPflDatesUid().hashCode();
+        }
         result = 37*result + i;
         return result;
     }
@@ -261,7 +241,7 @@ public class PerpfeelookupDates implements Serializable {
      */
     public Map<String, Object> getPrimaryKey() {
         Map<String, Object> ret = new LinkedHashMap<String, Object>(6);
-        ret.put("pflDatesUid", Integer.valueOf(getPflDatesUid()));
+        ret.put("pflDatesUid", getPflDatesUid());
         return ret;
     }
 

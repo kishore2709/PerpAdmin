@@ -10,7 +10,6 @@ import java.util.Map;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.Version;
 
 @Entity(name="actionrequest_decision_rel_aud")
 public class ActionrequestDecisionRelAud implements Serializable {
@@ -18,42 +17,17 @@ public class ActionrequestDecisionRelAud implements Serializable {
     /** Primary key. */
     protected static final String PK = "ardrAudUid";
 
-    /**
-     * The optimistic lock. Available via standard bean get/set operations.
-     */
-    @Version
-    @Column(name="LOCK_FLAG")
-    private Integer lockFlag;
-
-    /**
-     * Access method for the lockFlag property.
-     *
-     * @return the current value of the lockFlag property
-     */
-    public Integer getLockFlag() {
-        return lockFlag;
-    }
-
-    /**
-     * Sets the value of the lockFlag property.
-     *
-     * @param aLockFlag the new value of the lockFlag property
-     */
-    public void setLockFlag(Integer aLockFlag) {
-        lockFlag = aLockFlag;
-    }
-
     @Id
     @Column(name="ARDRAud_UID", unique=true, nullable=false, precision=10)
-    private int ardrAudUid;
+    private Integer ardrAudUid;
     @Column(name="RequestDecisionRel_UID", nullable=false, precision=10)
-    private int requestDecisionRelUid;
+    private Integer requestDecisionRelUid;
     @Column(name="RequestAction_UID", nullable=false, precision=10)
-    private int requestActionUid;
+    private Integer requestActionUid;
     @Column(name="DecisionAction_UID", nullable=false, precision=10)
-    private int decisionActionUid;
+    private Integer decisionActionUid;
     @Column(name="Active_Flag", nullable=false, length=1)
-    private String activeFlag;
+    private Character activeFlag;
     @Column(name="Create_Modified_By", nullable=false, length=45)
     private String createModifiedBy;
     @Column(name="Create_Modified_Date", nullable=false)
@@ -71,7 +45,7 @@ public class ActionrequestDecisionRelAud implements Serializable {
      *
      * @return the current value of ardrAudUid
      */
-    public int getArdrAudUid() {
+    public Integer getArdrAudUid() {
         return ardrAudUid;
     }
 
@@ -80,7 +54,7 @@ public class ActionrequestDecisionRelAud implements Serializable {
      *
      * @param aArdrAudUid the new value for ardrAudUid
      */
-    public void setArdrAudUid(int aArdrAudUid) {
+    public void setArdrAudUid(Integer aArdrAudUid) {
         ardrAudUid = aArdrAudUid;
     }
 
@@ -89,7 +63,7 @@ public class ActionrequestDecisionRelAud implements Serializable {
      *
      * @return the current value of requestDecisionRelUid
      */
-    public int getRequestDecisionRelUid() {
+    public Integer getRequestDecisionRelUid() {
         return requestDecisionRelUid;
     }
 
@@ -98,7 +72,7 @@ public class ActionrequestDecisionRelAud implements Serializable {
      *
      * @param aRequestDecisionRelUid the new value for requestDecisionRelUid
      */
-    public void setRequestDecisionRelUid(int aRequestDecisionRelUid) {
+    public void setRequestDecisionRelUid(Integer aRequestDecisionRelUid) {
         requestDecisionRelUid = aRequestDecisionRelUid;
     }
 
@@ -107,7 +81,7 @@ public class ActionrequestDecisionRelAud implements Serializable {
      *
      * @return the current value of requestActionUid
      */
-    public int getRequestActionUid() {
+    public Integer getRequestActionUid() {
         return requestActionUid;
     }
 
@@ -116,7 +90,7 @@ public class ActionrequestDecisionRelAud implements Serializable {
      *
      * @param aRequestActionUid the new value for requestActionUid
      */
-    public void setRequestActionUid(int aRequestActionUid) {
+    public void setRequestActionUid(Integer aRequestActionUid) {
         requestActionUid = aRequestActionUid;
     }
 
@@ -125,7 +99,7 @@ public class ActionrequestDecisionRelAud implements Serializable {
      *
      * @return the current value of decisionActionUid
      */
-    public int getDecisionActionUid() {
+    public Integer getDecisionActionUid() {
         return decisionActionUid;
     }
 
@@ -134,7 +108,7 @@ public class ActionrequestDecisionRelAud implements Serializable {
      *
      * @param aDecisionActionUid the new value for decisionActionUid
      */
-    public void setDecisionActionUid(int aDecisionActionUid) {
+    public void setDecisionActionUid(Integer aDecisionActionUid) {
         decisionActionUid = aDecisionActionUid;
     }
 
@@ -143,7 +117,7 @@ public class ActionrequestDecisionRelAud implements Serializable {
      *
      * @return the current value of activeFlag
      */
-    public String getActiveFlag() {
+    public Character getActiveFlag() {
         return activeFlag;
     }
 
@@ -152,7 +126,7 @@ public class ActionrequestDecisionRelAud implements Serializable {
      *
      * @param aActiveFlag the new value for activeFlag
      */
-    public void setActiveFlag(String aActiveFlag) {
+    public void setActiveFlag(Character aActiveFlag) {
         activeFlag = aActiveFlag;
     }
 
@@ -224,7 +198,9 @@ public class ActionrequestDecisionRelAud implements Serializable {
             return false;
         }
         ActionrequestDecisionRelAud that = (ActionrequestDecisionRelAud) other;
-        if (this.getArdrAudUid() != that.getArdrAudUid()) {
+        Object myArdrAudUid = this.getArdrAudUid();
+        Object yourArdrAudUid = that.getArdrAudUid();
+        if (myArdrAudUid==null ? yourArdrAudUid!=null : !myArdrAudUid.equals(yourArdrAudUid)) {
             return false;
         }
         return true;
@@ -251,7 +227,11 @@ public class ActionrequestDecisionRelAud implements Serializable {
     public int hashCode() {
         int i;
         int result = 17;
-        i = getArdrAudUid();
+        if (getArdrAudUid() == null) {
+            i = 0;
+        } else {
+            i = getArdrAudUid().hashCode();
+        }
         result = 37*result + i;
         return result;
     }
@@ -276,7 +256,7 @@ public class ActionrequestDecisionRelAud implements Serializable {
      */
     public Map<String, Object> getPrimaryKey() {
         Map<String, Object> ret = new LinkedHashMap<String, Object>(6);
-        ret.put("ardrAudUid", Integer.valueOf(getArdrAudUid()));
+        ret.put("ardrAudUid", getArdrAudUid());
         return ret;
     }
 

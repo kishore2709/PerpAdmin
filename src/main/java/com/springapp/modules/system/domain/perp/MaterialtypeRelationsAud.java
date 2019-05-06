@@ -10,7 +10,6 @@ import java.util.Map;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.Version;
 
 @Entity(name="materialtype_relations_aud")
 public class MaterialtypeRelationsAud implements Serializable {
@@ -18,38 +17,13 @@ public class MaterialtypeRelationsAud implements Serializable {
     /** Primary key. */
     protected static final String PK = "mtrAudUid";
 
-    /**
-     * The optimistic lock. Available via standard bean get/set operations.
-     */
-    @Version
-    @Column(name="LOCK_FLAG")
-    private Integer lockFlag;
-
-    /**
-     * Access method for the lockFlag property.
-     *
-     * @return the current value of the lockFlag property
-     */
-    public Integer getLockFlag() {
-        return lockFlag;
-    }
-
-    /**
-     * Sets the value of the lockFlag property.
-     *
-     * @param aLockFlag the new value of the lockFlag property
-     */
-    public void setLockFlag(Integer aLockFlag) {
-        lockFlag = aLockFlag;
-    }
-
     @Id
     @Column(name="MTRAud_UID", unique=true, nullable=false, precision=10)
-    private int mtrAudUid;
+    private Integer mtrAudUid;
     @Column(name="MaterialType_UID", nullable=false, precision=10)
-    private int materialTypeUid;
+    private Integer materialTypeUid;
     @Column(name="RegItemDet_UID", nullable=false, precision=10)
-    private int regItemDetUid;
+    private Integer regItemDetUid;
     @Column(name="Other_Type_Text", length=255)
     private String otherTypeText;
     @Column(name="Create_Modified_By", nullable=false, length=45)
@@ -69,7 +43,7 @@ public class MaterialtypeRelationsAud implements Serializable {
      *
      * @return the current value of mtrAudUid
      */
-    public int getMtrAudUid() {
+    public Integer getMtrAudUid() {
         return mtrAudUid;
     }
 
@@ -78,7 +52,7 @@ public class MaterialtypeRelationsAud implements Serializable {
      *
      * @param aMtrAudUid the new value for mtrAudUid
      */
-    public void setMtrAudUid(int aMtrAudUid) {
+    public void setMtrAudUid(Integer aMtrAudUid) {
         mtrAudUid = aMtrAudUid;
     }
 
@@ -87,7 +61,7 @@ public class MaterialtypeRelationsAud implements Serializable {
      *
      * @return the current value of materialTypeUid
      */
-    public int getMaterialTypeUid() {
+    public Integer getMaterialTypeUid() {
         return materialTypeUid;
     }
 
@@ -96,7 +70,7 @@ public class MaterialtypeRelationsAud implements Serializable {
      *
      * @param aMaterialTypeUid the new value for materialTypeUid
      */
-    public void setMaterialTypeUid(int aMaterialTypeUid) {
+    public void setMaterialTypeUid(Integer aMaterialTypeUid) {
         materialTypeUid = aMaterialTypeUid;
     }
 
@@ -105,7 +79,7 @@ public class MaterialtypeRelationsAud implements Serializable {
      *
      * @return the current value of regItemDetUid
      */
-    public int getRegItemDetUid() {
+    public Integer getRegItemDetUid() {
         return regItemDetUid;
     }
 
@@ -114,7 +88,7 @@ public class MaterialtypeRelationsAud implements Serializable {
      *
      * @param aRegItemDetUid the new value for regItemDetUid
      */
-    public void setRegItemDetUid(int aRegItemDetUid) {
+    public void setRegItemDetUid(Integer aRegItemDetUid) {
         regItemDetUid = aRegItemDetUid;
     }
 
@@ -204,7 +178,9 @@ public class MaterialtypeRelationsAud implements Serializable {
             return false;
         }
         MaterialtypeRelationsAud that = (MaterialtypeRelationsAud) other;
-        if (this.getMtrAudUid() != that.getMtrAudUid()) {
+        Object myMtrAudUid = this.getMtrAudUid();
+        Object yourMtrAudUid = that.getMtrAudUid();
+        if (myMtrAudUid==null ? yourMtrAudUid!=null : !myMtrAudUid.equals(yourMtrAudUid)) {
             return false;
         }
         return true;
@@ -231,7 +207,11 @@ public class MaterialtypeRelationsAud implements Serializable {
     public int hashCode() {
         int i;
         int result = 17;
-        i = getMtrAudUid();
+        if (getMtrAudUid() == null) {
+            i = 0;
+        } else {
+            i = getMtrAudUid().hashCode();
+        }
         result = 37*result + i;
         return result;
     }
@@ -256,7 +236,7 @@ public class MaterialtypeRelationsAud implements Serializable {
      */
     public Map<String, Object> getPrimaryKey() {
         Map<String, Object> ret = new LinkedHashMap<String, Object>(6);
-        ret.put("mtrAudUid", Integer.valueOf(getMtrAudUid()));
+        ret.put("mtrAudUid", getMtrAudUid());
         return ret;
     }
 

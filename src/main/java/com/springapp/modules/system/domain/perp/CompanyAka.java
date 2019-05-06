@@ -12,7 +12,6 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.Version;
 
 @Entity(name="company_aka")
 public class CompanyAka implements Serializable {
@@ -20,40 +19,15 @@ public class CompanyAka implements Serializable {
     /** Primary key. */
     protected static final String PK = "coAkaUid";
 
-    /**
-     * The optimistic lock. Available via standard bean get/set operations.
-     */
-    @Version
-    @Column(name="LOCK_FLAG")
-    private Integer lockFlag;
-
-    /**
-     * Access method for the lockFlag property.
-     *
-     * @return the current value of the lockFlag property
-     */
-    public Integer getLockFlag() {
-        return lockFlag;
-    }
-
-    /**
-     * Sets the value of the lockFlag property.
-     *
-     * @param aLockFlag the new value of the lockFlag property
-     */
-    public void setLockFlag(Integer aLockFlag) {
-        lockFlag = aLockFlag;
-    }
-
     @Id
     @Column(name="CoAKA_UID", unique=true, nullable=false, precision=10)
-    private int coAkaUid;
+    private Integer coAkaUid;
     @Column(name="AKA_URL", length=50)
     private String akaUrl;
     @Column(name="AKA_Text")
     private String akaText;
     @Column(name="Active_Flag", nullable=false, length=1)
-    private String activeFlag;
+    private Character activeFlag;
     @Column(name="Create_Modified_By", nullable=false, length=45)
     private String createModifiedBy;
     @Column(name="Create_Modified_Date", nullable=false)
@@ -72,7 +46,7 @@ public class CompanyAka implements Serializable {
      *
      * @return the current value of coAkaUid
      */
-    public int getCoAkaUid() {
+    public Integer getCoAkaUid() {
         return coAkaUid;
     }
 
@@ -81,7 +55,7 @@ public class CompanyAka implements Serializable {
      *
      * @param aCoAkaUid the new value for coAkaUid
      */
-    public void setCoAkaUid(int aCoAkaUid) {
+    public void setCoAkaUid(Integer aCoAkaUid) {
         coAkaUid = aCoAkaUid;
     }
 
@@ -126,7 +100,7 @@ public class CompanyAka implements Serializable {
      *
      * @return the current value of activeFlag
      */
-    public String getActiveFlag() {
+    public Character getActiveFlag() {
         return activeFlag;
     }
 
@@ -135,7 +109,7 @@ public class CompanyAka implements Serializable {
      *
      * @param aActiveFlag the new value for activeFlag
      */
-    public void setActiveFlag(String aActiveFlag) {
+    public void setActiveFlag(Character aActiveFlag) {
         activeFlag = aActiveFlag;
     }
 
@@ -207,7 +181,9 @@ public class CompanyAka implements Serializable {
             return false;
         }
         CompanyAka that = (CompanyAka) other;
-        if (this.getCoAkaUid() != that.getCoAkaUid()) {
+        Object myCoAkaUid = this.getCoAkaUid();
+        Object yourCoAkaUid = that.getCoAkaUid();
+        if (myCoAkaUid==null ? yourCoAkaUid!=null : !myCoAkaUid.equals(yourCoAkaUid)) {
             return false;
         }
         return true;
@@ -234,7 +210,11 @@ public class CompanyAka implements Serializable {
     public int hashCode() {
         int i;
         int result = 17;
-        i = getCoAkaUid();
+        if (getCoAkaUid() == null) {
+            i = 0;
+        } else {
+            i = getCoAkaUid().hashCode();
+        }
         result = 37*result + i;
         return result;
     }
@@ -259,7 +239,7 @@ public class CompanyAka implements Serializable {
      */
     public Map<String, Object> getPrimaryKey() {
         Map<String, Object> ret = new LinkedHashMap<String, Object>(6);
-        ret.put("coAkaUid", Integer.valueOf(getCoAkaUid()));
+        ret.put("coAkaUid", getCoAkaUid());
         return ret;
     }
 

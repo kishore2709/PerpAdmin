@@ -16,7 +16,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.Version;
 
 @Entity(name="regitem_details")
 public class RegitemDetails implements Serializable {
@@ -24,46 +23,21 @@ public class RegitemDetails implements Serializable {
     /** Primary key. */
     protected static final String PK = "regItemDetUid";
 
-    /**
-     * The optimistic lock. Available via standard bean get/set operations.
-     */
-    @Version
-    @Column(name="LOCK_FLAG")
-    private Integer lockFlag;
-
-    /**
-     * Access method for the lockFlag property.
-     *
-     * @return the current value of the lockFlag property
-     */
-    public Integer getLockFlag() {
-        return lockFlag;
-    }
-
-    /**
-     * Sets the value of the lockFlag property.
-     *
-     * @param aLockFlag the new value of the lockFlag property
-     */
-    public void setLockFlag(Integer aLockFlag) {
-        lockFlag = aLockFlag;
-    }
-
     @Id
     @Column(name="RegItemDet_UID", unique=true, nullable=false, precision=10)
-    private int regItemDetUid;
+    private Integer regItemDetUid;
     @Column(name="Adjusted_PM_Factor", precision=10, scale=2)
     private BigDecimal adjustedPmFactor;
     @Column(name="APCE_ExecOrderNo", length=20)
-    private String apceExecOrderNo;
+    private Character apceExecOrderNo;
     @Column(name="Aux_Engine_Flag", length=1)
-    private String auxEngineFlag;
+    private Character auxEngineFlag;
     @Column(name="BrakeHPValue", precision=10)
-    private int brakeHpValue;
+    private Integer brakeHpValue;
     @Column(name="CARB_Cert_PM_Factor_Override", precision=10, scale=2)
     private BigDecimal carbCertPmFactorOverride;
     @Column(name="CCTS_OnHighway", precision=5)
-    private short cctsOnHighway;
+    private Short cctsOnHighway;
     @Column(name="CO", precision=10, scale=4)
     private BigDecimal co;
     @Column(name="CO_Other_Units", length=12)
@@ -71,11 +45,11 @@ public class RegitemDetails implements Serializable {
     @Column(name="Company_Unit_ID", length=60)
     private String companyUnitId;
     @Column(name="Crusher_Equiped_Flag", length=1)
-    private String crusherEquipedFlag;
+    private Character crusherEquipedFlag;
     @Column(name="Description")
     private String description;
     @Column(name="Electrification_Percent", precision=10)
-    private int electrificationPercent;
+    private Integer electrificationPercent;
     @Column(name="Emission_Points")
     private String emissionPoints;
     @Column(name="Engine_Family", length=12)
@@ -87,7 +61,7 @@ public class RegitemDetails implements Serializable {
     @Column(name="Flowrate", length=20)
     private String flowrate;
     @Column(name="FuelAdd_ExecOrderNo", length=20)
-    private String fuelAddExecOrderNo;
+    private Character fuelAddExecOrderNo;
     @Column(name="Fuel_Consumption_Rate", precision=15, scale=5)
     private BigDecimal fuelConsumptionRate;
     @Column(name="List_Description")
@@ -111,9 +85,9 @@ public class RegitemDetails implements Serializable {
     @Column(name="Nozzle_Pressure", length=15)
     private String nozzlePressure;
     @Column(name="Number_Of_Units", precision=5)
-    private short numberOfUnits;
+    private Short numberOfUnits;
     @Column(name="PM_Control_Efficiency", precision=10)
-    private int pmControlEfficiency;
+    private Integer pmControlEfficiency;
     @Column(name="PM10", precision=10, scale=4)
     private BigDecimal pm10;
     @Column(name="PM10_Other_Units", length=12)
@@ -121,7 +95,7 @@ public class RegitemDetails implements Serializable {
     @Column(name="Power_Rating", precision=15, scale=5)
     private BigDecimal powerRating;
     @Column(name="Pressure_Gauge_Flag", length=1)
-    private String pressureGaugeFlag;
+    private Character pressureGaugeFlag;
     @Column(name="Primary_Component_Indicator", nullable=false, length=10)
     private String primaryComponentIndicator;
     @Column(name="RegItemCompType_Other", length=60)
@@ -131,13 +105,13 @@ public class RegitemDetails implements Serializable {
     @Column(name="Resident_1995", length=2)
     private String resident1995;
     @Column(name="Self_Propelled_Flag", length=1)
-    private String selfPropelledFlag;
+    private Character selfPropelledFlag;
     @Column(name="Serial_No", length=30)
     private String serialNo;
     @Column(name="Series", length=20)
     private String series;
     @Column(name="Silo_Crusher_Count", precision=10)
-    private int siloCrusherCount;
+    private Integer siloCrusherCount;
     @Column(name="Silo_Crushers")
     private String siloCrushers;
     @Column(name="Source_Emissions_Data", length=10)
@@ -151,21 +125,21 @@ public class RegitemDetails implements Serializable {
     @Column(name="Transfer_Points")
     private String transferPoints;
     @Column(name="Truck_CentralMix_Flag", length=1)
-    private String truckCentralMixFlag;
+    private Character truckCentralMixFlag;
     @Column(name="VOC", precision=10, scale=4)
     private BigDecimal voc;
     @Column(name="VOC_Other_Units", length=12)
     private String vocOtherUnits;
     @Column(name="Wet_Blasting_Percentage", precision=10)
-    private int wetBlastingPercentage;
+    private Integer wetBlastingPercentage;
     @Column(name="WoodProcAck_Date")
     private Date woodProcAckDate;
     @Column(name="WoodProcAck_Flag", length=1)
-    private String woodProcAckFlag;
+    private Character woodProcAckFlag;
     @Column(name="WoodProcAck_User", length=45)
     private String woodProcAckUser;
     @Column(name="Active_Flag", nullable=false, length=1)
-    private String activeFlag;
+    private Character activeFlag;
     @Column(name="Create_Modified_By", nullable=false, length=45)
     private String createModifiedBy;
     @Column(name="Create_Modified_Date", nullable=false)
@@ -185,7 +159,7 @@ public class RegitemDetails implements Serializable {
     @Column(name="Legacy_EmissionControls")
     private String legacyEmissionControls;
     @Column(name="Legacy_PmControlEfficency", precision=10)
-    private int legacyPmControlEfficency;
+    private Integer legacyPmControlEfficency;
     @Column(name="Legacy_ThroughPutRating", length=40)
     private String legacyThroughPutRating;
     @Column(name="Legacy_MaterialsProcessed")
@@ -197,7 +171,7 @@ public class RegitemDetails implements Serializable {
     @Column(name="Legacy_SilosCrushers")
     private String legacySilosCrushers;
     @Column(name="Legacy_FuelConsumptionRate", precision=7, scale=2)
-    private double legacyFuelConsumptionRate;
+    private Double legacyFuelConsumptionRate;
     @Column(name="Legacy_FuelConsumptionUnits", length=15)
     private String legacyFuelConsumptionUnits;
     @Column(name="Legacy_Resident", length=60)
@@ -209,7 +183,7 @@ public class RegitemDetails implements Serializable {
     @Column(name="Legacy_EngineFamily", length=20)
     private String legacyEngineFamily;
     @Column(name="Administrative_Bypass_Flag", length=1)
-    private String administrativeBypassFlag;
+    private Character administrativeBypassFlag;
     @Column(name="Administrative_Bypass_Reason")
     private String administrativeBypassReason;
     @ManyToOne
@@ -315,7 +289,7 @@ public class RegitemDetails implements Serializable {
      *
      * @return the current value of regItemDetUid
      */
-    public int getRegItemDetUid() {
+    public Integer getRegItemDetUid() {
         return regItemDetUid;
     }
 
@@ -324,7 +298,7 @@ public class RegitemDetails implements Serializable {
      *
      * @param aRegItemDetUid the new value for regItemDetUid
      */
-    public void setRegItemDetUid(int aRegItemDetUid) {
+    public void setRegItemDetUid(Integer aRegItemDetUid) {
         regItemDetUid = aRegItemDetUid;
     }
 
@@ -351,7 +325,7 @@ public class RegitemDetails implements Serializable {
      *
      * @return the current value of apceExecOrderNo
      */
-    public String getApceExecOrderNo() {
+    public Character getApceExecOrderNo() {
         return apceExecOrderNo;
     }
 
@@ -360,7 +334,7 @@ public class RegitemDetails implements Serializable {
      *
      * @param aApceExecOrderNo the new value for apceExecOrderNo
      */
-    public void setApceExecOrderNo(String aApceExecOrderNo) {
+    public void setApceExecOrderNo(Character aApceExecOrderNo) {
         apceExecOrderNo = aApceExecOrderNo;
     }
 
@@ -369,7 +343,7 @@ public class RegitemDetails implements Serializable {
      *
      * @return the current value of auxEngineFlag
      */
-    public String getAuxEngineFlag() {
+    public Character getAuxEngineFlag() {
         return auxEngineFlag;
     }
 
@@ -378,7 +352,7 @@ public class RegitemDetails implements Serializable {
      *
      * @param aAuxEngineFlag the new value for auxEngineFlag
      */
-    public void setAuxEngineFlag(String aAuxEngineFlag) {
+    public void setAuxEngineFlag(Character aAuxEngineFlag) {
         auxEngineFlag = aAuxEngineFlag;
     }
 
@@ -387,7 +361,7 @@ public class RegitemDetails implements Serializable {
      *
      * @return the current value of brakeHpValue
      */
-    public int getBrakeHpValue() {
+    public Integer getBrakeHpValue() {
         return brakeHpValue;
     }
 
@@ -396,7 +370,7 @@ public class RegitemDetails implements Serializable {
      *
      * @param aBrakeHpValue the new value for brakeHpValue
      */
-    public void setBrakeHpValue(int aBrakeHpValue) {
+    public void setBrakeHpValue(Integer aBrakeHpValue) {
         brakeHpValue = aBrakeHpValue;
     }
 
@@ -423,7 +397,7 @@ public class RegitemDetails implements Serializable {
      *
      * @return the current value of cctsOnHighway
      */
-    public short getCctsOnHighway() {
+    public Short getCctsOnHighway() {
         return cctsOnHighway;
     }
 
@@ -432,7 +406,7 @@ public class RegitemDetails implements Serializable {
      *
      * @param aCctsOnHighway the new value for cctsOnHighway
      */
-    public void setCctsOnHighway(short aCctsOnHighway) {
+    public void setCctsOnHighway(Short aCctsOnHighway) {
         cctsOnHighway = aCctsOnHighway;
     }
 
@@ -495,7 +469,7 @@ public class RegitemDetails implements Serializable {
      *
      * @return the current value of crusherEquipedFlag
      */
-    public String getCrusherEquipedFlag() {
+    public Character getCrusherEquipedFlag() {
         return crusherEquipedFlag;
     }
 
@@ -504,7 +478,7 @@ public class RegitemDetails implements Serializable {
      *
      * @param aCrusherEquipedFlag the new value for crusherEquipedFlag
      */
-    public void setCrusherEquipedFlag(String aCrusherEquipedFlag) {
+    public void setCrusherEquipedFlag(Character aCrusherEquipedFlag) {
         crusherEquipedFlag = aCrusherEquipedFlag;
     }
 
@@ -531,7 +505,7 @@ public class RegitemDetails implements Serializable {
      *
      * @return the current value of electrificationPercent
      */
-    public int getElectrificationPercent() {
+    public Integer getElectrificationPercent() {
         return electrificationPercent;
     }
 
@@ -540,7 +514,7 @@ public class RegitemDetails implements Serializable {
      *
      * @param aElectrificationPercent the new value for electrificationPercent
      */
-    public void setElectrificationPercent(int aElectrificationPercent) {
+    public void setElectrificationPercent(Integer aElectrificationPercent) {
         electrificationPercent = aElectrificationPercent;
     }
 
@@ -639,7 +613,7 @@ public class RegitemDetails implements Serializable {
      *
      * @return the current value of fuelAddExecOrderNo
      */
-    public String getFuelAddExecOrderNo() {
+    public Character getFuelAddExecOrderNo() {
         return fuelAddExecOrderNo;
     }
 
@@ -648,7 +622,7 @@ public class RegitemDetails implements Serializable {
      *
      * @param aFuelAddExecOrderNo the new value for fuelAddExecOrderNo
      */
-    public void setFuelAddExecOrderNo(String aFuelAddExecOrderNo) {
+    public void setFuelAddExecOrderNo(Character aFuelAddExecOrderNo) {
         fuelAddExecOrderNo = aFuelAddExecOrderNo;
     }
 
@@ -855,7 +829,7 @@ public class RegitemDetails implements Serializable {
      *
      * @return the current value of numberOfUnits
      */
-    public short getNumberOfUnits() {
+    public Short getNumberOfUnits() {
         return numberOfUnits;
     }
 
@@ -864,7 +838,7 @@ public class RegitemDetails implements Serializable {
      *
      * @param aNumberOfUnits the new value for numberOfUnits
      */
-    public void setNumberOfUnits(short aNumberOfUnits) {
+    public void setNumberOfUnits(Short aNumberOfUnits) {
         numberOfUnits = aNumberOfUnits;
     }
 
@@ -873,7 +847,7 @@ public class RegitemDetails implements Serializable {
      *
      * @return the current value of pmControlEfficiency
      */
-    public int getPmControlEfficiency() {
+    public Integer getPmControlEfficiency() {
         return pmControlEfficiency;
     }
 
@@ -882,7 +856,7 @@ public class RegitemDetails implements Serializable {
      *
      * @param aPmControlEfficiency the new value for pmControlEfficiency
      */
-    public void setPmControlEfficiency(int aPmControlEfficiency) {
+    public void setPmControlEfficiency(Integer aPmControlEfficiency) {
         pmControlEfficiency = aPmControlEfficiency;
     }
 
@@ -945,7 +919,7 @@ public class RegitemDetails implements Serializable {
      *
      * @return the current value of pressureGaugeFlag
      */
-    public String getPressureGaugeFlag() {
+    public Character getPressureGaugeFlag() {
         return pressureGaugeFlag;
     }
 
@@ -954,7 +928,7 @@ public class RegitemDetails implements Serializable {
      *
      * @param aPressureGaugeFlag the new value for pressureGaugeFlag
      */
-    public void setPressureGaugeFlag(String aPressureGaugeFlag) {
+    public void setPressureGaugeFlag(Character aPressureGaugeFlag) {
         pressureGaugeFlag = aPressureGaugeFlag;
     }
 
@@ -1035,7 +1009,7 @@ public class RegitemDetails implements Serializable {
      *
      * @return the current value of selfPropelledFlag
      */
-    public String getSelfPropelledFlag() {
+    public Character getSelfPropelledFlag() {
         return selfPropelledFlag;
     }
 
@@ -1044,7 +1018,7 @@ public class RegitemDetails implements Serializable {
      *
      * @param aSelfPropelledFlag the new value for selfPropelledFlag
      */
-    public void setSelfPropelledFlag(String aSelfPropelledFlag) {
+    public void setSelfPropelledFlag(Character aSelfPropelledFlag) {
         selfPropelledFlag = aSelfPropelledFlag;
     }
 
@@ -1089,7 +1063,7 @@ public class RegitemDetails implements Serializable {
      *
      * @return the current value of siloCrusherCount
      */
-    public int getSiloCrusherCount() {
+    public Integer getSiloCrusherCount() {
         return siloCrusherCount;
     }
 
@@ -1098,7 +1072,7 @@ public class RegitemDetails implements Serializable {
      *
      * @param aSiloCrusherCount the new value for siloCrusherCount
      */
-    public void setSiloCrusherCount(int aSiloCrusherCount) {
+    public void setSiloCrusherCount(Integer aSiloCrusherCount) {
         siloCrusherCount = aSiloCrusherCount;
     }
 
@@ -1215,7 +1189,7 @@ public class RegitemDetails implements Serializable {
      *
      * @return the current value of truckCentralMixFlag
      */
-    public String getTruckCentralMixFlag() {
+    public Character getTruckCentralMixFlag() {
         return truckCentralMixFlag;
     }
 
@@ -1224,7 +1198,7 @@ public class RegitemDetails implements Serializable {
      *
      * @param aTruckCentralMixFlag the new value for truckCentralMixFlag
      */
-    public void setTruckCentralMixFlag(String aTruckCentralMixFlag) {
+    public void setTruckCentralMixFlag(Character aTruckCentralMixFlag) {
         truckCentralMixFlag = aTruckCentralMixFlag;
     }
 
@@ -1269,7 +1243,7 @@ public class RegitemDetails implements Serializable {
      *
      * @return the current value of wetBlastingPercentage
      */
-    public int getWetBlastingPercentage() {
+    public Integer getWetBlastingPercentage() {
         return wetBlastingPercentage;
     }
 
@@ -1278,7 +1252,7 @@ public class RegitemDetails implements Serializable {
      *
      * @param aWetBlastingPercentage the new value for wetBlastingPercentage
      */
-    public void setWetBlastingPercentage(int aWetBlastingPercentage) {
+    public void setWetBlastingPercentage(Integer aWetBlastingPercentage) {
         wetBlastingPercentage = aWetBlastingPercentage;
     }
 
@@ -1305,7 +1279,7 @@ public class RegitemDetails implements Serializable {
      *
      * @return the current value of woodProcAckFlag
      */
-    public String getWoodProcAckFlag() {
+    public Character getWoodProcAckFlag() {
         return woodProcAckFlag;
     }
 
@@ -1314,7 +1288,7 @@ public class RegitemDetails implements Serializable {
      *
      * @param aWoodProcAckFlag the new value for woodProcAckFlag
      */
-    public void setWoodProcAckFlag(String aWoodProcAckFlag) {
+    public void setWoodProcAckFlag(Character aWoodProcAckFlag) {
         woodProcAckFlag = aWoodProcAckFlag;
     }
 
@@ -1341,7 +1315,7 @@ public class RegitemDetails implements Serializable {
      *
      * @return the current value of activeFlag
      */
-    public String getActiveFlag() {
+    public Character getActiveFlag() {
         return activeFlag;
     }
 
@@ -1350,7 +1324,7 @@ public class RegitemDetails implements Serializable {
      *
      * @param aActiveFlag the new value for activeFlag
      */
-    public void setActiveFlag(String aActiveFlag) {
+    public void setActiveFlag(Character aActiveFlag) {
         activeFlag = aActiveFlag;
     }
 
@@ -1521,7 +1495,7 @@ public class RegitemDetails implements Serializable {
      *
      * @return the current value of legacyPmControlEfficency
      */
-    public int getLegacyPmControlEfficency() {
+    public Integer getLegacyPmControlEfficency() {
         return legacyPmControlEfficency;
     }
 
@@ -1530,7 +1504,7 @@ public class RegitemDetails implements Serializable {
      *
      * @param aLegacyPmControlEfficency the new value for legacyPmControlEfficency
      */
-    public void setLegacyPmControlEfficency(int aLegacyPmControlEfficency) {
+    public void setLegacyPmControlEfficency(Integer aLegacyPmControlEfficency) {
         legacyPmControlEfficency = aLegacyPmControlEfficency;
     }
 
@@ -1629,7 +1603,7 @@ public class RegitemDetails implements Serializable {
      *
      * @return the current value of legacyFuelConsumptionRate
      */
-    public double getLegacyFuelConsumptionRate() {
+    public Double getLegacyFuelConsumptionRate() {
         return legacyFuelConsumptionRate;
     }
 
@@ -1638,7 +1612,7 @@ public class RegitemDetails implements Serializable {
      *
      * @param aLegacyFuelConsumptionRate the new value for legacyFuelConsumptionRate
      */
-    public void setLegacyFuelConsumptionRate(double aLegacyFuelConsumptionRate) {
+    public void setLegacyFuelConsumptionRate(Double aLegacyFuelConsumptionRate) {
         legacyFuelConsumptionRate = aLegacyFuelConsumptionRate;
     }
 
@@ -1737,7 +1711,7 @@ public class RegitemDetails implements Serializable {
      *
      * @return the current value of administrativeBypassFlag
      */
-    public String getAdministrativeBypassFlag() {
+    public Character getAdministrativeBypassFlag() {
         return administrativeBypassFlag;
     }
 
@@ -1746,7 +1720,7 @@ public class RegitemDetails implements Serializable {
      *
      * @param aAdministrativeBypassFlag the new value for administrativeBypassFlag
      */
-    public void setAdministrativeBypassFlag(String aAdministrativeBypassFlag) {
+    public void setAdministrativeBypassFlag(Character aAdministrativeBypassFlag) {
         administrativeBypassFlag = aAdministrativeBypassFlag;
     }
 
@@ -2358,7 +2332,9 @@ public class RegitemDetails implements Serializable {
             return false;
         }
         RegitemDetails that = (RegitemDetails) other;
-        if (this.getRegItemDetUid() != that.getRegItemDetUid()) {
+        Object myRegItemDetUid = this.getRegItemDetUid();
+        Object yourRegItemDetUid = that.getRegItemDetUid();
+        if (myRegItemDetUid==null ? yourRegItemDetUid!=null : !myRegItemDetUid.equals(yourRegItemDetUid)) {
             return false;
         }
         return true;
@@ -2385,7 +2361,11 @@ public class RegitemDetails implements Serializable {
     public int hashCode() {
         int i;
         int result = 17;
-        i = getRegItemDetUid();
+        if (getRegItemDetUid() == null) {
+            i = 0;
+        } else {
+            i = getRegItemDetUid().hashCode();
+        }
         result = 37*result + i;
         return result;
     }
@@ -2410,7 +2390,7 @@ public class RegitemDetails implements Serializable {
      */
     public Map<String, Object> getPrimaryKey() {
         Map<String, Object> ret = new LinkedHashMap<String, Object>(6);
-        ret.put("regItemDetUid", Integer.valueOf(getRegItemDetUid()));
+        ret.put("regItemDetUid", getRegItemDetUid());
         return ret;
     }
 

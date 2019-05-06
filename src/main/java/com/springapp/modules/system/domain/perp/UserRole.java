@@ -12,38 +12,12 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.Version;
 
 @Entity(name="user_role")
 public class UserRole implements Serializable {
 
     /** Primary key. */
     protected static final String PK = "UserRolePrimary";
-
-    /**
-     * The optimistic lock. Available via standard bean get/set operations.
-     */
-    @Version
-    @Column(name="LOCK_FLAG")
-    private Integer lockFlag;
-
-    /**
-     * Access method for the lockFlag property.
-     *
-     * @return the current value of the lockFlag property
-     */
-    public Integer getLockFlag() {
-        return lockFlag;
-    }
-
-    /**
-     * Sets the value of the lockFlag property.
-     *
-     * @param aLockFlag the new value of the lockFlag property
-     */
-    public void setLockFlag(Integer aLockFlag) {
-        lockFlag = aLockFlag;
-    }
 
     @Column(name="Create_Modified_By", nullable=false, length=45)
     private String createModifiedBy;
@@ -135,7 +109,7 @@ public class UserRole implements Serializable {
     }
 
     /** Temporary value holder for group key fragment usersUsersUid */
-    private transient int tempUsersUsersUid;
+    private transient Integer tempUsersUsersUid;
 
     /**
      * Gets the key fragment usersUid for member users.
@@ -147,7 +121,7 @@ public class UserRole implements Serializable {
      * @return Current (or temporary) value of the key fragment
      * @see Users
      */
-    public int getUsersUsersUid() {
+    public Integer getUsersUsersUid() {
         return (getUsers() == null ? tempUsersUsersUid : getUsers().getUsersUid());
     }
 
@@ -161,7 +135,7 @@ public class UserRole implements Serializable {
      * @param aUsersUid New value for the key fragment
      * @see Users
      */
-    public void setUsersUsersUid(int aUsersUid) {
+    public void setUsersUsersUid(Integer aUsersUid) {
         if (getUsers() == null) {
             tempUsersUsersUid = aUsersUid;
         } else {
@@ -170,7 +144,7 @@ public class UserRole implements Serializable {
     }
 
     /** Temporary value holder for group key fragment rolesRolesUid */
-    private transient int tempRolesRolesUid;
+    private transient Integer tempRolesRolesUid;
 
     /**
      * Gets the key fragment rolesUid for member roles.
@@ -182,7 +156,7 @@ public class UserRole implements Serializable {
      * @return Current (or temporary) value of the key fragment
      * @see Roles
      */
-    public int getRolesRolesUid() {
+    public Integer getRolesRolesUid() {
         return (getRoles() == null ? tempRolesRolesUid : getRoles().getRolesUid());
     }
 
@@ -196,7 +170,7 @@ public class UserRole implements Serializable {
      * @param aRolesUid New value for the key fragment
      * @see Roles
      */
-    public void setRolesRolesUid(int aRolesUid) {
+    public void setRolesRolesUid(Integer aRolesUid) {
         if (getRoles() == null) {
             tempRolesRolesUid = aRolesUid;
         } else {
@@ -218,10 +192,14 @@ public class UserRole implements Serializable {
             return false;
         }
         UserRole that = (UserRole) other;
-        if (this.getUsersUsersUid() != that.getUsersUsersUid()) {
+        Object myUsersUsersUid = this.getUsersUsersUid();
+        Object yourUsersUsersUid = that.getUsersUsersUid();
+        if (myUsersUsersUid==null ? yourUsersUsersUid!=null : !myUsersUsersUid.equals(yourUsersUsersUid)) {
             return false;
         }
-        if (this.getRolesRolesUid() != that.getRolesRolesUid()) {
+        Object myRolesRolesUid = this.getRolesRolesUid();
+        Object yourRolesRolesUid = that.getRolesRolesUid();
+        if (myRolesRolesUid==null ? yourRolesRolesUid!=null : !myRolesRolesUid.equals(yourRolesRolesUid)) {
             return false;
         }
         return true;
@@ -248,9 +226,17 @@ public class UserRole implements Serializable {
     public int hashCode() {
         int i;
         int result = 17;
-        i = getUsersUsersUid();
+        if (getUsersUsersUid() == null) {
+            i = 0;
+        } else {
+            i = getUsersUsersUid().hashCode();
+        }
         result = 37*result + i;
-        i = getRolesRolesUid();
+        if (getRolesRolesUid() == null) {
+            i = 0;
+        } else {
+            i = getRolesRolesUid().hashCode();
+        }
         result = 37*result + i;
         return result;
     }
@@ -276,8 +262,8 @@ public class UserRole implements Serializable {
      */
     public Map<String, Object> getPrimaryKey() {
         Map<String, Object> ret = new LinkedHashMap<String, Object>(6);
-        ret.put("usersUsersUid", Integer.valueOf(getUsersUsersUid()));
-        ret.put("rolesRolesUid", Integer.valueOf(getRolesRolesUid()));
+        ret.put("usersUsersUid", getUsersUsersUid());
+        ret.put("rolesRolesUid", getRolesRolesUid());
         return ret;
     }
 

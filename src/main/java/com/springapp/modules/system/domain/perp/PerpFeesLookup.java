@@ -14,7 +14,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.Version;
 
 @Entity(name="perp_fees_lookup")
 public class PerpFeesLookup implements Serializable {
@@ -22,36 +21,11 @@ public class PerpFeesLookup implements Serializable {
     /** Primary key. */
     protected static final String PK = "perpFeeLookupUid";
 
-    /**
-     * The optimistic lock. Available via standard bean get/set operations.
-     */
-    @Version
-    @Column(name="LOCK_FLAG")
-    private Integer lockFlag;
-
-    /**
-     * Access method for the lockFlag property.
-     *
-     * @return the current value of the lockFlag property
-     */
-    public Integer getLockFlag() {
-        return lockFlag;
-    }
-
-    /**
-     * Sets the value of the lockFlag property.
-     *
-     * @param aLockFlag the new value of the lockFlag property
-     */
-    public void setLockFlag(Integer aLockFlag) {
-        lockFlag = aLockFlag;
-    }
-
     @Id
     @Column(name="PerpFeeLookup_UID", unique=true, nullable=false, precision=10)
-    private int perpFeeLookupUid;
+    private Integer perpFeeLookupUid;
     @Column(name="BackFee_Flag", nullable=false, length=1)
-    private String backFeeFlag;
+    private Character backFeeFlag;
     @Column(name="Create_Modified_By", nullable=false, length=45)
     private String createModifiedBy;
     @Column(name="Create_Modified_Date", nullable=false)
@@ -82,7 +56,7 @@ public class PerpFeesLookup implements Serializable {
      *
      * @return the current value of perpFeeLookupUid
      */
-    public int getPerpFeeLookupUid() {
+    public Integer getPerpFeeLookupUid() {
         return perpFeeLookupUid;
     }
 
@@ -91,7 +65,7 @@ public class PerpFeesLookup implements Serializable {
      *
      * @param aPerpFeeLookupUid the new value for perpFeeLookupUid
      */
-    public void setPerpFeeLookupUid(int aPerpFeeLookupUid) {
+    public void setPerpFeeLookupUid(Integer aPerpFeeLookupUid) {
         perpFeeLookupUid = aPerpFeeLookupUid;
     }
 
@@ -100,7 +74,7 @@ public class PerpFeesLookup implements Serializable {
      *
      * @return the current value of backFeeFlag
      */
-    public String getBackFeeFlag() {
+    public Character getBackFeeFlag() {
         return backFeeFlag;
     }
 
@@ -109,7 +83,7 @@ public class PerpFeesLookup implements Serializable {
      *
      * @param aBackFeeFlag the new value for backFeeFlag
      */
-    public void setBackFeeFlag(String aBackFeeFlag) {
+    public void setBackFeeFlag(Character aBackFeeFlag) {
         backFeeFlag = aBackFeeFlag;
     }
 
@@ -271,7 +245,9 @@ public class PerpFeesLookup implements Serializable {
             return false;
         }
         PerpFeesLookup that = (PerpFeesLookup) other;
-        if (this.getPerpFeeLookupUid() != that.getPerpFeeLookupUid()) {
+        Object myPerpFeeLookupUid = this.getPerpFeeLookupUid();
+        Object yourPerpFeeLookupUid = that.getPerpFeeLookupUid();
+        if (myPerpFeeLookupUid==null ? yourPerpFeeLookupUid!=null : !myPerpFeeLookupUid.equals(yourPerpFeeLookupUid)) {
             return false;
         }
         return true;
@@ -298,7 +274,11 @@ public class PerpFeesLookup implements Serializable {
     public int hashCode() {
         int i;
         int result = 17;
-        i = getPerpFeeLookupUid();
+        if (getPerpFeeLookupUid() == null) {
+            i = 0;
+        } else {
+            i = getPerpFeeLookupUid().hashCode();
+        }
         result = 37*result + i;
         return result;
     }
@@ -323,7 +303,7 @@ public class PerpFeesLookup implements Serializable {
      */
     public Map<String, Object> getPrimaryKey() {
         Map<String, Object> ret = new LinkedHashMap<String, Object>(6);
-        ret.put("perpFeeLookupUid", Integer.valueOf(getPerpFeeLookupUid()));
+        ret.put("perpFeeLookupUid", getPerpFeeLookupUid());
         return ret;
     }
 

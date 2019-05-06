@@ -10,7 +10,6 @@ import java.util.Map;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.Version;
 
 @Entity(name="perp_upload_recovery")
 public class PerpUploadRecovery implements Serializable {
@@ -18,44 +17,19 @@ public class PerpUploadRecovery implements Serializable {
     /** Primary key. */
     protected static final String PK = "perpUploadRecoveryUid";
 
-    /**
-     * The optimistic lock. Available via standard bean get/set operations.
-     */
-    @Version
-    @Column(name="LOCK_FLAG")
-    private Integer lockFlag;
-
-    /**
-     * Access method for the lockFlag property.
-     *
-     * @return the current value of the lockFlag property
-     */
-    public Integer getLockFlag() {
-        return lockFlag;
-    }
-
-    /**
-     * Sets the value of the lockFlag property.
-     *
-     * @param aLockFlag the new value of the lockFlag property
-     */
-    public void setLockFlag(Integer aLockFlag) {
-        lockFlag = aLockFlag;
-    }
-
     @Id
     @Column(name="PERP_Upload_Recovery_UID", unique=true, nullable=false, precision=10)
-    private int perpUploadRecoveryUid;
+    private Integer perpUploadRecoveryUid;
     @Column(name="PERP_UPLOAD_CONTROL_UID", precision=10)
-    private int perpUploadControlUid;
+    private Integer perpUploadControlUid;
     @Column(name="Element", nullable=false, length=45)
     private String element;
     @Column(name="Error_Flag", nullable=false, length=1)
-    private String errorFlag;
+    private Character errorFlag;
     @Column(name="Error_Text", length=2000)
     private String errorText;
     @Column(name="TraceNum", precision=10)
-    private int traceNum;
+    private Integer traceNum;
     @Column(name="Create_Modify_By", nullable=false, length=45)
     private String createModifyBy;
     @Column(name="Create_Modify_Date", nullable=false)
@@ -71,7 +45,7 @@ public class PerpUploadRecovery implements Serializable {
      *
      * @return the current value of perpUploadRecoveryUid
      */
-    public int getPerpUploadRecoveryUid() {
+    public Integer getPerpUploadRecoveryUid() {
         return perpUploadRecoveryUid;
     }
 
@@ -80,7 +54,7 @@ public class PerpUploadRecovery implements Serializable {
      *
      * @param aPerpUploadRecoveryUid the new value for perpUploadRecoveryUid
      */
-    public void setPerpUploadRecoveryUid(int aPerpUploadRecoveryUid) {
+    public void setPerpUploadRecoveryUid(Integer aPerpUploadRecoveryUid) {
         perpUploadRecoveryUid = aPerpUploadRecoveryUid;
     }
 
@@ -89,7 +63,7 @@ public class PerpUploadRecovery implements Serializable {
      *
      * @return the current value of perpUploadControlUid
      */
-    public int getPerpUploadControlUid() {
+    public Integer getPerpUploadControlUid() {
         return perpUploadControlUid;
     }
 
@@ -98,7 +72,7 @@ public class PerpUploadRecovery implements Serializable {
      *
      * @param aPerpUploadControlUid the new value for perpUploadControlUid
      */
-    public void setPerpUploadControlUid(int aPerpUploadControlUid) {
+    public void setPerpUploadControlUid(Integer aPerpUploadControlUid) {
         perpUploadControlUid = aPerpUploadControlUid;
     }
 
@@ -125,7 +99,7 @@ public class PerpUploadRecovery implements Serializable {
      *
      * @return the current value of errorFlag
      */
-    public String getErrorFlag() {
+    public Character getErrorFlag() {
         return errorFlag;
     }
 
@@ -134,7 +108,7 @@ public class PerpUploadRecovery implements Serializable {
      *
      * @param aErrorFlag the new value for errorFlag
      */
-    public void setErrorFlag(String aErrorFlag) {
+    public void setErrorFlag(Character aErrorFlag) {
         errorFlag = aErrorFlag;
     }
 
@@ -161,7 +135,7 @@ public class PerpUploadRecovery implements Serializable {
      *
      * @return the current value of traceNum
      */
-    public int getTraceNum() {
+    public Integer getTraceNum() {
         return traceNum;
     }
 
@@ -170,7 +144,7 @@ public class PerpUploadRecovery implements Serializable {
      *
      * @param aTraceNum the new value for traceNum
      */
-    public void setTraceNum(int aTraceNum) {
+    public void setTraceNum(Integer aTraceNum) {
         traceNum = aTraceNum;
     }
 
@@ -224,7 +198,9 @@ public class PerpUploadRecovery implements Serializable {
             return false;
         }
         PerpUploadRecovery that = (PerpUploadRecovery) other;
-        if (this.getPerpUploadRecoveryUid() != that.getPerpUploadRecoveryUid()) {
+        Object myPerpUploadRecoveryUid = this.getPerpUploadRecoveryUid();
+        Object yourPerpUploadRecoveryUid = that.getPerpUploadRecoveryUid();
+        if (myPerpUploadRecoveryUid==null ? yourPerpUploadRecoveryUid!=null : !myPerpUploadRecoveryUid.equals(yourPerpUploadRecoveryUid)) {
             return false;
         }
         return true;
@@ -251,7 +227,11 @@ public class PerpUploadRecovery implements Serializable {
     public int hashCode() {
         int i;
         int result = 17;
-        i = getPerpUploadRecoveryUid();
+        if (getPerpUploadRecoveryUid() == null) {
+            i = 0;
+        } else {
+            i = getPerpUploadRecoveryUid().hashCode();
+        }
         result = 37*result + i;
         return result;
     }
@@ -276,7 +256,7 @@ public class PerpUploadRecovery implements Serializable {
      */
     public Map<String, Object> getPrimaryKey() {
         Map<String, Object> ret = new LinkedHashMap<String, Object>(6);
-        ret.put("perpUploadRecoveryUid", Integer.valueOf(getPerpUploadRecoveryUid()));
+        ret.put("perpUploadRecoveryUid", getPerpUploadRecoveryUid());
         return ret;
     }
 

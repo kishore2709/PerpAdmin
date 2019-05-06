@@ -12,7 +12,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.Version;
 
 @Entity(name="engine_type_lookup")
 public class EngineTypeLookup implements Serializable {
@@ -20,36 +19,11 @@ public class EngineTypeLookup implements Serializable {
     /** Primary key. */
     protected static final String PK = "engineTypeLookupUid";
 
-    /**
-     * The optimistic lock. Available via standard bean get/set operations.
-     */
-    @Version
-    @Column(name="LOCK_FLAG")
-    private Integer lockFlag;
-
-    /**
-     * Access method for the lockFlag property.
-     *
-     * @return the current value of the lockFlag property
-     */
-    public Integer getLockFlag() {
-        return lockFlag;
-    }
-
-    /**
-     * Sets the value of the lockFlag property.
-     *
-     * @param aLockFlag the new value of the lockFlag property
-     */
-    public void setLockFlag(Integer aLockFlag) {
-        lockFlag = aLockFlag;
-    }
-
     @Id
     @Column(name="EngineTypeLookup_UID", unique=true, nullable=false, precision=10)
-    private int engineTypeLookupUid;
+    private Integer engineTypeLookupUid;
     @Column(name="SparkOrCompression", nullable=false, precision=5)
-    private short sparkOrCompression;
+    private Short sparkOrCompression;
     @Column(name="Make", nullable=false, length=30)
     private String make;
     @Column(name="Model", nullable=false, length=30)
@@ -57,7 +31,7 @@ public class EngineTypeLookup implements Serializable {
     @Column(name="Series", length=30)
     private String series;
     @Column(name="Ratedhp", precision=10)
-    private int ratedhp;
+    private Integer ratedhp;
     @Column(name="Create_Modified_By", nullable=false, length=45)
     private String createModifiedBy;
     @Column(name="Create_Modified_Date", nullable=false)
@@ -75,7 +49,7 @@ public class EngineTypeLookup implements Serializable {
      *
      * @return the current value of engineTypeLookupUid
      */
-    public int getEngineTypeLookupUid() {
+    public Integer getEngineTypeLookupUid() {
         return engineTypeLookupUid;
     }
 
@@ -84,7 +58,7 @@ public class EngineTypeLookup implements Serializable {
      *
      * @param aEngineTypeLookupUid the new value for engineTypeLookupUid
      */
-    public void setEngineTypeLookupUid(int aEngineTypeLookupUid) {
+    public void setEngineTypeLookupUid(Integer aEngineTypeLookupUid) {
         engineTypeLookupUid = aEngineTypeLookupUid;
     }
 
@@ -93,7 +67,7 @@ public class EngineTypeLookup implements Serializable {
      *
      * @return the current value of sparkOrCompression
      */
-    public short getSparkOrCompression() {
+    public Short getSparkOrCompression() {
         return sparkOrCompression;
     }
 
@@ -102,7 +76,7 @@ public class EngineTypeLookup implements Serializable {
      *
      * @param aSparkOrCompression the new value for sparkOrCompression
      */
-    public void setSparkOrCompression(short aSparkOrCompression) {
+    public void setSparkOrCompression(Short aSparkOrCompression) {
         sparkOrCompression = aSparkOrCompression;
     }
 
@@ -165,7 +139,7 @@ public class EngineTypeLookup implements Serializable {
      *
      * @return the current value of ratedhp
      */
-    public int getRatedhp() {
+    public Integer getRatedhp() {
         return ratedhp;
     }
 
@@ -174,7 +148,7 @@ public class EngineTypeLookup implements Serializable {
      *
      * @param aRatedhp the new value for ratedhp
      */
-    public void setRatedhp(int aRatedhp) {
+    public void setRatedhp(Integer aRatedhp) {
         ratedhp = aRatedhp;
     }
 
@@ -246,7 +220,9 @@ public class EngineTypeLookup implements Serializable {
             return false;
         }
         EngineTypeLookup that = (EngineTypeLookup) other;
-        if (this.getEngineTypeLookupUid() != that.getEngineTypeLookupUid()) {
+        Object myEngineTypeLookupUid = this.getEngineTypeLookupUid();
+        Object yourEngineTypeLookupUid = that.getEngineTypeLookupUid();
+        if (myEngineTypeLookupUid==null ? yourEngineTypeLookupUid!=null : !myEngineTypeLookupUid.equals(yourEngineTypeLookupUid)) {
             return false;
         }
         return true;
@@ -273,7 +249,11 @@ public class EngineTypeLookup implements Serializable {
     public int hashCode() {
         int i;
         int result = 17;
-        i = getEngineTypeLookupUid();
+        if (getEngineTypeLookupUid() == null) {
+            i = 0;
+        } else {
+            i = getEngineTypeLookupUid().hashCode();
+        }
         result = 37*result + i;
         return result;
     }
@@ -298,7 +278,7 @@ public class EngineTypeLookup implements Serializable {
      */
     public Map<String, Object> getPrimaryKey() {
         Map<String, Object> ret = new LinkedHashMap<String, Object>(6);
-        ret.put("engineTypeLookupUid", Integer.valueOf(getEngineTypeLookupUid()));
+        ret.put("engineTypeLookupUid", getEngineTypeLookupUid());
         return ret;
     }
 

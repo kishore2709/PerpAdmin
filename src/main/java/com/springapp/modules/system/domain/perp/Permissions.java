@@ -14,38 +14,12 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.Version;
 
 @Entity(name="permissions")
 public class Permissions implements Serializable {
 
     /** Primary key. */
     protected static final String PK = "PermissionsPrimary";
-
-    /**
-     * The optimistic lock. Available via standard bean get/set operations.
-     */
-    @Version
-    @Column(name="LOCK_FLAG")
-    private Integer lockFlag;
-
-    /**
-     * Access method for the lockFlag property.
-     *
-     * @return the current value of the lockFlag property
-     */
-    public Integer getLockFlag() {
-        return lockFlag;
-    }
-
-    /**
-     * Sets the value of the lockFlag property.
-     *
-     * @param aLockFlag the new value of the lockFlag property
-     */
-    public void setLockFlag(Integer aLockFlag) {
-        lockFlag = aLockFlag;
-    }
 
     @Column(name="Create_Modified_By", nullable=false, length=45)
     private String createModifiedBy;
@@ -157,7 +131,7 @@ public class Permissions implements Serializable {
     }
 
     /** Temporary value holder for group key fragment permissionCodesPermissionCodesUid */
-    private transient int tempPermissionCodesPermissionCodesUid;
+    private transient Integer tempPermissionCodesPermissionCodesUid;
 
     /**
      * Gets the key fragment permissionCodesUid for member permissionCodes.
@@ -169,7 +143,7 @@ public class Permissions implements Serializable {
      * @return Current (or temporary) value of the key fragment
      * @see PermissionCodes
      */
-    public int getPermissionCodesPermissionCodesUid() {
+    public Integer getPermissionCodesPermissionCodesUid() {
         return (getPermissionCodes() == null ? tempPermissionCodesPermissionCodesUid : getPermissionCodes().getPermissionCodesUid());
     }
 
@@ -183,7 +157,7 @@ public class Permissions implements Serializable {
      * @param aPermissionCodesUid New value for the key fragment
      * @see PermissionCodes
      */
-    public void setPermissionCodesPermissionCodesUid(int aPermissionCodesUid) {
+    public void setPermissionCodesPermissionCodesUid(Integer aPermissionCodesUid) {
         if (getPermissionCodes() == null) {
             tempPermissionCodesPermissionCodesUid = aPermissionCodesUid;
         } else {
@@ -192,7 +166,7 @@ public class Permissions implements Serializable {
     }
 
     /** Temporary value holder for group key fragment securityObjectsSoUid */
-    private transient int tempSecurityObjectsSoUid;
+    private transient Integer tempSecurityObjectsSoUid;
 
     /**
      * Gets the key fragment soUid for member securityObjects.
@@ -204,7 +178,7 @@ public class Permissions implements Serializable {
      * @return Current (or temporary) value of the key fragment
      * @see SecurityObjects
      */
-    public int getSecurityObjectsSoUid() {
+    public Integer getSecurityObjectsSoUid() {
         return (getSecurityObjects() == null ? tempSecurityObjectsSoUid : getSecurityObjects().getSoUid());
     }
 
@@ -218,7 +192,7 @@ public class Permissions implements Serializable {
      * @param aSoUid New value for the key fragment
      * @see SecurityObjects
      */
-    public void setSecurityObjectsSoUid(int aSoUid) {
+    public void setSecurityObjectsSoUid(Integer aSoUid) {
         if (getSecurityObjects() == null) {
             tempSecurityObjectsSoUid = aSoUid;
         } else {
@@ -240,10 +214,14 @@ public class Permissions implements Serializable {
             return false;
         }
         Permissions that = (Permissions) other;
-        if (this.getPermissionCodesPermissionCodesUid() != that.getPermissionCodesPermissionCodesUid()) {
+        Object myPermissionCodesPermissionCodesUid = this.getPermissionCodesPermissionCodesUid();
+        Object yourPermissionCodesPermissionCodesUid = that.getPermissionCodesPermissionCodesUid();
+        if (myPermissionCodesPermissionCodesUid==null ? yourPermissionCodesPermissionCodesUid!=null : !myPermissionCodesPermissionCodesUid.equals(yourPermissionCodesPermissionCodesUid)) {
             return false;
         }
-        if (this.getSecurityObjectsSoUid() != that.getSecurityObjectsSoUid()) {
+        Object mySecurityObjectsSoUid = this.getSecurityObjectsSoUid();
+        Object yourSecurityObjectsSoUid = that.getSecurityObjectsSoUid();
+        if (mySecurityObjectsSoUid==null ? yourSecurityObjectsSoUid!=null : !mySecurityObjectsSoUid.equals(yourSecurityObjectsSoUid)) {
             return false;
         }
         return true;
@@ -270,9 +248,17 @@ public class Permissions implements Serializable {
     public int hashCode() {
         int i;
         int result = 17;
-        i = getPermissionCodesPermissionCodesUid();
+        if (getPermissionCodesPermissionCodesUid() == null) {
+            i = 0;
+        } else {
+            i = getPermissionCodesPermissionCodesUid().hashCode();
+        }
         result = 37*result + i;
-        i = getSecurityObjectsSoUid();
+        if (getSecurityObjectsSoUid() == null) {
+            i = 0;
+        } else {
+            i = getSecurityObjectsSoUid().hashCode();
+        }
         result = 37*result + i;
         return result;
     }
@@ -298,8 +284,8 @@ public class Permissions implements Serializable {
      */
     public Map<String, Object> getPrimaryKey() {
         Map<String, Object> ret = new LinkedHashMap<String, Object>(6);
-        ret.put("permissionCodesPermissionCodesUid", Integer.valueOf(getPermissionCodesPermissionCodesUid()));
-        ret.put("securityObjectsSoUid", Integer.valueOf(getSecurityObjectsSoUid()));
+        ret.put("permissionCodesPermissionCodesUid", getPermissionCodesPermissionCodesUid());
+        ret.put("securityObjectsSoUid", getSecurityObjectsSoUid());
         return ret;
     }
 

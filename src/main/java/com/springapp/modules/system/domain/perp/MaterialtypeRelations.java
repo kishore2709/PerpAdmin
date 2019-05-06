@@ -12,7 +12,6 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.Version;
 
 @Entity(name="materialtype_relations")
 public class MaterialtypeRelations implements Serializable {
@@ -20,41 +19,16 @@ public class MaterialtypeRelations implements Serializable {
     /** Primary key. */
     protected static final String PK = "MaterialtypeRelationsPrimary";
 
-    /**
-     * The optimistic lock. Available via standard bean get/set operations.
-     */
-    @Version
-    @Column(name="LOCK_FLAG")
-    private Integer lockFlag;
-
-    /**
-     * Access method for the lockFlag property.
-     *
-     * @return the current value of the lockFlag property
-     */
-    public Integer getLockFlag() {
-        return lockFlag;
-    }
-
-    /**
-     * Sets the value of the lockFlag property.
-     *
-     * @param aLockFlag the new value of the lockFlag property
-     */
-    public void setLockFlag(Integer aLockFlag) {
-        lockFlag = aLockFlag;
-    }
-
     @Column(name="Other_Type_Text", length=255)
     private String otherTypeText;
     @Column(name="Create_Modified_By", nullable=false, length=45)
     private String createModifiedBy;
     @Column(name="Create_Modified_Date", nullable=false)
     private Timestamp createModifiedDate;
+    @Id
     @ManyToOne(optional=false)
     @JoinColumn(name="MaterialType_UID", nullable=false)
     private MaterialTypes materialTypes;
-    @Id
     @ManyToOne(optional=false)
     @JoinColumn(name="RegItemDet_UID", nullable=false)
     private RegitemDetails regitemDetails;
@@ -155,7 +129,7 @@ public class MaterialtypeRelations implements Serializable {
     }
 
     /** Temporary value holder for group key fragment materialTypesUid */
-    private transient int tempMaterialTypesUid;
+    private transient Integer tempMaterialTypesUid;
 
     /**
      * Gets the key fragment uid for member materialTypes.
@@ -167,7 +141,7 @@ public class MaterialtypeRelations implements Serializable {
      * @return Current (or temporary) value of the key fragment
      * @see MaterialTypes
      */
-    public int getMaterialTypesUid() {
+    public Integer getMaterialTypesUid() {
         return (getMaterialTypes() == null ? tempMaterialTypesUid : getMaterialTypes().getUid());
     }
 
@@ -181,7 +155,7 @@ public class MaterialtypeRelations implements Serializable {
      * @param aUid New value for the key fragment
      * @see MaterialTypes
      */
-    public void setMaterialTypesUid(int aUid) {
+    public void setMaterialTypesUid(Integer aUid) {
         if (getMaterialTypes() == null) {
             tempMaterialTypesUid = aUid;
         } else {
@@ -190,7 +164,7 @@ public class MaterialtypeRelations implements Serializable {
     }
 
     /** Temporary value holder for group key fragment regitemDetailsRegItemDetUid */
-    private transient int tempRegitemDetailsRegItemDetUid;
+    private transient Integer tempRegitemDetailsRegItemDetUid;
 
     /**
      * Gets the key fragment regItemDetUid for member regitemDetails.
@@ -202,7 +176,7 @@ public class MaterialtypeRelations implements Serializable {
      * @return Current (or temporary) value of the key fragment
      * @see RegitemDetails
      */
-    public int getRegitemDetailsRegItemDetUid() {
+    public Integer getRegitemDetailsRegItemDetUid() {
         return (getRegitemDetails() == null ? tempRegitemDetailsRegItemDetUid : getRegitemDetails().getRegItemDetUid());
     }
 
@@ -216,7 +190,7 @@ public class MaterialtypeRelations implements Serializable {
      * @param aRegItemDetUid New value for the key fragment
      * @see RegitemDetails
      */
-    public void setRegitemDetailsRegItemDetUid(int aRegItemDetUid) {
+    public void setRegitemDetailsRegItemDetUid(Integer aRegItemDetUid) {
         if (getRegitemDetails() == null) {
             tempRegitemDetailsRegItemDetUid = aRegItemDetUid;
         } else {
@@ -238,10 +212,14 @@ public class MaterialtypeRelations implements Serializable {
             return false;
         }
         MaterialtypeRelations that = (MaterialtypeRelations) other;
-        if (this.getMaterialTypesUid() != that.getMaterialTypesUid()) {
+        Object myMaterialTypesUid = this.getMaterialTypesUid();
+        Object yourMaterialTypesUid = that.getMaterialTypesUid();
+        if (myMaterialTypesUid==null ? yourMaterialTypesUid!=null : !myMaterialTypesUid.equals(yourMaterialTypesUid)) {
             return false;
         }
-        if (this.getRegitemDetailsRegItemDetUid() != that.getRegitemDetailsRegItemDetUid()) {
+        Object myRegitemDetailsRegItemDetUid = this.getRegitemDetailsRegItemDetUid();
+        Object yourRegitemDetailsRegItemDetUid = that.getRegitemDetailsRegItemDetUid();
+        if (myRegitemDetailsRegItemDetUid==null ? yourRegitemDetailsRegItemDetUid!=null : !myRegitemDetailsRegItemDetUid.equals(yourRegitemDetailsRegItemDetUid)) {
             return false;
         }
         return true;
@@ -268,9 +246,17 @@ public class MaterialtypeRelations implements Serializable {
     public int hashCode() {
         int i;
         int result = 17;
-        i = getMaterialTypesUid();
+        if (getMaterialTypesUid() == null) {
+            i = 0;
+        } else {
+            i = getMaterialTypesUid().hashCode();
+        }
         result = 37*result + i;
-        i = getRegitemDetailsRegItemDetUid();
+        if (getRegitemDetailsRegItemDetUid() == null) {
+            i = 0;
+        } else {
+            i = getRegitemDetailsRegItemDetUid().hashCode();
+        }
         result = 37*result + i;
         return result;
     }
@@ -296,8 +282,8 @@ public class MaterialtypeRelations implements Serializable {
      */
     public Map<String, Object> getPrimaryKey() {
         Map<String, Object> ret = new LinkedHashMap<String, Object>(6);
-        ret.put("materialTypesUid", Integer.valueOf(getMaterialTypesUid()));
-        ret.put("regitemDetailsRegItemDetUid", Integer.valueOf(getRegitemDetailsRegItemDetUid()));
+        ret.put("materialTypesUid", getMaterialTypesUid());
+        ret.put("regitemDetailsRegItemDetUid", getRegitemDetailsRegItemDetUid());
         return ret;
     }
 

@@ -10,7 +10,6 @@ import java.util.Map;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.Version;
 
 @Entity(name="users_aud")
 public class UsersAud implements Serializable {
@@ -18,38 +17,13 @@ public class UsersAud implements Serializable {
     /** Primary key. */
     protected static final String PK = "usersAudUid";
 
-    /**
-     * The optimistic lock. Available via standard bean get/set operations.
-     */
-    @Version
-    @Column(name="LOCK_FLAG")
-    private Integer lockFlag;
-
-    /**
-     * Access method for the lockFlag property.
-     *
-     * @return the current value of the lockFlag property
-     */
-    public Integer getLockFlag() {
-        return lockFlag;
-    }
-
-    /**
-     * Sets the value of the lockFlag property.
-     *
-     * @param aLockFlag the new value of the lockFlag property
-     */
-    public void setLockFlag(Integer aLockFlag) {
-        lockFlag = aLockFlag;
-    }
-
     @Id
     @Column(name="Users_Aud_UID", unique=true, nullable=false, precision=10)
-    private int usersAudUid;
+    private Integer usersAudUid;
     @Column(name="Users_UID", nullable=false, precision=10)
-    private int usersUid;
+    private Integer usersUid;
     @Column(name="Company_UID", precision=10)
-    private int companyUid;
+    private Integer companyUid;
     @Column(name="Username", nullable=false, length=45)
     private String username;
     @Column(name="Password", nullable=false, length=64)
@@ -61,11 +35,11 @@ public class UsersAud implements Serializable {
     @Column(name="Last_name", nullable=false, length=40)
     private String lastName;
     @Column(name="Active_Flag", nullable=false, length=1)
-    private String activeFlag;
+    private Character activeFlag;
     @Column(name="User_Type_UID", nullable=false, precision=10)
-    private int userTypeUid;
+    private Integer userTypeUid;
     @Column(name="Salutation_Type_UID", precision=10)
-    private int salutationTypeUid;
+    private Integer salutationTypeUid;
     @Column(name="Create_Modified_By", nullable=false, length=45)
     private String createModifiedBy;
     @Column(name="Create_Modified_Date", nullable=false)
@@ -73,7 +47,7 @@ public class UsersAud implements Serializable {
     @Column(name="Operation", nullable=false, length=10)
     private String operation;
     @Column(name="District_UID", precision=10)
-    private int districtUid;
+    private Integer districtUid;
 
     /** Default constructor. */
     public UsersAud() {
@@ -85,7 +59,7 @@ public class UsersAud implements Serializable {
      *
      * @return the current value of usersAudUid
      */
-    public int getUsersAudUid() {
+    public Integer getUsersAudUid() {
         return usersAudUid;
     }
 
@@ -94,7 +68,7 @@ public class UsersAud implements Serializable {
      *
      * @param aUsersAudUid the new value for usersAudUid
      */
-    public void setUsersAudUid(int aUsersAudUid) {
+    public void setUsersAudUid(Integer aUsersAudUid) {
         usersAudUid = aUsersAudUid;
     }
 
@@ -103,7 +77,7 @@ public class UsersAud implements Serializable {
      *
      * @return the current value of usersUid
      */
-    public int getUsersUid() {
+    public Integer getUsersUid() {
         return usersUid;
     }
 
@@ -112,7 +86,7 @@ public class UsersAud implements Serializable {
      *
      * @param aUsersUid the new value for usersUid
      */
-    public void setUsersUid(int aUsersUid) {
+    public void setUsersUid(Integer aUsersUid) {
         usersUid = aUsersUid;
     }
 
@@ -121,7 +95,7 @@ public class UsersAud implements Serializable {
      *
      * @return the current value of companyUid
      */
-    public int getCompanyUid() {
+    public Integer getCompanyUid() {
         return companyUid;
     }
 
@@ -130,7 +104,7 @@ public class UsersAud implements Serializable {
      *
      * @param aCompanyUid the new value for companyUid
      */
-    public void setCompanyUid(int aCompanyUid) {
+    public void setCompanyUid(Integer aCompanyUid) {
         companyUid = aCompanyUid;
     }
 
@@ -229,7 +203,7 @@ public class UsersAud implements Serializable {
      *
      * @return the current value of activeFlag
      */
-    public String getActiveFlag() {
+    public Character getActiveFlag() {
         return activeFlag;
     }
 
@@ -238,7 +212,7 @@ public class UsersAud implements Serializable {
      *
      * @param aActiveFlag the new value for activeFlag
      */
-    public void setActiveFlag(String aActiveFlag) {
+    public void setActiveFlag(Character aActiveFlag) {
         activeFlag = aActiveFlag;
     }
 
@@ -247,7 +221,7 @@ public class UsersAud implements Serializable {
      *
      * @return the current value of userTypeUid
      */
-    public int getUserTypeUid() {
+    public Integer getUserTypeUid() {
         return userTypeUid;
     }
 
@@ -256,7 +230,7 @@ public class UsersAud implements Serializable {
      *
      * @param aUserTypeUid the new value for userTypeUid
      */
-    public void setUserTypeUid(int aUserTypeUid) {
+    public void setUserTypeUid(Integer aUserTypeUid) {
         userTypeUid = aUserTypeUid;
     }
 
@@ -265,7 +239,7 @@ public class UsersAud implements Serializable {
      *
      * @return the current value of salutationTypeUid
      */
-    public int getSalutationTypeUid() {
+    public Integer getSalutationTypeUid() {
         return salutationTypeUid;
     }
 
@@ -274,7 +248,7 @@ public class UsersAud implements Serializable {
      *
      * @param aSalutationTypeUid the new value for salutationTypeUid
      */
-    public void setSalutationTypeUid(int aSalutationTypeUid) {
+    public void setSalutationTypeUid(Integer aSalutationTypeUid) {
         salutationTypeUid = aSalutationTypeUid;
     }
 
@@ -337,7 +311,7 @@ public class UsersAud implements Serializable {
      *
      * @return the current value of districtUid
      */
-    public int getDistrictUid() {
+    public Integer getDistrictUid() {
         return districtUid;
     }
 
@@ -346,7 +320,7 @@ public class UsersAud implements Serializable {
      *
      * @param aDistrictUid the new value for districtUid
      */
-    public void setDistrictUid(int aDistrictUid) {
+    public void setDistrictUid(Integer aDistrictUid) {
         districtUid = aDistrictUid;
     }
 
@@ -364,7 +338,9 @@ public class UsersAud implements Serializable {
             return false;
         }
         UsersAud that = (UsersAud) other;
-        if (this.getUsersAudUid() != that.getUsersAudUid()) {
+        Object myUsersAudUid = this.getUsersAudUid();
+        Object yourUsersAudUid = that.getUsersAudUid();
+        if (myUsersAudUid==null ? yourUsersAudUid!=null : !myUsersAudUid.equals(yourUsersAudUid)) {
             return false;
         }
         return true;
@@ -391,7 +367,11 @@ public class UsersAud implements Serializable {
     public int hashCode() {
         int i;
         int result = 17;
-        i = getUsersAudUid();
+        if (getUsersAudUid() == null) {
+            i = 0;
+        } else {
+            i = getUsersAudUid().hashCode();
+        }
         result = 37*result + i;
         return result;
     }
@@ -416,7 +396,7 @@ public class UsersAud implements Serializable {
      */
     public Map<String, Object> getPrimaryKey() {
         Map<String, Object> ret = new LinkedHashMap<String, Object>(6);
-        ret.put("usersAudUid", Integer.valueOf(getUsersAudUid()));
+        ret.put("usersAudUid", getUsersAudUid());
         return ret;
     }
 

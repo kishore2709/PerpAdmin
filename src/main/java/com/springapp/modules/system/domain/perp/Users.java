@@ -14,7 +14,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.Version;
 
 @Entity(name="users")
 public class Users implements Serializable {
@@ -22,34 +21,9 @@ public class Users implements Serializable {
     /** Primary key. */
     protected static final String PK = "usersUid";
 
-    /**
-     * The optimistic lock. Available via standard bean get/set operations.
-     */
-    @Version
-    @Column(name="LOCK_FLAG")
-    private Integer lockFlag;
-
-    /**
-     * Access method for the lockFlag property.
-     *
-     * @return the current value of the lockFlag property
-     */
-    public Integer getLockFlag() {
-        return lockFlag;
-    }
-
-    /**
-     * Sets the value of the lockFlag property.
-     *
-     * @param aLockFlag the new value of the lockFlag property
-     */
-    public void setLockFlag(Integer aLockFlag) {
-        lockFlag = aLockFlag;
-    }
-
     @Id
     @Column(name="Users_UID", unique=true, nullable=false, precision=10)
-    private int usersUid;
+    private Integer usersUid;
     @Column(name="Username", nullable=false, length=45)
     private String username;
     @Column(name="Password", nullable=false, length=64)
@@ -61,7 +35,7 @@ public class Users implements Serializable {
     @Column(name="Last_name", nullable=false, length=40)
     private String lastName;
     @Column(name="Active_Flag", nullable=false, length=1)
-    private String activeFlag;
+    private Character activeFlag;
     @Column(name="company_name", length=145)
     private String companyName;
     @Column(name="Create_Modified_By", nullable=false, length=45)
@@ -69,13 +43,13 @@ public class Users implements Serializable {
     @Column(name="Create_Modified_Date", nullable=false)
     private Timestamp createModifiedDate;
     @Column(name="WS_Status", precision=10)
-    private int wsStatus;
+    private Integer wsStatus;
     @Column(name="WS_Last_Called_Date")
     private Timestamp wsLastCalledDate;
     @Column(name="Engineer_Flag", nullable=false, length=1)
-    private String engineerFlag;
+    private Character engineerFlag;
     @Column(name="Processor_Flag", nullable=false, length=1)
-    private String processorFlag;
+    private Character processorFlag;
     @OneToMany(mappedBy="users")
     private Set<PerpApplications> perpApplications;
     @OneToMany(mappedBy="users2")
@@ -125,7 +99,7 @@ public class Users implements Serializable {
      *
      * @return the current value of usersUid
      */
-    public int getUsersUid() {
+    public Integer getUsersUid() {
         return usersUid;
     }
 
@@ -134,7 +108,7 @@ public class Users implements Serializable {
      *
      * @param aUsersUid the new value for usersUid
      */
-    public void setUsersUid(int aUsersUid) {
+    public void setUsersUid(Integer aUsersUid) {
         usersUid = aUsersUid;
     }
 
@@ -233,7 +207,7 @@ public class Users implements Serializable {
      *
      * @return the current value of activeFlag
      */
-    public String getActiveFlag() {
+    public Character getActiveFlag() {
         return activeFlag;
     }
 
@@ -242,7 +216,7 @@ public class Users implements Serializable {
      *
      * @param aActiveFlag the new value for activeFlag
      */
-    public void setActiveFlag(String aActiveFlag) {
+    public void setActiveFlag(Character aActiveFlag) {
         activeFlag = aActiveFlag;
     }
 
@@ -305,7 +279,7 @@ public class Users implements Serializable {
      *
      * @return the current value of wsStatus
      */
-    public int getWsStatus() {
+    public Integer getWsStatus() {
         return wsStatus;
     }
 
@@ -314,7 +288,7 @@ public class Users implements Serializable {
      *
      * @param aWsStatus the new value for wsStatus
      */
-    public void setWsStatus(int aWsStatus) {
+    public void setWsStatus(Integer aWsStatus) {
         wsStatus = aWsStatus;
     }
 
@@ -341,7 +315,7 @@ public class Users implements Serializable {
      *
      * @return the current value of engineerFlag
      */
-    public String getEngineerFlag() {
+    public Character getEngineerFlag() {
         return engineerFlag;
     }
 
@@ -350,7 +324,7 @@ public class Users implements Serializable {
      *
      * @param aEngineerFlag the new value for engineerFlag
      */
-    public void setEngineerFlag(String aEngineerFlag) {
+    public void setEngineerFlag(Character aEngineerFlag) {
         engineerFlag = aEngineerFlag;
     }
 
@@ -359,7 +333,7 @@ public class Users implements Serializable {
      *
      * @return the current value of processorFlag
      */
-    public String getProcessorFlag() {
+    public Character getProcessorFlag() {
         return processorFlag;
     }
 
@@ -368,7 +342,7 @@ public class Users implements Serializable {
      *
      * @param aProcessorFlag the new value for processorFlag
      */
-    public void setProcessorFlag(String aProcessorFlag) {
+    public void setProcessorFlag(Character aProcessorFlag) {
         processorFlag = aProcessorFlag;
     }
 
@@ -692,7 +666,9 @@ public class Users implements Serializable {
             return false;
         }
         Users that = (Users) other;
-        if (this.getUsersUid() != that.getUsersUid()) {
+        Object myUsersUid = this.getUsersUid();
+        Object yourUsersUid = that.getUsersUid();
+        if (myUsersUid==null ? yourUsersUid!=null : !myUsersUid.equals(yourUsersUid)) {
             return false;
         }
         return true;
@@ -719,7 +695,11 @@ public class Users implements Serializable {
     public int hashCode() {
         int i;
         int result = 17;
-        i = getUsersUid();
+        if (getUsersUid() == null) {
+            i = 0;
+        } else {
+            i = getUsersUid().hashCode();
+        }
         result = 37*result + i;
         return result;
     }
@@ -744,7 +724,7 @@ public class Users implements Serializable {
      */
     public Map<String, Object> getPrimaryKey() {
         Map<String, Object> ret = new LinkedHashMap<String, Object>(6);
-        ret.put("usersUid", Integer.valueOf(getUsersUid()));
+        ret.put("usersUid", getUsersUid());
         return ret;
     }
 

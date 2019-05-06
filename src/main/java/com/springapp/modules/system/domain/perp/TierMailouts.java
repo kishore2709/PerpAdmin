@@ -10,7 +10,6 @@ import java.util.Map;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.Version;
 
 @Entity(name="tier_mailouts")
 public class TierMailouts implements Serializable {
@@ -18,34 +17,9 @@ public class TierMailouts implements Serializable {
     /** Primary key. */
     protected static final String PK = "uid";
 
-    /**
-     * The optimistic lock. Available via standard bean get/set operations.
-     */
-    @Version
-    @Column(name="LOCK_FLAG")
-    private Integer lockFlag;
-
-    /**
-     * Access method for the lockFlag property.
-     *
-     * @return the current value of the lockFlag property
-     */
-    public Integer getLockFlag() {
-        return lockFlag;
-    }
-
-    /**
-     * Sets the value of the lockFlag property.
-     *
-     * @param aLockFlag the new value of the lockFlag property
-     */
-    public void setLockFlag(Integer aLockFlag) {
-        lockFlag = aLockFlag;
-    }
-
     @Id
     @Column(name="UID", unique=true, nullable=false, precision=10)
-    private int uid;
+    private Integer uid;
     @Column(length=45)
     private String appno;
     @Column(length=45)
@@ -53,17 +27,17 @@ public class TierMailouts implements Serializable {
     @Column(length=45)
     private String trackingno;
     @Column(length=1)
-    private String status;
+    private Character status;
     @Column(name="Create_Modified_Date")
     private Timestamp createModifiedDate;
     @Column(precision=10)
-    private int appCount;
+    private Integer appCount;
     @Column(name="company_uid", precision=10)
-    private int companyUid;
+    private Integer companyUid;
     @Column(name="Expiration_Date")
     private Timestamp expirationDate;
     @Column(name="RegItem_UID", precision=10)
-    private int regItemUid;
+    private Integer regItemUid;
     @Column(length=45)
     private String apptranno;
 
@@ -77,7 +51,7 @@ public class TierMailouts implements Serializable {
      *
      * @return the current value of uid
      */
-    public int getUid() {
+    public Integer getUid() {
         return uid;
     }
 
@@ -86,7 +60,7 @@ public class TierMailouts implements Serializable {
      *
      * @param aUid the new value for uid
      */
-    public void setUid(int aUid) {
+    public void setUid(Integer aUid) {
         uid = aUid;
     }
 
@@ -149,7 +123,7 @@ public class TierMailouts implements Serializable {
      *
      * @return the current value of status
      */
-    public String getStatus() {
+    public Character getStatus() {
         return status;
     }
 
@@ -158,7 +132,7 @@ public class TierMailouts implements Serializable {
      *
      * @param aStatus the new value for status
      */
-    public void setStatus(String aStatus) {
+    public void setStatus(Character aStatus) {
         status = aStatus;
     }
 
@@ -185,7 +159,7 @@ public class TierMailouts implements Serializable {
      *
      * @return the current value of appCount
      */
-    public int getAppCount() {
+    public Integer getAppCount() {
         return appCount;
     }
 
@@ -194,7 +168,7 @@ public class TierMailouts implements Serializable {
      *
      * @param aAppCount the new value for appCount
      */
-    public void setAppCount(int aAppCount) {
+    public void setAppCount(Integer aAppCount) {
         appCount = aAppCount;
     }
 
@@ -203,7 +177,7 @@ public class TierMailouts implements Serializable {
      *
      * @return the current value of companyUid
      */
-    public int getCompanyUid() {
+    public Integer getCompanyUid() {
         return companyUid;
     }
 
@@ -212,7 +186,7 @@ public class TierMailouts implements Serializable {
      *
      * @param aCompanyUid the new value for companyUid
      */
-    public void setCompanyUid(int aCompanyUid) {
+    public void setCompanyUid(Integer aCompanyUid) {
         companyUid = aCompanyUid;
     }
 
@@ -239,7 +213,7 @@ public class TierMailouts implements Serializable {
      *
      * @return the current value of regItemUid
      */
-    public int getRegItemUid() {
+    public Integer getRegItemUid() {
         return regItemUid;
     }
 
@@ -248,7 +222,7 @@ public class TierMailouts implements Serializable {
      *
      * @param aRegItemUid the new value for regItemUid
      */
-    public void setRegItemUid(int aRegItemUid) {
+    public void setRegItemUid(Integer aRegItemUid) {
         regItemUid = aRegItemUid;
     }
 
@@ -284,7 +258,9 @@ public class TierMailouts implements Serializable {
             return false;
         }
         TierMailouts that = (TierMailouts) other;
-        if (this.getUid() != that.getUid()) {
+        Object myUid = this.getUid();
+        Object yourUid = that.getUid();
+        if (myUid==null ? yourUid!=null : !myUid.equals(yourUid)) {
             return false;
         }
         return true;
@@ -311,7 +287,11 @@ public class TierMailouts implements Serializable {
     public int hashCode() {
         int i;
         int result = 17;
-        i = getUid();
+        if (getUid() == null) {
+            i = 0;
+        } else {
+            i = getUid().hashCode();
+        }
         result = 37*result + i;
         return result;
     }
@@ -336,7 +316,7 @@ public class TierMailouts implements Serializable {
      */
     public Map<String, Object> getPrimaryKey() {
         Map<String, Object> ret = new LinkedHashMap<String, Object>(6);
-        ret.put("uid", Integer.valueOf(getUid()));
+        ret.put("uid", getUid());
         return ret;
     }
 

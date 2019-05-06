@@ -12,7 +12,6 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.Version;
 
 @Entity(name="batch_errors")
 public class BatchErrors implements Serializable {
@@ -20,34 +19,9 @@ public class BatchErrors implements Serializable {
     /** Primary key. */
     protected static final String PK = "batchErrorsUid";
 
-    /**
-     * The optimistic lock. Available via standard bean get/set operations.
-     */
-    @Version
-    @Column(name="LOCK_FLAG")
-    private Integer lockFlag;
-
-    /**
-     * Access method for the lockFlag property.
-     *
-     * @return the current value of the lockFlag property
-     */
-    public Integer getLockFlag() {
-        return lockFlag;
-    }
-
-    /**
-     * Sets the value of the lockFlag property.
-     *
-     * @param aLockFlag the new value of the lockFlag property
-     */
-    public void setLockFlag(Integer aLockFlag) {
-        lockFlag = aLockFlag;
-    }
-
     @Id
     @Column(name="Batch_Errors_UID", unique=true, nullable=false, precision=10)
-    private int batchErrorsUid;
+    private Integer batchErrorsUid;
     @Column(name="Operation", length=45)
     private String operation;
     @Column(name="Error_Flag", length=45)
@@ -72,7 +46,7 @@ public class BatchErrors implements Serializable {
      *
      * @return the current value of batchErrorsUid
      */
-    public int getBatchErrorsUid() {
+    public Integer getBatchErrorsUid() {
         return batchErrorsUid;
     }
 
@@ -81,7 +55,7 @@ public class BatchErrors implements Serializable {
      *
      * @param aBatchErrorsUid the new value for batchErrorsUid
      */
-    public void setBatchErrorsUid(int aBatchErrorsUid) {
+    public void setBatchErrorsUid(Integer aBatchErrorsUid) {
         batchErrorsUid = aBatchErrorsUid;
     }
 
@@ -207,7 +181,9 @@ public class BatchErrors implements Serializable {
             return false;
         }
         BatchErrors that = (BatchErrors) other;
-        if (this.getBatchErrorsUid() != that.getBatchErrorsUid()) {
+        Object myBatchErrorsUid = this.getBatchErrorsUid();
+        Object yourBatchErrorsUid = that.getBatchErrorsUid();
+        if (myBatchErrorsUid==null ? yourBatchErrorsUid!=null : !myBatchErrorsUid.equals(yourBatchErrorsUid)) {
             return false;
         }
         return true;
@@ -234,7 +210,11 @@ public class BatchErrors implements Serializable {
     public int hashCode() {
         int i;
         int result = 17;
-        i = getBatchErrorsUid();
+        if (getBatchErrorsUid() == null) {
+            i = 0;
+        } else {
+            i = getBatchErrorsUid().hashCode();
+        }
         result = 37*result + i;
         return result;
     }
@@ -259,7 +239,7 @@ public class BatchErrors implements Serializable {
      */
     public Map<String, Object> getPrimaryKey() {
         Map<String, Object> ret = new LinkedHashMap<String, Object>(6);
-        ret.put("batchErrorsUid", Integer.valueOf(getBatchErrorsUid()));
+        ret.put("batchErrorsUid", getBatchErrorsUid());
         return ret;
     }
 

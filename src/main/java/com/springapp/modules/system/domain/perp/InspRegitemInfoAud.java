@@ -11,7 +11,6 @@ import java.util.Map;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.Version;
 
 @Entity(name="insp_regitem_info_aud")
 public class InspRegitemInfoAud implements Serializable {
@@ -19,44 +18,19 @@ public class InspRegitemInfoAud implements Serializable {
     /** Primary key. */
     protected static final String PK = "iriiAudUid";
 
-    /**
-     * The optimistic lock. Available via standard bean get/set operations.
-     */
-    @Version
-    @Column(name="LOCK_FLAG")
-    private Integer lockFlag;
-
-    /**
-     * Access method for the lockFlag property.
-     *
-     * @return the current value of the lockFlag property
-     */
-    public Integer getLockFlag() {
-        return lockFlag;
-    }
-
-    /**
-     * Sets the value of the lockFlag property.
-     *
-     * @param aLockFlag the new value of the lockFlag property
-     */
-    public void setLockFlag(Integer aLockFlag) {
-        lockFlag = aLockFlag;
-    }
-
     @Id
     @Column(name="IRIIAud_UID", unique=true, nullable=false, precision=10)
-    private int iriiAudUid;
+    private Integer iriiAudUid;
     @Column(name="InspRegItemInfo_UID", nullable=false, precision=10)
-    private int inspRegItemInfoUid;
+    private Integer inspRegItemInfoUid;
     @Column(name="Inspection_UID", precision=10)
-    private int inspectionUid;
+    private Integer inspectionUid;
     @Column(name="BrakeHPRanges_UID", precision=10)
-    private int brakeHpRangesUid;
+    private Integer brakeHpRangesUid;
     @Column(name="BrakeHPRanges_Units_UID", precision=10)
-    private int brakeHpRangesUnitsUid;
+    private Integer brakeHpRangesUnitsUid;
     @Column(name="BrakeHPValue", precision=10)
-    private int brakeHpValue;
+    private Integer brakeHpValue;
     @Column(name="CARBCertNumber", length=50)
     private String carbCertNumber;
     @Column(name="Company_Uint_ID", length=50)
@@ -66,33 +40,33 @@ public class InspRegitemInfoAud implements Serializable {
     @Column(name="Description")
     private String description;
     @Column(name="District_UID", precision=10)
-    private int districtUid;
+    private Integer districtUid;
     @Column(name="Engine_Family", length=12)
     private String engineFamily;
     @Column(name="EnginePowersType_UID", precision=10)
-    private int enginePowersTypeUid;
+    private Integer enginePowersTypeUid;
     @Column(name="EPACertNumber", length=50)
     private String epaCertNumber;
     @Column(name="Expiration_Date")
     private Date expirationDate;
     @Column(name="Manufacturer_UID", precision=10)
-    private int manufacturerUid;
+    private Integer manufacturerUid;
     @Column(name="Model", length=75)
     private String model;
     @Column(name="ModelYear_UID", precision=10)
-    private int modelYearUid;
+    private Integer modelYearUid;
     @Column(name="RegItemSubType_UID", precision=10)
-    private int regItemSubTypeUid;
+    private Integer regItemSubTypeUid;
     @Column(name="RegItemSubSubTypes_UID", precision=10)
-    private int regItemSubSubTypesUid;
+    private Integer regItemSubSubTypesUid;
     @Column(name="RegItemType_UID", precision=10)
-    private int regItemTypeUid;
+    private Integer regItemTypeUid;
     @Column(name="Serial_No", length=75)
     private String serialNo;
     @Column(name="Certificate_No", precision=10)
-    private int certificateNo;
+    private Integer certificateNo;
     @Column(name="SuspectedStolen_Flag", length=1)
-    private String suspectedStolenFlag;
+    private Character suspectedStolenFlag;
     @Column(name="Actual_Controls_List", length=512)
     private String actualControlsList;
     @Column(name="Actual_Materials_List", length=512)
@@ -124,11 +98,11 @@ public class InspRegitemInfoAud implements Serializable {
     @Column(name="Manufacturer_Other", length=60)
     private String manufacturerOther;
     @Column(name="Rental_Flag", length=1)
-    private String rentalFlag;
+    private Character rentalFlag;
     @Column(name="Actual_Blasting_List", length=512)
     private String actualBlastingList;
     @Column(name="Tier_UID", precision=10)
-    private int tierUid;
+    private Integer tierUid;
     @Column(name="Operation", nullable=false, length=10)
     private String operation;
 
@@ -142,7 +116,7 @@ public class InspRegitemInfoAud implements Serializable {
      *
      * @return the current value of iriiAudUid
      */
-    public int getIriiAudUid() {
+    public Integer getIriiAudUid() {
         return iriiAudUid;
     }
 
@@ -151,7 +125,7 @@ public class InspRegitemInfoAud implements Serializable {
      *
      * @param aIriiAudUid the new value for iriiAudUid
      */
-    public void setIriiAudUid(int aIriiAudUid) {
+    public void setIriiAudUid(Integer aIriiAudUid) {
         iriiAudUid = aIriiAudUid;
     }
 
@@ -160,7 +134,7 @@ public class InspRegitemInfoAud implements Serializable {
      *
      * @return the current value of inspRegItemInfoUid
      */
-    public int getInspRegItemInfoUid() {
+    public Integer getInspRegItemInfoUid() {
         return inspRegItemInfoUid;
     }
 
@@ -169,7 +143,7 @@ public class InspRegitemInfoAud implements Serializable {
      *
      * @param aInspRegItemInfoUid the new value for inspRegItemInfoUid
      */
-    public void setInspRegItemInfoUid(int aInspRegItemInfoUid) {
+    public void setInspRegItemInfoUid(Integer aInspRegItemInfoUid) {
         inspRegItemInfoUid = aInspRegItemInfoUid;
     }
 
@@ -178,7 +152,7 @@ public class InspRegitemInfoAud implements Serializable {
      *
      * @return the current value of inspectionUid
      */
-    public int getInspectionUid() {
+    public Integer getInspectionUid() {
         return inspectionUid;
     }
 
@@ -187,7 +161,7 @@ public class InspRegitemInfoAud implements Serializable {
      *
      * @param aInspectionUid the new value for inspectionUid
      */
-    public void setInspectionUid(int aInspectionUid) {
+    public void setInspectionUid(Integer aInspectionUid) {
         inspectionUid = aInspectionUid;
     }
 
@@ -196,7 +170,7 @@ public class InspRegitemInfoAud implements Serializable {
      *
      * @return the current value of brakeHpRangesUid
      */
-    public int getBrakeHpRangesUid() {
+    public Integer getBrakeHpRangesUid() {
         return brakeHpRangesUid;
     }
 
@@ -205,7 +179,7 @@ public class InspRegitemInfoAud implements Serializable {
      *
      * @param aBrakeHpRangesUid the new value for brakeHpRangesUid
      */
-    public void setBrakeHpRangesUid(int aBrakeHpRangesUid) {
+    public void setBrakeHpRangesUid(Integer aBrakeHpRangesUid) {
         brakeHpRangesUid = aBrakeHpRangesUid;
     }
 
@@ -214,7 +188,7 @@ public class InspRegitemInfoAud implements Serializable {
      *
      * @return the current value of brakeHpRangesUnitsUid
      */
-    public int getBrakeHpRangesUnitsUid() {
+    public Integer getBrakeHpRangesUnitsUid() {
         return brakeHpRangesUnitsUid;
     }
 
@@ -223,7 +197,7 @@ public class InspRegitemInfoAud implements Serializable {
      *
      * @param aBrakeHpRangesUnitsUid the new value for brakeHpRangesUnitsUid
      */
-    public void setBrakeHpRangesUnitsUid(int aBrakeHpRangesUnitsUid) {
+    public void setBrakeHpRangesUnitsUid(Integer aBrakeHpRangesUnitsUid) {
         brakeHpRangesUnitsUid = aBrakeHpRangesUnitsUid;
     }
 
@@ -232,7 +206,7 @@ public class InspRegitemInfoAud implements Serializable {
      *
      * @return the current value of brakeHpValue
      */
-    public int getBrakeHpValue() {
+    public Integer getBrakeHpValue() {
         return brakeHpValue;
     }
 
@@ -241,7 +215,7 @@ public class InspRegitemInfoAud implements Serializable {
      *
      * @param aBrakeHpValue the new value for brakeHpValue
      */
-    public void setBrakeHpValue(int aBrakeHpValue) {
+    public void setBrakeHpValue(Integer aBrakeHpValue) {
         brakeHpValue = aBrakeHpValue;
     }
 
@@ -322,7 +296,7 @@ public class InspRegitemInfoAud implements Serializable {
      *
      * @return the current value of districtUid
      */
-    public int getDistrictUid() {
+    public Integer getDistrictUid() {
         return districtUid;
     }
 
@@ -331,7 +305,7 @@ public class InspRegitemInfoAud implements Serializable {
      *
      * @param aDistrictUid the new value for districtUid
      */
-    public void setDistrictUid(int aDistrictUid) {
+    public void setDistrictUid(Integer aDistrictUid) {
         districtUid = aDistrictUid;
     }
 
@@ -358,7 +332,7 @@ public class InspRegitemInfoAud implements Serializable {
      *
      * @return the current value of enginePowersTypeUid
      */
-    public int getEnginePowersTypeUid() {
+    public Integer getEnginePowersTypeUid() {
         return enginePowersTypeUid;
     }
 
@@ -367,7 +341,7 @@ public class InspRegitemInfoAud implements Serializable {
      *
      * @param aEnginePowersTypeUid the new value for enginePowersTypeUid
      */
-    public void setEnginePowersTypeUid(int aEnginePowersTypeUid) {
+    public void setEnginePowersTypeUid(Integer aEnginePowersTypeUid) {
         enginePowersTypeUid = aEnginePowersTypeUid;
     }
 
@@ -412,7 +386,7 @@ public class InspRegitemInfoAud implements Serializable {
      *
      * @return the current value of manufacturerUid
      */
-    public int getManufacturerUid() {
+    public Integer getManufacturerUid() {
         return manufacturerUid;
     }
 
@@ -421,7 +395,7 @@ public class InspRegitemInfoAud implements Serializable {
      *
      * @param aManufacturerUid the new value for manufacturerUid
      */
-    public void setManufacturerUid(int aManufacturerUid) {
+    public void setManufacturerUid(Integer aManufacturerUid) {
         manufacturerUid = aManufacturerUid;
     }
 
@@ -448,7 +422,7 @@ public class InspRegitemInfoAud implements Serializable {
      *
      * @return the current value of modelYearUid
      */
-    public int getModelYearUid() {
+    public Integer getModelYearUid() {
         return modelYearUid;
     }
 
@@ -457,7 +431,7 @@ public class InspRegitemInfoAud implements Serializable {
      *
      * @param aModelYearUid the new value for modelYearUid
      */
-    public void setModelYearUid(int aModelYearUid) {
+    public void setModelYearUid(Integer aModelYearUid) {
         modelYearUid = aModelYearUid;
     }
 
@@ -466,7 +440,7 @@ public class InspRegitemInfoAud implements Serializable {
      *
      * @return the current value of regItemSubTypeUid
      */
-    public int getRegItemSubTypeUid() {
+    public Integer getRegItemSubTypeUid() {
         return regItemSubTypeUid;
     }
 
@@ -475,7 +449,7 @@ public class InspRegitemInfoAud implements Serializable {
      *
      * @param aRegItemSubTypeUid the new value for regItemSubTypeUid
      */
-    public void setRegItemSubTypeUid(int aRegItemSubTypeUid) {
+    public void setRegItemSubTypeUid(Integer aRegItemSubTypeUid) {
         regItemSubTypeUid = aRegItemSubTypeUid;
     }
 
@@ -484,7 +458,7 @@ public class InspRegitemInfoAud implements Serializable {
      *
      * @return the current value of regItemSubSubTypesUid
      */
-    public int getRegItemSubSubTypesUid() {
+    public Integer getRegItemSubSubTypesUid() {
         return regItemSubSubTypesUid;
     }
 
@@ -493,7 +467,7 @@ public class InspRegitemInfoAud implements Serializable {
      *
      * @param aRegItemSubSubTypesUid the new value for regItemSubSubTypesUid
      */
-    public void setRegItemSubSubTypesUid(int aRegItemSubSubTypesUid) {
+    public void setRegItemSubSubTypesUid(Integer aRegItemSubSubTypesUid) {
         regItemSubSubTypesUid = aRegItemSubSubTypesUid;
     }
 
@@ -502,7 +476,7 @@ public class InspRegitemInfoAud implements Serializable {
      *
      * @return the current value of regItemTypeUid
      */
-    public int getRegItemTypeUid() {
+    public Integer getRegItemTypeUid() {
         return regItemTypeUid;
     }
 
@@ -511,7 +485,7 @@ public class InspRegitemInfoAud implements Serializable {
      *
      * @param aRegItemTypeUid the new value for regItemTypeUid
      */
-    public void setRegItemTypeUid(int aRegItemTypeUid) {
+    public void setRegItemTypeUid(Integer aRegItemTypeUid) {
         regItemTypeUid = aRegItemTypeUid;
     }
 
@@ -538,7 +512,7 @@ public class InspRegitemInfoAud implements Serializable {
      *
      * @return the current value of certificateNo
      */
-    public int getCertificateNo() {
+    public Integer getCertificateNo() {
         return certificateNo;
     }
 
@@ -547,7 +521,7 @@ public class InspRegitemInfoAud implements Serializable {
      *
      * @param aCertificateNo the new value for certificateNo
      */
-    public void setCertificateNo(int aCertificateNo) {
+    public void setCertificateNo(Integer aCertificateNo) {
         certificateNo = aCertificateNo;
     }
 
@@ -556,7 +530,7 @@ public class InspRegitemInfoAud implements Serializable {
      *
      * @return the current value of suspectedStolenFlag
      */
-    public String getSuspectedStolenFlag() {
+    public Character getSuspectedStolenFlag() {
         return suspectedStolenFlag;
     }
 
@@ -565,7 +539,7 @@ public class InspRegitemInfoAud implements Serializable {
      *
      * @param aSuspectedStolenFlag the new value for suspectedStolenFlag
      */
-    public void setSuspectedStolenFlag(String aSuspectedStolenFlag) {
+    public void setSuspectedStolenFlag(Character aSuspectedStolenFlag) {
         suspectedStolenFlag = aSuspectedStolenFlag;
     }
 
@@ -844,7 +818,7 @@ public class InspRegitemInfoAud implements Serializable {
      *
      * @return the current value of rentalFlag
      */
-    public String getRentalFlag() {
+    public Character getRentalFlag() {
         return rentalFlag;
     }
 
@@ -853,7 +827,7 @@ public class InspRegitemInfoAud implements Serializable {
      *
      * @param aRentalFlag the new value for rentalFlag
      */
-    public void setRentalFlag(String aRentalFlag) {
+    public void setRentalFlag(Character aRentalFlag) {
         rentalFlag = aRentalFlag;
     }
 
@@ -880,7 +854,7 @@ public class InspRegitemInfoAud implements Serializable {
      *
      * @return the current value of tierUid
      */
-    public int getTierUid() {
+    public Integer getTierUid() {
         return tierUid;
     }
 
@@ -889,7 +863,7 @@ public class InspRegitemInfoAud implements Serializable {
      *
      * @param aTierUid the new value for tierUid
      */
-    public void setTierUid(int aTierUid) {
+    public void setTierUid(Integer aTierUid) {
         tierUid = aTierUid;
     }
 
@@ -925,7 +899,9 @@ public class InspRegitemInfoAud implements Serializable {
             return false;
         }
         InspRegitemInfoAud that = (InspRegitemInfoAud) other;
-        if (this.getIriiAudUid() != that.getIriiAudUid()) {
+        Object myIriiAudUid = this.getIriiAudUid();
+        Object yourIriiAudUid = that.getIriiAudUid();
+        if (myIriiAudUid==null ? yourIriiAudUid!=null : !myIriiAudUid.equals(yourIriiAudUid)) {
             return false;
         }
         return true;
@@ -952,7 +928,11 @@ public class InspRegitemInfoAud implements Serializable {
     public int hashCode() {
         int i;
         int result = 17;
-        i = getIriiAudUid();
+        if (getIriiAudUid() == null) {
+            i = 0;
+        } else {
+            i = getIriiAudUid().hashCode();
+        }
         result = 37*result + i;
         return result;
     }
@@ -977,7 +957,7 @@ public class InspRegitemInfoAud implements Serializable {
      */
     public Map<String, Object> getPrimaryKey() {
         Map<String, Object> ret = new LinkedHashMap<String, Object>(6);
-        ret.put("iriiAudUid", Integer.valueOf(getIriiAudUid()));
+        ret.put("iriiAudUid", getIriiAudUid());
         return ret;
     }
 

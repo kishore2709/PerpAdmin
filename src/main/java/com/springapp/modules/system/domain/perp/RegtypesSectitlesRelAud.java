@@ -10,7 +10,6 @@ import java.util.Map;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.Version;
 
 @Entity(name="regtypes_sectitles_rel_aud")
 public class RegtypesSectitlesRelAud implements Serializable {
@@ -18,44 +17,19 @@ public class RegtypesSectitlesRelAud implements Serializable {
     /** Primary key. */
     protected static final String PK = "rtstrAudUid";
 
-    /**
-     * The optimistic lock. Available via standard bean get/set operations.
-     */
-    @Version
-    @Column(name="LOCK_FLAG")
-    private Integer lockFlag;
-
-    /**
-     * Access method for the lockFlag property.
-     *
-     * @return the current value of the lockFlag property
-     */
-    public Integer getLockFlag() {
-        return lockFlag;
-    }
-
-    /**
-     * Sets the value of the lockFlag property.
-     *
-     * @param aLockFlag the new value of the lockFlag property
-     */
-    public void setLockFlag(Integer aLockFlag) {
-        lockFlag = aLockFlag;
-    }
-
     @Id
     @Column(name="RTSTRAud_UID", unique=true, nullable=false, precision=10)
-    private int rtstrAudUid;
+    private Integer rtstrAudUid;
     @Column(name="RTSTRel_UID", nullable=false, precision=10)
-    private int rtstRelUid;
+    private Integer rtstRelUid;
     @Column(name="OpConSecTitle_UID", nullable=false, precision=10)
-    private int opConSecTitleUid;
+    private Integer opConSecTitleUid;
     @Column(name="RegItemType_UID", nullable=false, precision=10)
-    private int regItemTypeUid;
+    private Integer regItemTypeUid;
     @Column(name="Section_Sort", precision=10)
-    private int sectionSort;
+    private Integer sectionSort;
     @Column(name="Active_Flag", nullable=false, length=1)
-    private String activeFlag;
+    private Character activeFlag;
     @Column(name="Create_Modified_By", nullable=false, length=45)
     private String createModifiedBy;
     @Column(name="Create_Modified_Date", nullable=false)
@@ -73,7 +47,7 @@ public class RegtypesSectitlesRelAud implements Serializable {
      *
      * @return the current value of rtstrAudUid
      */
-    public int getRtstrAudUid() {
+    public Integer getRtstrAudUid() {
         return rtstrAudUid;
     }
 
@@ -82,7 +56,7 @@ public class RegtypesSectitlesRelAud implements Serializable {
      *
      * @param aRtstrAudUid the new value for rtstrAudUid
      */
-    public void setRtstrAudUid(int aRtstrAudUid) {
+    public void setRtstrAudUid(Integer aRtstrAudUid) {
         rtstrAudUid = aRtstrAudUid;
     }
 
@@ -91,7 +65,7 @@ public class RegtypesSectitlesRelAud implements Serializable {
      *
      * @return the current value of rtstRelUid
      */
-    public int getRtstRelUid() {
+    public Integer getRtstRelUid() {
         return rtstRelUid;
     }
 
@@ -100,7 +74,7 @@ public class RegtypesSectitlesRelAud implements Serializable {
      *
      * @param aRtstRelUid the new value for rtstRelUid
      */
-    public void setRtstRelUid(int aRtstRelUid) {
+    public void setRtstRelUid(Integer aRtstRelUid) {
         rtstRelUid = aRtstRelUid;
     }
 
@@ -109,7 +83,7 @@ public class RegtypesSectitlesRelAud implements Serializable {
      *
      * @return the current value of opConSecTitleUid
      */
-    public int getOpConSecTitleUid() {
+    public Integer getOpConSecTitleUid() {
         return opConSecTitleUid;
     }
 
@@ -118,7 +92,7 @@ public class RegtypesSectitlesRelAud implements Serializable {
      *
      * @param aOpConSecTitleUid the new value for opConSecTitleUid
      */
-    public void setOpConSecTitleUid(int aOpConSecTitleUid) {
+    public void setOpConSecTitleUid(Integer aOpConSecTitleUid) {
         opConSecTitleUid = aOpConSecTitleUid;
     }
 
@@ -127,7 +101,7 @@ public class RegtypesSectitlesRelAud implements Serializable {
      *
      * @return the current value of regItemTypeUid
      */
-    public int getRegItemTypeUid() {
+    public Integer getRegItemTypeUid() {
         return regItemTypeUid;
     }
 
@@ -136,7 +110,7 @@ public class RegtypesSectitlesRelAud implements Serializable {
      *
      * @param aRegItemTypeUid the new value for regItemTypeUid
      */
-    public void setRegItemTypeUid(int aRegItemTypeUid) {
+    public void setRegItemTypeUid(Integer aRegItemTypeUid) {
         regItemTypeUid = aRegItemTypeUid;
     }
 
@@ -145,7 +119,7 @@ public class RegtypesSectitlesRelAud implements Serializable {
      *
      * @return the current value of sectionSort
      */
-    public int getSectionSort() {
+    public Integer getSectionSort() {
         return sectionSort;
     }
 
@@ -154,7 +128,7 @@ public class RegtypesSectitlesRelAud implements Serializable {
      *
      * @param aSectionSort the new value for sectionSort
      */
-    public void setSectionSort(int aSectionSort) {
+    public void setSectionSort(Integer aSectionSort) {
         sectionSort = aSectionSort;
     }
 
@@ -163,7 +137,7 @@ public class RegtypesSectitlesRelAud implements Serializable {
      *
      * @return the current value of activeFlag
      */
-    public String getActiveFlag() {
+    public Character getActiveFlag() {
         return activeFlag;
     }
 
@@ -172,7 +146,7 @@ public class RegtypesSectitlesRelAud implements Serializable {
      *
      * @param aActiveFlag the new value for activeFlag
      */
-    public void setActiveFlag(String aActiveFlag) {
+    public void setActiveFlag(Character aActiveFlag) {
         activeFlag = aActiveFlag;
     }
 
@@ -244,7 +218,9 @@ public class RegtypesSectitlesRelAud implements Serializable {
             return false;
         }
         RegtypesSectitlesRelAud that = (RegtypesSectitlesRelAud) other;
-        if (this.getRtstrAudUid() != that.getRtstrAudUid()) {
+        Object myRtstrAudUid = this.getRtstrAudUid();
+        Object yourRtstrAudUid = that.getRtstrAudUid();
+        if (myRtstrAudUid==null ? yourRtstrAudUid!=null : !myRtstrAudUid.equals(yourRtstrAudUid)) {
             return false;
         }
         return true;
@@ -271,7 +247,11 @@ public class RegtypesSectitlesRelAud implements Serializable {
     public int hashCode() {
         int i;
         int result = 17;
-        i = getRtstrAudUid();
+        if (getRtstrAudUid() == null) {
+            i = 0;
+        } else {
+            i = getRtstrAudUid().hashCode();
+        }
         result = 37*result + i;
         return result;
     }
@@ -296,7 +276,7 @@ public class RegtypesSectitlesRelAud implements Serializable {
      */
     public Map<String, Object> getPrimaryKey() {
         Map<String, Object> ret = new LinkedHashMap<String, Object>(6);
-        ret.put("rtstrAudUid", Integer.valueOf(getRtstrAudUid()));
+        ret.put("rtstrAudUid", getRtstrAudUid());
         return ret;
     }
 

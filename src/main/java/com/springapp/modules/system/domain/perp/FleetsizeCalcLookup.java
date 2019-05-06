@@ -10,7 +10,6 @@ import java.util.Map;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.Version;
 
 @Entity(name="fleetsize_calc_lookup")
 public class FleetsizeCalcLookup implements Serializable {
@@ -18,34 +17,9 @@ public class FleetsizeCalcLookup implements Serializable {
     /** Primary key. */
     protected static final String PK = "fleetCalcLookupUid";
 
-    /**
-     * The optimistic lock. Available via standard bean get/set operations.
-     */
-    @Version
-    @Column(name="LOCK_FLAG")
-    private Integer lockFlag;
-
-    /**
-     * Access method for the lockFlag property.
-     *
-     * @return the current value of the lockFlag property
-     */
-    public Integer getLockFlag() {
-        return lockFlag;
-    }
-
-    /**
-     * Sets the value of the lockFlag property.
-     *
-     * @param aLockFlag the new value of the lockFlag property
-     */
-    public void setLockFlag(Integer aLockFlag) {
-        lockFlag = aLockFlag;
-    }
-
     @Id
     @Column(name="FleetCalcLookup_UID", unique=true, nullable=false, precision=10)
-    private int fleetCalcLookupUid;
+    private Integer fleetCalcLookupUid;
     @Column(name="Create_Modified_By", nullable=false, length=45)
     private String createModifiedBy;
     @Column(name="Create_Modified_Date", nullable=false)
@@ -61,7 +35,7 @@ public class FleetsizeCalcLookup implements Serializable {
      *
      * @return the current value of fleetCalcLookupUid
      */
-    public int getFleetCalcLookupUid() {
+    public Integer getFleetCalcLookupUid() {
         return fleetCalcLookupUid;
     }
 
@@ -70,7 +44,7 @@ public class FleetsizeCalcLookup implements Serializable {
      *
      * @param aFleetCalcLookupUid the new value for fleetCalcLookupUid
      */
-    public void setFleetCalcLookupUid(int aFleetCalcLookupUid) {
+    public void setFleetCalcLookupUid(Integer aFleetCalcLookupUid) {
         fleetCalcLookupUid = aFleetCalcLookupUid;
     }
 
@@ -124,7 +98,9 @@ public class FleetsizeCalcLookup implements Serializable {
             return false;
         }
         FleetsizeCalcLookup that = (FleetsizeCalcLookup) other;
-        if (this.getFleetCalcLookupUid() != that.getFleetCalcLookupUid()) {
+        Object myFleetCalcLookupUid = this.getFleetCalcLookupUid();
+        Object yourFleetCalcLookupUid = that.getFleetCalcLookupUid();
+        if (myFleetCalcLookupUid==null ? yourFleetCalcLookupUid!=null : !myFleetCalcLookupUid.equals(yourFleetCalcLookupUid)) {
             return false;
         }
         return true;
@@ -151,7 +127,11 @@ public class FleetsizeCalcLookup implements Serializable {
     public int hashCode() {
         int i;
         int result = 17;
-        i = getFleetCalcLookupUid();
+        if (getFleetCalcLookupUid() == null) {
+            i = 0;
+        } else {
+            i = getFleetCalcLookupUid().hashCode();
+        }
         result = 37*result + i;
         return result;
     }
@@ -176,7 +156,7 @@ public class FleetsizeCalcLookup implements Serializable {
      */
     public Map<String, Object> getPrimaryKey() {
         Map<String, Object> ret = new LinkedHashMap<String, Object>(6);
-        ret.put("fleetCalcLookupUid", Integer.valueOf(getFleetCalcLookupUid()));
+        ret.put("fleetCalcLookupUid", getFleetCalcLookupUid());
         return ret;
     }
 

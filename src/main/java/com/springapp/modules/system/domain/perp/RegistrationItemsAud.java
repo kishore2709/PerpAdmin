@@ -11,7 +11,6 @@ import java.util.Map;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.Version;
 
 @Entity(name="registration_items_aud")
 public class RegistrationItemsAud implements Serializable {
@@ -19,136 +18,111 @@ public class RegistrationItemsAud implements Serializable {
     /** Primary key. */
     protected static final String PK = "riAudUid";
 
-    /**
-     * The optimistic lock. Available via standard bean get/set operations.
-     */
-    @Version
-    @Column(name="LOCK_FLAG")
-    private Integer lockFlag;
-
-    /**
-     * Access method for the lockFlag property.
-     *
-     * @return the current value of the lockFlag property
-     */
-    public Integer getLockFlag() {
-        return lockFlag;
-    }
-
-    /**
-     * Sets the value of the lockFlag property.
-     *
-     * @param aLockFlag the new value of the lockFlag property
-     */
-    public void setLockFlag(Integer aLockFlag) {
-        lockFlag = aLockFlag;
-    }
-
     @Id
     @Column(name="RIAud_UID", unique=true, nullable=false, precision=10)
-    private int riAudUid;
+    private Integer riAudUid;
     @Column(name="RegItem_UID", nullable=false, precision=10)
-    private int regItemUid;
+    private Integer regItemUid;
     @Column(name="RegItemType_UID", nullable=false, precision=10)
-    private int regItemTypeUid;
+    private Integer regItemTypeUid;
     @Column(name="Additional_Info")
     private String additionalInfo;
     @Column(name="Application_UID", precision=10)
-    private int applicationUid;
+    private Integer applicationUid;
     @Column(name="Cert_Description")
     private String certDescription;
     @Column(name="Certificate_No", precision=10)
-    private int certificateNo;
+    private Integer certificateNo;
     @Column(name="Certified_Flag", length=1)
-    private String certifiedFlag;
+    private Character certifiedFlag;
     @Column(name="Company_UID", precision=10)
-    private int companyUid;
+    private Integer companyUid;
     @Column(name="Created_Date")
     private Timestamp createdDate;
     @Column(name="Current_Flag", nullable=false, length=1)
-    private String currentFlag;
+    private Character currentFlag;
     @Column(name="Discount_Type_UID", precision=10)
-    private int discountTypeUid;
+    private Integer discountTypeUid;
     @Column(name="District_UID", precision=10)
-    private int districtUid;
+    private Integer districtUid;
     @Column(name="DistAppProof_Flag", length=1)
-    private String distAppProofFlag;
+    private Character distAppProofFlag;
     @Column(name="DistPermitProof_Flag", length=1)
-    private String distPermitProofFlag;
+    private Character distPermitProofFlag;
     @Column(name="District_Permit_Flag", length=1)
-    private String districtPermitFlag;
+    private Character districtPermitFlag;
     @Column(name="EPA_Cert_No", length=50)
     private String epaCertNo;
     @Column(name="Est_Days_Per_Week", precision=5)
-    private short estDaysPerWeek;
+    private Short estDaysPerWeek;
     @Column(name="Est_Hours_Per_Day", precision=5)
-    private short estHoursPerDay;
+    private Short estHoursPerDay;
     @Column(name="Est_Weeks_Per_Year", precision=5)
-    private short estWeeksPerYear;
+    private Short estWeeksPerYear;
     @Column(name="Estimated_Fees", precision=10, scale=2)
     private BigDecimal estimatedFees;
     @Column(name="Expiration_Date")
     private Timestamp expirationDate;
     @Column(name="Flex_Eng_Proof_Flag", length=1)
-    private String flexEngProofFlag;
+    private Character flexEngProofFlag;
     @Column(name="Flex_Eng_Request_Flag", length=1)
-    private String flexEngRequestFlag;
+    private Character flexEngRequestFlag;
     @Column(name="Fuel_Proof_Flag", length=1)
-    private String fuelProofFlag;
+    private Character fuelProofFlag;
     @Column(name="Fuel_Request_Flag", length=1)
-    private String fuelRequestFlag;
+    private Character fuelRequestFlag;
     @Column(name="Initial_Eval", length=1)
-    private String initialEval;
+    private Character initialEval;
     @Column(name="Initial_Issuance_Date")
     private Timestamp initialIssuanceDate;
     @Column(name="Not_Going_To_Renew_Flag", length=1)
-    private String notGoingToRenewFlag;
+    private Character notGoingToRenewFlag;
     @Column(name="Operational_Flag", length=1)
-    private String operationalFlag;
+    private Character operationalFlag;
     @Column(name="Operational_Indicator", length=1)
-    private String operationalIndicator;
+    private Character operationalIndicator;
     @Column(name="Parent_UID", precision=10)
-    private int parentUid;
+    private Integer parentUid;
     @Column(name="PTO_App_Comp_Date")
     private Timestamp ptoAppCompDate;
     @Column(name="PTO_App_Date")
     private Timestamp ptoAppDate;
     @Column(name="PTO_App_DistID", precision=10)
-    private int ptoAppDistId;
+    private Integer ptoAppDistId;
     @Column(name="PTO_Date")
     private Timestamp ptoDate;
     @Column(name="PTO_District_ID", precision=10)
-    private int ptoDistrictId;
+    private Integer ptoDistrictId;
     @Column(name="PTO_No", length=20)
     private String ptoNo;
     @Column(name="Purchase_Date")
     private Timestamp purchaseDate;
     @Column(name="RegItemStatus_UID", precision=10)
-    private int regItemStatusUid;
+    private Integer regItemStatusUid;
     @Column(name="RegItemSubType_UID", nullable=false, precision=10)
-    private int regItemSubTypeUid;
+    private Integer regItemSubTypeUid;
     @Column(name="RegItemSubSubTypes_UID", precision=10)
-    private int regItemSubSubTypesUid;
+    private Integer regItemSubSubTypesUid;
     @Column(name="Renewal_Open_Flag", length=1)
-    private String renewalOpenFlag;
+    private Character renewalOpenFlag;
     @Column(name="Rental_Flag", length=1)
-    private String rentalFlag;
+    private Character rentalFlag;
     @Column(name="ReplacedBy_RegItem_UID", precision=10)
-    private int replacedByRegItemUid;
+    private Integer replacedByRegItemUid;
     @Column(name="Residency_Proof_Flag", length=1)
-    private String residencyProofFlag;
+    private Character residencyProofFlag;
     @Column(name="Residency_Request_Flag", length=1)
-    private String residencyRequestFlag;
+    private Character residencyRequestFlag;
     @Column(name="Stolen_Flag", nullable=false, length=1)
-    private String stolenFlag;
+    private Character stolenFlag;
     @Column(name="Table1_STD_Proof_Flag", length=1)
-    private String table1StdProofFlag;
+    private Character table1StdProofFlag;
     @Column(name="Table1_STD_Request_Flag", length=1)
-    private String table1StdRequestFlag;
+    private Character table1StdRequestFlag;
     @Column(name="Tracking_No", precision=10)
-    private int trackingNo;
+    private Integer trackingNo;
     @Column(name="Active_Flag", nullable=false, length=1)
-    private String activeFlag;
+    private Character activeFlag;
     @Column(name="Create_Modified_By", nullable=false, length=45)
     private String createModifiedBy;
     @Column(name="Create_Modified_Date", nullable=false)
@@ -166,7 +140,7 @@ public class RegistrationItemsAud implements Serializable {
      *
      * @return the current value of riAudUid
      */
-    public int getRiAudUid() {
+    public Integer getRiAudUid() {
         return riAudUid;
     }
 
@@ -175,7 +149,7 @@ public class RegistrationItemsAud implements Serializable {
      *
      * @param aRiAudUid the new value for riAudUid
      */
-    public void setRiAudUid(int aRiAudUid) {
+    public void setRiAudUid(Integer aRiAudUid) {
         riAudUid = aRiAudUid;
     }
 
@@ -184,7 +158,7 @@ public class RegistrationItemsAud implements Serializable {
      *
      * @return the current value of regItemUid
      */
-    public int getRegItemUid() {
+    public Integer getRegItemUid() {
         return regItemUid;
     }
 
@@ -193,7 +167,7 @@ public class RegistrationItemsAud implements Serializable {
      *
      * @param aRegItemUid the new value for regItemUid
      */
-    public void setRegItemUid(int aRegItemUid) {
+    public void setRegItemUid(Integer aRegItemUid) {
         regItemUid = aRegItemUid;
     }
 
@@ -202,7 +176,7 @@ public class RegistrationItemsAud implements Serializable {
      *
      * @return the current value of regItemTypeUid
      */
-    public int getRegItemTypeUid() {
+    public Integer getRegItemTypeUid() {
         return regItemTypeUid;
     }
 
@@ -211,7 +185,7 @@ public class RegistrationItemsAud implements Serializable {
      *
      * @param aRegItemTypeUid the new value for regItemTypeUid
      */
-    public void setRegItemTypeUid(int aRegItemTypeUid) {
+    public void setRegItemTypeUid(Integer aRegItemTypeUid) {
         regItemTypeUid = aRegItemTypeUid;
     }
 
@@ -238,7 +212,7 @@ public class RegistrationItemsAud implements Serializable {
      *
      * @return the current value of applicationUid
      */
-    public int getApplicationUid() {
+    public Integer getApplicationUid() {
         return applicationUid;
     }
 
@@ -247,7 +221,7 @@ public class RegistrationItemsAud implements Serializable {
      *
      * @param aApplicationUid the new value for applicationUid
      */
-    public void setApplicationUid(int aApplicationUid) {
+    public void setApplicationUid(Integer aApplicationUid) {
         applicationUid = aApplicationUid;
     }
 
@@ -274,7 +248,7 @@ public class RegistrationItemsAud implements Serializable {
      *
      * @return the current value of certificateNo
      */
-    public int getCertificateNo() {
+    public Integer getCertificateNo() {
         return certificateNo;
     }
 
@@ -283,7 +257,7 @@ public class RegistrationItemsAud implements Serializable {
      *
      * @param aCertificateNo the new value for certificateNo
      */
-    public void setCertificateNo(int aCertificateNo) {
+    public void setCertificateNo(Integer aCertificateNo) {
         certificateNo = aCertificateNo;
     }
 
@@ -292,7 +266,7 @@ public class RegistrationItemsAud implements Serializable {
      *
      * @return the current value of certifiedFlag
      */
-    public String getCertifiedFlag() {
+    public Character getCertifiedFlag() {
         return certifiedFlag;
     }
 
@@ -301,7 +275,7 @@ public class RegistrationItemsAud implements Serializable {
      *
      * @param aCertifiedFlag the new value for certifiedFlag
      */
-    public void setCertifiedFlag(String aCertifiedFlag) {
+    public void setCertifiedFlag(Character aCertifiedFlag) {
         certifiedFlag = aCertifiedFlag;
     }
 
@@ -310,7 +284,7 @@ public class RegistrationItemsAud implements Serializable {
      *
      * @return the current value of companyUid
      */
-    public int getCompanyUid() {
+    public Integer getCompanyUid() {
         return companyUid;
     }
 
@@ -319,7 +293,7 @@ public class RegistrationItemsAud implements Serializable {
      *
      * @param aCompanyUid the new value for companyUid
      */
-    public void setCompanyUid(int aCompanyUid) {
+    public void setCompanyUid(Integer aCompanyUid) {
         companyUid = aCompanyUid;
     }
 
@@ -346,7 +320,7 @@ public class RegistrationItemsAud implements Serializable {
      *
      * @return the current value of currentFlag
      */
-    public String getCurrentFlag() {
+    public Character getCurrentFlag() {
         return currentFlag;
     }
 
@@ -355,7 +329,7 @@ public class RegistrationItemsAud implements Serializable {
      *
      * @param aCurrentFlag the new value for currentFlag
      */
-    public void setCurrentFlag(String aCurrentFlag) {
+    public void setCurrentFlag(Character aCurrentFlag) {
         currentFlag = aCurrentFlag;
     }
 
@@ -364,7 +338,7 @@ public class RegistrationItemsAud implements Serializable {
      *
      * @return the current value of discountTypeUid
      */
-    public int getDiscountTypeUid() {
+    public Integer getDiscountTypeUid() {
         return discountTypeUid;
     }
 
@@ -373,7 +347,7 @@ public class RegistrationItemsAud implements Serializable {
      *
      * @param aDiscountTypeUid the new value for discountTypeUid
      */
-    public void setDiscountTypeUid(int aDiscountTypeUid) {
+    public void setDiscountTypeUid(Integer aDiscountTypeUid) {
         discountTypeUid = aDiscountTypeUid;
     }
 
@@ -382,7 +356,7 @@ public class RegistrationItemsAud implements Serializable {
      *
      * @return the current value of districtUid
      */
-    public int getDistrictUid() {
+    public Integer getDistrictUid() {
         return districtUid;
     }
 
@@ -391,7 +365,7 @@ public class RegistrationItemsAud implements Serializable {
      *
      * @param aDistrictUid the new value for districtUid
      */
-    public void setDistrictUid(int aDistrictUid) {
+    public void setDistrictUid(Integer aDistrictUid) {
         districtUid = aDistrictUid;
     }
 
@@ -400,7 +374,7 @@ public class RegistrationItemsAud implements Serializable {
      *
      * @return the current value of distAppProofFlag
      */
-    public String getDistAppProofFlag() {
+    public Character getDistAppProofFlag() {
         return distAppProofFlag;
     }
 
@@ -409,7 +383,7 @@ public class RegistrationItemsAud implements Serializable {
      *
      * @param aDistAppProofFlag the new value for distAppProofFlag
      */
-    public void setDistAppProofFlag(String aDistAppProofFlag) {
+    public void setDistAppProofFlag(Character aDistAppProofFlag) {
         distAppProofFlag = aDistAppProofFlag;
     }
 
@@ -418,7 +392,7 @@ public class RegistrationItemsAud implements Serializable {
      *
      * @return the current value of distPermitProofFlag
      */
-    public String getDistPermitProofFlag() {
+    public Character getDistPermitProofFlag() {
         return distPermitProofFlag;
     }
 
@@ -427,7 +401,7 @@ public class RegistrationItemsAud implements Serializable {
      *
      * @param aDistPermitProofFlag the new value for distPermitProofFlag
      */
-    public void setDistPermitProofFlag(String aDistPermitProofFlag) {
+    public void setDistPermitProofFlag(Character aDistPermitProofFlag) {
         distPermitProofFlag = aDistPermitProofFlag;
     }
 
@@ -436,7 +410,7 @@ public class RegistrationItemsAud implements Serializable {
      *
      * @return the current value of districtPermitFlag
      */
-    public String getDistrictPermitFlag() {
+    public Character getDistrictPermitFlag() {
         return districtPermitFlag;
     }
 
@@ -445,7 +419,7 @@ public class RegistrationItemsAud implements Serializable {
      *
      * @param aDistrictPermitFlag the new value for districtPermitFlag
      */
-    public void setDistrictPermitFlag(String aDistrictPermitFlag) {
+    public void setDistrictPermitFlag(Character aDistrictPermitFlag) {
         districtPermitFlag = aDistrictPermitFlag;
     }
 
@@ -472,7 +446,7 @@ public class RegistrationItemsAud implements Serializable {
      *
      * @return the current value of estDaysPerWeek
      */
-    public short getEstDaysPerWeek() {
+    public Short getEstDaysPerWeek() {
         return estDaysPerWeek;
     }
 
@@ -481,7 +455,7 @@ public class RegistrationItemsAud implements Serializable {
      *
      * @param aEstDaysPerWeek the new value for estDaysPerWeek
      */
-    public void setEstDaysPerWeek(short aEstDaysPerWeek) {
+    public void setEstDaysPerWeek(Short aEstDaysPerWeek) {
         estDaysPerWeek = aEstDaysPerWeek;
     }
 
@@ -490,7 +464,7 @@ public class RegistrationItemsAud implements Serializable {
      *
      * @return the current value of estHoursPerDay
      */
-    public short getEstHoursPerDay() {
+    public Short getEstHoursPerDay() {
         return estHoursPerDay;
     }
 
@@ -499,7 +473,7 @@ public class RegistrationItemsAud implements Serializable {
      *
      * @param aEstHoursPerDay the new value for estHoursPerDay
      */
-    public void setEstHoursPerDay(short aEstHoursPerDay) {
+    public void setEstHoursPerDay(Short aEstHoursPerDay) {
         estHoursPerDay = aEstHoursPerDay;
     }
 
@@ -508,7 +482,7 @@ public class RegistrationItemsAud implements Serializable {
      *
      * @return the current value of estWeeksPerYear
      */
-    public short getEstWeeksPerYear() {
+    public Short getEstWeeksPerYear() {
         return estWeeksPerYear;
     }
 
@@ -517,7 +491,7 @@ public class RegistrationItemsAud implements Serializable {
      *
      * @param aEstWeeksPerYear the new value for estWeeksPerYear
      */
-    public void setEstWeeksPerYear(short aEstWeeksPerYear) {
+    public void setEstWeeksPerYear(Short aEstWeeksPerYear) {
         estWeeksPerYear = aEstWeeksPerYear;
     }
 
@@ -562,7 +536,7 @@ public class RegistrationItemsAud implements Serializable {
      *
      * @return the current value of flexEngProofFlag
      */
-    public String getFlexEngProofFlag() {
+    public Character getFlexEngProofFlag() {
         return flexEngProofFlag;
     }
 
@@ -571,7 +545,7 @@ public class RegistrationItemsAud implements Serializable {
      *
      * @param aFlexEngProofFlag the new value for flexEngProofFlag
      */
-    public void setFlexEngProofFlag(String aFlexEngProofFlag) {
+    public void setFlexEngProofFlag(Character aFlexEngProofFlag) {
         flexEngProofFlag = aFlexEngProofFlag;
     }
 
@@ -580,7 +554,7 @@ public class RegistrationItemsAud implements Serializable {
      *
      * @return the current value of flexEngRequestFlag
      */
-    public String getFlexEngRequestFlag() {
+    public Character getFlexEngRequestFlag() {
         return flexEngRequestFlag;
     }
 
@@ -589,7 +563,7 @@ public class RegistrationItemsAud implements Serializable {
      *
      * @param aFlexEngRequestFlag the new value for flexEngRequestFlag
      */
-    public void setFlexEngRequestFlag(String aFlexEngRequestFlag) {
+    public void setFlexEngRequestFlag(Character aFlexEngRequestFlag) {
         flexEngRequestFlag = aFlexEngRequestFlag;
     }
 
@@ -598,7 +572,7 @@ public class RegistrationItemsAud implements Serializable {
      *
      * @return the current value of fuelProofFlag
      */
-    public String getFuelProofFlag() {
+    public Character getFuelProofFlag() {
         return fuelProofFlag;
     }
 
@@ -607,7 +581,7 @@ public class RegistrationItemsAud implements Serializable {
      *
      * @param aFuelProofFlag the new value for fuelProofFlag
      */
-    public void setFuelProofFlag(String aFuelProofFlag) {
+    public void setFuelProofFlag(Character aFuelProofFlag) {
         fuelProofFlag = aFuelProofFlag;
     }
 
@@ -616,7 +590,7 @@ public class RegistrationItemsAud implements Serializable {
      *
      * @return the current value of fuelRequestFlag
      */
-    public String getFuelRequestFlag() {
+    public Character getFuelRequestFlag() {
         return fuelRequestFlag;
     }
 
@@ -625,7 +599,7 @@ public class RegistrationItemsAud implements Serializable {
      *
      * @param aFuelRequestFlag the new value for fuelRequestFlag
      */
-    public void setFuelRequestFlag(String aFuelRequestFlag) {
+    public void setFuelRequestFlag(Character aFuelRequestFlag) {
         fuelRequestFlag = aFuelRequestFlag;
     }
 
@@ -634,7 +608,7 @@ public class RegistrationItemsAud implements Serializable {
      *
      * @return the current value of initialEval
      */
-    public String getInitialEval() {
+    public Character getInitialEval() {
         return initialEval;
     }
 
@@ -643,7 +617,7 @@ public class RegistrationItemsAud implements Serializable {
      *
      * @param aInitialEval the new value for initialEval
      */
-    public void setInitialEval(String aInitialEval) {
+    public void setInitialEval(Character aInitialEval) {
         initialEval = aInitialEval;
     }
 
@@ -670,7 +644,7 @@ public class RegistrationItemsAud implements Serializable {
      *
      * @return the current value of notGoingToRenewFlag
      */
-    public String getNotGoingToRenewFlag() {
+    public Character getNotGoingToRenewFlag() {
         return notGoingToRenewFlag;
     }
 
@@ -679,7 +653,7 @@ public class RegistrationItemsAud implements Serializable {
      *
      * @param aNotGoingToRenewFlag the new value for notGoingToRenewFlag
      */
-    public void setNotGoingToRenewFlag(String aNotGoingToRenewFlag) {
+    public void setNotGoingToRenewFlag(Character aNotGoingToRenewFlag) {
         notGoingToRenewFlag = aNotGoingToRenewFlag;
     }
 
@@ -688,7 +662,7 @@ public class RegistrationItemsAud implements Serializable {
      *
      * @return the current value of operationalFlag
      */
-    public String getOperationalFlag() {
+    public Character getOperationalFlag() {
         return operationalFlag;
     }
 
@@ -697,7 +671,7 @@ public class RegistrationItemsAud implements Serializable {
      *
      * @param aOperationalFlag the new value for operationalFlag
      */
-    public void setOperationalFlag(String aOperationalFlag) {
+    public void setOperationalFlag(Character aOperationalFlag) {
         operationalFlag = aOperationalFlag;
     }
 
@@ -706,7 +680,7 @@ public class RegistrationItemsAud implements Serializable {
      *
      * @return the current value of operationalIndicator
      */
-    public String getOperationalIndicator() {
+    public Character getOperationalIndicator() {
         return operationalIndicator;
     }
 
@@ -715,7 +689,7 @@ public class RegistrationItemsAud implements Serializable {
      *
      * @param aOperationalIndicator the new value for operationalIndicator
      */
-    public void setOperationalIndicator(String aOperationalIndicator) {
+    public void setOperationalIndicator(Character aOperationalIndicator) {
         operationalIndicator = aOperationalIndicator;
     }
 
@@ -724,7 +698,7 @@ public class RegistrationItemsAud implements Serializable {
      *
      * @return the current value of parentUid
      */
-    public int getParentUid() {
+    public Integer getParentUid() {
         return parentUid;
     }
 
@@ -733,7 +707,7 @@ public class RegistrationItemsAud implements Serializable {
      *
      * @param aParentUid the new value for parentUid
      */
-    public void setParentUid(int aParentUid) {
+    public void setParentUid(Integer aParentUid) {
         parentUid = aParentUid;
     }
 
@@ -778,7 +752,7 @@ public class RegistrationItemsAud implements Serializable {
      *
      * @return the current value of ptoAppDistId
      */
-    public int getPtoAppDistId() {
+    public Integer getPtoAppDistId() {
         return ptoAppDistId;
     }
 
@@ -787,7 +761,7 @@ public class RegistrationItemsAud implements Serializable {
      *
      * @param aPtoAppDistId the new value for ptoAppDistId
      */
-    public void setPtoAppDistId(int aPtoAppDistId) {
+    public void setPtoAppDistId(Integer aPtoAppDistId) {
         ptoAppDistId = aPtoAppDistId;
     }
 
@@ -814,7 +788,7 @@ public class RegistrationItemsAud implements Serializable {
      *
      * @return the current value of ptoDistrictId
      */
-    public int getPtoDistrictId() {
+    public Integer getPtoDistrictId() {
         return ptoDistrictId;
     }
 
@@ -823,7 +797,7 @@ public class RegistrationItemsAud implements Serializable {
      *
      * @param aPtoDistrictId the new value for ptoDistrictId
      */
-    public void setPtoDistrictId(int aPtoDistrictId) {
+    public void setPtoDistrictId(Integer aPtoDistrictId) {
         ptoDistrictId = aPtoDistrictId;
     }
 
@@ -868,7 +842,7 @@ public class RegistrationItemsAud implements Serializable {
      *
      * @return the current value of regItemStatusUid
      */
-    public int getRegItemStatusUid() {
+    public Integer getRegItemStatusUid() {
         return regItemStatusUid;
     }
 
@@ -877,7 +851,7 @@ public class RegistrationItemsAud implements Serializable {
      *
      * @param aRegItemStatusUid the new value for regItemStatusUid
      */
-    public void setRegItemStatusUid(int aRegItemStatusUid) {
+    public void setRegItemStatusUid(Integer aRegItemStatusUid) {
         regItemStatusUid = aRegItemStatusUid;
     }
 
@@ -886,7 +860,7 @@ public class RegistrationItemsAud implements Serializable {
      *
      * @return the current value of regItemSubTypeUid
      */
-    public int getRegItemSubTypeUid() {
+    public Integer getRegItemSubTypeUid() {
         return regItemSubTypeUid;
     }
 
@@ -895,7 +869,7 @@ public class RegistrationItemsAud implements Serializable {
      *
      * @param aRegItemSubTypeUid the new value for regItemSubTypeUid
      */
-    public void setRegItemSubTypeUid(int aRegItemSubTypeUid) {
+    public void setRegItemSubTypeUid(Integer aRegItemSubTypeUid) {
         regItemSubTypeUid = aRegItemSubTypeUid;
     }
 
@@ -904,7 +878,7 @@ public class RegistrationItemsAud implements Serializable {
      *
      * @return the current value of regItemSubSubTypesUid
      */
-    public int getRegItemSubSubTypesUid() {
+    public Integer getRegItemSubSubTypesUid() {
         return regItemSubSubTypesUid;
     }
 
@@ -913,7 +887,7 @@ public class RegistrationItemsAud implements Serializable {
      *
      * @param aRegItemSubSubTypesUid the new value for regItemSubSubTypesUid
      */
-    public void setRegItemSubSubTypesUid(int aRegItemSubSubTypesUid) {
+    public void setRegItemSubSubTypesUid(Integer aRegItemSubSubTypesUid) {
         regItemSubSubTypesUid = aRegItemSubSubTypesUid;
     }
 
@@ -922,7 +896,7 @@ public class RegistrationItemsAud implements Serializable {
      *
      * @return the current value of renewalOpenFlag
      */
-    public String getRenewalOpenFlag() {
+    public Character getRenewalOpenFlag() {
         return renewalOpenFlag;
     }
 
@@ -931,7 +905,7 @@ public class RegistrationItemsAud implements Serializable {
      *
      * @param aRenewalOpenFlag the new value for renewalOpenFlag
      */
-    public void setRenewalOpenFlag(String aRenewalOpenFlag) {
+    public void setRenewalOpenFlag(Character aRenewalOpenFlag) {
         renewalOpenFlag = aRenewalOpenFlag;
     }
 
@@ -940,7 +914,7 @@ public class RegistrationItemsAud implements Serializable {
      *
      * @return the current value of rentalFlag
      */
-    public String getRentalFlag() {
+    public Character getRentalFlag() {
         return rentalFlag;
     }
 
@@ -949,7 +923,7 @@ public class RegistrationItemsAud implements Serializable {
      *
      * @param aRentalFlag the new value for rentalFlag
      */
-    public void setRentalFlag(String aRentalFlag) {
+    public void setRentalFlag(Character aRentalFlag) {
         rentalFlag = aRentalFlag;
     }
 
@@ -958,7 +932,7 @@ public class RegistrationItemsAud implements Serializable {
      *
      * @return the current value of replacedByRegItemUid
      */
-    public int getReplacedByRegItemUid() {
+    public Integer getReplacedByRegItemUid() {
         return replacedByRegItemUid;
     }
 
@@ -967,7 +941,7 @@ public class RegistrationItemsAud implements Serializable {
      *
      * @param aReplacedByRegItemUid the new value for replacedByRegItemUid
      */
-    public void setReplacedByRegItemUid(int aReplacedByRegItemUid) {
+    public void setReplacedByRegItemUid(Integer aReplacedByRegItemUid) {
         replacedByRegItemUid = aReplacedByRegItemUid;
     }
 
@@ -976,7 +950,7 @@ public class RegistrationItemsAud implements Serializable {
      *
      * @return the current value of residencyProofFlag
      */
-    public String getResidencyProofFlag() {
+    public Character getResidencyProofFlag() {
         return residencyProofFlag;
     }
 
@@ -985,7 +959,7 @@ public class RegistrationItemsAud implements Serializable {
      *
      * @param aResidencyProofFlag the new value for residencyProofFlag
      */
-    public void setResidencyProofFlag(String aResidencyProofFlag) {
+    public void setResidencyProofFlag(Character aResidencyProofFlag) {
         residencyProofFlag = aResidencyProofFlag;
     }
 
@@ -994,7 +968,7 @@ public class RegistrationItemsAud implements Serializable {
      *
      * @return the current value of residencyRequestFlag
      */
-    public String getResidencyRequestFlag() {
+    public Character getResidencyRequestFlag() {
         return residencyRequestFlag;
     }
 
@@ -1003,7 +977,7 @@ public class RegistrationItemsAud implements Serializable {
      *
      * @param aResidencyRequestFlag the new value for residencyRequestFlag
      */
-    public void setResidencyRequestFlag(String aResidencyRequestFlag) {
+    public void setResidencyRequestFlag(Character aResidencyRequestFlag) {
         residencyRequestFlag = aResidencyRequestFlag;
     }
 
@@ -1012,7 +986,7 @@ public class RegistrationItemsAud implements Serializable {
      *
      * @return the current value of stolenFlag
      */
-    public String getStolenFlag() {
+    public Character getStolenFlag() {
         return stolenFlag;
     }
 
@@ -1021,7 +995,7 @@ public class RegistrationItemsAud implements Serializable {
      *
      * @param aStolenFlag the new value for stolenFlag
      */
-    public void setStolenFlag(String aStolenFlag) {
+    public void setStolenFlag(Character aStolenFlag) {
         stolenFlag = aStolenFlag;
     }
 
@@ -1030,7 +1004,7 @@ public class RegistrationItemsAud implements Serializable {
      *
      * @return the current value of table1StdProofFlag
      */
-    public String getTable1StdProofFlag() {
+    public Character getTable1StdProofFlag() {
         return table1StdProofFlag;
     }
 
@@ -1039,7 +1013,7 @@ public class RegistrationItemsAud implements Serializable {
      *
      * @param aTable1StdProofFlag the new value for table1StdProofFlag
      */
-    public void setTable1StdProofFlag(String aTable1StdProofFlag) {
+    public void setTable1StdProofFlag(Character aTable1StdProofFlag) {
         table1StdProofFlag = aTable1StdProofFlag;
     }
 
@@ -1048,7 +1022,7 @@ public class RegistrationItemsAud implements Serializable {
      *
      * @return the current value of table1StdRequestFlag
      */
-    public String getTable1StdRequestFlag() {
+    public Character getTable1StdRequestFlag() {
         return table1StdRequestFlag;
     }
 
@@ -1057,7 +1031,7 @@ public class RegistrationItemsAud implements Serializable {
      *
      * @param aTable1StdRequestFlag the new value for table1StdRequestFlag
      */
-    public void setTable1StdRequestFlag(String aTable1StdRequestFlag) {
+    public void setTable1StdRequestFlag(Character aTable1StdRequestFlag) {
         table1StdRequestFlag = aTable1StdRequestFlag;
     }
 
@@ -1066,7 +1040,7 @@ public class RegistrationItemsAud implements Serializable {
      *
      * @return the current value of trackingNo
      */
-    public int getTrackingNo() {
+    public Integer getTrackingNo() {
         return trackingNo;
     }
 
@@ -1075,7 +1049,7 @@ public class RegistrationItemsAud implements Serializable {
      *
      * @param aTrackingNo the new value for trackingNo
      */
-    public void setTrackingNo(int aTrackingNo) {
+    public void setTrackingNo(Integer aTrackingNo) {
         trackingNo = aTrackingNo;
     }
 
@@ -1084,7 +1058,7 @@ public class RegistrationItemsAud implements Serializable {
      *
      * @return the current value of activeFlag
      */
-    public String getActiveFlag() {
+    public Character getActiveFlag() {
         return activeFlag;
     }
 
@@ -1093,7 +1067,7 @@ public class RegistrationItemsAud implements Serializable {
      *
      * @param aActiveFlag the new value for activeFlag
      */
-    public void setActiveFlag(String aActiveFlag) {
+    public void setActiveFlag(Character aActiveFlag) {
         activeFlag = aActiveFlag;
     }
 
@@ -1165,7 +1139,9 @@ public class RegistrationItemsAud implements Serializable {
             return false;
         }
         RegistrationItemsAud that = (RegistrationItemsAud) other;
-        if (this.getRiAudUid() != that.getRiAudUid()) {
+        Object myRiAudUid = this.getRiAudUid();
+        Object yourRiAudUid = that.getRiAudUid();
+        if (myRiAudUid==null ? yourRiAudUid!=null : !myRiAudUid.equals(yourRiAudUid)) {
             return false;
         }
         return true;
@@ -1192,7 +1168,11 @@ public class RegistrationItemsAud implements Serializable {
     public int hashCode() {
         int i;
         int result = 17;
-        i = getRiAudUid();
+        if (getRiAudUid() == null) {
+            i = 0;
+        } else {
+            i = getRiAudUid().hashCode();
+        }
         result = 37*result + i;
         return result;
     }
@@ -1217,7 +1197,7 @@ public class RegistrationItemsAud implements Serializable {
      */
     public Map<String, Object> getPrimaryKey() {
         Map<String, Object> ret = new LinkedHashMap<String, Object>(6);
-        ret.put("riAudUid", Integer.valueOf(getRiAudUid()));
+        ret.put("riAudUid", getRiAudUid());
         return ret;
     }
 

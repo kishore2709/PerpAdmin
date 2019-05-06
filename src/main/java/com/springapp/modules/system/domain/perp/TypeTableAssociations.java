@@ -11,7 +11,6 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.Version;
 
 @Entity(name="type_table_associations")
 public class TypeTableAssociations implements Serializable {
@@ -19,36 +18,11 @@ public class TypeTableAssociations implements Serializable {
     /** Primary key. */
     protected static final String PK = "ttaUid";
 
-    /**
-     * The optimistic lock. Available via standard bean get/set operations.
-     */
-    @Version
-    @Column(name="LOCK_FLAG")
-    private Integer lockFlag;
-
-    /**
-     * Access method for the lockFlag property.
-     *
-     * @return the current value of the lockFlag property
-     */
-    public Integer getLockFlag() {
-        return lockFlag;
-    }
-
-    /**
-     * Sets the value of the lockFlag property.
-     *
-     * @param aLockFlag the new value of the lockFlag property
-     */
-    public void setLockFlag(Integer aLockFlag) {
-        lockFlag = aLockFlag;
-    }
-
     @Id
     @Column(name="TTA_UID", unique=true, nullable=false, precision=10)
-    private int ttaUid;
+    private Integer ttaUid;
     @Column(name="Order_By", precision=10)
-    private int orderBy;
+    private Integer orderBy;
     @ManyToOne(optional=false)
     @JoinColumn(name="Dependent_On_UID", nullable=false)
     private TypeTableLookup typeTableLookup;
@@ -66,7 +40,7 @@ public class TypeTableAssociations implements Serializable {
      *
      * @return the current value of ttaUid
      */
-    public int getTtaUid() {
+    public Integer getTtaUid() {
         return ttaUid;
     }
 
@@ -75,7 +49,7 @@ public class TypeTableAssociations implements Serializable {
      *
      * @param aTtaUid the new value for ttaUid
      */
-    public void setTtaUid(int aTtaUid) {
+    public void setTtaUid(Integer aTtaUid) {
         ttaUid = aTtaUid;
     }
 
@@ -84,7 +58,7 @@ public class TypeTableAssociations implements Serializable {
      *
      * @return the current value of orderBy
      */
-    public int getOrderBy() {
+    public Integer getOrderBy() {
         return orderBy;
     }
 
@@ -93,7 +67,7 @@ public class TypeTableAssociations implements Serializable {
      *
      * @param aOrderBy the new value for orderBy
      */
-    public void setOrderBy(int aOrderBy) {
+    public void setOrderBy(Integer aOrderBy) {
         orderBy = aOrderBy;
     }
 
@@ -147,7 +121,9 @@ public class TypeTableAssociations implements Serializable {
             return false;
         }
         TypeTableAssociations that = (TypeTableAssociations) other;
-        if (this.getTtaUid() != that.getTtaUid()) {
+        Object myTtaUid = this.getTtaUid();
+        Object yourTtaUid = that.getTtaUid();
+        if (myTtaUid==null ? yourTtaUid!=null : !myTtaUid.equals(yourTtaUid)) {
             return false;
         }
         return true;
@@ -174,7 +150,11 @@ public class TypeTableAssociations implements Serializable {
     public int hashCode() {
         int i;
         int result = 17;
-        i = getTtaUid();
+        if (getTtaUid() == null) {
+            i = 0;
+        } else {
+            i = getTtaUid().hashCode();
+        }
         result = 37*result + i;
         return result;
     }
@@ -199,7 +179,7 @@ public class TypeTableAssociations implements Serializable {
      */
     public Map<String, Object> getPrimaryKey() {
         Map<String, Object> ret = new LinkedHashMap<String, Object>(6);
-        ret.put("ttaUid", Integer.valueOf(getTtaUid()));
+        ret.put("ttaUid", getTtaUid());
         return ret;
     }
 

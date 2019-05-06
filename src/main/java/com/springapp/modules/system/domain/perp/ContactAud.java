@@ -10,7 +10,6 @@ import java.util.Map;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.Version;
 
 @Entity(name="contact_aud")
 public class ContactAud implements Serializable {
@@ -18,46 +17,21 @@ public class ContactAud implements Serializable {
     /** Primary key. */
     protected static final String PK = "contactAudUid";
 
-    /**
-     * The optimistic lock. Available via standard bean get/set operations.
-     */
-    @Version
-    @Column(name="LOCK_FLAG")
-    private Integer lockFlag;
-
-    /**
-     * Access method for the lockFlag property.
-     *
-     * @return the current value of the lockFlag property
-     */
-    public Integer getLockFlag() {
-        return lockFlag;
-    }
-
-    /**
-     * Sets the value of the lockFlag property.
-     *
-     * @param aLockFlag the new value of the lockFlag property
-     */
-    public void setLockFlag(Integer aLockFlag) {
-        lockFlag = aLockFlag;
-    }
-
     @Id
     @Column(name="Contact_Aud_UID", unique=true, nullable=false, precision=10)
-    private int contactAudUid;
+    private Integer contactAudUid;
     @Column(name="Contact_UID", nullable=false, precision=10)
-    private int contactUid;
+    private Integer contactUid;
     @Column(name="Contact_Type_UID", nullable=false, precision=10)
-    private int contactTypeUid;
+    private Integer contactTypeUid;
     @Column(name="Company_UID", precision=10)
-    private int companyUid;
+    private Integer companyUid;
     @Column(name="Terminal_UID", precision=10)
-    private int terminalUid;
+    private Integer terminalUid;
     @Column(name="Compliance_Information_UID", precision=10)
-    private int complianceInformationUid;
+    private Integer complianceInformationUid;
     @Column(name="Sold_UID", precision=10)
-    private int soldUid;
+    private Integer soldUid;
     @Column(name="Contact_Name", nullable=false, length=60)
     private String contactName;
     @Column(name="First_Name", length=20)
@@ -69,7 +43,7 @@ public class ContactAud implements Serializable {
     @Column(name="Salutation_Type_UID", length=5)
     private String salutationTypeUid;
     @Column(name="Active_Flag", nullable=false, length=1)
-    private String activeFlag;
+    private Character activeFlag;
     @Column(name="Create_Modified_By", nullable=false, length=45)
     private String createModifiedBy;
     @Column(name="Create_Modified_Date", nullable=false)
@@ -77,7 +51,7 @@ public class ContactAud implements Serializable {
     @Column(name="Operation", nullable=false, length=10)
     private String operation;
     @Column(name="District_UID", precision=10)
-    private int districtUid;
+    private Integer districtUid;
 
     /** Default constructor. */
     public ContactAud() {
@@ -89,7 +63,7 @@ public class ContactAud implements Serializable {
      *
      * @return the current value of contactAudUid
      */
-    public int getContactAudUid() {
+    public Integer getContactAudUid() {
         return contactAudUid;
     }
 
@@ -98,7 +72,7 @@ public class ContactAud implements Serializable {
      *
      * @param aContactAudUid the new value for contactAudUid
      */
-    public void setContactAudUid(int aContactAudUid) {
+    public void setContactAudUid(Integer aContactAudUid) {
         contactAudUid = aContactAudUid;
     }
 
@@ -107,7 +81,7 @@ public class ContactAud implements Serializable {
      *
      * @return the current value of contactUid
      */
-    public int getContactUid() {
+    public Integer getContactUid() {
         return contactUid;
     }
 
@@ -116,7 +90,7 @@ public class ContactAud implements Serializable {
      *
      * @param aContactUid the new value for contactUid
      */
-    public void setContactUid(int aContactUid) {
+    public void setContactUid(Integer aContactUid) {
         contactUid = aContactUid;
     }
 
@@ -125,7 +99,7 @@ public class ContactAud implements Serializable {
      *
      * @return the current value of contactTypeUid
      */
-    public int getContactTypeUid() {
+    public Integer getContactTypeUid() {
         return contactTypeUid;
     }
 
@@ -134,7 +108,7 @@ public class ContactAud implements Serializable {
      *
      * @param aContactTypeUid the new value for contactTypeUid
      */
-    public void setContactTypeUid(int aContactTypeUid) {
+    public void setContactTypeUid(Integer aContactTypeUid) {
         contactTypeUid = aContactTypeUid;
     }
 
@@ -143,7 +117,7 @@ public class ContactAud implements Serializable {
      *
      * @return the current value of companyUid
      */
-    public int getCompanyUid() {
+    public Integer getCompanyUid() {
         return companyUid;
     }
 
@@ -152,7 +126,7 @@ public class ContactAud implements Serializable {
      *
      * @param aCompanyUid the new value for companyUid
      */
-    public void setCompanyUid(int aCompanyUid) {
+    public void setCompanyUid(Integer aCompanyUid) {
         companyUid = aCompanyUid;
     }
 
@@ -161,7 +135,7 @@ public class ContactAud implements Serializable {
      *
      * @return the current value of terminalUid
      */
-    public int getTerminalUid() {
+    public Integer getTerminalUid() {
         return terminalUid;
     }
 
@@ -170,7 +144,7 @@ public class ContactAud implements Serializable {
      *
      * @param aTerminalUid the new value for terminalUid
      */
-    public void setTerminalUid(int aTerminalUid) {
+    public void setTerminalUid(Integer aTerminalUid) {
         terminalUid = aTerminalUid;
     }
 
@@ -179,7 +153,7 @@ public class ContactAud implements Serializable {
      *
      * @return the current value of complianceInformationUid
      */
-    public int getComplianceInformationUid() {
+    public Integer getComplianceInformationUid() {
         return complianceInformationUid;
     }
 
@@ -188,7 +162,7 @@ public class ContactAud implements Serializable {
      *
      * @param aComplianceInformationUid the new value for complianceInformationUid
      */
-    public void setComplianceInformationUid(int aComplianceInformationUid) {
+    public void setComplianceInformationUid(Integer aComplianceInformationUid) {
         complianceInformationUid = aComplianceInformationUid;
     }
 
@@ -197,7 +171,7 @@ public class ContactAud implements Serializable {
      *
      * @return the current value of soldUid
      */
-    public int getSoldUid() {
+    public Integer getSoldUid() {
         return soldUid;
     }
 
@@ -206,7 +180,7 @@ public class ContactAud implements Serializable {
      *
      * @param aSoldUid the new value for soldUid
      */
-    public void setSoldUid(int aSoldUid) {
+    public void setSoldUid(Integer aSoldUid) {
         soldUid = aSoldUid;
     }
 
@@ -305,7 +279,7 @@ public class ContactAud implements Serializable {
      *
      * @return the current value of activeFlag
      */
-    public String getActiveFlag() {
+    public Character getActiveFlag() {
         return activeFlag;
     }
 
@@ -314,7 +288,7 @@ public class ContactAud implements Serializable {
      *
      * @param aActiveFlag the new value for activeFlag
      */
-    public void setActiveFlag(String aActiveFlag) {
+    public void setActiveFlag(Character aActiveFlag) {
         activeFlag = aActiveFlag;
     }
 
@@ -377,7 +351,7 @@ public class ContactAud implements Serializable {
      *
      * @return the current value of districtUid
      */
-    public int getDistrictUid() {
+    public Integer getDistrictUid() {
         return districtUid;
     }
 
@@ -386,7 +360,7 @@ public class ContactAud implements Serializable {
      *
      * @param aDistrictUid the new value for districtUid
      */
-    public void setDistrictUid(int aDistrictUid) {
+    public void setDistrictUid(Integer aDistrictUid) {
         districtUid = aDistrictUid;
     }
 
@@ -404,7 +378,9 @@ public class ContactAud implements Serializable {
             return false;
         }
         ContactAud that = (ContactAud) other;
-        if (this.getContactAudUid() != that.getContactAudUid()) {
+        Object myContactAudUid = this.getContactAudUid();
+        Object yourContactAudUid = that.getContactAudUid();
+        if (myContactAudUid==null ? yourContactAudUid!=null : !myContactAudUid.equals(yourContactAudUid)) {
             return false;
         }
         return true;
@@ -431,7 +407,11 @@ public class ContactAud implements Serializable {
     public int hashCode() {
         int i;
         int result = 17;
-        i = getContactAudUid();
+        if (getContactAudUid() == null) {
+            i = 0;
+        } else {
+            i = getContactAudUid().hashCode();
+        }
         result = 37*result + i;
         return result;
     }
@@ -456,7 +436,7 @@ public class ContactAud implements Serializable {
      */
     public Map<String, Object> getPrimaryKey() {
         Map<String, Object> ret = new LinkedHashMap<String, Object>(6);
-        ret.put("contactAudUid", Integer.valueOf(getContactAudUid()));
+        ret.put("contactAudUid", getContactAudUid());
         return ret;
     }
 

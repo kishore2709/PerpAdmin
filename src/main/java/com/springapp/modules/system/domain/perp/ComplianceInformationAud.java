@@ -11,7 +11,6 @@ import java.util.Map;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.Version;
 
 @Entity(name="compliance_information_aud")
 public class ComplianceInformationAud implements Serializable {
@@ -19,62 +18,37 @@ public class ComplianceInformationAud implements Serializable {
     /** Primary key. */
     protected static final String PK = "complianceInformationAudUid";
 
-    /**
-     * The optimistic lock. Available via standard bean get/set operations.
-     */
-    @Version
-    @Column(name="LOCK_FLAG")
-    private Integer lockFlag;
-
-    /**
-     * Access method for the lockFlag property.
-     *
-     * @return the current value of the lockFlag property
-     */
-    public Integer getLockFlag() {
-        return lockFlag;
-    }
-
-    /**
-     * Sets the value of the lockFlag property.
-     *
-     * @param aLockFlag the new value of the lockFlag property
-     */
-    public void setLockFlag(Integer aLockFlag) {
-        lockFlag = aLockFlag;
-    }
-
     @Id
     @Column(name="Compliance_Information_Aud_UID", unique=true, nullable=false, precision=10)
-    private int complianceInformationAudUid;
+    private Integer complianceInformationAudUid;
     @Column(name="Compliance_Information_UID", nullable=false, precision=10)
-    private int complianceInformationUid;
+    private Integer complianceInformationUid;
     @Column(name="Compliance_Standard_Type_UID", nullable=false, precision=10)
-    private int complianceStandardTypeUid;
+    private Integer complianceStandardTypeUid;
     @Column(name="Received_Date")
     private Date receivedDate;
     @Column(name="Cert_Date")
     private Date certDate;
     @Column(name="Cert_By_UID", precision=10)
-    private int certByUid;
+    private Integer certByUid;
     @Column(name="Verification_Date")
     private Date verificationDate;
     @Column(name="Verification_By_UID", precision=10)
-    private int verificationByUid;
+    private Integer verificationByUid;
     @Column(name="Compliance_Date")
     private Date complianceDate;
     @Column(name="VDECS_Manufact_UID", precision=10)
-    private int vdecsManufactUid;
+    private Integer vdecsManufactUid;
     @Column(name="VDECS_Serial_Number", length=45)
     private String vdecsSerialNumber;
     @Column(name="VDECS_Family_Name_Type_UID", precision=10)
-    private int vdecsFamilyNameTypeUid;
+    private Integer vdecsFamilyNameTypeUid;
     @Column(name="VDECS_Manufact_Date")
     private Date vdecsManufactDate;
     @Column(name="VDECS_Install_Date")
     private Date vdecsInstallDate;
     @Column(name="Alt_Tech_Type_UID", precision=10)
-    private int altTechTypeUid;
+    private Integer altTechTypeUid;
     @Column(name="Other_Desc", length=45)
     private String otherDesc;
     @Column(name="Alt_Tech_Install_Date")
@@ -82,7 +56,7 @@ public class ComplianceInformationAud implements Serializable {
     @Column(name="Exempt_Extend", length=10)
     private String exemptExtend;
     @Column(name="Extend_Years", precision=10)
-    private int extendYears;
+    private Integer extendYears;
     @Column(name="Create_Modified_By", nullable=false, length=45)
     private String createModifiedBy;
     @Column(name="Create_Modified_Date", nullable=false)
@@ -90,15 +64,15 @@ public class ComplianceInformationAud implements Serializable {
     @Column(name="Operation", nullable=false, length=10)
     private String operation;
     @Column(name="tru_uletru_extension_flag", length=1)
-    private String truUletruExtensionFlag;
+    private Character truUletruExtensionFlag;
     @Column(name="tru_uletru_extension_date")
     private Timestamp truUletruExtensionDate;
     @Column(name="tru_letru_extension_flag", length=1)
-    private String truLetruExtensionFlag;
+    private Character truLetruExtensionFlag;
     @Column(name="tru_letru_extension_date")
     private Timestamp truLetruExtensionDate;
     @Column(name="tru_exempt_reasons_uid", precision=10)
-    private int truExemptReasonsUid;
+    private Integer truExemptReasonsUid;
     @Column(name="tru_exempt_date")
     private Timestamp truExemptDate;
 
@@ -112,7 +86,7 @@ public class ComplianceInformationAud implements Serializable {
      *
      * @return the current value of complianceInformationAudUid
      */
-    public int getComplianceInformationAudUid() {
+    public Integer getComplianceInformationAudUid() {
         return complianceInformationAudUid;
     }
 
@@ -121,7 +95,7 @@ public class ComplianceInformationAud implements Serializable {
      *
      * @param aComplianceInformationAudUid the new value for complianceInformationAudUid
      */
-    public void setComplianceInformationAudUid(int aComplianceInformationAudUid) {
+    public void setComplianceInformationAudUid(Integer aComplianceInformationAudUid) {
         complianceInformationAudUid = aComplianceInformationAudUid;
     }
 
@@ -130,7 +104,7 @@ public class ComplianceInformationAud implements Serializable {
      *
      * @return the current value of complianceInformationUid
      */
-    public int getComplianceInformationUid() {
+    public Integer getComplianceInformationUid() {
         return complianceInformationUid;
     }
 
@@ -139,7 +113,7 @@ public class ComplianceInformationAud implements Serializable {
      *
      * @param aComplianceInformationUid the new value for complianceInformationUid
      */
-    public void setComplianceInformationUid(int aComplianceInformationUid) {
+    public void setComplianceInformationUid(Integer aComplianceInformationUid) {
         complianceInformationUid = aComplianceInformationUid;
     }
 
@@ -148,7 +122,7 @@ public class ComplianceInformationAud implements Serializable {
      *
      * @return the current value of complianceStandardTypeUid
      */
-    public int getComplianceStandardTypeUid() {
+    public Integer getComplianceStandardTypeUid() {
         return complianceStandardTypeUid;
     }
 
@@ -157,7 +131,7 @@ public class ComplianceInformationAud implements Serializable {
      *
      * @param aComplianceStandardTypeUid the new value for complianceStandardTypeUid
      */
-    public void setComplianceStandardTypeUid(int aComplianceStandardTypeUid) {
+    public void setComplianceStandardTypeUid(Integer aComplianceStandardTypeUid) {
         complianceStandardTypeUid = aComplianceStandardTypeUid;
     }
 
@@ -202,7 +176,7 @@ public class ComplianceInformationAud implements Serializable {
      *
      * @return the current value of certByUid
      */
-    public int getCertByUid() {
+    public Integer getCertByUid() {
         return certByUid;
     }
 
@@ -211,7 +185,7 @@ public class ComplianceInformationAud implements Serializable {
      *
      * @param aCertByUid the new value for certByUid
      */
-    public void setCertByUid(int aCertByUid) {
+    public void setCertByUid(Integer aCertByUid) {
         certByUid = aCertByUid;
     }
 
@@ -238,7 +212,7 @@ public class ComplianceInformationAud implements Serializable {
      *
      * @return the current value of verificationByUid
      */
-    public int getVerificationByUid() {
+    public Integer getVerificationByUid() {
         return verificationByUid;
     }
 
@@ -247,7 +221,7 @@ public class ComplianceInformationAud implements Serializable {
      *
      * @param aVerificationByUid the new value for verificationByUid
      */
-    public void setVerificationByUid(int aVerificationByUid) {
+    public void setVerificationByUid(Integer aVerificationByUid) {
         verificationByUid = aVerificationByUid;
     }
 
@@ -274,7 +248,7 @@ public class ComplianceInformationAud implements Serializable {
      *
      * @return the current value of vdecsManufactUid
      */
-    public int getVdecsManufactUid() {
+    public Integer getVdecsManufactUid() {
         return vdecsManufactUid;
     }
 
@@ -283,7 +257,7 @@ public class ComplianceInformationAud implements Serializable {
      *
      * @param aVdecsManufactUid the new value for vdecsManufactUid
      */
-    public void setVdecsManufactUid(int aVdecsManufactUid) {
+    public void setVdecsManufactUid(Integer aVdecsManufactUid) {
         vdecsManufactUid = aVdecsManufactUid;
     }
 
@@ -310,7 +284,7 @@ public class ComplianceInformationAud implements Serializable {
      *
      * @return the current value of vdecsFamilyNameTypeUid
      */
-    public int getVdecsFamilyNameTypeUid() {
+    public Integer getVdecsFamilyNameTypeUid() {
         return vdecsFamilyNameTypeUid;
     }
 
@@ -319,7 +293,7 @@ public class ComplianceInformationAud implements Serializable {
      *
      * @param aVdecsFamilyNameTypeUid the new value for vdecsFamilyNameTypeUid
      */
-    public void setVdecsFamilyNameTypeUid(int aVdecsFamilyNameTypeUid) {
+    public void setVdecsFamilyNameTypeUid(Integer aVdecsFamilyNameTypeUid) {
         vdecsFamilyNameTypeUid = aVdecsFamilyNameTypeUid;
     }
 
@@ -364,7 +338,7 @@ public class ComplianceInformationAud implements Serializable {
      *
      * @return the current value of altTechTypeUid
      */
-    public int getAltTechTypeUid() {
+    public Integer getAltTechTypeUid() {
         return altTechTypeUid;
     }
 
@@ -373,7 +347,7 @@ public class ComplianceInformationAud implements Serializable {
      *
      * @param aAltTechTypeUid the new value for altTechTypeUid
      */
-    public void setAltTechTypeUid(int aAltTechTypeUid) {
+    public void setAltTechTypeUid(Integer aAltTechTypeUid) {
         altTechTypeUid = aAltTechTypeUid;
     }
 
@@ -436,7 +410,7 @@ public class ComplianceInformationAud implements Serializable {
      *
      * @return the current value of extendYears
      */
-    public int getExtendYears() {
+    public Integer getExtendYears() {
         return extendYears;
     }
 
@@ -445,7 +419,7 @@ public class ComplianceInformationAud implements Serializable {
      *
      * @param aExtendYears the new value for extendYears
      */
-    public void setExtendYears(int aExtendYears) {
+    public void setExtendYears(Integer aExtendYears) {
         extendYears = aExtendYears;
     }
 
@@ -508,7 +482,7 @@ public class ComplianceInformationAud implements Serializable {
      *
      * @return the current value of truUletruExtensionFlag
      */
-    public String getTruUletruExtensionFlag() {
+    public Character getTruUletruExtensionFlag() {
         return truUletruExtensionFlag;
     }
 
@@ -517,7 +491,7 @@ public class ComplianceInformationAud implements Serializable {
      *
      * @param aTruUletruExtensionFlag the new value for truUletruExtensionFlag
      */
-    public void setTruUletruExtensionFlag(String aTruUletruExtensionFlag) {
+    public void setTruUletruExtensionFlag(Character aTruUletruExtensionFlag) {
         truUletruExtensionFlag = aTruUletruExtensionFlag;
     }
 
@@ -544,7 +518,7 @@ public class ComplianceInformationAud implements Serializable {
      *
      * @return the current value of truLetruExtensionFlag
      */
-    public String getTruLetruExtensionFlag() {
+    public Character getTruLetruExtensionFlag() {
         return truLetruExtensionFlag;
     }
 
@@ -553,7 +527,7 @@ public class ComplianceInformationAud implements Serializable {
      *
      * @param aTruLetruExtensionFlag the new value for truLetruExtensionFlag
      */
-    public void setTruLetruExtensionFlag(String aTruLetruExtensionFlag) {
+    public void setTruLetruExtensionFlag(Character aTruLetruExtensionFlag) {
         truLetruExtensionFlag = aTruLetruExtensionFlag;
     }
 
@@ -580,7 +554,7 @@ public class ComplianceInformationAud implements Serializable {
      *
      * @return the current value of truExemptReasonsUid
      */
-    public int getTruExemptReasonsUid() {
+    public Integer getTruExemptReasonsUid() {
         return truExemptReasonsUid;
     }
 
@@ -589,7 +563,7 @@ public class ComplianceInformationAud implements Serializable {
      *
      * @param aTruExemptReasonsUid the new value for truExemptReasonsUid
      */
-    public void setTruExemptReasonsUid(int aTruExemptReasonsUid) {
+    public void setTruExemptReasonsUid(Integer aTruExemptReasonsUid) {
         truExemptReasonsUid = aTruExemptReasonsUid;
     }
 
@@ -625,7 +599,9 @@ public class ComplianceInformationAud implements Serializable {
             return false;
         }
         ComplianceInformationAud that = (ComplianceInformationAud) other;
-        if (this.getComplianceInformationAudUid() != that.getComplianceInformationAudUid()) {
+        Object myComplianceInformationAudUid = this.getComplianceInformationAudUid();
+        Object yourComplianceInformationAudUid = that.getComplianceInformationAudUid();
+        if (myComplianceInformationAudUid==null ? yourComplianceInformationAudUid!=null : !myComplianceInformationAudUid.equals(yourComplianceInformationAudUid)) {
             return false;
         }
         return true;
@@ -652,7 +628,11 @@ public class ComplianceInformationAud implements Serializable {
     public int hashCode() {
         int i;
         int result = 17;
-        i = getComplianceInformationAudUid();
+        if (getComplianceInformationAudUid() == null) {
+            i = 0;
+        } else {
+            i = getComplianceInformationAudUid().hashCode();
+        }
         result = 37*result + i;
         return result;
     }
@@ -677,7 +657,7 @@ public class ComplianceInformationAud implements Serializable {
      */
     public Map<String, Object> getPrimaryKey() {
         Map<String, Object> ret = new LinkedHashMap<String, Object>(6);
-        ret.put("complianceInformationAudUid", Integer.valueOf(getComplianceInformationAudUid()));
+        ret.put("complianceInformationAudUid", getComplianceInformationAudUid());
         return ret;
     }
 

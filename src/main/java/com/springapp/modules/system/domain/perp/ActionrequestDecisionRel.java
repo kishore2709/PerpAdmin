@@ -12,7 +12,6 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.Version;
 
 @Entity(name="actionrequest_decision_rel")
 public class ActionrequestDecisionRel implements Serializable {
@@ -20,36 +19,11 @@ public class ActionrequestDecisionRel implements Serializable {
     /** Primary key. */
     protected static final String PK = "requestDecisionRelUid";
 
-    /**
-     * The optimistic lock. Available via standard bean get/set operations.
-     */
-    @Version
-    @Column(name="LOCK_FLAG")
-    private Integer lockFlag;
-
-    /**
-     * Access method for the lockFlag property.
-     *
-     * @return the current value of the lockFlag property
-     */
-    public Integer getLockFlag() {
-        return lockFlag;
-    }
-
-    /**
-     * Sets the value of the lockFlag property.
-     *
-     * @param aLockFlag the new value of the lockFlag property
-     */
-    public void setLockFlag(Integer aLockFlag) {
-        lockFlag = aLockFlag;
-    }
-
     @Id
     @Column(name="RequestDecisionRel_UID", unique=true, nullable=false, precision=10)
-    private int requestDecisionRelUid;
+    private Integer requestDecisionRelUid;
     @Column(name="Active_Flag", nullable=false, length=1)
-    private String activeFlag;
+    private Character activeFlag;
     @Column(name="Create_Modified_By", nullable=false, length=45)
     private String createModifiedBy;
     @Column(name="Create_Modified_Date", nullable=false)
@@ -71,7 +45,7 @@ public class ActionrequestDecisionRel implements Serializable {
      *
      * @return the current value of requestDecisionRelUid
      */
-    public int getRequestDecisionRelUid() {
+    public Integer getRequestDecisionRelUid() {
         return requestDecisionRelUid;
     }
 
@@ -80,7 +54,7 @@ public class ActionrequestDecisionRel implements Serializable {
      *
      * @param aRequestDecisionRelUid the new value for requestDecisionRelUid
      */
-    public void setRequestDecisionRelUid(int aRequestDecisionRelUid) {
+    public void setRequestDecisionRelUid(Integer aRequestDecisionRelUid) {
         requestDecisionRelUid = aRequestDecisionRelUid;
     }
 
@@ -89,7 +63,7 @@ public class ActionrequestDecisionRel implements Serializable {
      *
      * @return the current value of activeFlag
      */
-    public String getActiveFlag() {
+    public Character getActiveFlag() {
         return activeFlag;
     }
 
@@ -98,7 +72,7 @@ public class ActionrequestDecisionRel implements Serializable {
      *
      * @param aActiveFlag the new value for activeFlag
      */
-    public void setActiveFlag(String aActiveFlag) {
+    public void setActiveFlag(Character aActiveFlag) {
         activeFlag = aActiveFlag;
     }
 
@@ -188,7 +162,9 @@ public class ActionrequestDecisionRel implements Serializable {
             return false;
         }
         ActionrequestDecisionRel that = (ActionrequestDecisionRel) other;
-        if (this.getRequestDecisionRelUid() != that.getRequestDecisionRelUid()) {
+        Object myRequestDecisionRelUid = this.getRequestDecisionRelUid();
+        Object yourRequestDecisionRelUid = that.getRequestDecisionRelUid();
+        if (myRequestDecisionRelUid==null ? yourRequestDecisionRelUid!=null : !myRequestDecisionRelUid.equals(yourRequestDecisionRelUid)) {
             return false;
         }
         return true;
@@ -215,7 +191,11 @@ public class ActionrequestDecisionRel implements Serializable {
     public int hashCode() {
         int i;
         int result = 17;
-        i = getRequestDecisionRelUid();
+        if (getRequestDecisionRelUid() == null) {
+            i = 0;
+        } else {
+            i = getRequestDecisionRelUid().hashCode();
+        }
         result = 37*result + i;
         return result;
     }
@@ -240,7 +220,7 @@ public class ActionrequestDecisionRel implements Serializable {
      */
     public Map<String, Object> getPrimaryKey() {
         Map<String, Object> ret = new LinkedHashMap<String, Object>(6);
-        ret.put("requestDecisionRelUid", Integer.valueOf(getRequestDecisionRelUid()));
+        ret.put("requestDecisionRelUid", getRequestDecisionRelUid());
         return ret;
     }
 

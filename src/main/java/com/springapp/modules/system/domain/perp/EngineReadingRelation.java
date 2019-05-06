@@ -9,7 +9,6 @@ import java.util.Map;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.Version;
 
 @Entity(name="engine_reading_relation")
 public class EngineReadingRelation implements Serializable {
@@ -17,36 +16,11 @@ public class EngineReadingRelation implements Serializable {
     /** Primary key. */
     protected static final String PK = "erAudUid";
 
-    /**
-     * The optimistic lock. Available via standard bean get/set operations.
-     */
-    @Version
-    @Column(name="LOCK_FLAG")
-    private Integer lockFlag;
-
-    /**
-     * Access method for the lockFlag property.
-     *
-     * @return the current value of the lockFlag property
-     */
-    public Integer getLockFlag() {
-        return lockFlag;
-    }
-
-    /**
-     * Sets the value of the lockFlag property.
-     *
-     * @param aLockFlag the new value of the lockFlag property
-     */
-    public void setLockFlag(Integer aLockFlag) {
-        lockFlag = aLockFlag;
-    }
-
     @Id
     @Column(name="er_aud_uid", unique=true, nullable=false, precision=10)
-    private int erAudUid;
+    private Integer erAudUid;
     @Column(name="er_uid", nullable=false, precision=10)
-    private int erUid;
+    private Integer erUid;
     @Column(name="Serial_No", length=30)
     private String serialNo;
 
@@ -60,7 +34,7 @@ public class EngineReadingRelation implements Serializable {
      *
      * @return the current value of erAudUid
      */
-    public int getErAudUid() {
+    public Integer getErAudUid() {
         return erAudUid;
     }
 
@@ -69,7 +43,7 @@ public class EngineReadingRelation implements Serializable {
      *
      * @param aErAudUid the new value for erAudUid
      */
-    public void setErAudUid(int aErAudUid) {
+    public void setErAudUid(Integer aErAudUid) {
         erAudUid = aErAudUid;
     }
 
@@ -78,7 +52,7 @@ public class EngineReadingRelation implements Serializable {
      *
      * @return the current value of erUid
      */
-    public int getErUid() {
+    public Integer getErUid() {
         return erUid;
     }
 
@@ -87,7 +61,7 @@ public class EngineReadingRelation implements Serializable {
      *
      * @param aErUid the new value for erUid
      */
-    public void setErUid(int aErUid) {
+    public void setErUid(Integer aErUid) {
         erUid = aErUid;
     }
 
@@ -123,7 +97,9 @@ public class EngineReadingRelation implements Serializable {
             return false;
         }
         EngineReadingRelation that = (EngineReadingRelation) other;
-        if (this.getErAudUid() != that.getErAudUid()) {
+        Object myErAudUid = this.getErAudUid();
+        Object yourErAudUid = that.getErAudUid();
+        if (myErAudUid==null ? yourErAudUid!=null : !myErAudUid.equals(yourErAudUid)) {
             return false;
         }
         return true;
@@ -150,7 +126,11 @@ public class EngineReadingRelation implements Serializable {
     public int hashCode() {
         int i;
         int result = 17;
-        i = getErAudUid();
+        if (getErAudUid() == null) {
+            i = 0;
+        } else {
+            i = getErAudUid().hashCode();
+        }
         result = 37*result + i;
         return result;
     }
@@ -175,7 +155,7 @@ public class EngineReadingRelation implements Serializable {
      */
     public Map<String, Object> getPrimaryKey() {
         Map<String, Object> ret = new LinkedHashMap<String, Object>(6);
-        ret.put("erAudUid", Integer.valueOf(getErAudUid()));
+        ret.put("erAudUid", getErAudUid());
         return ret;
     }
 

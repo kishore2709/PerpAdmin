@@ -12,7 +12,6 @@ import java.util.Map;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.Version;
 
 @Entity(name="apptrans_reg_rel_aud")
 public class ApptransRegRelAud implements Serializable {
@@ -20,50 +19,25 @@ public class ApptransRegRelAud implements Serializable {
     /** Primary key. */
     protected static final String PK = "atrrAudUid";
 
-    /**
-     * The optimistic lock. Available via standard bean get/set operations.
-     */
-    @Version
-    @Column(name="LOCK_FLAG")
-    private Integer lockFlag;
-
-    /**
-     * Access method for the lockFlag property.
-     *
-     * @return the current value of the lockFlag property
-     */
-    public Integer getLockFlag() {
-        return lockFlag;
-    }
-
-    /**
-     * Sets the value of the lockFlag property.
-     *
-     * @param aLockFlag the new value of the lockFlag property
-     */
-    public void setLockFlag(Integer aLockFlag) {
-        lockFlag = aLockFlag;
-    }
-
     @Id
     @Column(name="ATRRAud_UID", unique=true, nullable=false, precision=10)
-    private int atrrAudUid;
+    private Integer atrrAudUid;
     @Column(name="AppTransRegRel_UID", nullable=false, precision=10)
-    private int appTransRegRelUid;
+    private Integer appTransRegRelUid;
     @Column(name="AppTrans_UID", nullable=false, precision=10)
-    private int appTransUid;
+    private Integer appTransUid;
     @Column(name="AppRegItemStatus_UID", nullable=false, precision=10)
-    private int appRegItemStatusUid;
+    private Integer appRegItemStatusUid;
     @Column(name="RegItem_UID", nullable=false, precision=10)
-    private int regItemUid;
+    private Integer regItemUid;
     @Column(name="RequestActions_UID", nullable=false, precision=10)
-    private int requestActionsUid;
+    private Integer requestActionsUid;
     @Column(name="DecisionAction_UID", precision=10)
-    private int decisionActionUid;
+    private Integer decisionActionUid;
     @Column(name="Decision_Date")
     private Date decisionDate;
     @Column(name="FulFilled_Flag", length=1)
-    private String fulFilledFlag;
+    private Character fulFilledFlag;
     @Column(name="RegItem_Amount", nullable=false, precision=10, scale=2)
     private BigDecimal regItemAmount;
     @Column(name="Fee_Adjust_Amount", precision=10, scale=2)
@@ -71,21 +45,21 @@ public class ApptransRegRelAud implements Serializable {
     @Column(name="Calulated_Expiration")
     private Date calulatedExpiration;
     @Column(name="Token_Allow_Count", precision=10)
-    private int tokenAllowCount;
+    private Integer tokenAllowCount;
     @Column(name="Token_Count", precision=10)
-    private int tokenCount;
+    private Integer tokenCount;
     @Column(name="Token_Exp_Date")
     private Date tokenExpDate;
     @Column(name="Issuance_Date")
     private Timestamp issuanceDate;
     @Column(name="Withdraw_Request_Flag", length=1)
-    private String withdrawRequestFlag;
+    private Character withdrawRequestFlag;
     @Column(name="Withdraw_Request_Date")
     private Timestamp withdrawRequestDate;
     @Column(name="Placard_Request_Flag", length=1)
-    private String placardRequestFlag;
+    private Character placardRequestFlag;
     @Column(name="Sticker_Request_Flag", length=1)
-    private String stickerRequestFlag;
+    private Character stickerRequestFlag;
     @Column(name="Action_Requested_Date")
     private Date actionRequestedDate;
     @Column(name="Action_Requested_By", length=45)
@@ -107,7 +81,7 @@ public class ApptransRegRelAud implements Serializable {
      *
      * @return the current value of atrrAudUid
      */
-    public int getAtrrAudUid() {
+    public Integer getAtrrAudUid() {
         return atrrAudUid;
     }
 
@@ -116,7 +90,7 @@ public class ApptransRegRelAud implements Serializable {
      *
      * @param aAtrrAudUid the new value for atrrAudUid
      */
-    public void setAtrrAudUid(int aAtrrAudUid) {
+    public void setAtrrAudUid(Integer aAtrrAudUid) {
         atrrAudUid = aAtrrAudUid;
     }
 
@@ -125,7 +99,7 @@ public class ApptransRegRelAud implements Serializable {
      *
      * @return the current value of appTransRegRelUid
      */
-    public int getAppTransRegRelUid() {
+    public Integer getAppTransRegRelUid() {
         return appTransRegRelUid;
     }
 
@@ -134,7 +108,7 @@ public class ApptransRegRelAud implements Serializable {
      *
      * @param aAppTransRegRelUid the new value for appTransRegRelUid
      */
-    public void setAppTransRegRelUid(int aAppTransRegRelUid) {
+    public void setAppTransRegRelUid(Integer aAppTransRegRelUid) {
         appTransRegRelUid = aAppTransRegRelUid;
     }
 
@@ -143,7 +117,7 @@ public class ApptransRegRelAud implements Serializable {
      *
      * @return the current value of appTransUid
      */
-    public int getAppTransUid() {
+    public Integer getAppTransUid() {
         return appTransUid;
     }
 
@@ -152,7 +126,7 @@ public class ApptransRegRelAud implements Serializable {
      *
      * @param aAppTransUid the new value for appTransUid
      */
-    public void setAppTransUid(int aAppTransUid) {
+    public void setAppTransUid(Integer aAppTransUid) {
         appTransUid = aAppTransUid;
     }
 
@@ -161,7 +135,7 @@ public class ApptransRegRelAud implements Serializable {
      *
      * @return the current value of appRegItemStatusUid
      */
-    public int getAppRegItemStatusUid() {
+    public Integer getAppRegItemStatusUid() {
         return appRegItemStatusUid;
     }
 
@@ -170,7 +144,7 @@ public class ApptransRegRelAud implements Serializable {
      *
      * @param aAppRegItemStatusUid the new value for appRegItemStatusUid
      */
-    public void setAppRegItemStatusUid(int aAppRegItemStatusUid) {
+    public void setAppRegItemStatusUid(Integer aAppRegItemStatusUid) {
         appRegItemStatusUid = aAppRegItemStatusUid;
     }
 
@@ -179,7 +153,7 @@ public class ApptransRegRelAud implements Serializable {
      *
      * @return the current value of regItemUid
      */
-    public int getRegItemUid() {
+    public Integer getRegItemUid() {
         return regItemUid;
     }
 
@@ -188,7 +162,7 @@ public class ApptransRegRelAud implements Serializable {
      *
      * @param aRegItemUid the new value for regItemUid
      */
-    public void setRegItemUid(int aRegItemUid) {
+    public void setRegItemUid(Integer aRegItemUid) {
         regItemUid = aRegItemUid;
     }
 
@@ -197,7 +171,7 @@ public class ApptransRegRelAud implements Serializable {
      *
      * @return the current value of requestActionsUid
      */
-    public int getRequestActionsUid() {
+    public Integer getRequestActionsUid() {
         return requestActionsUid;
     }
 
@@ -206,7 +180,7 @@ public class ApptransRegRelAud implements Serializable {
      *
      * @param aRequestActionsUid the new value for requestActionsUid
      */
-    public void setRequestActionsUid(int aRequestActionsUid) {
+    public void setRequestActionsUid(Integer aRequestActionsUid) {
         requestActionsUid = aRequestActionsUid;
     }
 
@@ -215,7 +189,7 @@ public class ApptransRegRelAud implements Serializable {
      *
      * @return the current value of decisionActionUid
      */
-    public int getDecisionActionUid() {
+    public Integer getDecisionActionUid() {
         return decisionActionUid;
     }
 
@@ -224,7 +198,7 @@ public class ApptransRegRelAud implements Serializable {
      *
      * @param aDecisionActionUid the new value for decisionActionUid
      */
-    public void setDecisionActionUid(int aDecisionActionUid) {
+    public void setDecisionActionUid(Integer aDecisionActionUid) {
         decisionActionUid = aDecisionActionUid;
     }
 
@@ -251,7 +225,7 @@ public class ApptransRegRelAud implements Serializable {
      *
      * @return the current value of fulFilledFlag
      */
-    public String getFulFilledFlag() {
+    public Character getFulFilledFlag() {
         return fulFilledFlag;
     }
 
@@ -260,7 +234,7 @@ public class ApptransRegRelAud implements Serializable {
      *
      * @param aFulFilledFlag the new value for fulFilledFlag
      */
-    public void setFulFilledFlag(String aFulFilledFlag) {
+    public void setFulFilledFlag(Character aFulFilledFlag) {
         fulFilledFlag = aFulFilledFlag;
     }
 
@@ -323,7 +297,7 @@ public class ApptransRegRelAud implements Serializable {
      *
      * @return the current value of tokenAllowCount
      */
-    public int getTokenAllowCount() {
+    public Integer getTokenAllowCount() {
         return tokenAllowCount;
     }
 
@@ -332,7 +306,7 @@ public class ApptransRegRelAud implements Serializable {
      *
      * @param aTokenAllowCount the new value for tokenAllowCount
      */
-    public void setTokenAllowCount(int aTokenAllowCount) {
+    public void setTokenAllowCount(Integer aTokenAllowCount) {
         tokenAllowCount = aTokenAllowCount;
     }
 
@@ -341,7 +315,7 @@ public class ApptransRegRelAud implements Serializable {
      *
      * @return the current value of tokenCount
      */
-    public int getTokenCount() {
+    public Integer getTokenCount() {
         return tokenCount;
     }
 
@@ -350,7 +324,7 @@ public class ApptransRegRelAud implements Serializable {
      *
      * @param aTokenCount the new value for tokenCount
      */
-    public void setTokenCount(int aTokenCount) {
+    public void setTokenCount(Integer aTokenCount) {
         tokenCount = aTokenCount;
     }
 
@@ -395,7 +369,7 @@ public class ApptransRegRelAud implements Serializable {
      *
      * @return the current value of withdrawRequestFlag
      */
-    public String getWithdrawRequestFlag() {
+    public Character getWithdrawRequestFlag() {
         return withdrawRequestFlag;
     }
 
@@ -404,7 +378,7 @@ public class ApptransRegRelAud implements Serializable {
      *
      * @param aWithdrawRequestFlag the new value for withdrawRequestFlag
      */
-    public void setWithdrawRequestFlag(String aWithdrawRequestFlag) {
+    public void setWithdrawRequestFlag(Character aWithdrawRequestFlag) {
         withdrawRequestFlag = aWithdrawRequestFlag;
     }
 
@@ -431,7 +405,7 @@ public class ApptransRegRelAud implements Serializable {
      *
      * @return the current value of placardRequestFlag
      */
-    public String getPlacardRequestFlag() {
+    public Character getPlacardRequestFlag() {
         return placardRequestFlag;
     }
 
@@ -440,7 +414,7 @@ public class ApptransRegRelAud implements Serializable {
      *
      * @param aPlacardRequestFlag the new value for placardRequestFlag
      */
-    public void setPlacardRequestFlag(String aPlacardRequestFlag) {
+    public void setPlacardRequestFlag(Character aPlacardRequestFlag) {
         placardRequestFlag = aPlacardRequestFlag;
     }
 
@@ -449,7 +423,7 @@ public class ApptransRegRelAud implements Serializable {
      *
      * @return the current value of stickerRequestFlag
      */
-    public String getStickerRequestFlag() {
+    public Character getStickerRequestFlag() {
         return stickerRequestFlag;
     }
 
@@ -458,7 +432,7 @@ public class ApptransRegRelAud implements Serializable {
      *
      * @param aStickerRequestFlag the new value for stickerRequestFlag
      */
-    public void setStickerRequestFlag(String aStickerRequestFlag) {
+    public void setStickerRequestFlag(Character aStickerRequestFlag) {
         stickerRequestFlag = aStickerRequestFlag;
     }
 
@@ -566,7 +540,9 @@ public class ApptransRegRelAud implements Serializable {
             return false;
         }
         ApptransRegRelAud that = (ApptransRegRelAud) other;
-        if (this.getAtrrAudUid() != that.getAtrrAudUid()) {
+        Object myAtrrAudUid = this.getAtrrAudUid();
+        Object yourAtrrAudUid = that.getAtrrAudUid();
+        if (myAtrrAudUid==null ? yourAtrrAudUid!=null : !myAtrrAudUid.equals(yourAtrrAudUid)) {
             return false;
         }
         return true;
@@ -593,7 +569,11 @@ public class ApptransRegRelAud implements Serializable {
     public int hashCode() {
         int i;
         int result = 17;
-        i = getAtrrAudUid();
+        if (getAtrrAudUid() == null) {
+            i = 0;
+        } else {
+            i = getAtrrAudUid().hashCode();
+        }
         result = 37*result + i;
         return result;
     }
@@ -618,7 +598,7 @@ public class ApptransRegRelAud implements Serializable {
      */
     public Map<String, Object> getPrimaryKey() {
         Map<String, Object> ret = new LinkedHashMap<String, Object>(6);
-        ret.put("atrrAudUid", Integer.valueOf(getAtrrAudUid()));
+        ret.put("atrrAudUid", getAtrrAudUid());
         return ret;
     }
 

@@ -12,7 +12,6 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.Version;
 
 @Entity(name="app_trans_association")
 public class AppTransAssociation implements Serializable {
@@ -20,34 +19,9 @@ public class AppTransAssociation implements Serializable {
     /** Primary key. */
     protected static final String PK = "appTransAssocUid";
 
-    /**
-     * The optimistic lock. Available via standard bean get/set operations.
-     */
-    @Version
-    @Column(name="LOCK_FLAG")
-    private Integer lockFlag;
-
-    /**
-     * Access method for the lockFlag property.
-     *
-     * @return the current value of the lockFlag property
-     */
-    public Integer getLockFlag() {
-        return lockFlag;
-    }
-
-    /**
-     * Sets the value of the lockFlag property.
-     *
-     * @param aLockFlag the new value of the lockFlag property
-     */
-    public void setLockFlag(Integer aLockFlag) {
-        lockFlag = aLockFlag;
-    }
-
     @Id
     @Column(name="AppTransAssoc_UID", unique=true, nullable=false, precision=10)
-    private int appTransAssocUid;
+    private Integer appTransAssocUid;
     @Column(name="Create_Modified_By", nullable=false, length=45)
     private String createModifiedBy;
     @Column(name="Create_Modified_Date", nullable=false)
@@ -69,7 +43,7 @@ public class AppTransAssociation implements Serializable {
      *
      * @return the current value of appTransAssocUid
      */
-    public int getAppTransAssocUid() {
+    public Integer getAppTransAssocUid() {
         return appTransAssocUid;
     }
 
@@ -78,7 +52,7 @@ public class AppTransAssociation implements Serializable {
      *
      * @param aAppTransAssocUid the new value for appTransAssocUid
      */
-    public void setAppTransAssocUid(int aAppTransAssocUid) {
+    public void setAppTransAssocUid(Integer aAppTransAssocUid) {
         appTransAssocUid = aAppTransAssocUid;
     }
 
@@ -168,7 +142,9 @@ public class AppTransAssociation implements Serializable {
             return false;
         }
         AppTransAssociation that = (AppTransAssociation) other;
-        if (this.getAppTransAssocUid() != that.getAppTransAssocUid()) {
+        Object myAppTransAssocUid = this.getAppTransAssocUid();
+        Object yourAppTransAssocUid = that.getAppTransAssocUid();
+        if (myAppTransAssocUid==null ? yourAppTransAssocUid!=null : !myAppTransAssocUid.equals(yourAppTransAssocUid)) {
             return false;
         }
         return true;
@@ -195,7 +171,11 @@ public class AppTransAssociation implements Serializable {
     public int hashCode() {
         int i;
         int result = 17;
-        i = getAppTransAssocUid();
+        if (getAppTransAssocUid() == null) {
+            i = 0;
+        } else {
+            i = getAppTransAssocUid().hashCode();
+        }
         result = 37*result + i;
         return result;
     }
@@ -220,7 +200,7 @@ public class AppTransAssociation implements Serializable {
      */
     public Map<String, Object> getPrimaryKey() {
         Map<String, Object> ret = new LinkedHashMap<String, Object>(6);
-        ret.put("appTransAssocUid", Integer.valueOf(getAppTransAssocUid()));
+        ret.put("appTransAssocUid", getAppTransAssocUid());
         return ret;
     }
 

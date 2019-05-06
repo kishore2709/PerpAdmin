@@ -7,38 +7,13 @@ import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.Version;
 
 @Entity(name="user_company_programs_temp")
 public class UserCompanyProgramsTemp implements Serializable {
 
-    /**
-     * The optimistic lock. Available via standard bean get/set operations.
-     */
-    @Version
-    @Column(name="LOCK_FLAG")
-    private Integer lockFlag;
-
-    /**
-     * Access method for the lockFlag property.
-     *
-     * @return the current value of the lockFlag property
-     */
-    public Integer getLockFlag() {
-        return lockFlag;
-    }
-
-    /**
-     * Sets the value of the lockFlag property.
-     *
-     * @param aLockFlag the new value of the lockFlag property
-     */
-    public void setLockFlag(Integer aLockFlag) {
-        lockFlag = aLockFlag;
-    }
     @Id
     @Column(name="user_company_programs_UID", nullable=false, precision=10)
-    private int userCompanyProgramsUid;
+    private Integer userCompanyProgramsUid;
 
     /** Default constructor. */
     public UserCompanyProgramsTemp() {
@@ -50,7 +25,7 @@ public class UserCompanyProgramsTemp implements Serializable {
      *
      * @return the current value of userCompanyProgramsUid
      */
-    public int getUserCompanyProgramsUid() {
+    public Integer getUserCompanyProgramsUid() {
         return userCompanyProgramsUid;
     }
 
@@ -59,7 +34,7 @@ public class UserCompanyProgramsTemp implements Serializable {
      *
      * @param aUserCompanyProgramsUid the new value for userCompanyProgramsUid
      */
-    public void setUserCompanyProgramsUid(int aUserCompanyProgramsUid) {
+    public void setUserCompanyProgramsUid(Integer aUserCompanyProgramsUid) {
         userCompanyProgramsUid = aUserCompanyProgramsUid;
     }
 

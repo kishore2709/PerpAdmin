@@ -10,7 +10,6 @@ import java.util.Map;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.Version;
 
 @Entity(name="perp_applications_aud")
 public class PerpApplicationsAud implements Serializable {
@@ -18,54 +17,29 @@ public class PerpApplicationsAud implements Serializable {
     /** Primary key. */
     protected static final String PK = "paAudUid";
 
-    /**
-     * The optimistic lock. Available via standard bean get/set operations.
-     */
-    @Version
-    @Column(name="LOCK_FLAG")
-    private Integer lockFlag;
-
-    /**
-     * Access method for the lockFlag property.
-     *
-     * @return the current value of the lockFlag property
-     */
-    public Integer getLockFlag() {
-        return lockFlag;
-    }
-
-    /**
-     * Sets the value of the lockFlag property.
-     *
-     * @param aLockFlag the new value of the lockFlag property
-     */
-    public void setLockFlag(Integer aLockFlag) {
-        lockFlag = aLockFlag;
-    }
-
     @Id
     @Column(name="PAAud_UID", unique=true, nullable=false, precision=10)
-    private int paAudUid;
+    private Integer paAudUid;
     @Column(name="Application_UID", nullable=false, precision=10)
-    private int applicationUid;
+    private Integer applicationUid;
     @Column(name="Company_UID", nullable=false, precision=10)
-    private int companyUid;
+    private Integer companyUid;
     @Column(name="AssignedStaffUser_UID", precision=10)
-    private int assignedStaffUserUid;
+    private Integer assignedStaffUserUid;
     @Column(name="AssignedStaffUser_Date")
     private Timestamp assignedStaffUserDate;
     @Column(name="AssignedEngineerUser_UID", precision=10)
-    private int assignedEngineerUserUid;
+    private Integer assignedEngineerUserUid;
     @Column(name="AssignedEngineerUser_Date")
     private Timestamp assignedEngineerUserDate;
     @Column(name="ResponsibleParty_UID", precision=10)
-    private int responsiblePartyUid;
+    private Integer responsiblePartyUid;
     @Column(name="AppStatus_UID", precision=10)
-    private int appStatusUid;
+    private Integer appStatusUid;
     @Column(name="Location", length=128)
     private String location;
     @Column(name="Active_Flag", nullable=false, length=1)
-    private String activeFlag;
+    private Character activeFlag;
     @Column(name="Create_Modified_By", nullable=false, length=45)
     private String createModifiedBy;
     @Column(name="Create_Modified_Date", nullable=false)
@@ -83,7 +57,7 @@ public class PerpApplicationsAud implements Serializable {
      *
      * @return the current value of paAudUid
      */
-    public int getPaAudUid() {
+    public Integer getPaAudUid() {
         return paAudUid;
     }
 
@@ -92,7 +66,7 @@ public class PerpApplicationsAud implements Serializable {
      *
      * @param aPaAudUid the new value for paAudUid
      */
-    public void setPaAudUid(int aPaAudUid) {
+    public void setPaAudUid(Integer aPaAudUid) {
         paAudUid = aPaAudUid;
     }
 
@@ -101,7 +75,7 @@ public class PerpApplicationsAud implements Serializable {
      *
      * @return the current value of applicationUid
      */
-    public int getApplicationUid() {
+    public Integer getApplicationUid() {
         return applicationUid;
     }
 
@@ -110,7 +84,7 @@ public class PerpApplicationsAud implements Serializable {
      *
      * @param aApplicationUid the new value for applicationUid
      */
-    public void setApplicationUid(int aApplicationUid) {
+    public void setApplicationUid(Integer aApplicationUid) {
         applicationUid = aApplicationUid;
     }
 
@@ -119,7 +93,7 @@ public class PerpApplicationsAud implements Serializable {
      *
      * @return the current value of companyUid
      */
-    public int getCompanyUid() {
+    public Integer getCompanyUid() {
         return companyUid;
     }
 
@@ -128,7 +102,7 @@ public class PerpApplicationsAud implements Serializable {
      *
      * @param aCompanyUid the new value for companyUid
      */
-    public void setCompanyUid(int aCompanyUid) {
+    public void setCompanyUid(Integer aCompanyUid) {
         companyUid = aCompanyUid;
     }
 
@@ -137,7 +111,7 @@ public class PerpApplicationsAud implements Serializable {
      *
      * @return the current value of assignedStaffUserUid
      */
-    public int getAssignedStaffUserUid() {
+    public Integer getAssignedStaffUserUid() {
         return assignedStaffUserUid;
     }
 
@@ -146,7 +120,7 @@ public class PerpApplicationsAud implements Serializable {
      *
      * @param aAssignedStaffUserUid the new value for assignedStaffUserUid
      */
-    public void setAssignedStaffUserUid(int aAssignedStaffUserUid) {
+    public void setAssignedStaffUserUid(Integer aAssignedStaffUserUid) {
         assignedStaffUserUid = aAssignedStaffUserUid;
     }
 
@@ -173,7 +147,7 @@ public class PerpApplicationsAud implements Serializable {
      *
      * @return the current value of assignedEngineerUserUid
      */
-    public int getAssignedEngineerUserUid() {
+    public Integer getAssignedEngineerUserUid() {
         return assignedEngineerUserUid;
     }
 
@@ -182,7 +156,7 @@ public class PerpApplicationsAud implements Serializable {
      *
      * @param aAssignedEngineerUserUid the new value for assignedEngineerUserUid
      */
-    public void setAssignedEngineerUserUid(int aAssignedEngineerUserUid) {
+    public void setAssignedEngineerUserUid(Integer aAssignedEngineerUserUid) {
         assignedEngineerUserUid = aAssignedEngineerUserUid;
     }
 
@@ -209,7 +183,7 @@ public class PerpApplicationsAud implements Serializable {
      *
      * @return the current value of responsiblePartyUid
      */
-    public int getResponsiblePartyUid() {
+    public Integer getResponsiblePartyUid() {
         return responsiblePartyUid;
     }
 
@@ -218,7 +192,7 @@ public class PerpApplicationsAud implements Serializable {
      *
      * @param aResponsiblePartyUid the new value for responsiblePartyUid
      */
-    public void setResponsiblePartyUid(int aResponsiblePartyUid) {
+    public void setResponsiblePartyUid(Integer aResponsiblePartyUid) {
         responsiblePartyUid = aResponsiblePartyUid;
     }
 
@@ -227,7 +201,7 @@ public class PerpApplicationsAud implements Serializable {
      *
      * @return the current value of appStatusUid
      */
-    public int getAppStatusUid() {
+    public Integer getAppStatusUid() {
         return appStatusUid;
     }
 
@@ -236,7 +210,7 @@ public class PerpApplicationsAud implements Serializable {
      *
      * @param aAppStatusUid the new value for appStatusUid
      */
-    public void setAppStatusUid(int aAppStatusUid) {
+    public void setAppStatusUid(Integer aAppStatusUid) {
         appStatusUid = aAppStatusUid;
     }
 
@@ -263,7 +237,7 @@ public class PerpApplicationsAud implements Serializable {
      *
      * @return the current value of activeFlag
      */
-    public String getActiveFlag() {
+    public Character getActiveFlag() {
         return activeFlag;
     }
 
@@ -272,7 +246,7 @@ public class PerpApplicationsAud implements Serializable {
      *
      * @param aActiveFlag the new value for activeFlag
      */
-    public void setActiveFlag(String aActiveFlag) {
+    public void setActiveFlag(Character aActiveFlag) {
         activeFlag = aActiveFlag;
     }
 
@@ -344,7 +318,9 @@ public class PerpApplicationsAud implements Serializable {
             return false;
         }
         PerpApplicationsAud that = (PerpApplicationsAud) other;
-        if (this.getPaAudUid() != that.getPaAudUid()) {
+        Object myPaAudUid = this.getPaAudUid();
+        Object yourPaAudUid = that.getPaAudUid();
+        if (myPaAudUid==null ? yourPaAudUid!=null : !myPaAudUid.equals(yourPaAudUid)) {
             return false;
         }
         return true;
@@ -371,7 +347,11 @@ public class PerpApplicationsAud implements Serializable {
     public int hashCode() {
         int i;
         int result = 17;
-        i = getPaAudUid();
+        if (getPaAudUid() == null) {
+            i = 0;
+        } else {
+            i = getPaAudUid().hashCode();
+        }
         result = 37*result + i;
         return result;
     }
@@ -396,7 +376,7 @@ public class PerpApplicationsAud implements Serializable {
      */
     public Map<String, Object> getPrimaryKey() {
         Map<String, Object> ret = new LinkedHashMap<String, Object>(6);
-        ret.put("paAudUid", Integer.valueOf(getPaAudUid()));
+        ret.put("paAudUid", getPaAudUid());
         return ret;
     }
 

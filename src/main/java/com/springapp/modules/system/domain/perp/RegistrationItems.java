@@ -15,7 +15,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.Version;
 
 @Entity(name="registration_items")
 public class RegistrationItems implements Serializable {
@@ -23,34 +22,9 @@ public class RegistrationItems implements Serializable {
     /** Primary key. */
     protected static final String PK = "regItemUid";
 
-    /**
-     * The optimistic lock. Available via standard bean get/set operations.
-     */
-    @Version
-    @Column(name="LOCK_FLAG")
-    private Integer lockFlag;
-
-    /**
-     * Access method for the lockFlag property.
-     *
-     * @return the current value of the lockFlag property
-     */
-    public Integer getLockFlag() {
-        return lockFlag;
-    }
-
-    /**
-     * Sets the value of the lockFlag property.
-     *
-     * @param aLockFlag the new value of the lockFlag property
-     */
-    public void setLockFlag(Integer aLockFlag) {
-        lockFlag = aLockFlag;
-    }
-
     @Id
     @Column(name="RegItem_UID", unique=true, nullable=false, precision=10)
-    private int regItemUid;
+    private Integer regItemUid;
     @Column(name="Additional_Info")
     private String additionalInfo;
     @Column(name="Cert_Description")
@@ -58,95 +32,95 @@ public class RegistrationItems implements Serializable {
     @Column(name="Add_Cert_Desc")
     private String addCertDesc;
     @Column(name="Certificate_No", precision=10)
-    private int certificateNo;
+    private Integer certificateNo;
     @Column(name="Certified_Flag", length=1)
-    private String certifiedFlag;
+    private Character certifiedFlag;
     @Column(name="Created_Date")
     private Timestamp createdDate;
     @Column(name="Current_Flag", nullable=false, length=1)
-    private String currentFlag;
+    private Character currentFlag;
     @Column(name="DistAppProof_Flag", length=1)
-    private String distAppProofFlag;
+    private Character distAppProofFlag;
     @Column(name="DistPermitProof_Flag", length=1)
-    private String distPermitProofFlag;
+    private Character distPermitProofFlag;
     @Column(name="District_Permit_Flag", length=1)
-    private String districtPermitFlag;
+    private Character districtPermitFlag;
     @Column(name="EPA_Cert_No", length=50)
     private String epaCertNo;
     @Column(name="Est_Days_Per_Week", precision=5)
-    private short estDaysPerWeek;
+    private Short estDaysPerWeek;
     @Column(name="Est_Hours_Per_Day", precision=5)
-    private short estHoursPerDay;
+    private Short estHoursPerDay;
     @Column(name="Est_Weeks_Per_Year", precision=5)
-    private short estWeeksPerYear;
+    private Short estWeeksPerYear;
     @Column(name="Estimated_Fees", precision=10, scale=2)
     private BigDecimal estimatedFees;
     @Column(name="Expiration_Date")
     private Timestamp expirationDate;
     @Column(name="Flex_Eng_Proof_Flag", length=1)
-    private String flexEngProofFlag;
+    private Character flexEngProofFlag;
     @Column(name="Flex_Eng_Request_Flag", length=1)
-    private String flexEngRequestFlag;
+    private Character flexEngRequestFlag;
     @Column(name="Fuel_Proof_Flag", length=1)
-    private String fuelProofFlag;
+    private Character fuelProofFlag;
     @Column(name="Fuel_Request_Flag", length=1)
-    private String fuelRequestFlag;
+    private Character fuelRequestFlag;
     @Column(name="Initial_Eval", length=1)
-    private String initialEval;
+    private Character initialEval;
     @Column(name="Initial_Issuance_Date")
     private Timestamp initialIssuanceDate;
     @Column(name="Not_Going_To_Renew_Flag", length=1)
-    private String notGoingToRenewFlag;
+    private Character notGoingToRenewFlag;
     @Column(name="Operational_Flag", length=1)
-    private String operationalFlag;
+    private Character operationalFlag;
     @Column(name="Operational_Indicator", length=1)
-    private String operationalIndicator;
+    private Character operationalIndicator;
     @Column(name="PTO_App_Comp_Date")
     private Timestamp ptoAppCompDate;
     @Column(name="PTO_App_Date")
     private Timestamp ptoAppDate;
     @Column(name="PTO_App_DistID", precision=10)
-    private int ptoAppDistId;
+    private Integer ptoAppDistId;
     @Column(name="PTO_Date")
     private Timestamp ptoDate;
     @Column(name="PTO_District_ID", precision=10)
-    private int ptoDistrictId;
+    private Integer ptoDistrictId;
     @Column(name="PTO_No", length=20)
     private String ptoNo;
     @Column(name="Purchase_Date")
     private Timestamp purchaseDate;
     @Column(name="Renewal_Open_Flag", length=1)
-    private String renewalOpenFlag;
+    private Character renewalOpenFlag;
     @Column(name="Rental_Flag", length=1)
-    private String rentalFlag;
+    private Character rentalFlag;
     @Column(name="Residency_Proof_Flag", length=1)
-    private String residencyProofFlag;
+    private Character residencyProofFlag;
     @Column(name="Residency_Request_Flag", length=1)
-    private String residencyRequestFlag;
+    private Character residencyRequestFlag;
     @Column(name="Stolen_Flag", nullable=false, length=1)
-    private String stolenFlag;
+    private Character stolenFlag;
     @Column(name="Table1_STD_Proof_Flag", length=1)
-    private String table1StdProofFlag;
+    private Character table1StdProofFlag;
     @Column(name="Table1_STD_Request_Flag", length=1)
-    private String table1StdRequestFlag;
+    private Character table1StdRequestFlag;
     @Column(name="Tracking_No", precision=10)
-    private int trackingNo;
+    private Integer trackingNo;
     @Column(name="Active_Flag", nullable=false, length=1)
-    private String activeFlag;
+    private Character activeFlag;
     @Column(name="Create_Modified_By", nullable=false, length=45)
     private String createModifiedBy;
     @Column(name="Create_Modified_Date", nullable=false)
     private Timestamp createModifiedDate;
     @Column(name="Expired_Renewal_Flag", length=1)
-    private String expiredRenewalFlag;
+    private Character expiredRenewalFlag;
     @Column(name="Reactivate_List_Flag", length=1)
-    private String reactivateListFlag;
+    private Character reactivateListFlag;
     @Column(name="Cutoff_Expire_Date_UID", precision=10)
-    private int cutoffExpireDateUid;
+    private Integer cutoffExpireDateUid;
     @Column(name="On_Hwy_Eng_Request_Flag", length=1)
-    private String onHwyEngRequestFlag;
+    private Character onHwyEngRequestFlag;
     @Column(name="Identical_Replacement_Flag", length=1)
-    private String identicalReplacementFlag;
+    private Character identicalReplacementFlag;
     @ManyToOne
     @JoinColumn(name="Company_UID")
     private Company company;
@@ -219,7 +193,7 @@ public class RegistrationItems implements Serializable {
      *
      * @return the current value of regItemUid
      */
-    public int getRegItemUid() {
+    public Integer getRegItemUid() {
         return regItemUid;
     }
 
@@ -228,7 +202,7 @@ public class RegistrationItems implements Serializable {
      *
      * @param aRegItemUid the new value for regItemUid
      */
-    public void setRegItemUid(int aRegItemUid) {
+    public void setRegItemUid(Integer aRegItemUid) {
         regItemUid = aRegItemUid;
     }
 
@@ -291,7 +265,7 @@ public class RegistrationItems implements Serializable {
      *
      * @return the current value of certificateNo
      */
-    public int getCertificateNo() {
+    public Integer getCertificateNo() {
         return certificateNo;
     }
 
@@ -300,7 +274,7 @@ public class RegistrationItems implements Serializable {
      *
      * @param aCertificateNo the new value for certificateNo
      */
-    public void setCertificateNo(int aCertificateNo) {
+    public void setCertificateNo(Integer aCertificateNo) {
         certificateNo = aCertificateNo;
     }
 
@@ -309,7 +283,7 @@ public class RegistrationItems implements Serializable {
      *
      * @return the current value of certifiedFlag
      */
-    public String getCertifiedFlag() {
+    public Character getCertifiedFlag() {
         return certifiedFlag;
     }
 
@@ -318,7 +292,7 @@ public class RegistrationItems implements Serializable {
      *
      * @param aCertifiedFlag the new value for certifiedFlag
      */
-    public void setCertifiedFlag(String aCertifiedFlag) {
+    public void setCertifiedFlag(Character aCertifiedFlag) {
         certifiedFlag = aCertifiedFlag;
     }
 
@@ -345,7 +319,7 @@ public class RegistrationItems implements Serializable {
      *
      * @return the current value of currentFlag
      */
-    public String getCurrentFlag() {
+    public Character getCurrentFlag() {
         return currentFlag;
     }
 
@@ -354,7 +328,7 @@ public class RegistrationItems implements Serializable {
      *
      * @param aCurrentFlag the new value for currentFlag
      */
-    public void setCurrentFlag(String aCurrentFlag) {
+    public void setCurrentFlag(Character aCurrentFlag) {
         currentFlag = aCurrentFlag;
     }
 
@@ -363,7 +337,7 @@ public class RegistrationItems implements Serializable {
      *
      * @return the current value of distAppProofFlag
      */
-    public String getDistAppProofFlag() {
+    public Character getDistAppProofFlag() {
         return distAppProofFlag;
     }
 
@@ -372,7 +346,7 @@ public class RegistrationItems implements Serializable {
      *
      * @param aDistAppProofFlag the new value for distAppProofFlag
      */
-    public void setDistAppProofFlag(String aDistAppProofFlag) {
+    public void setDistAppProofFlag(Character aDistAppProofFlag) {
         distAppProofFlag = aDistAppProofFlag;
     }
 
@@ -381,7 +355,7 @@ public class RegistrationItems implements Serializable {
      *
      * @return the current value of distPermitProofFlag
      */
-    public String getDistPermitProofFlag() {
+    public Character getDistPermitProofFlag() {
         return distPermitProofFlag;
     }
 
@@ -390,7 +364,7 @@ public class RegistrationItems implements Serializable {
      *
      * @param aDistPermitProofFlag the new value for distPermitProofFlag
      */
-    public void setDistPermitProofFlag(String aDistPermitProofFlag) {
+    public void setDistPermitProofFlag(Character aDistPermitProofFlag) {
         distPermitProofFlag = aDistPermitProofFlag;
     }
 
@@ -399,7 +373,7 @@ public class RegistrationItems implements Serializable {
      *
      * @return the current value of districtPermitFlag
      */
-    public String getDistrictPermitFlag() {
+    public Character getDistrictPermitFlag() {
         return districtPermitFlag;
     }
 
@@ -408,7 +382,7 @@ public class RegistrationItems implements Serializable {
      *
      * @param aDistrictPermitFlag the new value for districtPermitFlag
      */
-    public void setDistrictPermitFlag(String aDistrictPermitFlag) {
+    public void setDistrictPermitFlag(Character aDistrictPermitFlag) {
         districtPermitFlag = aDistrictPermitFlag;
     }
 
@@ -435,7 +409,7 @@ public class RegistrationItems implements Serializable {
      *
      * @return the current value of estDaysPerWeek
      */
-    public short getEstDaysPerWeek() {
+    public Short getEstDaysPerWeek() {
         return estDaysPerWeek;
     }
 
@@ -444,7 +418,7 @@ public class RegistrationItems implements Serializable {
      *
      * @param aEstDaysPerWeek the new value for estDaysPerWeek
      */
-    public void setEstDaysPerWeek(short aEstDaysPerWeek) {
+    public void setEstDaysPerWeek(Short aEstDaysPerWeek) {
         estDaysPerWeek = aEstDaysPerWeek;
     }
 
@@ -453,7 +427,7 @@ public class RegistrationItems implements Serializable {
      *
      * @return the current value of estHoursPerDay
      */
-    public short getEstHoursPerDay() {
+    public Short getEstHoursPerDay() {
         return estHoursPerDay;
     }
 
@@ -462,7 +436,7 @@ public class RegistrationItems implements Serializable {
      *
      * @param aEstHoursPerDay the new value for estHoursPerDay
      */
-    public void setEstHoursPerDay(short aEstHoursPerDay) {
+    public void setEstHoursPerDay(Short aEstHoursPerDay) {
         estHoursPerDay = aEstHoursPerDay;
     }
 
@@ -471,7 +445,7 @@ public class RegistrationItems implements Serializable {
      *
      * @return the current value of estWeeksPerYear
      */
-    public short getEstWeeksPerYear() {
+    public Short getEstWeeksPerYear() {
         return estWeeksPerYear;
     }
 
@@ -480,7 +454,7 @@ public class RegistrationItems implements Serializable {
      *
      * @param aEstWeeksPerYear the new value for estWeeksPerYear
      */
-    public void setEstWeeksPerYear(short aEstWeeksPerYear) {
+    public void setEstWeeksPerYear(Short aEstWeeksPerYear) {
         estWeeksPerYear = aEstWeeksPerYear;
     }
 
@@ -525,7 +499,7 @@ public class RegistrationItems implements Serializable {
      *
      * @return the current value of flexEngProofFlag
      */
-    public String getFlexEngProofFlag() {
+    public Character getFlexEngProofFlag() {
         return flexEngProofFlag;
     }
 
@@ -534,7 +508,7 @@ public class RegistrationItems implements Serializable {
      *
      * @param aFlexEngProofFlag the new value for flexEngProofFlag
      */
-    public void setFlexEngProofFlag(String aFlexEngProofFlag) {
+    public void setFlexEngProofFlag(Character aFlexEngProofFlag) {
         flexEngProofFlag = aFlexEngProofFlag;
     }
 
@@ -543,7 +517,7 @@ public class RegistrationItems implements Serializable {
      *
      * @return the current value of flexEngRequestFlag
      */
-    public String getFlexEngRequestFlag() {
+    public Character getFlexEngRequestFlag() {
         return flexEngRequestFlag;
     }
 
@@ -552,7 +526,7 @@ public class RegistrationItems implements Serializable {
      *
      * @param aFlexEngRequestFlag the new value for flexEngRequestFlag
      */
-    public void setFlexEngRequestFlag(String aFlexEngRequestFlag) {
+    public void setFlexEngRequestFlag(Character aFlexEngRequestFlag) {
         flexEngRequestFlag = aFlexEngRequestFlag;
     }
 
@@ -561,7 +535,7 @@ public class RegistrationItems implements Serializable {
      *
      * @return the current value of fuelProofFlag
      */
-    public String getFuelProofFlag() {
+    public Character getFuelProofFlag() {
         return fuelProofFlag;
     }
 
@@ -570,7 +544,7 @@ public class RegistrationItems implements Serializable {
      *
      * @param aFuelProofFlag the new value for fuelProofFlag
      */
-    public void setFuelProofFlag(String aFuelProofFlag) {
+    public void setFuelProofFlag(Character aFuelProofFlag) {
         fuelProofFlag = aFuelProofFlag;
     }
 
@@ -579,7 +553,7 @@ public class RegistrationItems implements Serializable {
      *
      * @return the current value of fuelRequestFlag
      */
-    public String getFuelRequestFlag() {
+    public Character getFuelRequestFlag() {
         return fuelRequestFlag;
     }
 
@@ -588,7 +562,7 @@ public class RegistrationItems implements Serializable {
      *
      * @param aFuelRequestFlag the new value for fuelRequestFlag
      */
-    public void setFuelRequestFlag(String aFuelRequestFlag) {
+    public void setFuelRequestFlag(Character aFuelRequestFlag) {
         fuelRequestFlag = aFuelRequestFlag;
     }
 
@@ -597,7 +571,7 @@ public class RegistrationItems implements Serializable {
      *
      * @return the current value of initialEval
      */
-    public String getInitialEval() {
+    public Character getInitialEval() {
         return initialEval;
     }
 
@@ -606,7 +580,7 @@ public class RegistrationItems implements Serializable {
      *
      * @param aInitialEval the new value for initialEval
      */
-    public void setInitialEval(String aInitialEval) {
+    public void setInitialEval(Character aInitialEval) {
         initialEval = aInitialEval;
     }
 
@@ -633,7 +607,7 @@ public class RegistrationItems implements Serializable {
      *
      * @return the current value of notGoingToRenewFlag
      */
-    public String getNotGoingToRenewFlag() {
+    public Character getNotGoingToRenewFlag() {
         return notGoingToRenewFlag;
     }
 
@@ -642,7 +616,7 @@ public class RegistrationItems implements Serializable {
      *
      * @param aNotGoingToRenewFlag the new value for notGoingToRenewFlag
      */
-    public void setNotGoingToRenewFlag(String aNotGoingToRenewFlag) {
+    public void setNotGoingToRenewFlag(Character aNotGoingToRenewFlag) {
         notGoingToRenewFlag = aNotGoingToRenewFlag;
     }
 
@@ -651,7 +625,7 @@ public class RegistrationItems implements Serializable {
      *
      * @return the current value of operationalFlag
      */
-    public String getOperationalFlag() {
+    public Character getOperationalFlag() {
         return operationalFlag;
     }
 
@@ -660,7 +634,7 @@ public class RegistrationItems implements Serializable {
      *
      * @param aOperationalFlag the new value for operationalFlag
      */
-    public void setOperationalFlag(String aOperationalFlag) {
+    public void setOperationalFlag(Character aOperationalFlag) {
         operationalFlag = aOperationalFlag;
     }
 
@@ -669,7 +643,7 @@ public class RegistrationItems implements Serializable {
      *
      * @return the current value of operationalIndicator
      */
-    public String getOperationalIndicator() {
+    public Character getOperationalIndicator() {
         return operationalIndicator;
     }
 
@@ -678,7 +652,7 @@ public class RegistrationItems implements Serializable {
      *
      * @param aOperationalIndicator the new value for operationalIndicator
      */
-    public void setOperationalIndicator(String aOperationalIndicator) {
+    public void setOperationalIndicator(Character aOperationalIndicator) {
         operationalIndicator = aOperationalIndicator;
     }
 
@@ -723,7 +697,7 @@ public class RegistrationItems implements Serializable {
      *
      * @return the current value of ptoAppDistId
      */
-    public int getPtoAppDistId() {
+    public Integer getPtoAppDistId() {
         return ptoAppDistId;
     }
 
@@ -732,7 +706,7 @@ public class RegistrationItems implements Serializable {
      *
      * @param aPtoAppDistId the new value for ptoAppDistId
      */
-    public void setPtoAppDistId(int aPtoAppDistId) {
+    public void setPtoAppDistId(Integer aPtoAppDistId) {
         ptoAppDistId = aPtoAppDistId;
     }
 
@@ -759,7 +733,7 @@ public class RegistrationItems implements Serializable {
      *
      * @return the current value of ptoDistrictId
      */
-    public int getPtoDistrictId() {
+    public Integer getPtoDistrictId() {
         return ptoDistrictId;
     }
 
@@ -768,7 +742,7 @@ public class RegistrationItems implements Serializable {
      *
      * @param aPtoDistrictId the new value for ptoDistrictId
      */
-    public void setPtoDistrictId(int aPtoDistrictId) {
+    public void setPtoDistrictId(Integer aPtoDistrictId) {
         ptoDistrictId = aPtoDistrictId;
     }
 
@@ -813,7 +787,7 @@ public class RegistrationItems implements Serializable {
      *
      * @return the current value of renewalOpenFlag
      */
-    public String getRenewalOpenFlag() {
+    public Character getRenewalOpenFlag() {
         return renewalOpenFlag;
     }
 
@@ -822,7 +796,7 @@ public class RegistrationItems implements Serializable {
      *
      * @param aRenewalOpenFlag the new value for renewalOpenFlag
      */
-    public void setRenewalOpenFlag(String aRenewalOpenFlag) {
+    public void setRenewalOpenFlag(Character aRenewalOpenFlag) {
         renewalOpenFlag = aRenewalOpenFlag;
     }
 
@@ -831,7 +805,7 @@ public class RegistrationItems implements Serializable {
      *
      * @return the current value of rentalFlag
      */
-    public String getRentalFlag() {
+    public Character getRentalFlag() {
         return rentalFlag;
     }
 
@@ -840,7 +814,7 @@ public class RegistrationItems implements Serializable {
      *
      * @param aRentalFlag the new value for rentalFlag
      */
-    public void setRentalFlag(String aRentalFlag) {
+    public void setRentalFlag(Character aRentalFlag) {
         rentalFlag = aRentalFlag;
     }
 
@@ -849,7 +823,7 @@ public class RegistrationItems implements Serializable {
      *
      * @return the current value of residencyProofFlag
      */
-    public String getResidencyProofFlag() {
+    public Character getResidencyProofFlag() {
         return residencyProofFlag;
     }
 
@@ -858,7 +832,7 @@ public class RegistrationItems implements Serializable {
      *
      * @param aResidencyProofFlag the new value for residencyProofFlag
      */
-    public void setResidencyProofFlag(String aResidencyProofFlag) {
+    public void setResidencyProofFlag(Character aResidencyProofFlag) {
         residencyProofFlag = aResidencyProofFlag;
     }
 
@@ -867,7 +841,7 @@ public class RegistrationItems implements Serializable {
      *
      * @return the current value of residencyRequestFlag
      */
-    public String getResidencyRequestFlag() {
+    public Character getResidencyRequestFlag() {
         return residencyRequestFlag;
     }
 
@@ -876,7 +850,7 @@ public class RegistrationItems implements Serializable {
      *
      * @param aResidencyRequestFlag the new value for residencyRequestFlag
      */
-    public void setResidencyRequestFlag(String aResidencyRequestFlag) {
+    public void setResidencyRequestFlag(Character aResidencyRequestFlag) {
         residencyRequestFlag = aResidencyRequestFlag;
     }
 
@@ -885,7 +859,7 @@ public class RegistrationItems implements Serializable {
      *
      * @return the current value of stolenFlag
      */
-    public String getStolenFlag() {
+    public Character getStolenFlag() {
         return stolenFlag;
     }
 
@@ -894,7 +868,7 @@ public class RegistrationItems implements Serializable {
      *
      * @param aStolenFlag the new value for stolenFlag
      */
-    public void setStolenFlag(String aStolenFlag) {
+    public void setStolenFlag(Character aStolenFlag) {
         stolenFlag = aStolenFlag;
     }
 
@@ -903,7 +877,7 @@ public class RegistrationItems implements Serializable {
      *
      * @return the current value of table1StdProofFlag
      */
-    public String getTable1StdProofFlag() {
+    public Character getTable1StdProofFlag() {
         return table1StdProofFlag;
     }
 
@@ -912,7 +886,7 @@ public class RegistrationItems implements Serializable {
      *
      * @param aTable1StdProofFlag the new value for table1StdProofFlag
      */
-    public void setTable1StdProofFlag(String aTable1StdProofFlag) {
+    public void setTable1StdProofFlag(Character aTable1StdProofFlag) {
         table1StdProofFlag = aTable1StdProofFlag;
     }
 
@@ -921,7 +895,7 @@ public class RegistrationItems implements Serializable {
      *
      * @return the current value of table1StdRequestFlag
      */
-    public String getTable1StdRequestFlag() {
+    public Character getTable1StdRequestFlag() {
         return table1StdRequestFlag;
     }
 
@@ -930,7 +904,7 @@ public class RegistrationItems implements Serializable {
      *
      * @param aTable1StdRequestFlag the new value for table1StdRequestFlag
      */
-    public void setTable1StdRequestFlag(String aTable1StdRequestFlag) {
+    public void setTable1StdRequestFlag(Character aTable1StdRequestFlag) {
         table1StdRequestFlag = aTable1StdRequestFlag;
     }
 
@@ -939,7 +913,7 @@ public class RegistrationItems implements Serializable {
      *
      * @return the current value of trackingNo
      */
-    public int getTrackingNo() {
+    public Integer getTrackingNo() {
         return trackingNo;
     }
 
@@ -948,7 +922,7 @@ public class RegistrationItems implements Serializable {
      *
      * @param aTrackingNo the new value for trackingNo
      */
-    public void setTrackingNo(int aTrackingNo) {
+    public void setTrackingNo(Integer aTrackingNo) {
         trackingNo = aTrackingNo;
     }
 
@@ -957,7 +931,7 @@ public class RegistrationItems implements Serializable {
      *
      * @return the current value of activeFlag
      */
-    public String getActiveFlag() {
+    public Character getActiveFlag() {
         return activeFlag;
     }
 
@@ -966,7 +940,7 @@ public class RegistrationItems implements Serializable {
      *
      * @param aActiveFlag the new value for activeFlag
      */
-    public void setActiveFlag(String aActiveFlag) {
+    public void setActiveFlag(Character aActiveFlag) {
         activeFlag = aActiveFlag;
     }
 
@@ -1011,7 +985,7 @@ public class RegistrationItems implements Serializable {
      *
      * @return the current value of expiredRenewalFlag
      */
-    public String getExpiredRenewalFlag() {
+    public Character getExpiredRenewalFlag() {
         return expiredRenewalFlag;
     }
 
@@ -1020,7 +994,7 @@ public class RegistrationItems implements Serializable {
      *
      * @param aExpiredRenewalFlag the new value for expiredRenewalFlag
      */
-    public void setExpiredRenewalFlag(String aExpiredRenewalFlag) {
+    public void setExpiredRenewalFlag(Character aExpiredRenewalFlag) {
         expiredRenewalFlag = aExpiredRenewalFlag;
     }
 
@@ -1029,7 +1003,7 @@ public class RegistrationItems implements Serializable {
      *
      * @return the current value of reactivateListFlag
      */
-    public String getReactivateListFlag() {
+    public Character getReactivateListFlag() {
         return reactivateListFlag;
     }
 
@@ -1038,7 +1012,7 @@ public class RegistrationItems implements Serializable {
      *
      * @param aReactivateListFlag the new value for reactivateListFlag
      */
-    public void setReactivateListFlag(String aReactivateListFlag) {
+    public void setReactivateListFlag(Character aReactivateListFlag) {
         reactivateListFlag = aReactivateListFlag;
     }
 
@@ -1047,7 +1021,7 @@ public class RegistrationItems implements Serializable {
      *
      * @return the current value of cutoffExpireDateUid
      */
-    public int getCutoffExpireDateUid() {
+    public Integer getCutoffExpireDateUid() {
         return cutoffExpireDateUid;
     }
 
@@ -1056,7 +1030,7 @@ public class RegistrationItems implements Serializable {
      *
      * @param aCutoffExpireDateUid the new value for cutoffExpireDateUid
      */
-    public void setCutoffExpireDateUid(int aCutoffExpireDateUid) {
+    public void setCutoffExpireDateUid(Integer aCutoffExpireDateUid) {
         cutoffExpireDateUid = aCutoffExpireDateUid;
     }
 
@@ -1065,7 +1039,7 @@ public class RegistrationItems implements Serializable {
      *
      * @return the current value of onHwyEngRequestFlag
      */
-    public String getOnHwyEngRequestFlag() {
+    public Character getOnHwyEngRequestFlag() {
         return onHwyEngRequestFlag;
     }
 
@@ -1074,7 +1048,7 @@ public class RegistrationItems implements Serializable {
      *
      * @param aOnHwyEngRequestFlag the new value for onHwyEngRequestFlag
      */
-    public void setOnHwyEngRequestFlag(String aOnHwyEngRequestFlag) {
+    public void setOnHwyEngRequestFlag(Character aOnHwyEngRequestFlag) {
         onHwyEngRequestFlag = aOnHwyEngRequestFlag;
     }
 
@@ -1083,7 +1057,7 @@ public class RegistrationItems implements Serializable {
      *
      * @return the current value of identicalReplacementFlag
      */
-    public String getIdenticalReplacementFlag() {
+    public Character getIdenticalReplacementFlag() {
         return identicalReplacementFlag;
     }
 
@@ -1092,7 +1066,7 @@ public class RegistrationItems implements Serializable {
      *
      * @param aIdenticalReplacementFlag the new value for identicalReplacementFlag
      */
-    public void setIdenticalReplacementFlag(String aIdenticalReplacementFlag) {
+    public void setIdenticalReplacementFlag(Character aIdenticalReplacementFlag) {
         identicalReplacementFlag = aIdenticalReplacementFlag;
     }
 
@@ -1560,7 +1534,9 @@ public class RegistrationItems implements Serializable {
             return false;
         }
         RegistrationItems that = (RegistrationItems) other;
-        if (this.getRegItemUid() != that.getRegItemUid()) {
+        Object myRegItemUid = this.getRegItemUid();
+        Object yourRegItemUid = that.getRegItemUid();
+        if (myRegItemUid==null ? yourRegItemUid!=null : !myRegItemUid.equals(yourRegItemUid)) {
             return false;
         }
         return true;
@@ -1587,7 +1563,11 @@ public class RegistrationItems implements Serializable {
     public int hashCode() {
         int i;
         int result = 17;
-        i = getRegItemUid();
+        if (getRegItemUid() == null) {
+            i = 0;
+        } else {
+            i = getRegItemUid().hashCode();
+        }
         result = 37*result + i;
         return result;
     }
@@ -1612,7 +1592,7 @@ public class RegistrationItems implements Serializable {
      */
     public Map<String, Object> getPrimaryKey() {
         Map<String, Object> ret = new LinkedHashMap<String, Object>(6);
-        ret.put("regItemUid", Integer.valueOf(getRegItemUid()));
+        ret.put("regItemUid", getRegItemUid());
         return ret;
     }
 

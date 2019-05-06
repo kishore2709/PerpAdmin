@@ -12,7 +12,6 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.Version;
 
 @Entity(name="operational_limits")
 public class OperationalLimits implements Serializable {
@@ -20,34 +19,9 @@ public class OperationalLimits implements Serializable {
     /** Primary key. */
     protected static final String PK = "operationLimitsUid";
 
-    /**
-     * The optimistic lock. Available via standard bean get/set operations.
-     */
-    @Version
-    @Column(name="LOCK_FLAG")
-    private Integer lockFlag;
-
-    /**
-     * Access method for the lockFlag property.
-     *
-     * @return the current value of the lockFlag property
-     */
-    public Integer getLockFlag() {
-        return lockFlag;
-    }
-
-    /**
-     * Sets the value of the lockFlag property.
-     *
-     * @param aLockFlag the new value of the lockFlag property
-     */
-    public void setLockFlag(Integer aLockFlag) {
-        lockFlag = aLockFlag;
-    }
-
     @Id
     @Column(name="Operation_Limits_UID", unique=true, nullable=false, precision=10)
-    private int operationLimitsUid;
+    private Integer operationLimitsUid;
     @Column(name="Create_Modified_By", nullable=false, length=45)
     private String createModifiedBy;
     @Column(name="Create_Modified_Date", nullable=false)
@@ -69,7 +43,7 @@ public class OperationalLimits implements Serializable {
      *
      * @return the current value of operationLimitsUid
      */
-    public int getOperationLimitsUid() {
+    public Integer getOperationLimitsUid() {
         return operationLimitsUid;
     }
 
@@ -78,7 +52,7 @@ public class OperationalLimits implements Serializable {
      *
      * @param aOperationLimitsUid the new value for operationLimitsUid
      */
-    public void setOperationLimitsUid(int aOperationLimitsUid) {
+    public void setOperationLimitsUid(Integer aOperationLimitsUid) {
         operationLimitsUid = aOperationLimitsUid;
     }
 
@@ -168,7 +142,9 @@ public class OperationalLimits implements Serializable {
             return false;
         }
         OperationalLimits that = (OperationalLimits) other;
-        if (this.getOperationLimitsUid() != that.getOperationLimitsUid()) {
+        Object myOperationLimitsUid = this.getOperationLimitsUid();
+        Object yourOperationLimitsUid = that.getOperationLimitsUid();
+        if (myOperationLimitsUid==null ? yourOperationLimitsUid!=null : !myOperationLimitsUid.equals(yourOperationLimitsUid)) {
             return false;
         }
         return true;
@@ -195,7 +171,11 @@ public class OperationalLimits implements Serializable {
     public int hashCode() {
         int i;
         int result = 17;
-        i = getOperationLimitsUid();
+        if (getOperationLimitsUid() == null) {
+            i = 0;
+        } else {
+            i = getOperationLimitsUid().hashCode();
+        }
         result = 37*result + i;
         return result;
     }
@@ -220,7 +200,7 @@ public class OperationalLimits implements Serializable {
      */
     public Map<String, Object> getPrimaryKey() {
         Map<String, Object> ret = new LinkedHashMap<String, Object>(6);
-        ret.put("operationLimitsUid", Integer.valueOf(getOperationLimitsUid()));
+        ret.put("operationLimitsUid", getOperationLimitsUid());
         return ret;
     }
 

@@ -12,38 +12,12 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.Version;
 
 @Entity(name="blastingtype_relations")
 public class BlastingtypeRelations implements Serializable {
 
     /** Primary key. */
     protected static final String PK = "BlastingtypeRelationsPrimary";
-
-    /**
-     * The optimistic lock. Available via standard bean get/set operations.
-     */
-    @Version
-    @Column(name="LOCK_FLAG")
-    private Integer lockFlag;
-
-    /**
-     * Access method for the lockFlag property.
-     *
-     * @return the current value of the lockFlag property
-     */
-    public Integer getLockFlag() {
-        return lockFlag;
-    }
-
-    /**
-     * Sets the value of the lockFlag property.
-     *
-     * @param aLockFlag the new value of the lockFlag property
-     */
-    public void setLockFlag(Integer aLockFlag) {
-        lockFlag = aLockFlag;
-    }
 
     @Column(name="Other_Type_Text", length=255)
     private String otherTypeText;
@@ -155,7 +129,7 @@ public class BlastingtypeRelations implements Serializable {
     }
 
     /** Temporary value holder for group key fragment blastingTypeUid */
-    private transient int tempBlastingTypeUid;
+    private transient Integer tempBlastingTypeUid;
 
     /**
      * Gets the key fragment uid for member blastingType.
@@ -167,7 +141,7 @@ public class BlastingtypeRelations implements Serializable {
      * @return Current (or temporary) value of the key fragment
      * @see BlastingType
      */
-    public int getBlastingTypeUid() {
+    public Integer getBlastingTypeUid() {
         return (getBlastingType() == null ? tempBlastingTypeUid : getBlastingType().getUid());
     }
 
@@ -181,7 +155,7 @@ public class BlastingtypeRelations implements Serializable {
      * @param aUid New value for the key fragment
      * @see BlastingType
      */
-    public void setBlastingTypeUid(int aUid) {
+    public void setBlastingTypeUid(Integer aUid) {
         if (getBlastingType() == null) {
             tempBlastingTypeUid = aUid;
         } else {
@@ -190,7 +164,7 @@ public class BlastingtypeRelations implements Serializable {
     }
 
     /** Temporary value holder for group key fragment regitemDetailsRegItemDetUid */
-    private transient int tempRegitemDetailsRegItemDetUid;
+    private transient Integer tempRegitemDetailsRegItemDetUid;
 
     /**
      * Gets the key fragment regItemDetUid for member regitemDetails.
@@ -202,7 +176,7 @@ public class BlastingtypeRelations implements Serializable {
      * @return Current (or temporary) value of the key fragment
      * @see RegitemDetails
      */
-    public int getRegitemDetailsRegItemDetUid() {
+    public Integer getRegitemDetailsRegItemDetUid() {
         return (getRegitemDetails() == null ? tempRegitemDetailsRegItemDetUid : getRegitemDetails().getRegItemDetUid());
     }
 
@@ -216,7 +190,7 @@ public class BlastingtypeRelations implements Serializable {
      * @param aRegItemDetUid New value for the key fragment
      * @see RegitemDetails
      */
-    public void setRegitemDetailsRegItemDetUid(int aRegItemDetUid) {
+    public void setRegitemDetailsRegItemDetUid(Integer aRegItemDetUid) {
         if (getRegitemDetails() == null) {
             tempRegitemDetailsRegItemDetUid = aRegItemDetUid;
         } else {
@@ -238,10 +212,14 @@ public class BlastingtypeRelations implements Serializable {
             return false;
         }
         BlastingtypeRelations that = (BlastingtypeRelations) other;
-        if (this.getBlastingTypeUid() != that.getBlastingTypeUid()) {
+        Object myBlastingTypeUid = this.getBlastingTypeUid();
+        Object yourBlastingTypeUid = that.getBlastingTypeUid();
+        if (myBlastingTypeUid==null ? yourBlastingTypeUid!=null : !myBlastingTypeUid.equals(yourBlastingTypeUid)) {
             return false;
         }
-        if (this.getRegitemDetailsRegItemDetUid() != that.getRegitemDetailsRegItemDetUid()) {
+        Object myRegitemDetailsRegItemDetUid = this.getRegitemDetailsRegItemDetUid();
+        Object yourRegitemDetailsRegItemDetUid = that.getRegitemDetailsRegItemDetUid();
+        if (myRegitemDetailsRegItemDetUid==null ? yourRegitemDetailsRegItemDetUid!=null : !myRegitemDetailsRegItemDetUid.equals(yourRegitemDetailsRegItemDetUid)) {
             return false;
         }
         return true;
@@ -268,9 +246,17 @@ public class BlastingtypeRelations implements Serializable {
     public int hashCode() {
         int i;
         int result = 17;
-        i = getBlastingTypeUid();
+        if (getBlastingTypeUid() == null) {
+            i = 0;
+        } else {
+            i = getBlastingTypeUid().hashCode();
+        }
         result = 37*result + i;
-        i = getRegitemDetailsRegItemDetUid();
+        if (getRegitemDetailsRegItemDetUid() == null) {
+            i = 0;
+        } else {
+            i = getRegitemDetailsRegItemDetUid().hashCode();
+        }
         result = 37*result + i;
         return result;
     }
@@ -296,8 +282,8 @@ public class BlastingtypeRelations implements Serializable {
      */
     public Map<String, Object> getPrimaryKey() {
         Map<String, Object> ret = new LinkedHashMap<String, Object>(6);
-        ret.put("blastingTypeUid", Integer.valueOf(getBlastingTypeUid()));
-        ret.put("regitemDetailsRegItemDetUid", Integer.valueOf(getRegitemDetailsRegItemDetUid()));
+        ret.put("blastingTypeUid", getBlastingTypeUid());
+        ret.put("regitemDetailsRegItemDetUid", getRegitemDetailsRegItemDetUid());
         return ret;
     }
 

@@ -10,7 +10,6 @@ import java.util.Map;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.Version;
 
 @Entity(name="perp_fee_type_rel_aud")
 public class PerpFeeTypeRelAud implements Serializable {
@@ -18,38 +17,13 @@ public class PerpFeeTypeRelAud implements Serializable {
     /** Primary key. */
     protected static final String PK = "pftrAudUid";
 
-    /**
-     * The optimistic lock. Available via standard bean get/set operations.
-     */
-    @Version
-    @Column(name="LOCK_FLAG")
-    private Integer lockFlag;
-
-    /**
-     * Access method for the lockFlag property.
-     *
-     * @return the current value of the lockFlag property
-     */
-    public Integer getLockFlag() {
-        return lockFlag;
-    }
-
-    /**
-     * Sets the value of the lockFlag property.
-     *
-     * @param aLockFlag the new value of the lockFlag property
-     */
-    public void setLockFlag(Integer aLockFlag) {
-        lockFlag = aLockFlag;
-    }
-
     @Id
     @Column(name="PFTRAud_UID", unique=true, nullable=false, precision=10)
-    private int pftrAudUid;
+    private Integer pftrAudUid;
     @Column(name="RegItemTypes_UID", nullable=false, precision=10)
-    private int regItemTypesUid;
+    private Integer regItemTypesUid;
     @Column(name="PerpFeeLookup_UID", nullable=false, precision=10)
-    private int perpFeeLookupUid;
+    private Integer perpFeeLookupUid;
     @Column(name="Create_Modified_By", length=45)
     private String createModifiedBy;
     @Column(name="Create_Modified_Date")
@@ -67,7 +41,7 @@ public class PerpFeeTypeRelAud implements Serializable {
      *
      * @return the current value of pftrAudUid
      */
-    public int getPftrAudUid() {
+    public Integer getPftrAudUid() {
         return pftrAudUid;
     }
 
@@ -76,7 +50,7 @@ public class PerpFeeTypeRelAud implements Serializable {
      *
      * @param aPftrAudUid the new value for pftrAudUid
      */
-    public void setPftrAudUid(int aPftrAudUid) {
+    public void setPftrAudUid(Integer aPftrAudUid) {
         pftrAudUid = aPftrAudUid;
     }
 
@@ -85,7 +59,7 @@ public class PerpFeeTypeRelAud implements Serializable {
      *
      * @return the current value of regItemTypesUid
      */
-    public int getRegItemTypesUid() {
+    public Integer getRegItemTypesUid() {
         return regItemTypesUid;
     }
 
@@ -94,7 +68,7 @@ public class PerpFeeTypeRelAud implements Serializable {
      *
      * @param aRegItemTypesUid the new value for regItemTypesUid
      */
-    public void setRegItemTypesUid(int aRegItemTypesUid) {
+    public void setRegItemTypesUid(Integer aRegItemTypesUid) {
         regItemTypesUid = aRegItemTypesUid;
     }
 
@@ -103,7 +77,7 @@ public class PerpFeeTypeRelAud implements Serializable {
      *
      * @return the current value of perpFeeLookupUid
      */
-    public int getPerpFeeLookupUid() {
+    public Integer getPerpFeeLookupUid() {
         return perpFeeLookupUid;
     }
 
@@ -112,7 +86,7 @@ public class PerpFeeTypeRelAud implements Serializable {
      *
      * @param aPerpFeeLookupUid the new value for perpFeeLookupUid
      */
-    public void setPerpFeeLookupUid(int aPerpFeeLookupUid) {
+    public void setPerpFeeLookupUid(Integer aPerpFeeLookupUid) {
         perpFeeLookupUid = aPerpFeeLookupUid;
     }
 
@@ -184,7 +158,9 @@ public class PerpFeeTypeRelAud implements Serializable {
             return false;
         }
         PerpFeeTypeRelAud that = (PerpFeeTypeRelAud) other;
-        if (this.getPftrAudUid() != that.getPftrAudUid()) {
+        Object myPftrAudUid = this.getPftrAudUid();
+        Object yourPftrAudUid = that.getPftrAudUid();
+        if (myPftrAudUid==null ? yourPftrAudUid!=null : !myPftrAudUid.equals(yourPftrAudUid)) {
             return false;
         }
         return true;
@@ -211,7 +187,11 @@ public class PerpFeeTypeRelAud implements Serializable {
     public int hashCode() {
         int i;
         int result = 17;
-        i = getPftrAudUid();
+        if (getPftrAudUid() == null) {
+            i = 0;
+        } else {
+            i = getPftrAudUid().hashCode();
+        }
         result = 37*result + i;
         return result;
     }
@@ -236,7 +216,7 @@ public class PerpFeeTypeRelAud implements Serializable {
      */
     public Map<String, Object> getPrimaryKey() {
         Map<String, Object> ret = new LinkedHashMap<String, Object>(6);
-        ret.put("pftrAudUid", Integer.valueOf(getPftrAudUid()));
+        ret.put("pftrAudUid", getPftrAudUid());
         return ret;
     }
 

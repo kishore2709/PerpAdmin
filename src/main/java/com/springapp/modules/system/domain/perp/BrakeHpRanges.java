@@ -12,7 +12,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.Version;
 
 @Entity(name="brake_hp_ranges")
 public class BrakeHpRanges implements Serializable {
@@ -20,48 +19,23 @@ public class BrakeHpRanges implements Serializable {
     /** Primary key. */
     protected static final String PK = "uid";
 
-    /**
-     * The optimistic lock. Available via standard bean get/set operations.
-     */
-    @Version
-    @Column(name="LOCK_FLAG")
-    private Integer lockFlag;
-
-    /**
-     * Access method for the lockFlag property.
-     *
-     * @return the current value of the lockFlag property
-     */
-    public Integer getLockFlag() {
-        return lockFlag;
-    }
-
-    /**
-     * Sets the value of the lockFlag property.
-     *
-     * @param aLockFlag the new value of the lockFlag property
-     */
-    public void setLockFlag(Integer aLockFlag) {
-        lockFlag = aLockFlag;
-    }
-
     @Id
     @Column(name="UID", unique=true, nullable=false, precision=10)
-    private int uid;
+    private Integer uid;
     @Column(name="Display", nullable=false, length=45)
     private String display;
     @Column(name="Start_BHP", precision=10)
-    private int startBhp;
+    private Integer startBhp;
     @Column(name="End_BHP", precision=10)
-    private int endBhp;
+    private Integer endBhp;
     @Column(name="Start_KW", precision=10)
-    private int startKw;
+    private Integer startKw;
     @Column(name="End_KW", precision=10)
-    private int endKw;
+    private Integer endKw;
     @Column(name="Identifier", nullable=false, length=45)
     private String identifier;
     @Column(name="Active_Flag", nullable=false, length=1)
-    private String activeFlag;
+    private Character activeFlag;
     @Column(name="Create_Modified_By", nullable=false, length=45)
     private String createModifiedBy;
     @Column(name="Create_Modified_Date", nullable=false)
@@ -81,7 +55,7 @@ public class BrakeHpRanges implements Serializable {
      *
      * @return the current value of uid
      */
-    public int getUid() {
+    public Integer getUid() {
         return uid;
     }
 
@@ -90,7 +64,7 @@ public class BrakeHpRanges implements Serializable {
      *
      * @param aUid the new value for uid
      */
-    public void setUid(int aUid) {
+    public void setUid(Integer aUid) {
         uid = aUid;
     }
 
@@ -117,7 +91,7 @@ public class BrakeHpRanges implements Serializable {
      *
      * @return the current value of startBhp
      */
-    public int getStartBhp() {
+    public Integer getStartBhp() {
         return startBhp;
     }
 
@@ -126,7 +100,7 @@ public class BrakeHpRanges implements Serializable {
      *
      * @param aStartBhp the new value for startBhp
      */
-    public void setStartBhp(int aStartBhp) {
+    public void setStartBhp(Integer aStartBhp) {
         startBhp = aStartBhp;
     }
 
@@ -135,7 +109,7 @@ public class BrakeHpRanges implements Serializable {
      *
      * @return the current value of endBhp
      */
-    public int getEndBhp() {
+    public Integer getEndBhp() {
         return endBhp;
     }
 
@@ -144,7 +118,7 @@ public class BrakeHpRanges implements Serializable {
      *
      * @param aEndBhp the new value for endBhp
      */
-    public void setEndBhp(int aEndBhp) {
+    public void setEndBhp(Integer aEndBhp) {
         endBhp = aEndBhp;
     }
 
@@ -153,7 +127,7 @@ public class BrakeHpRanges implements Serializable {
      *
      * @return the current value of startKw
      */
-    public int getStartKw() {
+    public Integer getStartKw() {
         return startKw;
     }
 
@@ -162,7 +136,7 @@ public class BrakeHpRanges implements Serializable {
      *
      * @param aStartKw the new value for startKw
      */
-    public void setStartKw(int aStartKw) {
+    public void setStartKw(Integer aStartKw) {
         startKw = aStartKw;
     }
 
@@ -171,7 +145,7 @@ public class BrakeHpRanges implements Serializable {
      *
      * @return the current value of endKw
      */
-    public int getEndKw() {
+    public Integer getEndKw() {
         return endKw;
     }
 
@@ -180,7 +154,7 @@ public class BrakeHpRanges implements Serializable {
      *
      * @param aEndKw the new value for endKw
      */
-    public void setEndKw(int aEndKw) {
+    public void setEndKw(Integer aEndKw) {
         endKw = aEndKw;
     }
 
@@ -207,7 +181,7 @@ public class BrakeHpRanges implements Serializable {
      *
      * @return the current value of activeFlag
      */
-    public String getActiveFlag() {
+    public Character getActiveFlag() {
         return activeFlag;
     }
 
@@ -216,7 +190,7 @@ public class BrakeHpRanges implements Serializable {
      *
      * @param aActiveFlag the new value for activeFlag
      */
-    public void setActiveFlag(String aActiveFlag) {
+    public void setActiveFlag(Character aActiveFlag) {
         activeFlag = aActiveFlag;
     }
 
@@ -306,7 +280,9 @@ public class BrakeHpRanges implements Serializable {
             return false;
         }
         BrakeHpRanges that = (BrakeHpRanges) other;
-        if (this.getUid() != that.getUid()) {
+        Object myUid = this.getUid();
+        Object yourUid = that.getUid();
+        if (myUid==null ? yourUid!=null : !myUid.equals(yourUid)) {
             return false;
         }
         return true;
@@ -333,7 +309,11 @@ public class BrakeHpRanges implements Serializable {
     public int hashCode() {
         int i;
         int result = 17;
-        i = getUid();
+        if (getUid() == null) {
+            i = 0;
+        } else {
+            i = getUid().hashCode();
+        }
         result = 37*result + i;
         return result;
     }
@@ -358,7 +338,7 @@ public class BrakeHpRanges implements Serializable {
      */
     public Map<String, Object> getPrimaryKey() {
         Map<String, Object> ret = new LinkedHashMap<String, Object>(6);
-        ret.put("uid", Integer.valueOf(getUid()));
+        ret.put("uid", getUid());
         return ret;
     }
 

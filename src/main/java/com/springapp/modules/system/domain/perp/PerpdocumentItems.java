@@ -12,7 +12,6 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.Version;
 
 @Entity(name="perpdocument_items")
 public class PerpdocumentItems implements Serializable {
@@ -20,34 +19,9 @@ public class PerpdocumentItems implements Serializable {
     /** Primary key. */
     protected static final String PK = "perpDocDetailsUid";
 
-    /**
-     * The optimistic lock. Available via standard bean get/set operations.
-     */
-    @Version
-    @Column(name="LOCK_FLAG")
-    private Integer lockFlag;
-
-    /**
-     * Access method for the lockFlag property.
-     *
-     * @return the current value of the lockFlag property
-     */
-    public Integer getLockFlag() {
-        return lockFlag;
-    }
-
-    /**
-     * Sets the value of the lockFlag property.
-     *
-     * @param aLockFlag the new value of the lockFlag property
-     */
-    public void setLockFlag(Integer aLockFlag) {
-        lockFlag = aLockFlag;
-    }
-
     @Id
     @Column(name="PerpDocDetails_UID", unique=true, nullable=false, precision=10)
-    private int perpDocDetailsUid;
+    private Integer perpDocDetailsUid;
     @Column(name="Create_Modified_By", nullable=false, length=45)
     private String createModifiedBy;
     @Column(name="Create_Modified_Date", nullable=false)
@@ -69,7 +43,7 @@ public class PerpdocumentItems implements Serializable {
      *
      * @return the current value of perpDocDetailsUid
      */
-    public int getPerpDocDetailsUid() {
+    public Integer getPerpDocDetailsUid() {
         return perpDocDetailsUid;
     }
 
@@ -78,7 +52,7 @@ public class PerpdocumentItems implements Serializable {
      *
      * @param aPerpDocDetailsUid the new value for perpDocDetailsUid
      */
-    public void setPerpDocDetailsUid(int aPerpDocDetailsUid) {
+    public void setPerpDocDetailsUid(Integer aPerpDocDetailsUid) {
         perpDocDetailsUid = aPerpDocDetailsUid;
     }
 
@@ -168,7 +142,9 @@ public class PerpdocumentItems implements Serializable {
             return false;
         }
         PerpdocumentItems that = (PerpdocumentItems) other;
-        if (this.getPerpDocDetailsUid() != that.getPerpDocDetailsUid()) {
+        Object myPerpDocDetailsUid = this.getPerpDocDetailsUid();
+        Object yourPerpDocDetailsUid = that.getPerpDocDetailsUid();
+        if (myPerpDocDetailsUid==null ? yourPerpDocDetailsUid!=null : !myPerpDocDetailsUid.equals(yourPerpDocDetailsUid)) {
             return false;
         }
         return true;
@@ -195,7 +171,11 @@ public class PerpdocumentItems implements Serializable {
     public int hashCode() {
         int i;
         int result = 17;
-        i = getPerpDocDetailsUid();
+        if (getPerpDocDetailsUid() == null) {
+            i = 0;
+        } else {
+            i = getPerpDocDetailsUid().hashCode();
+        }
         result = 37*result + i;
         return result;
     }
@@ -220,7 +200,7 @@ public class PerpdocumentItems implements Serializable {
      */
     public Map<String, Object> getPrimaryKey() {
         Map<String, Object> ret = new LinkedHashMap<String, Object>(6);
-        ret.put("perpDocDetailsUid", Integer.valueOf(getPerpDocDetailsUid()));
+        ret.put("perpDocDetailsUid", getPerpDocDetailsUid());
         return ret;
     }
 

@@ -16,7 +16,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.Version;
 
 @Entity(name="apptrans_reg_rel")
 public class ApptransRegRel implements Serializable {
@@ -24,38 +23,13 @@ public class ApptransRegRel implements Serializable {
     /** Primary key. */
     protected static final String PK = "appTransRegRelUid";
 
-    /**
-     * The optimistic lock. Available via standard bean get/set operations.
-     */
-    @Version
-    @Column(name="LOCK_FLAG")
-    private Integer lockFlag;
-
-    /**
-     * Access method for the lockFlag property.
-     *
-     * @return the current value of the lockFlag property
-     */
-    public Integer getLockFlag() {
-        return lockFlag;
-    }
-
-    /**
-     * Sets the value of the lockFlag property.
-     *
-     * @param aLockFlag the new value of the lockFlag property
-     */
-    public void setLockFlag(Integer aLockFlag) {
-        lockFlag = aLockFlag;
-    }
-
     @Id
     @Column(name="AppTransRegRel_UID", unique=true, nullable=false, precision=10)
-    private int appTransRegRelUid;
+    private Integer appTransRegRelUid;
     @Column(name="Decision_Date")
     private Date decisionDate;
     @Column(name="FulFilled_Flag", length=1)
-    private String fulFilledFlag;
+    private Character fulFilledFlag;
     @Column(name="RegItem_Amount", nullable=false, precision=10, scale=2)
     private BigDecimal regItemAmount;
     @Column(name="Fee_Adjust_Amount", precision=10, scale=2)
@@ -63,21 +37,21 @@ public class ApptransRegRel implements Serializable {
     @Column(name="Calulated_Expiration")
     private Date calulatedExpiration;
     @Column(name="Token_Allow_Count", precision=10)
-    private int tokenAllowCount;
+    private Integer tokenAllowCount;
     @Column(name="Token_Count", precision=10)
-    private int tokenCount;
+    private Integer tokenCount;
     @Column(name="Token_Exp_Date")
     private Date tokenExpDate;
     @Column(name="Issuance_Date")
     private Timestamp issuanceDate;
     @Column(name="Withdraw_Request_Flag", length=1)
-    private String withdrawRequestFlag;
+    private Character withdrawRequestFlag;
     @Column(name="Withdraw_Request_Date")
     private Timestamp withdrawRequestDate;
     @Column(name="Placard_Request_Flag", length=1)
-    private String placardRequestFlag;
+    private Character placardRequestFlag;
     @Column(name="Sticker_Request_Flag", length=1)
-    private String stickerRequestFlag;
+    private Character stickerRequestFlag;
     @Column(name="Action_Requested_Date")
     private Date actionRequestedDate;
     @Column(name="Action_Requested_By", length=45)
@@ -116,7 +90,7 @@ public class ApptransRegRel implements Serializable {
      *
      * @return the current value of appTransRegRelUid
      */
-    public int getAppTransRegRelUid() {
+    public Integer getAppTransRegRelUid() {
         return appTransRegRelUid;
     }
 
@@ -125,7 +99,7 @@ public class ApptransRegRel implements Serializable {
      *
      * @param aAppTransRegRelUid the new value for appTransRegRelUid
      */
-    public void setAppTransRegRelUid(int aAppTransRegRelUid) {
+    public void setAppTransRegRelUid(Integer aAppTransRegRelUid) {
         appTransRegRelUid = aAppTransRegRelUid;
     }
 
@@ -152,7 +126,7 @@ public class ApptransRegRel implements Serializable {
      *
      * @return the current value of fulFilledFlag
      */
-    public String getFulFilledFlag() {
+    public Character getFulFilledFlag() {
         return fulFilledFlag;
     }
 
@@ -161,7 +135,7 @@ public class ApptransRegRel implements Serializable {
      *
      * @param aFulFilledFlag the new value for fulFilledFlag
      */
-    public void setFulFilledFlag(String aFulFilledFlag) {
+    public void setFulFilledFlag(Character aFulFilledFlag) {
         fulFilledFlag = aFulFilledFlag;
     }
 
@@ -224,7 +198,7 @@ public class ApptransRegRel implements Serializable {
      *
      * @return the current value of tokenAllowCount
      */
-    public int getTokenAllowCount() {
+    public Integer getTokenAllowCount() {
         return tokenAllowCount;
     }
 
@@ -233,7 +207,7 @@ public class ApptransRegRel implements Serializable {
      *
      * @param aTokenAllowCount the new value for tokenAllowCount
      */
-    public void setTokenAllowCount(int aTokenAllowCount) {
+    public void setTokenAllowCount(Integer aTokenAllowCount) {
         tokenAllowCount = aTokenAllowCount;
     }
 
@@ -242,7 +216,7 @@ public class ApptransRegRel implements Serializable {
      *
      * @return the current value of tokenCount
      */
-    public int getTokenCount() {
+    public Integer getTokenCount() {
         return tokenCount;
     }
 
@@ -251,7 +225,7 @@ public class ApptransRegRel implements Serializable {
      *
      * @param aTokenCount the new value for tokenCount
      */
-    public void setTokenCount(int aTokenCount) {
+    public void setTokenCount(Integer aTokenCount) {
         tokenCount = aTokenCount;
     }
 
@@ -296,7 +270,7 @@ public class ApptransRegRel implements Serializable {
      *
      * @return the current value of withdrawRequestFlag
      */
-    public String getWithdrawRequestFlag() {
+    public Character getWithdrawRequestFlag() {
         return withdrawRequestFlag;
     }
 
@@ -305,7 +279,7 @@ public class ApptransRegRel implements Serializable {
      *
      * @param aWithdrawRequestFlag the new value for withdrawRequestFlag
      */
-    public void setWithdrawRequestFlag(String aWithdrawRequestFlag) {
+    public void setWithdrawRequestFlag(Character aWithdrawRequestFlag) {
         withdrawRequestFlag = aWithdrawRequestFlag;
     }
 
@@ -332,7 +306,7 @@ public class ApptransRegRel implements Serializable {
      *
      * @return the current value of placardRequestFlag
      */
-    public String getPlacardRequestFlag() {
+    public Character getPlacardRequestFlag() {
         return placardRequestFlag;
     }
 
@@ -341,7 +315,7 @@ public class ApptransRegRel implements Serializable {
      *
      * @param aPlacardRequestFlag the new value for placardRequestFlag
      */
-    public void setPlacardRequestFlag(String aPlacardRequestFlag) {
+    public void setPlacardRequestFlag(Character aPlacardRequestFlag) {
         placardRequestFlag = aPlacardRequestFlag;
     }
 
@@ -350,7 +324,7 @@ public class ApptransRegRel implements Serializable {
      *
      * @return the current value of stickerRequestFlag
      */
-    public String getStickerRequestFlag() {
+    public Character getStickerRequestFlag() {
         return stickerRequestFlag;
     }
 
@@ -359,7 +333,7 @@ public class ApptransRegRel implements Serializable {
      *
      * @param aStickerRequestFlag the new value for stickerRequestFlag
      */
-    public void setStickerRequestFlag(String aStickerRequestFlag) {
+    public void setStickerRequestFlag(Character aStickerRequestFlag) {
         stickerRequestFlag = aStickerRequestFlag;
     }
 
@@ -575,7 +549,9 @@ public class ApptransRegRel implements Serializable {
             return false;
         }
         ApptransRegRel that = (ApptransRegRel) other;
-        if (this.getAppTransRegRelUid() != that.getAppTransRegRelUid()) {
+        Object myAppTransRegRelUid = this.getAppTransRegRelUid();
+        Object yourAppTransRegRelUid = that.getAppTransRegRelUid();
+        if (myAppTransRegRelUid==null ? yourAppTransRegRelUid!=null : !myAppTransRegRelUid.equals(yourAppTransRegRelUid)) {
             return false;
         }
         return true;
@@ -602,7 +578,11 @@ public class ApptransRegRel implements Serializable {
     public int hashCode() {
         int i;
         int result = 17;
-        i = getAppTransRegRelUid();
+        if (getAppTransRegRelUid() == null) {
+            i = 0;
+        } else {
+            i = getAppTransRegRelUid().hashCode();
+        }
         result = 37*result + i;
         return result;
     }
@@ -627,7 +607,7 @@ public class ApptransRegRel implements Serializable {
      */
     public Map<String, Object> getPrimaryKey() {
         Map<String, Object> ret = new LinkedHashMap<String, Object>(6);
-        ret.put("appTransRegRelUid", Integer.valueOf(getAppTransRegRelUid()));
+        ret.put("appTransRegRelUid", getAppTransRegRelUid());
         return ret;
     }
 

@@ -10,48 +10,23 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.Version;
 
 @Entity(name="operating_conditions")
 public class OperatingConditions implements Serializable {
 
-    /**
-     * The optimistic lock. Available via standard bean get/set operations.
-     */
-    @Version
-    @Column(name="LOCK_FLAG")
-    private Integer lockFlag;
-
-    /**
-     * Access method for the lockFlag property.
-     *
-     * @return the current value of the lockFlag property
-     */
-    public Integer getLockFlag() {
-        return lockFlag;
-    }
-
-    /**
-     * Sets the value of the lockFlag property.
-     *
-     * @param aLockFlag the new value of the lockFlag property
-     */
-    public void setLockFlag(Integer aLockFlag) {
-        lockFlag = aLockFlag;
-    }
     @Id
     @Column(name="order_id", nullable=false, precision=10)
-    private int orderId;
+    private Integer orderId;
     @Column(name="OpCon_UID", nullable=false, precision=10)
-    private int opConUid;
+    private Integer opConUid;
     @Column(name="Operating_Condition")
     private String operatingCondition;
     @Column(name="Number_Of_Lines", precision=10)
-    private int numberOfLines;
+    private Integer numberOfLines;
     @Column(name="OpCon_Comment", length=512)
     private String opConComment;
     @Column(name="Active_Flag", nullable=false, length=1)
-    private String activeFlag;
+    private Character activeFlag;
     @Column(name="Create_Modified_By", nullable=false, length=45)
     private String createModifiedBy;
     @Column(name="Create_Modified_Date", nullable=false)
@@ -73,7 +48,7 @@ public class OperatingConditions implements Serializable {
      *
      * @return the current value of orderId
      */
-    public int getOrderId() {
+    public Integer getOrderId() {
         return orderId;
     }
 
@@ -82,7 +57,7 @@ public class OperatingConditions implements Serializable {
      *
      * @param aOrderId the new value for orderId
      */
-    public void setOrderId(int aOrderId) {
+    public void setOrderId(Integer aOrderId) {
         orderId = aOrderId;
     }
 
@@ -91,7 +66,7 @@ public class OperatingConditions implements Serializable {
      *
      * @return the current value of opConUid
      */
-    public int getOpConUid() {
+    public Integer getOpConUid() {
         return opConUid;
     }
 
@@ -100,7 +75,7 @@ public class OperatingConditions implements Serializable {
      *
      * @param aOpConUid the new value for opConUid
      */
-    public void setOpConUid(int aOpConUid) {
+    public void setOpConUid(Integer aOpConUid) {
         opConUid = aOpConUid;
     }
 
@@ -127,7 +102,7 @@ public class OperatingConditions implements Serializable {
      *
      * @return the current value of numberOfLines
      */
-    public int getNumberOfLines() {
+    public Integer getNumberOfLines() {
         return numberOfLines;
     }
 
@@ -136,7 +111,7 @@ public class OperatingConditions implements Serializable {
      *
      * @param aNumberOfLines the new value for numberOfLines
      */
-    public void setNumberOfLines(int aNumberOfLines) {
+    public void setNumberOfLines(Integer aNumberOfLines) {
         numberOfLines = aNumberOfLines;
     }
 
@@ -163,7 +138,7 @@ public class OperatingConditions implements Serializable {
      *
      * @return the current value of activeFlag
      */
-    public String getActiveFlag() {
+    public Character getActiveFlag() {
         return activeFlag;
     }
 
@@ -172,7 +147,7 @@ public class OperatingConditions implements Serializable {
      *
      * @param aActiveFlag the new value for activeFlag
      */
-    public void setActiveFlag(String aActiveFlag) {
+    public void setActiveFlag(Character aActiveFlag) {
         activeFlag = aActiveFlag;
     }
 

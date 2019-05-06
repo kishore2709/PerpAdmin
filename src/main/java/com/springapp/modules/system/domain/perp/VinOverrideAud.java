@@ -10,7 +10,6 @@ import java.util.Map;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.Version;
 
 @Entity(name="vin_override_aud")
 public class VinOverrideAud implements Serializable {
@@ -18,44 +17,19 @@ public class VinOverrideAud implements Serializable {
     /** Primary key. */
     protected static final String PK = "vinOverrideAudUid";
 
-    /**
-     * The optimistic lock. Available via standard bean get/set operations.
-     */
-    @Version
-    @Column(name="LOCK_FLAG")
-    private Integer lockFlag;
-
-    /**
-     * Access method for the lockFlag property.
-     *
-     * @return the current value of the lockFlag property
-     */
-    public Integer getLockFlag() {
-        return lockFlag;
-    }
-
-    /**
-     * Sets the value of the lockFlag property.
-     *
-     * @param aLockFlag the new value of the lockFlag property
-     */
-    public void setLockFlag(Integer aLockFlag) {
-        lockFlag = aLockFlag;
-    }
-
     @Id
     @Column(name="Vin_Override_Aud_UID", unique=true, nullable=false, precision=10)
-    private int vinOverrideAudUid;
+    private Integer vinOverrideAudUid;
     @Column(name="VinOverride_UID", nullable=false, precision=10)
-    private int vinOverrideUid;
+    private Integer vinOverrideUid;
     @Column(name="VIN", nullable=false, length=45)
     private String vin;
     @Column(name="Programs_UID", precision=10)
-    private int programsUid;
+    private Integer programsUid;
     @Column(name="Vin_Type_UID", precision=10)
-    private int vinTypeUid;
+    private Integer vinTypeUid;
     @Column(name="Active_Flag", nullable=false, length=1)
-    private String activeFlag;
+    private Character activeFlag;
     @Column(name="Create_Modified_By", nullable=false, length=45)
     private String createModifiedBy;
     @Column(name="Create_Modified_Date", nullable=false)
@@ -73,7 +47,7 @@ public class VinOverrideAud implements Serializable {
      *
      * @return the current value of vinOverrideAudUid
      */
-    public int getVinOverrideAudUid() {
+    public Integer getVinOverrideAudUid() {
         return vinOverrideAudUid;
     }
 
@@ -82,7 +56,7 @@ public class VinOverrideAud implements Serializable {
      *
      * @param aVinOverrideAudUid the new value for vinOverrideAudUid
      */
-    public void setVinOverrideAudUid(int aVinOverrideAudUid) {
+    public void setVinOverrideAudUid(Integer aVinOverrideAudUid) {
         vinOverrideAudUid = aVinOverrideAudUid;
     }
 
@@ -91,7 +65,7 @@ public class VinOverrideAud implements Serializable {
      *
      * @return the current value of vinOverrideUid
      */
-    public int getVinOverrideUid() {
+    public Integer getVinOverrideUid() {
         return vinOverrideUid;
     }
 
@@ -100,7 +74,7 @@ public class VinOverrideAud implements Serializable {
      *
      * @param aVinOverrideUid the new value for vinOverrideUid
      */
-    public void setVinOverrideUid(int aVinOverrideUid) {
+    public void setVinOverrideUid(Integer aVinOverrideUid) {
         vinOverrideUid = aVinOverrideUid;
     }
 
@@ -127,7 +101,7 @@ public class VinOverrideAud implements Serializable {
      *
      * @return the current value of programsUid
      */
-    public int getProgramsUid() {
+    public Integer getProgramsUid() {
         return programsUid;
     }
 
@@ -136,7 +110,7 @@ public class VinOverrideAud implements Serializable {
      *
      * @param aProgramsUid the new value for programsUid
      */
-    public void setProgramsUid(int aProgramsUid) {
+    public void setProgramsUid(Integer aProgramsUid) {
         programsUid = aProgramsUid;
     }
 
@@ -145,7 +119,7 @@ public class VinOverrideAud implements Serializable {
      *
      * @return the current value of vinTypeUid
      */
-    public int getVinTypeUid() {
+    public Integer getVinTypeUid() {
         return vinTypeUid;
     }
 
@@ -154,7 +128,7 @@ public class VinOverrideAud implements Serializable {
      *
      * @param aVinTypeUid the new value for vinTypeUid
      */
-    public void setVinTypeUid(int aVinTypeUid) {
+    public void setVinTypeUid(Integer aVinTypeUid) {
         vinTypeUid = aVinTypeUid;
     }
 
@@ -163,7 +137,7 @@ public class VinOverrideAud implements Serializable {
      *
      * @return the current value of activeFlag
      */
-    public String getActiveFlag() {
+    public Character getActiveFlag() {
         return activeFlag;
     }
 
@@ -172,7 +146,7 @@ public class VinOverrideAud implements Serializable {
      *
      * @param aActiveFlag the new value for activeFlag
      */
-    public void setActiveFlag(String aActiveFlag) {
+    public void setActiveFlag(Character aActiveFlag) {
         activeFlag = aActiveFlag;
     }
 
@@ -244,7 +218,9 @@ public class VinOverrideAud implements Serializable {
             return false;
         }
         VinOverrideAud that = (VinOverrideAud) other;
-        if (this.getVinOverrideAudUid() != that.getVinOverrideAudUid()) {
+        Object myVinOverrideAudUid = this.getVinOverrideAudUid();
+        Object yourVinOverrideAudUid = that.getVinOverrideAudUid();
+        if (myVinOverrideAudUid==null ? yourVinOverrideAudUid!=null : !myVinOverrideAudUid.equals(yourVinOverrideAudUid)) {
             return false;
         }
         return true;
@@ -271,7 +247,11 @@ public class VinOverrideAud implements Serializable {
     public int hashCode() {
         int i;
         int result = 17;
-        i = getVinOverrideAudUid();
+        if (getVinOverrideAudUid() == null) {
+            i = 0;
+        } else {
+            i = getVinOverrideAudUid().hashCode();
+        }
         result = 37*result + i;
         return result;
     }
@@ -296,7 +276,7 @@ public class VinOverrideAud implements Serializable {
      */
     public Map<String, Object> getPrimaryKey() {
         Map<String, Object> ret = new LinkedHashMap<String, Object>(6);
-        ret.put("vinOverrideAudUid", Integer.valueOf(getVinOverrideAudUid()));
+        ret.put("vinOverrideAudUid", getVinOverrideAudUid());
         return ret;
     }
 

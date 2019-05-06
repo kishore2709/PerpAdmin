@@ -12,7 +12,6 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.Version;
 
 @Entity(name="phone")
 public class Phone implements Serializable {
@@ -20,34 +19,9 @@ public class Phone implements Serializable {
     /** Primary key. */
     protected static final String PK = "phoneUid";
 
-    /**
-     * The optimistic lock. Available via standard bean get/set operations.
-     */
-    @Version
-    @Column(name="LOCK_FLAG")
-    private Integer lockFlag;
-
-    /**
-     * Access method for the lockFlag property.
-     *
-     * @return the current value of the lockFlag property
-     */
-    public Integer getLockFlag() {
-        return lockFlag;
-    }
-
-    /**
-     * Sets the value of the lockFlag property.
-     *
-     * @param aLockFlag the new value of the lockFlag property
-     */
-    public void setLockFlag(Integer aLockFlag) {
-        lockFlag = aLockFlag;
-    }
-
     @Id
     @Column(name="Phone_UID", unique=true, nullable=false, precision=10)
-    private int phoneUid;
+    private Integer phoneUid;
     @Column(name="Phone_Number", nullable=false, length=45)
     private String phoneNumber;
     @Column(name="Extension", length=10)
@@ -81,7 +55,7 @@ public class Phone implements Serializable {
      *
      * @return the current value of phoneUid
      */
-    public int getPhoneUid() {
+    public Integer getPhoneUid() {
         return phoneUid;
     }
 
@@ -90,7 +64,7 @@ public class Phone implements Serializable {
      *
      * @param aPhoneUid the new value for phoneUid
      */
-    public void setPhoneUid(int aPhoneUid) {
+    public void setPhoneUid(Integer aPhoneUid) {
         phoneUid = aPhoneUid;
     }
 
@@ -270,7 +244,9 @@ public class Phone implements Serializable {
             return false;
         }
         Phone that = (Phone) other;
-        if (this.getPhoneUid() != that.getPhoneUid()) {
+        Object myPhoneUid = this.getPhoneUid();
+        Object yourPhoneUid = that.getPhoneUid();
+        if (myPhoneUid==null ? yourPhoneUid!=null : !myPhoneUid.equals(yourPhoneUid)) {
             return false;
         }
         return true;
@@ -297,7 +273,11 @@ public class Phone implements Serializable {
     public int hashCode() {
         int i;
         int result = 17;
-        i = getPhoneUid();
+        if (getPhoneUid() == null) {
+            i = 0;
+        } else {
+            i = getPhoneUid().hashCode();
+        }
         result = 37*result + i;
         return result;
     }
@@ -322,7 +302,7 @@ public class Phone implements Serializable {
      */
     public Map<String, Object> getPrimaryKey() {
         Map<String, Object> ret = new LinkedHashMap<String, Object>(6);
-        ret.put("phoneUid", Integer.valueOf(getPhoneUid()));
+        ret.put("phoneUid", getPhoneUid());
         return ret;
     }
 

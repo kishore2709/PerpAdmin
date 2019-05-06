@@ -12,7 +12,6 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.Version;
 
 @Entity(name="email")
 public class Email implements Serializable {
@@ -20,34 +19,9 @@ public class Email implements Serializable {
     /** Primary key. */
     protected static final String PK = "emailUid";
 
-    /**
-     * The optimistic lock. Available via standard bean get/set operations.
-     */
-    @Version
-    @Column(name="LOCK_FLAG")
-    private Integer lockFlag;
-
-    /**
-     * Access method for the lockFlag property.
-     *
-     * @return the current value of the lockFlag property
-     */
-    public Integer getLockFlag() {
-        return lockFlag;
-    }
-
-    /**
-     * Sets the value of the lockFlag property.
-     *
-     * @param aLockFlag the new value of the lockFlag property
-     */
-    public void setLockFlag(Integer aLockFlag) {
-        lockFlag = aLockFlag;
-    }
-
     @Id
     @Column(name="Email_UID", unique=true, nullable=false, precision=10)
-    private int emailUid;
+    private Integer emailUid;
     @Column(name="Email_Address", nullable=false, length=128)
     private String emailAddress;
     @Column(name="Create_Modified_By", nullable=false, length=45)
@@ -74,7 +48,7 @@ public class Email implements Serializable {
      *
      * @return the current value of emailUid
      */
-    public int getEmailUid() {
+    public Integer getEmailUid() {
         return emailUid;
     }
 
@@ -83,7 +57,7 @@ public class Email implements Serializable {
      *
      * @param aEmailUid the new value for emailUid
      */
-    public void setEmailUid(int aEmailUid) {
+    public void setEmailUid(Integer aEmailUid) {
         emailUid = aEmailUid;
     }
 
@@ -209,7 +183,9 @@ public class Email implements Serializable {
             return false;
         }
         Email that = (Email) other;
-        if (this.getEmailUid() != that.getEmailUid()) {
+        Object myEmailUid = this.getEmailUid();
+        Object yourEmailUid = that.getEmailUid();
+        if (myEmailUid==null ? yourEmailUid!=null : !myEmailUid.equals(yourEmailUid)) {
             return false;
         }
         return true;
@@ -236,7 +212,11 @@ public class Email implements Serializable {
     public int hashCode() {
         int i;
         int result = 17;
-        i = getEmailUid();
+        if (getEmailUid() == null) {
+            i = 0;
+        } else {
+            i = getEmailUid().hashCode();
+        }
         result = 37*result + i;
         return result;
     }
@@ -261,7 +241,7 @@ public class Email implements Serializable {
      */
     public Map<String, Object> getPrimaryKey() {
         Map<String, Object> ret = new LinkedHashMap<String, Object>(6);
-        ret.put("emailUid", Integer.valueOf(getEmailUid()));
+        ret.put("emailUid", getEmailUid());
         return ret;
     }
 

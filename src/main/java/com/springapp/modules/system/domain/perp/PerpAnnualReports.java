@@ -14,7 +14,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.Version;
 
 @Entity(name="perp_annual_reports")
 public class PerpAnnualReports implements Serializable {
@@ -22,44 +21,19 @@ public class PerpAnnualReports implements Serializable {
     /** Primary key. */
     protected static final String PK = "uid";
 
-    /**
-     * The optimistic lock. Available via standard bean get/set operations.
-     */
-    @Version
-    @Column(name="LOCK_FLAG")
-    private Integer lockFlag;
-
-    /**
-     * Access method for the lockFlag property.
-     *
-     * @return the current value of the lockFlag property
-     */
-    public Integer getLockFlag() {
-        return lockFlag;
-    }
-
-    /**
-     * Sets the value of the lockFlag property.
-     *
-     * @param aLockFlag the new value of the lockFlag property
-     */
-    public void setLockFlag(Integer aLockFlag) {
-        lockFlag = aLockFlag;
-    }
-
     @Id
     @Column(name="UID", unique=true, nullable=false, precision=10)
-    private int uid;
+    private Integer uid;
     @Column(name="Report_Year", precision=10)
-    private int reportYear;
+    private Integer reportYear;
     @Column(name="Export_Date")
     private Timestamp exportDate;
     @Column(name="Owner_Certified", nullable=false, length=1)
-    private String ownerCertified;
+    private Character ownerCertified;
     @Column(name="Accepted_as_Final", nullable=false, length=1)
-    private String acceptedAsFinal;
+    private Character acceptedAsFinal;
     @Column(name="Active_Flag", nullable=false, length=1)
-    private String activeFlag;
+    private Character activeFlag;
     @Column(name="Create_Modified_By", nullable=false, length=45)
     private String createModifiedBy;
     @Column(name="Create_Modified_Date", nullable=false)
@@ -80,7 +54,7 @@ public class PerpAnnualReports implements Serializable {
      *
      * @return the current value of uid
      */
-    public int getUid() {
+    public Integer getUid() {
         return uid;
     }
 
@@ -89,7 +63,7 @@ public class PerpAnnualReports implements Serializable {
      *
      * @param aUid the new value for uid
      */
-    public void setUid(int aUid) {
+    public void setUid(Integer aUid) {
         uid = aUid;
     }
 
@@ -98,7 +72,7 @@ public class PerpAnnualReports implements Serializable {
      *
      * @return the current value of reportYear
      */
-    public int getReportYear() {
+    public Integer getReportYear() {
         return reportYear;
     }
 
@@ -107,7 +81,7 @@ public class PerpAnnualReports implements Serializable {
      *
      * @param aReportYear the new value for reportYear
      */
-    public void setReportYear(int aReportYear) {
+    public void setReportYear(Integer aReportYear) {
         reportYear = aReportYear;
     }
 
@@ -134,7 +108,7 @@ public class PerpAnnualReports implements Serializable {
      *
      * @return the current value of ownerCertified
      */
-    public String getOwnerCertified() {
+    public Character getOwnerCertified() {
         return ownerCertified;
     }
 
@@ -143,7 +117,7 @@ public class PerpAnnualReports implements Serializable {
      *
      * @param aOwnerCertified the new value for ownerCertified
      */
-    public void setOwnerCertified(String aOwnerCertified) {
+    public void setOwnerCertified(Character aOwnerCertified) {
         ownerCertified = aOwnerCertified;
     }
 
@@ -152,7 +126,7 @@ public class PerpAnnualReports implements Serializable {
      *
      * @return the current value of acceptedAsFinal
      */
-    public String getAcceptedAsFinal() {
+    public Character getAcceptedAsFinal() {
         return acceptedAsFinal;
     }
 
@@ -161,7 +135,7 @@ public class PerpAnnualReports implements Serializable {
      *
      * @param aAcceptedAsFinal the new value for acceptedAsFinal
      */
-    public void setAcceptedAsFinal(String aAcceptedAsFinal) {
+    public void setAcceptedAsFinal(Character aAcceptedAsFinal) {
         acceptedAsFinal = aAcceptedAsFinal;
     }
 
@@ -170,7 +144,7 @@ public class PerpAnnualReports implements Serializable {
      *
      * @return the current value of activeFlag
      */
-    public String getActiveFlag() {
+    public Character getActiveFlag() {
         return activeFlag;
     }
 
@@ -179,7 +153,7 @@ public class PerpAnnualReports implements Serializable {
      *
      * @param aActiveFlag the new value for activeFlag
      */
-    public void setActiveFlag(String aActiveFlag) {
+    public void setActiveFlag(Character aActiveFlag) {
         activeFlag = aActiveFlag;
     }
 
@@ -269,7 +243,9 @@ public class PerpAnnualReports implements Serializable {
             return false;
         }
         PerpAnnualReports that = (PerpAnnualReports) other;
-        if (this.getUid() != that.getUid()) {
+        Object myUid = this.getUid();
+        Object yourUid = that.getUid();
+        if (myUid==null ? yourUid!=null : !myUid.equals(yourUid)) {
             return false;
         }
         return true;
@@ -296,7 +272,11 @@ public class PerpAnnualReports implements Serializable {
     public int hashCode() {
         int i;
         int result = 17;
-        i = getUid();
+        if (getUid() == null) {
+            i = 0;
+        } else {
+            i = getUid().hashCode();
+        }
         result = 37*result + i;
         return result;
     }
@@ -321,7 +301,7 @@ public class PerpAnnualReports implements Serializable {
      */
     public Map<String, Object> getPrimaryKey() {
         Map<String, Object> ret = new LinkedHashMap<String, Object>(6);
-        ret.put("uid", Integer.valueOf(getUid()));
+        ret.put("uid", getUid());
         return ret;
     }
 

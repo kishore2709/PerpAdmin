@@ -10,7 +10,6 @@ import java.util.Map;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.Version;
 
 @Entity(name="terminal_aud")
 public class TerminalAud implements Serializable {
@@ -18,46 +17,21 @@ public class TerminalAud implements Serializable {
     /** Primary key. */
     protected static final String PK = "terminalAudUid";
 
-    /**
-     * The optimistic lock. Available via standard bean get/set operations.
-     */
-    @Version
-    @Column(name="LOCK_FLAG")
-    private Integer lockFlag;
-
-    /**
-     * Access method for the lockFlag property.
-     *
-     * @return the current value of the lockFlag property
-     */
-    public Integer getLockFlag() {
-        return lockFlag;
-    }
-
-    /**
-     * Sets the value of the lockFlag property.
-     *
-     * @param aLockFlag the new value of the lockFlag property
-     */
-    public void setLockFlag(Integer aLockFlag) {
-        lockFlag = aLockFlag;
-    }
-
     @Id
     @Column(name="Terminal_Aud_UID", unique=true, nullable=false, precision=10)
-    private int terminalAudUid;
+    private Integer terminalAudUid;
     @Column(name="Terminal_UID", nullable=false, precision=10)
-    private int terminalUid;
+    private Integer terminalUid;
     @Column(name="Company_UID", nullable=false, precision=10)
-    private int companyUid;
+    private Integer companyUid;
     @Column(name="Terminal_Type_UID", precision=10)
-    private int terminalTypeUid;
+    private Integer terminalTypeUid;
     @Column(name="Terminal_Name", nullable=false, length=45)
     private String terminalName;
     @Column(name="Terminal_Description", length=256)
     private String terminalDescription;
     @Column(name="Active_Flag", nullable=false, length=1)
-    private String activeFlag;
+    private Character activeFlag;
     @Column(name="Create_Modified_By", nullable=false, length=45)
     private String createModifiedBy;
     @Column(name="Create_Modified_Date", nullable=false)
@@ -75,7 +49,7 @@ public class TerminalAud implements Serializable {
      *
      * @return the current value of terminalAudUid
      */
-    public int getTerminalAudUid() {
+    public Integer getTerminalAudUid() {
         return terminalAudUid;
     }
 
@@ -84,7 +58,7 @@ public class TerminalAud implements Serializable {
      *
      * @param aTerminalAudUid the new value for terminalAudUid
      */
-    public void setTerminalAudUid(int aTerminalAudUid) {
+    public void setTerminalAudUid(Integer aTerminalAudUid) {
         terminalAudUid = aTerminalAudUid;
     }
 
@@ -93,7 +67,7 @@ public class TerminalAud implements Serializable {
      *
      * @return the current value of terminalUid
      */
-    public int getTerminalUid() {
+    public Integer getTerminalUid() {
         return terminalUid;
     }
 
@@ -102,7 +76,7 @@ public class TerminalAud implements Serializable {
      *
      * @param aTerminalUid the new value for terminalUid
      */
-    public void setTerminalUid(int aTerminalUid) {
+    public void setTerminalUid(Integer aTerminalUid) {
         terminalUid = aTerminalUid;
     }
 
@@ -111,7 +85,7 @@ public class TerminalAud implements Serializable {
      *
      * @return the current value of companyUid
      */
-    public int getCompanyUid() {
+    public Integer getCompanyUid() {
         return companyUid;
     }
 
@@ -120,7 +94,7 @@ public class TerminalAud implements Serializable {
      *
      * @param aCompanyUid the new value for companyUid
      */
-    public void setCompanyUid(int aCompanyUid) {
+    public void setCompanyUid(Integer aCompanyUid) {
         companyUid = aCompanyUid;
     }
 
@@ -129,7 +103,7 @@ public class TerminalAud implements Serializable {
      *
      * @return the current value of terminalTypeUid
      */
-    public int getTerminalTypeUid() {
+    public Integer getTerminalTypeUid() {
         return terminalTypeUid;
     }
 
@@ -138,7 +112,7 @@ public class TerminalAud implements Serializable {
      *
      * @param aTerminalTypeUid the new value for terminalTypeUid
      */
-    public void setTerminalTypeUid(int aTerminalTypeUid) {
+    public void setTerminalTypeUid(Integer aTerminalTypeUid) {
         terminalTypeUid = aTerminalTypeUid;
     }
 
@@ -183,7 +157,7 @@ public class TerminalAud implements Serializable {
      *
      * @return the current value of activeFlag
      */
-    public String getActiveFlag() {
+    public Character getActiveFlag() {
         return activeFlag;
     }
 
@@ -192,7 +166,7 @@ public class TerminalAud implements Serializable {
      *
      * @param aActiveFlag the new value for activeFlag
      */
-    public void setActiveFlag(String aActiveFlag) {
+    public void setActiveFlag(Character aActiveFlag) {
         activeFlag = aActiveFlag;
     }
 
@@ -264,7 +238,9 @@ public class TerminalAud implements Serializable {
             return false;
         }
         TerminalAud that = (TerminalAud) other;
-        if (this.getTerminalAudUid() != that.getTerminalAudUid()) {
+        Object myTerminalAudUid = this.getTerminalAudUid();
+        Object yourTerminalAudUid = that.getTerminalAudUid();
+        if (myTerminalAudUid==null ? yourTerminalAudUid!=null : !myTerminalAudUid.equals(yourTerminalAudUid)) {
             return false;
         }
         return true;
@@ -291,7 +267,11 @@ public class TerminalAud implements Serializable {
     public int hashCode() {
         int i;
         int result = 17;
-        i = getTerminalAudUid();
+        if (getTerminalAudUid() == null) {
+            i = 0;
+        } else {
+            i = getTerminalAudUid().hashCode();
+        }
         result = 37*result + i;
         return result;
     }
@@ -316,7 +296,7 @@ public class TerminalAud implements Serializable {
      */
     public Map<String, Object> getPrimaryKey() {
         Map<String, Object> ret = new LinkedHashMap<String, Object>(6);
-        ret.put("terminalAudUid", Integer.valueOf(getTerminalAudUid()));
+        ret.put("terminalAudUid", getTerminalAudUid());
         return ret;
     }
 

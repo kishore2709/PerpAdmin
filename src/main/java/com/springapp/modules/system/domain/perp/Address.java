@@ -12,7 +12,6 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.Version;
 
 @Entity(name="address")
 public class Address implements Serializable {
@@ -20,34 +19,9 @@ public class Address implements Serializable {
     /** Primary key. */
     protected static final String PK = "addressUid";
 
-    /**
-     * The optimistic lock. Available via standard bean get/set operations.
-     */
-    @Version
-    @Column(name="LOCK_FLAG")
-    private Integer lockFlag;
-
-    /**
-     * Access method for the lockFlag property.
-     *
-     * @return the current value of the lockFlag property
-     */
-    public Integer getLockFlag() {
-        return lockFlag;
-    }
-
-    /**
-     * Sets the value of the lockFlag property.
-     *
-     * @param aLockFlag the new value of the lockFlag property
-     */
-    public void setLockFlag(Integer aLockFlag) {
-        lockFlag = aLockFlag;
-    }
-
     @Id
     @Column(name="Address_UID", unique=true, nullable=false, precision=10)
-    private int addressUid;
+    private Integer addressUid;
     @Column(name="Address1", nullable=false, length=128)
     private String address1;
     @Column(name="Address2", length=128)
@@ -99,7 +73,7 @@ public class Address implements Serializable {
      *
      * @return the current value of addressUid
      */
-    public int getAddressUid() {
+    public Integer getAddressUid() {
         return addressUid;
     }
 
@@ -108,7 +82,7 @@ public class Address implements Serializable {
      *
      * @param aAddressUid the new value for addressUid
      */
-    public void setAddressUid(int aAddressUid) {
+    public void setAddressUid(Integer aAddressUid) {
         addressUid = aAddressUid;
     }
 
@@ -414,7 +388,9 @@ public class Address implements Serializable {
             return false;
         }
         Address that = (Address) other;
-        if (this.getAddressUid() != that.getAddressUid()) {
+        Object myAddressUid = this.getAddressUid();
+        Object yourAddressUid = that.getAddressUid();
+        if (myAddressUid==null ? yourAddressUid!=null : !myAddressUid.equals(yourAddressUid)) {
             return false;
         }
         return true;
@@ -441,7 +417,11 @@ public class Address implements Serializable {
     public int hashCode() {
         int i;
         int result = 17;
-        i = getAddressUid();
+        if (getAddressUid() == null) {
+            i = 0;
+        } else {
+            i = getAddressUid().hashCode();
+        }
         result = 37*result + i;
         return result;
     }
@@ -466,7 +446,7 @@ public class Address implements Serializable {
      */
     public Map<String, Object> getPrimaryKey() {
         Map<String, Object> ret = new LinkedHashMap<String, Object>(6);
-        ret.put("addressUid", Integer.valueOf(getAddressUid()));
+        ret.put("addressUid", getAddressUid());
         return ret;
     }
 

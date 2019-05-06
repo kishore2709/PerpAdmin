@@ -35,8 +35,8 @@ public class JobDTO implements Serializable {
      */
     private Timestamp createTime;
 
-    public JobDTO(String name, Boolean enabled) {
-        this.name = name;
-        this.enabled = enabled;
-    }
+//    public JobDTO(String name, Boolean enabled) {
+//        this.name = name;
+//        this.enabled = enabled;
+//    }
 }

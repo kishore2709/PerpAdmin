@@ -12,7 +12,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.Version;
 
 @Entity(name="type_table_lookup")
 public class TypeTableLookup implements Serializable {
@@ -20,38 +19,13 @@ public class TypeTableLookup implements Serializable {
     /** Primary key. */
     protected static final String PK = "uid";
 
-    /**
-     * The optimistic lock. Available via standard bean get/set operations.
-     */
-    @Version
-    @Column(name="LOCK_FLAG")
-    private Integer lockFlag;
-
-    /**
-     * Access method for the lockFlag property.
-     *
-     * @return the current value of the lockFlag property
-     */
-    public Integer getLockFlag() {
-        return lockFlag;
-    }
-
-    /**
-     * Sets the value of the lockFlag property.
-     *
-     * @param aLockFlag the new value of the lockFlag property
-     */
-    public void setLockFlag(Integer aLockFlag) {
-        lockFlag = aLockFlag;
-    }
-
     @Id
     @Column(name="UID", unique=true, nullable=false, precision=10)
-    private int uid;
+    private Integer uid;
     @Column(name="Table_Name", nullable=false, length=45)
     private String tableName;
     @Column(name="Active_Flag", nullable=false, length=1)
-    private String activeFlag;
+    private Character activeFlag;
     @Column(name="Identifier", nullable=false, length=45)
     private String identifier;
     @Column(name="Create_Modified_By", nullable=false, length=45)
@@ -61,13 +35,13 @@ public class TypeTableLookup implements Serializable {
     @Column(name="Table_Description", length=256)
     private String tableDescription;
     @Column(name="Viewable", nullable=false, length=1)
-    private String viewable;
+    private Character viewable;
     @Column(name="Addable", nullable=false, length=1)
-    private String addable;
+    private Character addable;
     @Column(name="Editable", nullable=false, length=1)
-    private String editable;
+    private Character editable;
     @Column(name="Deactivatable", nullable=false, length=1)
-    private String deactivatable;
+    private Character deactivatable;
     @OneToMany(mappedBy="typeTableLookup")
     private Set<TypeTableAssociations> typeTableAssociations;
     @OneToMany(mappedBy="typeTableLookup")
@@ -87,7 +61,7 @@ public class TypeTableLookup implements Serializable {
      *
      * @return the current value of uid
      */
-    public int getUid() {
+    public Integer getUid() {
         return uid;
     }
 
@@ -96,7 +70,7 @@ public class TypeTableLookup implements Serializable {
      *
      * @param aUid the new value for uid
      */
-    public void setUid(int aUid) {
+    public void setUid(Integer aUid) {
         uid = aUid;
     }
 
@@ -123,7 +97,7 @@ public class TypeTableLookup implements Serializable {
      *
      * @return the current value of activeFlag
      */
-    public String getActiveFlag() {
+    public Character getActiveFlag() {
         return activeFlag;
     }
 
@@ -132,7 +106,7 @@ public class TypeTableLookup implements Serializable {
      *
      * @param aActiveFlag the new value for activeFlag
      */
-    public void setActiveFlag(String aActiveFlag) {
+    public void setActiveFlag(Character aActiveFlag) {
         activeFlag = aActiveFlag;
     }
 
@@ -213,7 +187,7 @@ public class TypeTableLookup implements Serializable {
      *
      * @return the current value of viewable
      */
-    public String getViewable() {
+    public Character getViewable() {
         return viewable;
     }
 
@@ -222,7 +196,7 @@ public class TypeTableLookup implements Serializable {
      *
      * @param aViewable the new value for viewable
      */
-    public void setViewable(String aViewable) {
+    public void setViewable(Character aViewable) {
         viewable = aViewable;
     }
 
@@ -231,7 +205,7 @@ public class TypeTableLookup implements Serializable {
      *
      * @return the current value of addable
      */
-    public String getAddable() {
+    public Character getAddable() {
         return addable;
     }
 
@@ -240,7 +214,7 @@ public class TypeTableLookup implements Serializable {
      *
      * @param aAddable the new value for addable
      */
-    public void setAddable(String aAddable) {
+    public void setAddable(Character aAddable) {
         addable = aAddable;
     }
 
@@ -249,7 +223,7 @@ public class TypeTableLookup implements Serializable {
      *
      * @return the current value of editable
      */
-    public String getEditable() {
+    public Character getEditable() {
         return editable;
     }
 
@@ -258,7 +232,7 @@ public class TypeTableLookup implements Serializable {
      *
      * @param aEditable the new value for editable
      */
-    public void setEditable(String aEditable) {
+    public void setEditable(Character aEditable) {
         editable = aEditable;
     }
 
@@ -267,7 +241,7 @@ public class TypeTableLookup implements Serializable {
      *
      * @return the current value of deactivatable
      */
-    public String getDeactivatable() {
+    public Character getDeactivatable() {
         return deactivatable;
     }
 
@@ -276,7 +250,7 @@ public class TypeTableLookup implements Serializable {
      *
      * @param aDeactivatable the new value for deactivatable
      */
-    public void setDeactivatable(String aDeactivatable) {
+    public void setDeactivatable(Character aDeactivatable) {
         deactivatable = aDeactivatable;
     }
 
@@ -366,7 +340,9 @@ public class TypeTableLookup implements Serializable {
             return false;
         }
         TypeTableLookup that = (TypeTableLookup) other;
-        if (this.getUid() != that.getUid()) {
+        Object myUid = this.getUid();
+        Object yourUid = that.getUid();
+        if (myUid==null ? yourUid!=null : !myUid.equals(yourUid)) {
             return false;
         }
         return true;
@@ -393,7 +369,11 @@ public class TypeTableLookup implements Serializable {
     public int hashCode() {
         int i;
         int result = 17;
-        i = getUid();
+        if (getUid() == null) {
+            i = 0;
+        } else {
+            i = getUid().hashCode();
+        }
         result = 37*result + i;
         return result;
     }
@@ -418,7 +398,7 @@ public class TypeTableLookup implements Serializable {
      */
     public Map<String, Object> getPrimaryKey() {
         Map<String, Object> ret = new LinkedHashMap<String, Object>(6);
-        ret.put("uid", Integer.valueOf(getUid()));
+        ret.put("uid", getUid());
         return ret;
     }
 

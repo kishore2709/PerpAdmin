@@ -10,7 +10,6 @@ import java.util.Map;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.Version;
 
 @Entity(name="perp_upload_errors")
 public class PerpUploadErrors implements Serializable {
@@ -18,36 +17,11 @@ public class PerpUploadErrors implements Serializable {
     /** Primary key. */
     protected static final String PK = "perpUploadErrorsUid";
 
-    /**
-     * The optimistic lock. Available via standard bean get/set operations.
-     */
-    @Version
-    @Column(name="LOCK_FLAG")
-    private Integer lockFlag;
-
-    /**
-     * Access method for the lockFlag property.
-     *
-     * @return the current value of the lockFlag property
-     */
-    public Integer getLockFlag() {
-        return lockFlag;
-    }
-
-    /**
-     * Sets the value of the lockFlag property.
-     *
-     * @param aLockFlag the new value of the lockFlag property
-     */
-    public void setLockFlag(Integer aLockFlag) {
-        lockFlag = aLockFlag;
-    }
-
     @Id
     @Column(name="PERP_Upload_Errors_UID", unique=true, nullable=false, precision=10)
-    private int perpUploadErrorsUid;
+    private Integer perpUploadErrorsUid;
     @Column(name="PERP_Upload_CONTROL_UID", nullable=false, precision=10)
-    private int perpUploadControlUid;
+    private Integer perpUploadControlUid;
     @Column(name="Operation", length=45)
     private String operation;
     @Column(name="Error_Flag", length=45)
@@ -69,7 +43,7 @@ public class PerpUploadErrors implements Serializable {
      *
      * @return the current value of perpUploadErrorsUid
      */
-    public int getPerpUploadErrorsUid() {
+    public Integer getPerpUploadErrorsUid() {
         return perpUploadErrorsUid;
     }
 
@@ -78,7 +52,7 @@ public class PerpUploadErrors implements Serializable {
      *
      * @param aPerpUploadErrorsUid the new value for perpUploadErrorsUid
      */
-    public void setPerpUploadErrorsUid(int aPerpUploadErrorsUid) {
+    public void setPerpUploadErrorsUid(Integer aPerpUploadErrorsUid) {
         perpUploadErrorsUid = aPerpUploadErrorsUid;
     }
 
@@ -87,7 +61,7 @@ public class PerpUploadErrors implements Serializable {
      *
      * @return the current value of perpUploadControlUid
      */
-    public int getPerpUploadControlUid() {
+    public Integer getPerpUploadControlUid() {
         return perpUploadControlUid;
     }
 
@@ -96,7 +70,7 @@ public class PerpUploadErrors implements Serializable {
      *
      * @param aPerpUploadControlUid the new value for perpUploadControlUid
      */
-    public void setPerpUploadControlUid(int aPerpUploadControlUid) {
+    public void setPerpUploadControlUid(Integer aPerpUploadControlUid) {
         perpUploadControlUid = aPerpUploadControlUid;
     }
 
@@ -204,7 +178,9 @@ public class PerpUploadErrors implements Serializable {
             return false;
         }
         PerpUploadErrors that = (PerpUploadErrors) other;
-        if (this.getPerpUploadErrorsUid() != that.getPerpUploadErrorsUid()) {
+        Object myPerpUploadErrorsUid = this.getPerpUploadErrorsUid();
+        Object yourPerpUploadErrorsUid = that.getPerpUploadErrorsUid();
+        if (myPerpUploadErrorsUid==null ? yourPerpUploadErrorsUid!=null : !myPerpUploadErrorsUid.equals(yourPerpUploadErrorsUid)) {
             return false;
         }
         return true;
@@ -231,7 +207,11 @@ public class PerpUploadErrors implements Serializable {
     public int hashCode() {
         int i;
         int result = 17;
-        i = getPerpUploadErrorsUid();
+        if (getPerpUploadErrorsUid() == null) {
+            i = 0;
+        } else {
+            i = getPerpUploadErrorsUid().hashCode();
+        }
         result = 37*result + i;
         return result;
     }
@@ -256,7 +236,7 @@ public class PerpUploadErrors implements Serializable {
      */
     public Map<String, Object> getPrimaryKey() {
         Map<String, Object> ret = new LinkedHashMap<String, Object>(6);
-        ret.put("perpUploadErrorsUid", Integer.valueOf(getPerpUploadErrorsUid()));
+        ret.put("perpUploadErrorsUid", getPerpUploadErrorsUid());
         return ret;
     }
 

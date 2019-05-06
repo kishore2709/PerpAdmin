@@ -14,7 +14,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.Version;
 
 @Entity(name="opcon_regitem_relation")
 public class OpconRegitemRelation implements Serializable {
@@ -22,34 +21,9 @@ public class OpconRegitemRelation implements Serializable {
     /** Primary key. */
     protected static final String PK = "ocriRelationUid";
 
-    /**
-     * The optimistic lock. Available via standard bean get/set operations.
-     */
-    @Version
-    @Column(name="LOCK_FLAG")
-    private Integer lockFlag;
-
-    /**
-     * Access method for the lockFlag property.
-     *
-     * @return the current value of the lockFlag property
-     */
-    public Integer getLockFlag() {
-        return lockFlag;
-    }
-
-    /**
-     * Sets the value of the lockFlag property.
-     *
-     * @param aLockFlag the new value of the lockFlag property
-     */
-    public void setLockFlag(Integer aLockFlag) {
-        lockFlag = aLockFlag;
-    }
-
     @Id
     @Column(name="OCRIRelation_UID", unique=true, nullable=false, precision=10)
-    private int ocriRelationUid;
+    private Integer ocriRelationUid;
     @Column(name="Create_Modified_By", nullable=false, length=45)
     private String createModifiedBy;
     @Column(name="Create_Modified_Date", nullable=false)
@@ -73,7 +47,7 @@ public class OpconRegitemRelation implements Serializable {
      *
      * @return the current value of ocriRelationUid
      */
-    public int getOcriRelationUid() {
+    public Integer getOcriRelationUid() {
         return ocriRelationUid;
     }
 
@@ -82,7 +56,7 @@ public class OpconRegitemRelation implements Serializable {
      *
      * @param aOcriRelationUid the new value for ocriRelationUid
      */
-    public void setOcriRelationUid(int aOcriRelationUid) {
+    public void setOcriRelationUid(Integer aOcriRelationUid) {
         ocriRelationUid = aOcriRelationUid;
     }
 
@@ -190,7 +164,9 @@ public class OpconRegitemRelation implements Serializable {
             return false;
         }
         OpconRegitemRelation that = (OpconRegitemRelation) other;
-        if (this.getOcriRelationUid() != that.getOcriRelationUid()) {
+        Object myOcriRelationUid = this.getOcriRelationUid();
+        Object yourOcriRelationUid = that.getOcriRelationUid();
+        if (myOcriRelationUid==null ? yourOcriRelationUid!=null : !myOcriRelationUid.equals(yourOcriRelationUid)) {
             return false;
         }
         return true;
@@ -217,7 +193,11 @@ public class OpconRegitemRelation implements Serializable {
     public int hashCode() {
         int i;
         int result = 17;
-        i = getOcriRelationUid();
+        if (getOcriRelationUid() == null) {
+            i = 0;
+        } else {
+            i = getOcriRelationUid().hashCode();
+        }
         result = 37*result + i;
         return result;
     }
@@ -242,7 +222,7 @@ public class OpconRegitemRelation implements Serializable {
      */
     public Map<String, Object> getPrimaryKey() {
         Map<String, Object> ret = new LinkedHashMap<String, Object>(6);
-        ret.put("ocriRelationUid", Integer.valueOf(getOcriRelationUid()));
+        ret.put("ocriRelationUid", getOcriRelationUid());
         return ret;
     }
 

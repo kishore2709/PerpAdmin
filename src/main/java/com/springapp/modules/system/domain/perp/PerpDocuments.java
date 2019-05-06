@@ -15,7 +15,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.Version;
 
 @Entity(name="perp_documents")
 public class PerpDocuments implements Serializable {
@@ -23,34 +22,9 @@ public class PerpDocuments implements Serializable {
     /** Primary key. */
     protected static final String PK = "perpDocUid";
 
-    /**
-     * The optimistic lock. Available via standard bean get/set operations.
-     */
-    @Version
-    @Column(name="LOCK_FLAG")
-    private Integer lockFlag;
-
-    /**
-     * Access method for the lockFlag property.
-     *
-     * @return the current value of the lockFlag property
-     */
-    public Integer getLockFlag() {
-        return lockFlag;
-    }
-
-    /**
-     * Sets the value of the lockFlag property.
-     *
-     * @param aLockFlag the new value of the lockFlag property
-     */
-    public void setLockFlag(Integer aLockFlag) {
-        lockFlag = aLockFlag;
-    }
-
     @Id
     @Column(name="PerpDoc_UID", unique=true, nullable=false, precision=10)
-    private int perpDocUid;
+    private Integer perpDocUid;
     @Column(name="Name", length=128)
     private String name;
     @Column(name="Doc_Header", length=512)
@@ -74,11 +48,11 @@ public class PerpDocuments implements Serializable {
     @Column(name="Original_Source")
     private byte[] originalSource;
     @Column(name="Table_Insert_Flag", nullable=false, length=1)
-    private String tableInsertFlag;
+    private Character tableInsertFlag;
     @Column(name="Sent_Date")
     private Timestamp sentDate;
     @Column(name="Active_Flag", nullable=false, length=1)
-    private String activeFlag;
+    private Character activeFlag;
     @Column(name="Create_Modified_By", nullable=false, length=45)
     private String createModifiedBy;
     @Column(name="Create_Modified_Date", nullable=false)
@@ -117,7 +91,7 @@ public class PerpDocuments implements Serializable {
      *
      * @return the current value of perpDocUid
      */
-    public int getPerpDocUid() {
+    public Integer getPerpDocUid() {
         return perpDocUid;
     }
 
@@ -126,7 +100,7 @@ public class PerpDocuments implements Serializable {
      *
      * @param aPerpDocUid the new value for perpDocUid
      */
-    public void setPerpDocUid(int aPerpDocUid) {
+    public void setPerpDocUid(Integer aPerpDocUid) {
         perpDocUid = aPerpDocUid;
     }
 
@@ -333,7 +307,7 @@ public class PerpDocuments implements Serializable {
      *
      * @return the current value of tableInsertFlag
      */
-    public String getTableInsertFlag() {
+    public Character getTableInsertFlag() {
         return tableInsertFlag;
     }
 
@@ -342,7 +316,7 @@ public class PerpDocuments implements Serializable {
      *
      * @param aTableInsertFlag the new value for tableInsertFlag
      */
-    public void setTableInsertFlag(String aTableInsertFlag) {
+    public void setTableInsertFlag(Character aTableInsertFlag) {
         tableInsertFlag = aTableInsertFlag;
     }
 
@@ -369,7 +343,7 @@ public class PerpDocuments implements Serializable {
      *
      * @return the current value of activeFlag
      */
-    public String getActiveFlag() {
+    public Character getActiveFlag() {
         return activeFlag;
     }
 
@@ -378,7 +352,7 @@ public class PerpDocuments implements Serializable {
      *
      * @param aActiveFlag the new value for activeFlag
      */
-    public void setActiveFlag(String aActiveFlag) {
+    public void setActiveFlag(Character aActiveFlag) {
         activeFlag = aActiveFlag;
     }
 
@@ -594,7 +568,9 @@ public class PerpDocuments implements Serializable {
             return false;
         }
         PerpDocuments that = (PerpDocuments) other;
-        if (this.getPerpDocUid() != that.getPerpDocUid()) {
+        Object myPerpDocUid = this.getPerpDocUid();
+        Object yourPerpDocUid = that.getPerpDocUid();
+        if (myPerpDocUid==null ? yourPerpDocUid!=null : !myPerpDocUid.equals(yourPerpDocUid)) {
             return false;
         }
         return true;
@@ -621,7 +597,11 @@ public class PerpDocuments implements Serializable {
     public int hashCode() {
         int i;
         int result = 17;
-        i = getPerpDocUid();
+        if (getPerpDocUid() == null) {
+            i = 0;
+        } else {
+            i = getPerpDocUid().hashCode();
+        }
         result = 37*result + i;
         return result;
     }
@@ -646,7 +626,7 @@ public class PerpDocuments implements Serializable {
      */
     public Map<String, Object> getPrimaryKey() {
         Map<String, Object> ret = new LinkedHashMap<String, Object>(6);
-        ret.put("perpDocUid", Integer.valueOf(getPerpDocUid()));
+        ret.put("perpDocUid", getPerpDocUid());
         return ret;
     }
 

@@ -10,7 +10,6 @@ import java.util.Map;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.Version;
 
 @Entity(name="type_table_ddl")
 public class TypeTableDdl implements Serializable {
@@ -18,34 +17,9 @@ public class TypeTableDdl implements Serializable {
     /** Primary key. */
     protected static final String PK = "typeTableDdlUid";
 
-    /**
-     * The optimistic lock. Available via standard bean get/set operations.
-     */
-    @Version
-    @Column(name="LOCK_FLAG")
-    private Integer lockFlag;
-
-    /**
-     * Access method for the lockFlag property.
-     *
-     * @return the current value of the lockFlag property
-     */
-    public Integer getLockFlag() {
-        return lockFlag;
-    }
-
-    /**
-     * Sets the value of the lockFlag property.
-     *
-     * @param aLockFlag the new value of the lockFlag property
-     */
-    public void setLockFlag(Integer aLockFlag) {
-        lockFlag = aLockFlag;
-    }
-
     @Id
     @Column(name="Type_Table_DDL_UID", unique=true, nullable=false, precision=10)
-    private int typeTableDdlUid;
+    private Integer typeTableDdlUid;
     @Column(name="Table_Name", nullable=false, length=45)
     private String tableName;
     @Column(name="Col_Name", nullable=false, length=128)
@@ -69,7 +43,7 @@ public class TypeTableDdl implements Serializable {
      *
      * @return the current value of typeTableDdlUid
      */
-    public int getTypeTableDdlUid() {
+    public Integer getTypeTableDdlUid() {
         return typeTableDdlUid;
     }
 
@@ -78,7 +52,7 @@ public class TypeTableDdl implements Serializable {
      *
      * @param aTypeTableDdlUid the new value for typeTableDdlUid
      */
-    public void setTypeTableDdlUid(int aTypeTableDdlUid) {
+    public void setTypeTableDdlUid(Integer aTypeTableDdlUid) {
         typeTableDdlUid = aTypeTableDdlUid;
     }
 
@@ -204,7 +178,9 @@ public class TypeTableDdl implements Serializable {
             return false;
         }
         TypeTableDdl that = (TypeTableDdl) other;
-        if (this.getTypeTableDdlUid() != that.getTypeTableDdlUid()) {
+        Object myTypeTableDdlUid = this.getTypeTableDdlUid();
+        Object yourTypeTableDdlUid = that.getTypeTableDdlUid();
+        if (myTypeTableDdlUid==null ? yourTypeTableDdlUid!=null : !myTypeTableDdlUid.equals(yourTypeTableDdlUid)) {
             return false;
         }
         return true;
@@ -231,7 +207,11 @@ public class TypeTableDdl implements Serializable {
     public int hashCode() {
         int i;
         int result = 17;
-        i = getTypeTableDdlUid();
+        if (getTypeTableDdlUid() == null) {
+            i = 0;
+        } else {
+            i = getTypeTableDdlUid().hashCode();
+        }
         result = 37*result + i;
         return result;
     }
@@ -256,7 +236,7 @@ public class TypeTableDdl implements Serializable {
      */
     public Map<String, Object> getPrimaryKey() {
         Map<String, Object> ret = new LinkedHashMap<String, Object>(6);
-        ret.put("typeTableDdlUid", Integer.valueOf(getTypeTableDdlUid()));
+        ret.put("typeTableDdlUid", getTypeTableDdlUid());
         return ret;
     }
 

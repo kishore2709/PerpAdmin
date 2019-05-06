@@ -10,7 +10,6 @@ import java.util.Map;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.Version;
 
 @Entity(name="arber_maint_activity_log")
 public class ArberMaintActivityLog implements Serializable {
@@ -18,42 +17,17 @@ public class ArberMaintActivityLog implements Serializable {
     /** Primary key. */
     protected static final String PK = "amalUid";
 
-    /**
-     * The optimistic lock. Available via standard bean get/set operations.
-     */
-    @Version
-    @Column(name="LOCK_FLAG")
-    private Integer lockFlag;
-
-    /**
-     * Access method for the lockFlag property.
-     *
-     * @return the current value of the lockFlag property
-     */
-    public Integer getLockFlag() {
-        return lockFlag;
-    }
-
-    /**
-     * Sets the value of the lockFlag property.
-     *
-     * @param aLockFlag the new value of the lockFlag property
-     */
-    public void setLockFlag(Integer aLockFlag) {
-        lockFlag = aLockFlag;
-    }
-
     @Id
     @Column(name="AMAL_UID", unique=true, nullable=false, precision=10)
-    private int amalUid;
+    private Integer amalUid;
     @Column(name="Source", nullable=false, length=45)
     private String source;
     @Column(name="Action", nullable=false, length=45)
     private String action;
     @Column(name="Users_UID", nullable=false, precision=10)
-    private int usersUid;
+    private Integer usersUid;
     @Column(name="ID", nullable=false, precision=10)
-    private int id;
+    private Integer id;
     @Column(name="Create_Modified_By", nullable=false, length=45)
     private String createModifiedBy;
     @Column(name="Create_Modified_Date", nullable=false)
@@ -69,7 +43,7 @@ public class ArberMaintActivityLog implements Serializable {
      *
      * @return the current value of amalUid
      */
-    public int getAmalUid() {
+    public Integer getAmalUid() {
         return amalUid;
     }
 
@@ -78,7 +52,7 @@ public class ArberMaintActivityLog implements Serializable {
      *
      * @param aAmalUid the new value for amalUid
      */
-    public void setAmalUid(int aAmalUid) {
+    public void setAmalUid(Integer aAmalUid) {
         amalUid = aAmalUid;
     }
 
@@ -123,7 +97,7 @@ public class ArberMaintActivityLog implements Serializable {
      *
      * @return the current value of usersUid
      */
-    public int getUsersUid() {
+    public Integer getUsersUid() {
         return usersUid;
     }
 
@@ -132,7 +106,7 @@ public class ArberMaintActivityLog implements Serializable {
      *
      * @param aUsersUid the new value for usersUid
      */
-    public void setUsersUid(int aUsersUid) {
+    public void setUsersUid(Integer aUsersUid) {
         usersUid = aUsersUid;
     }
 
@@ -141,7 +115,7 @@ public class ArberMaintActivityLog implements Serializable {
      *
      * @return the current value of id
      */
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
@@ -150,7 +124,7 @@ public class ArberMaintActivityLog implements Serializable {
      *
      * @param aId the new value for id
      */
-    public void setId(int aId) {
+    public void setId(Integer aId) {
         id = aId;
     }
 
@@ -204,7 +178,9 @@ public class ArberMaintActivityLog implements Serializable {
             return false;
         }
         ArberMaintActivityLog that = (ArberMaintActivityLog) other;
-        if (this.getAmalUid() != that.getAmalUid()) {
+        Object myAmalUid = this.getAmalUid();
+        Object yourAmalUid = that.getAmalUid();
+        if (myAmalUid==null ? yourAmalUid!=null : !myAmalUid.equals(yourAmalUid)) {
             return false;
         }
         return true;
@@ -231,7 +207,11 @@ public class ArberMaintActivityLog implements Serializable {
     public int hashCode() {
         int i;
         int result = 17;
-        i = getAmalUid();
+        if (getAmalUid() == null) {
+            i = 0;
+        } else {
+            i = getAmalUid().hashCode();
+        }
         result = 37*result + i;
         return result;
     }
@@ -256,7 +236,7 @@ public class ArberMaintActivityLog implements Serializable {
      */
     public Map<String, Object> getPrimaryKey() {
         Map<String, Object> ret = new LinkedHashMap<String, Object>(6);
-        ret.put("amalUid", Integer.valueOf(getAmalUid()));
+        ret.put("amalUid", getAmalUid());
         return ret;
     }
 

@@ -12,7 +12,6 @@ import java.util.Map;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.Version;
 
 @Entity(name="ledger_aud")
 public class LedgerAud implements Serializable {
@@ -20,60 +19,35 @@ public class LedgerAud implements Serializable {
     /** Primary key. */
     protected static final String PK = "lAudUid";
 
-    /**
-     * The optimistic lock. Available via standard bean get/set operations.
-     */
-    @Version
-    @Column(name="LOCK_FLAG")
-    private Integer lockFlag;
-
-    /**
-     * Access method for the lockFlag property.
-     *
-     * @return the current value of the lockFlag property
-     */
-    public Integer getLockFlag() {
-        return lockFlag;
-    }
-
-    /**
-     * Sets the value of the lockFlag property.
-     *
-     * @param aLockFlag the new value of the lockFlag property
-     */
-    public void setLockFlag(Integer aLockFlag) {
-        lockFlag = aLockFlag;
-    }
-
     @Id
     @Column(name="LAud_UID", unique=true, nullable=false, precision=10)
-    private int lAudUid;
+    private Integer lAudUid;
     @Column(name="Ledger_UID", nullable=false, precision=10)
-    private int ledgerUid;
+    private Integer ledgerUid;
     @Column(name="LedgerActionType_UID", nullable=false, precision=10)
-    private int ledgerActionTypeUid;
+    private Integer ledgerActionTypeUid;
     @Column(name="Company_UID", nullable=false, precision=10)
-    private int companyUid;
+    private Integer companyUid;
     @Column(name="AppTrans_UID", nullable=false, precision=10)
-    private int appTransUid;
+    private Integer appTransUid;
     @Column(name="Referenced_pid", length=45)
     private String referencedPid;
     @Column(name="Refund_PID", length=45)
     private String refundPid;
     @Column(name="Invoice_UID", precision=10)
-    private int invoiceUid;
+    private Integer invoiceUid;
     @Column(name="PaymentStatus_UID", precision=10)
-    private int paymentStatusUid;
+    private Integer paymentStatusUid;
     @Column(name="PaymentMethod_UID", precision=10)
-    private int paymentMethodUid;
+    private Integer paymentMethodUid;
     @Column(name="Payment_UID", precision=10)
-    private int paymentUid;
+    private Integer paymentUid;
     @Column(name="Amount", nullable=false, precision=10, scale=2)
     private BigDecimal amount;
     @Column(name="Creation_Date")
     private Date creationDate;
     @Column(name="Active_Flag", nullable=false, length=1)
-    private String activeFlag;
+    private Character activeFlag;
     @Column(name="Create_Modified_By", nullable=false, length=45)
     private String createModifiedBy;
     @Column(name="Create_Modified_Date", nullable=false)
@@ -91,7 +65,7 @@ public class LedgerAud implements Serializable {
      *
      * @return the current value of lAudUid
      */
-    public int getLAudUid() {
+    public Integer getLAudUid() {
         return lAudUid;
     }
 
@@ -100,7 +74,7 @@ public class LedgerAud implements Serializable {
      *
      * @param aLAudUid the new value for lAudUid
      */
-    public void setLAudUid(int aLAudUid) {
+    public void setLAudUid(Integer aLAudUid) {
         lAudUid = aLAudUid;
     }
 
@@ -109,7 +83,7 @@ public class LedgerAud implements Serializable {
      *
      * @return the current value of ledgerUid
      */
-    public int getLedgerUid() {
+    public Integer getLedgerUid() {
         return ledgerUid;
     }
 
@@ -118,7 +92,7 @@ public class LedgerAud implements Serializable {
      *
      * @param aLedgerUid the new value for ledgerUid
      */
-    public void setLedgerUid(int aLedgerUid) {
+    public void setLedgerUid(Integer aLedgerUid) {
         ledgerUid = aLedgerUid;
     }
 
@@ -127,7 +101,7 @@ public class LedgerAud implements Serializable {
      *
      * @return the current value of ledgerActionTypeUid
      */
-    public int getLedgerActionTypeUid() {
+    public Integer getLedgerActionTypeUid() {
         return ledgerActionTypeUid;
     }
 
@@ -136,7 +110,7 @@ public class LedgerAud implements Serializable {
      *
      * @param aLedgerActionTypeUid the new value for ledgerActionTypeUid
      */
-    public void setLedgerActionTypeUid(int aLedgerActionTypeUid) {
+    public void setLedgerActionTypeUid(Integer aLedgerActionTypeUid) {
         ledgerActionTypeUid = aLedgerActionTypeUid;
     }
 
@@ -145,7 +119,7 @@ public class LedgerAud implements Serializable {
      *
      * @return the current value of companyUid
      */
-    public int getCompanyUid() {
+    public Integer getCompanyUid() {
         return companyUid;
     }
 
@@ -154,7 +128,7 @@ public class LedgerAud implements Serializable {
      *
      * @param aCompanyUid the new value for companyUid
      */
-    public void setCompanyUid(int aCompanyUid) {
+    public void setCompanyUid(Integer aCompanyUid) {
         companyUid = aCompanyUid;
     }
 
@@ -163,7 +137,7 @@ public class LedgerAud implements Serializable {
      *
      * @return the current value of appTransUid
      */
-    public int getAppTransUid() {
+    public Integer getAppTransUid() {
         return appTransUid;
     }
 
@@ -172,7 +146,7 @@ public class LedgerAud implements Serializable {
      *
      * @param aAppTransUid the new value for appTransUid
      */
-    public void setAppTransUid(int aAppTransUid) {
+    public void setAppTransUid(Integer aAppTransUid) {
         appTransUid = aAppTransUid;
     }
 
@@ -217,7 +191,7 @@ public class LedgerAud implements Serializable {
      *
      * @return the current value of invoiceUid
      */
-    public int getInvoiceUid() {
+    public Integer getInvoiceUid() {
         return invoiceUid;
     }
 
@@ -226,7 +200,7 @@ public class LedgerAud implements Serializable {
      *
      * @param aInvoiceUid the new value for invoiceUid
      */
-    public void setInvoiceUid(int aInvoiceUid) {
+    public void setInvoiceUid(Integer aInvoiceUid) {
         invoiceUid = aInvoiceUid;
     }
 
@@ -235,7 +209,7 @@ public class LedgerAud implements Serializable {
      *
      * @return the current value of paymentStatusUid
      */
-    public int getPaymentStatusUid() {
+    public Integer getPaymentStatusUid() {
         return paymentStatusUid;
     }
 
@@ -244,7 +218,7 @@ public class LedgerAud implements Serializable {
      *
      * @param aPaymentStatusUid the new value for paymentStatusUid
      */
-    public void setPaymentStatusUid(int aPaymentStatusUid) {
+    public void setPaymentStatusUid(Integer aPaymentStatusUid) {
         paymentStatusUid = aPaymentStatusUid;
     }
 
@@ -253,7 +227,7 @@ public class LedgerAud implements Serializable {
      *
      * @return the current value of paymentMethodUid
      */
-    public int getPaymentMethodUid() {
+    public Integer getPaymentMethodUid() {
         return paymentMethodUid;
     }
 
@@ -262,7 +236,7 @@ public class LedgerAud implements Serializable {
      *
      * @param aPaymentMethodUid the new value for paymentMethodUid
      */
-    public void setPaymentMethodUid(int aPaymentMethodUid) {
+    public void setPaymentMethodUid(Integer aPaymentMethodUid) {
         paymentMethodUid = aPaymentMethodUid;
     }
 
@@ -271,7 +245,7 @@ public class LedgerAud implements Serializable {
      *
      * @return the current value of paymentUid
      */
-    public int getPaymentUid() {
+    public Integer getPaymentUid() {
         return paymentUid;
     }
 
@@ -280,7 +254,7 @@ public class LedgerAud implements Serializable {
      *
      * @param aPaymentUid the new value for paymentUid
      */
-    public void setPaymentUid(int aPaymentUid) {
+    public void setPaymentUid(Integer aPaymentUid) {
         paymentUid = aPaymentUid;
     }
 
@@ -325,7 +299,7 @@ public class LedgerAud implements Serializable {
      *
      * @return the current value of activeFlag
      */
-    public String getActiveFlag() {
+    public Character getActiveFlag() {
         return activeFlag;
     }
 
@@ -334,7 +308,7 @@ public class LedgerAud implements Serializable {
      *
      * @param aActiveFlag the new value for activeFlag
      */
-    public void setActiveFlag(String aActiveFlag) {
+    public void setActiveFlag(Character aActiveFlag) {
         activeFlag = aActiveFlag;
     }
 
@@ -406,7 +380,9 @@ public class LedgerAud implements Serializable {
             return false;
         }
         LedgerAud that = (LedgerAud) other;
-        if (this.getLAudUid() != that.getLAudUid()) {
+        Object myLAudUid = this.getLAudUid();
+        Object yourLAudUid = that.getLAudUid();
+        if (myLAudUid==null ? yourLAudUid!=null : !myLAudUid.equals(yourLAudUid)) {
             return false;
         }
         return true;
@@ -433,7 +409,11 @@ public class LedgerAud implements Serializable {
     public int hashCode() {
         int i;
         int result = 17;
-        i = getLAudUid();
+        if (getLAudUid() == null) {
+            i = 0;
+        } else {
+            i = getLAudUid().hashCode();
+        }
         result = 37*result + i;
         return result;
     }
@@ -458,7 +438,7 @@ public class LedgerAud implements Serializable {
      */
     public Map<String, Object> getPrimaryKey() {
         Map<String, Object> ret = new LinkedHashMap<String, Object>(6);
-        ret.put("lAudUid", Integer.valueOf(getLAudUid()));
+        ret.put("lAudUid", getLAudUid());
         return ret;
     }
 

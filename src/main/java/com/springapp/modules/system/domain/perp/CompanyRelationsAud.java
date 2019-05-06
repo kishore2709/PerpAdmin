@@ -10,7 +10,6 @@ import java.util.Map;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.Version;
 
 @Entity(name="company_relations_aud")
 public class CompanyRelationsAud implements Serializable {
@@ -18,42 +17,17 @@ public class CompanyRelationsAud implements Serializable {
     /** Primary key. */
     protected static final String PK = "companyRelationsAudUid";
 
-    /**
-     * The optimistic lock. Available via standard bean get/set operations.
-     */
-    @Version
-    @Column(name="LOCK_FLAG")
-    private Integer lockFlag;
-
-    /**
-     * Access method for the lockFlag property.
-     *
-     * @return the current value of the lockFlag property
-     */
-    public Integer getLockFlag() {
-        return lockFlag;
-    }
-
-    /**
-     * Sets the value of the lockFlag property.
-     *
-     * @param aLockFlag the new value of the lockFlag property
-     */
-    public void setLockFlag(Integer aLockFlag) {
-        lockFlag = aLockFlag;
-    }
-
     @Id
     @Column(name="Company_Relations_Aud_UID", unique=true, nullable=false, precision=10)
-    private int companyRelationsAudUid;
+    private Integer companyRelationsAudUid;
     @Column(name="Company_Relations_UID", nullable=false, precision=10)
-    private int companyRelationsUid;
+    private Integer companyRelationsUid;
     @Column(name="Company_Rel_Type_UID", nullable=false, precision=10)
-    private int companyRelTypeUid;
+    private Integer companyRelTypeUid;
     @Column(name="Company_UID", nullable=false, precision=10)
-    private int companyUid;
+    private Integer companyUid;
     @Column(name="Parent_UID", nullable=false, precision=10)
-    private int parentUid;
+    private Integer parentUid;
     @Column(name="Create_Modified_By", nullable=false, length=45)
     private String createModifiedBy;
     @Column(name="Create_Modified_Date", nullable=false)
@@ -71,7 +45,7 @@ public class CompanyRelationsAud implements Serializable {
      *
      * @return the current value of companyRelationsAudUid
      */
-    public int getCompanyRelationsAudUid() {
+    public Integer getCompanyRelationsAudUid() {
         return companyRelationsAudUid;
     }
 
@@ -80,7 +54,7 @@ public class CompanyRelationsAud implements Serializable {
      *
      * @param aCompanyRelationsAudUid the new value for companyRelationsAudUid
      */
-    public void setCompanyRelationsAudUid(int aCompanyRelationsAudUid) {
+    public void setCompanyRelationsAudUid(Integer aCompanyRelationsAudUid) {
         companyRelationsAudUid = aCompanyRelationsAudUid;
     }
 
@@ -89,7 +63,7 @@ public class CompanyRelationsAud implements Serializable {
      *
      * @return the current value of companyRelationsUid
      */
-    public int getCompanyRelationsUid() {
+    public Integer getCompanyRelationsUid() {
         return companyRelationsUid;
     }
 
@@ -98,7 +72,7 @@ public class CompanyRelationsAud implements Serializable {
      *
      * @param aCompanyRelationsUid the new value for companyRelationsUid
      */
-    public void setCompanyRelationsUid(int aCompanyRelationsUid) {
+    public void setCompanyRelationsUid(Integer aCompanyRelationsUid) {
         companyRelationsUid = aCompanyRelationsUid;
     }
 
@@ -107,7 +81,7 @@ public class CompanyRelationsAud implements Serializable {
      *
      * @return the current value of companyRelTypeUid
      */
-    public int getCompanyRelTypeUid() {
+    public Integer getCompanyRelTypeUid() {
         return companyRelTypeUid;
     }
 
@@ -116,7 +90,7 @@ public class CompanyRelationsAud implements Serializable {
      *
      * @param aCompanyRelTypeUid the new value for companyRelTypeUid
      */
-    public void setCompanyRelTypeUid(int aCompanyRelTypeUid) {
+    public void setCompanyRelTypeUid(Integer aCompanyRelTypeUid) {
         companyRelTypeUid = aCompanyRelTypeUid;
     }
 
@@ -125,7 +99,7 @@ public class CompanyRelationsAud implements Serializable {
      *
      * @return the current value of companyUid
      */
-    public int getCompanyUid() {
+    public Integer getCompanyUid() {
         return companyUid;
     }
 
@@ -134,7 +108,7 @@ public class CompanyRelationsAud implements Serializable {
      *
      * @param aCompanyUid the new value for companyUid
      */
-    public void setCompanyUid(int aCompanyUid) {
+    public void setCompanyUid(Integer aCompanyUid) {
         companyUid = aCompanyUid;
     }
 
@@ -143,7 +117,7 @@ public class CompanyRelationsAud implements Serializable {
      *
      * @return the current value of parentUid
      */
-    public int getParentUid() {
+    public Integer getParentUid() {
         return parentUid;
     }
 
@@ -152,7 +126,7 @@ public class CompanyRelationsAud implements Serializable {
      *
      * @param aParentUid the new value for parentUid
      */
-    public void setParentUid(int aParentUid) {
+    public void setParentUid(Integer aParentUid) {
         parentUid = aParentUid;
     }
 
@@ -224,7 +198,9 @@ public class CompanyRelationsAud implements Serializable {
             return false;
         }
         CompanyRelationsAud that = (CompanyRelationsAud) other;
-        if (this.getCompanyRelationsAudUid() != that.getCompanyRelationsAudUid()) {
+        Object myCompanyRelationsAudUid = this.getCompanyRelationsAudUid();
+        Object yourCompanyRelationsAudUid = that.getCompanyRelationsAudUid();
+        if (myCompanyRelationsAudUid==null ? yourCompanyRelationsAudUid!=null : !myCompanyRelationsAudUid.equals(yourCompanyRelationsAudUid)) {
             return false;
         }
         return true;
@@ -251,7 +227,11 @@ public class CompanyRelationsAud implements Serializable {
     public int hashCode() {
         int i;
         int result = 17;
-        i = getCompanyRelationsAudUid();
+        if (getCompanyRelationsAudUid() == null) {
+            i = 0;
+        } else {
+            i = getCompanyRelationsAudUid().hashCode();
+        }
         result = 37*result + i;
         return result;
     }
@@ -276,7 +256,7 @@ public class CompanyRelationsAud implements Serializable {
      */
     public Map<String, Object> getPrimaryKey() {
         Map<String, Object> ret = new LinkedHashMap<String, Object>(6);
-        ret.put("companyRelationsAudUid", Integer.valueOf(getCompanyRelationsAudUid()));
+        ret.put("companyRelationsAudUid", getCompanyRelationsAudUid());
         return ret;
     }
 

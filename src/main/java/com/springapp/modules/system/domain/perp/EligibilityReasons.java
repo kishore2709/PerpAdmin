@@ -12,7 +12,6 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.Version;
 
 @Entity(name="eligibility_reasons")
 public class EligibilityReasons implements Serializable {
@@ -20,42 +19,17 @@ public class EligibilityReasons implements Serializable {
     /** Primary key. */
     protected static final String PK = "eligiblityReasonUid";
 
-    /**
-     * The optimistic lock. Available via standard bean get/set operations.
-     */
-    @Version
-    @Column(name="LOCK_FLAG")
-    private Integer lockFlag;
-
-    /**
-     * Access method for the lockFlag property.
-     *
-     * @return the current value of the lockFlag property
-     */
-    public Integer getLockFlag() {
-        return lockFlag;
-    }
-
-    /**
-     * Sets the value of the lockFlag property.
-     *
-     * @param aLockFlag the new value of the lockFlag property
-     */
-    public void setLockFlag(Integer aLockFlag) {
-        lockFlag = aLockFlag;
-    }
-
     @Id
     @Column(name="EligiblityReason_UID", unique=true, nullable=false, precision=10)
-    private int eligiblityReasonUid;
+    private Integer eligiblityReasonUid;
     @Column(name="Completed_Flag", length=1)
-    private String completedFlag;
+    private Character completedFlag;
     @Column(name="Needs_Review_Flag", length=1)
-    private String needsReviewFlag;
+    private Character needsReviewFlag;
     @Column(name="Eligibility_Indicator", length=1)
-    private String eligibilityIndicator;
+    private Character eligibilityIndicator;
     @Column(name="Comment", length=128)
-    private String comment;
+    private Character comment;
     @Column(name="Create_Modified_By", nullable=false, length=45)
     private String createModifiedBy;
     @Column(name="Create_Modified_Date", nullable=false)
@@ -80,7 +54,7 @@ public class EligibilityReasons implements Serializable {
      *
      * @return the current value of eligiblityReasonUid
      */
-    public int getEligiblityReasonUid() {
+    public Integer getEligiblityReasonUid() {
         return eligiblityReasonUid;
     }
 
@@ -89,7 +63,7 @@ public class EligibilityReasons implements Serializable {
      *
      * @param aEligiblityReasonUid the new value for eligiblityReasonUid
      */
-    public void setEligiblityReasonUid(int aEligiblityReasonUid) {
+    public void setEligiblityReasonUid(Integer aEligiblityReasonUid) {
         eligiblityReasonUid = aEligiblityReasonUid;
     }
 
@@ -98,7 +72,7 @@ public class EligibilityReasons implements Serializable {
      *
      * @return the current value of completedFlag
      */
-    public String getCompletedFlag() {
+    public Character getCompletedFlag() {
         return completedFlag;
     }
 
@@ -107,7 +81,7 @@ public class EligibilityReasons implements Serializable {
      *
      * @param aCompletedFlag the new value for completedFlag
      */
-    public void setCompletedFlag(String aCompletedFlag) {
+    public void setCompletedFlag(Character aCompletedFlag) {
         completedFlag = aCompletedFlag;
     }
 
@@ -116,7 +90,7 @@ public class EligibilityReasons implements Serializable {
      *
      * @return the current value of needsReviewFlag
      */
-    public String getNeedsReviewFlag() {
+    public Character getNeedsReviewFlag() {
         return needsReviewFlag;
     }
 
@@ -125,7 +99,7 @@ public class EligibilityReasons implements Serializable {
      *
      * @param aNeedsReviewFlag the new value for needsReviewFlag
      */
-    public void setNeedsReviewFlag(String aNeedsReviewFlag) {
+    public void setNeedsReviewFlag(Character aNeedsReviewFlag) {
         needsReviewFlag = aNeedsReviewFlag;
     }
 
@@ -134,7 +108,7 @@ public class EligibilityReasons implements Serializable {
      *
      * @return the current value of eligibilityIndicator
      */
-    public String getEligibilityIndicator() {
+    public Character getEligibilityIndicator() {
         return eligibilityIndicator;
     }
 
@@ -143,7 +117,7 @@ public class EligibilityReasons implements Serializable {
      *
      * @param aEligibilityIndicator the new value for eligibilityIndicator
      */
-    public void setEligibilityIndicator(String aEligibilityIndicator) {
+    public void setEligibilityIndicator(Character aEligibilityIndicator) {
         eligibilityIndicator = aEligibilityIndicator;
     }
 
@@ -152,7 +126,7 @@ public class EligibilityReasons implements Serializable {
      *
      * @return the current value of comment
      */
-    public String getComment() {
+    public Character getComment() {
         return comment;
     }
 
@@ -161,7 +135,7 @@ public class EligibilityReasons implements Serializable {
      *
      * @param aComment the new value for comment
      */
-    public void setComment(String aComment) {
+    public void setComment(Character aComment) {
         comment = aComment;
     }
 
@@ -269,7 +243,9 @@ public class EligibilityReasons implements Serializable {
             return false;
         }
         EligibilityReasons that = (EligibilityReasons) other;
-        if (this.getEligiblityReasonUid() != that.getEligiblityReasonUid()) {
+        Object myEligiblityReasonUid = this.getEligiblityReasonUid();
+        Object yourEligiblityReasonUid = that.getEligiblityReasonUid();
+        if (myEligiblityReasonUid==null ? yourEligiblityReasonUid!=null : !myEligiblityReasonUid.equals(yourEligiblityReasonUid)) {
             return false;
         }
         return true;
@@ -296,7 +272,11 @@ public class EligibilityReasons implements Serializable {
     public int hashCode() {
         int i;
         int result = 17;
-        i = getEligiblityReasonUid();
+        if (getEligiblityReasonUid() == null) {
+            i = 0;
+        } else {
+            i = getEligiblityReasonUid().hashCode();
+        }
         result = 37*result + i;
         return result;
     }
@@ -321,7 +301,7 @@ public class EligibilityReasons implements Serializable {
      */
     public Map<String, Object> getPrimaryKey() {
         Map<String, Object> ret = new LinkedHashMap<String, Object>(6);
-        ret.put("eligiblityReasonUid", Integer.valueOf(getEligiblityReasonUid()));
+        ret.put("eligiblityReasonUid", getEligiblityReasonUid());
         return ret;
     }
 

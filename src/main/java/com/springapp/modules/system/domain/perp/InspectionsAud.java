@@ -10,7 +10,6 @@ import java.util.Map;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.Version;
 
 @Entity(name="inspections_aud")
 public class InspectionsAud implements Serializable {
@@ -18,82 +17,57 @@ public class InspectionsAud implements Serializable {
     /** Primary key. */
     protected static final String PK = "iAudUid";
 
-    /**
-     * The optimistic lock. Available via standard bean get/set operations.
-     */
-    @Version
-    @Column(name="LOCK_FLAG")
-    private Integer lockFlag;
-
-    /**
-     * Access method for the lockFlag property.
-     *
-     * @return the current value of the lockFlag property
-     */
-    public Integer getLockFlag() {
-        return lockFlag;
-    }
-
-    /**
-     * Sets the value of the lockFlag property.
-     *
-     * @param aLockFlag the new value of the lockFlag property
-     */
-    public void setLockFlag(Integer aLockFlag) {
-        lockFlag = aLockFlag;
-    }
-
     @Id
     @Column(name="IAud_UID", unique=true, nullable=false, precision=10)
-    private int iAudUid;
+    private Integer iAudUid;
     @Column(name="Inspection_UID", nullable=false, precision=10)
-    private int inspectionUid;
+    private Integer inspectionUid;
     @Column(name="RegItem_UID", nullable=false, precision=10)
-    private int regItemUid;
+    private Integer regItemUid;
     @Column(name="Inspector_UID", nullable=false, precision=10)
-    private int inspectorUid;
+    private Integer inspectorUid;
     @Column(name="InspectionSite_UID", precision=10)
-    private int inspectionSiteUid;
+    private Integer inspectionSiteUid;
     @Column(name="Company_UID", precision=10)
-    private int companyUid;
+    private Integer companyUid;
     @Column(name="InspectionType_UID", precision=10)
-    private int inspectionTypeUid;
+    private Integer inspectionTypeUid;
     @Column(name="OrigAssignedInspector_UID", precision=10)
-    private int origAssignedInspectorUid;
+    private Integer origAssignedInspectorUid;
     @Column(name="InspectionStatus_UID", nullable=false, precision=10)
-    private int inspectionStatusUid;
+    private Integer inspectionStatusUid;
     @Column(name="AllCondComplied_Flag", length=1)
-    private String allCondCompliedFlag;
+    private Character allCondCompliedFlag;
     @Column(name="AllCondCompliedNot", length=3000)
     private String allCondCompliedNot;
     @Column(name="CertAccessible_Flag", length=1)
-    private String certAccessibleFlag;
+    private Character certAccessibleFlag;
     @Column(name="In_Field_Inspection_Flag", length=1)
-    private String inFieldInspectionFlag;
+    private Character inFieldInspectionFlag;
     @Column(name="Inspection_Date")
     private Timestamp inspectionDate;
     @Column(name="InspectorsDistrict_UID", precision=10)
-    private int inspectorsDistrictUid;
+    private Integer inspectorsDistrictUid;
     @Column(name="ObservedOperating_Flag", length=1)
-    private String observedOperatingFlag;
+    private Character observedOperatingFlag;
     @Column(name="ObservedPortable_Flag", length=1)
-    private String observedPortableFlag;
+    private Character observedPortableFlag;
     @Column(name="OrigAssigned_Date")
     private Timestamp origAssignedDate;
     @Column(name="PlacardAffixed_Flag", length=1)
-    private String placardAffixedFlag;
+    private Character placardAffixedFlag;
     @Column(name="Remarks", length=255)
     private String remarks;
     @Column(name="StickerAffixed_Flag", length=1)
-    private String stickerAffixedFlag;
+    private Character stickerAffixedFlag;
     @Column(name="UsingCARBCetBlastMat_Flag", length=1)
-    private String usingCarbCetBlastMatFlag;
+    private Character usingCarbCetBlastMatFlag;
     @Column(name="VEEDone_Flag", length=1)
-    private String veeDoneFlag;
+    private Character veeDoneFlag;
     @Column(name="Inspection_Certified_Date")
     private Timestamp inspectionCertifiedDate;
     @Column(name="Inspection_Certified_Flag", length=1)
-    private String inspectionCertifiedFlag;
+    private Character inspectionCertifiedFlag;
     @Column(name="Create_Modified_By", nullable=false, length=45)
     private String createModifiedBy;
     @Column(name="Create_Modified_Date", nullable=false)
@@ -105,7 +79,7 @@ public class InspectionsAud implements Serializable {
     @Column(name="Legacy_DateRenewal")
     private Timestamp legacyDateRenewal;
     @Column(name="Legacy_DateRenewalStatus", precision=5)
-    private short legacyDateRenewalStatus;
+    private Short legacyDateRenewalStatus;
     @Column(name="Legacy_DaysOperating", length=50)
     private String legacyDaysOperating;
     @Column(name="Legacy_Opacity", length=50)
@@ -113,7 +87,7 @@ public class InspectionsAud implements Serializable {
     @Column(name="Legacy_VEERequired", length=50)
     private String legacyVeeRequired;
     @Column(name="Active_Flag", length=1)
-    private String activeFlag;
+    private Character activeFlag;
     @Column(name="Operation", nullable=false, length=10)
     private String operation;
 
@@ -127,7 +101,7 @@ public class InspectionsAud implements Serializable {
      *
      * @return the current value of iAudUid
      */
-    public int getIAudUid() {
+    public Integer getIAudUid() {
         return iAudUid;
     }
 
@@ -136,7 +110,7 @@ public class InspectionsAud implements Serializable {
      *
      * @param aIAudUid the new value for iAudUid
      */
-    public void setIAudUid(int aIAudUid) {
+    public void setIAudUid(Integer aIAudUid) {
         iAudUid = aIAudUid;
     }
 
@@ -145,7 +119,7 @@ public class InspectionsAud implements Serializable {
      *
      * @return the current value of inspectionUid
      */
-    public int getInspectionUid() {
+    public Integer getInspectionUid() {
         return inspectionUid;
     }
 
@@ -154,7 +128,7 @@ public class InspectionsAud implements Serializable {
      *
      * @param aInspectionUid the new value for inspectionUid
      */
-    public void setInspectionUid(int aInspectionUid) {
+    public void setInspectionUid(Integer aInspectionUid) {
         inspectionUid = aInspectionUid;
     }
 
@@ -163,7 +137,7 @@ public class InspectionsAud implements Serializable {
      *
      * @return the current value of regItemUid
      */
-    public int getRegItemUid() {
+    public Integer getRegItemUid() {
         return regItemUid;
     }
 
@@ -172,7 +146,7 @@ public class InspectionsAud implements Serializable {
      *
      * @param aRegItemUid the new value for regItemUid
      */
-    public void setRegItemUid(int aRegItemUid) {
+    public void setRegItemUid(Integer aRegItemUid) {
         regItemUid = aRegItemUid;
     }
 
@@ -181,7 +155,7 @@ public class InspectionsAud implements Serializable {
      *
      * @return the current value of inspectorUid
      */
-    public int getInspectorUid() {
+    public Integer getInspectorUid() {
         return inspectorUid;
     }
 
@@ -190,7 +164,7 @@ public class InspectionsAud implements Serializable {
      *
      * @param aInspectorUid the new value for inspectorUid
      */
-    public void setInspectorUid(int aInspectorUid) {
+    public void setInspectorUid(Integer aInspectorUid) {
         inspectorUid = aInspectorUid;
     }
 
@@ -199,7 +173,7 @@ public class InspectionsAud implements Serializable {
      *
      * @return the current value of inspectionSiteUid
      */
-    public int getInspectionSiteUid() {
+    public Integer getInspectionSiteUid() {
         return inspectionSiteUid;
     }
 
@@ -208,7 +182,7 @@ public class InspectionsAud implements Serializable {
      *
      * @param aInspectionSiteUid the new value for inspectionSiteUid
      */
-    public void setInspectionSiteUid(int aInspectionSiteUid) {
+    public void setInspectionSiteUid(Integer aInspectionSiteUid) {
         inspectionSiteUid = aInspectionSiteUid;
     }
 
@@ -217,7 +191,7 @@ public class InspectionsAud implements Serializable {
      *
      * @return the current value of companyUid
      */
-    public int getCompanyUid() {
+    public Integer getCompanyUid() {
         return companyUid;
     }
 
@@ -226,7 +200,7 @@ public class InspectionsAud implements Serializable {
      *
      * @param aCompanyUid the new value for companyUid
      */
-    public void setCompanyUid(int aCompanyUid) {
+    public void setCompanyUid(Integer aCompanyUid) {
         companyUid = aCompanyUid;
     }
 
@@ -235,7 +209,7 @@ public class InspectionsAud implements Serializable {
      *
      * @return the current value of inspectionTypeUid
      */
-    public int getInspectionTypeUid() {
+    public Integer getInspectionTypeUid() {
         return inspectionTypeUid;
     }
 
@@ -244,7 +218,7 @@ public class InspectionsAud implements Serializable {
      *
      * @param aInspectionTypeUid the new value for inspectionTypeUid
      */
-    public void setInspectionTypeUid(int aInspectionTypeUid) {
+    public void setInspectionTypeUid(Integer aInspectionTypeUid) {
         inspectionTypeUid = aInspectionTypeUid;
     }
 
@@ -253,7 +227,7 @@ public class InspectionsAud implements Serializable {
      *
      * @return the current value of origAssignedInspectorUid
      */
-    public int getOrigAssignedInspectorUid() {
+    public Integer getOrigAssignedInspectorUid() {
         return origAssignedInspectorUid;
     }
 
@@ -262,7 +236,7 @@ public class InspectionsAud implements Serializable {
      *
      * @param aOrigAssignedInspectorUid the new value for origAssignedInspectorUid
      */
-    public void setOrigAssignedInspectorUid(int aOrigAssignedInspectorUid) {
+    public void setOrigAssignedInspectorUid(Integer aOrigAssignedInspectorUid) {
         origAssignedInspectorUid = aOrigAssignedInspectorUid;
     }
 
@@ -271,7 +245,7 @@ public class InspectionsAud implements Serializable {
      *
      * @return the current value of inspectionStatusUid
      */
-    public int getInspectionStatusUid() {
+    public Integer getInspectionStatusUid() {
         return inspectionStatusUid;
     }
 
@@ -280,7 +254,7 @@ public class InspectionsAud implements Serializable {
      *
      * @param aInspectionStatusUid the new value for inspectionStatusUid
      */
-    public void setInspectionStatusUid(int aInspectionStatusUid) {
+    public void setInspectionStatusUid(Integer aInspectionStatusUid) {
         inspectionStatusUid = aInspectionStatusUid;
     }
 
@@ -289,7 +263,7 @@ public class InspectionsAud implements Serializable {
      *
      * @return the current value of allCondCompliedFlag
      */
-    public String getAllCondCompliedFlag() {
+    public Character getAllCondCompliedFlag() {
         return allCondCompliedFlag;
     }
 
@@ -298,7 +272,7 @@ public class InspectionsAud implements Serializable {
      *
      * @param aAllCondCompliedFlag the new value for allCondCompliedFlag
      */
-    public void setAllCondCompliedFlag(String aAllCondCompliedFlag) {
+    public void setAllCondCompliedFlag(Character aAllCondCompliedFlag) {
         allCondCompliedFlag = aAllCondCompliedFlag;
     }
 
@@ -325,7 +299,7 @@ public class InspectionsAud implements Serializable {
      *
      * @return the current value of certAccessibleFlag
      */
-    public String getCertAccessibleFlag() {
+    public Character getCertAccessibleFlag() {
         return certAccessibleFlag;
     }
 
@@ -334,7 +308,7 @@ public class InspectionsAud implements Serializable {
      *
      * @param aCertAccessibleFlag the new value for certAccessibleFlag
      */
-    public void setCertAccessibleFlag(String aCertAccessibleFlag) {
+    public void setCertAccessibleFlag(Character aCertAccessibleFlag) {
         certAccessibleFlag = aCertAccessibleFlag;
     }
 
@@ -343,7 +317,7 @@ public class InspectionsAud implements Serializable {
      *
      * @return the current value of inFieldInspectionFlag
      */
-    public String getInFieldInspectionFlag() {
+    public Character getInFieldInspectionFlag() {
         return inFieldInspectionFlag;
     }
 
@@ -352,7 +326,7 @@ public class InspectionsAud implements Serializable {
      *
      * @param aInFieldInspectionFlag the new value for inFieldInspectionFlag
      */
-    public void setInFieldInspectionFlag(String aInFieldInspectionFlag) {
+    public void setInFieldInspectionFlag(Character aInFieldInspectionFlag) {
         inFieldInspectionFlag = aInFieldInspectionFlag;
     }
 
@@ -379,7 +353,7 @@ public class InspectionsAud implements Serializable {
      *
      * @return the current value of inspectorsDistrictUid
      */
-    public int getInspectorsDistrictUid() {
+    public Integer getInspectorsDistrictUid() {
         return inspectorsDistrictUid;
     }
 
@@ -388,7 +362,7 @@ public class InspectionsAud implements Serializable {
      *
      * @param aInspectorsDistrictUid the new value for inspectorsDistrictUid
      */
-    public void setInspectorsDistrictUid(int aInspectorsDistrictUid) {
+    public void setInspectorsDistrictUid(Integer aInspectorsDistrictUid) {
         inspectorsDistrictUid = aInspectorsDistrictUid;
     }
 
@@ -397,7 +371,7 @@ public class InspectionsAud implements Serializable {
      *
      * @return the current value of observedOperatingFlag
      */
-    public String getObservedOperatingFlag() {
+    public Character getObservedOperatingFlag() {
         return observedOperatingFlag;
     }
 
@@ -406,7 +380,7 @@ public class InspectionsAud implements Serializable {
      *
      * @param aObservedOperatingFlag the new value for observedOperatingFlag
      */
-    public void setObservedOperatingFlag(String aObservedOperatingFlag) {
+    public void setObservedOperatingFlag(Character aObservedOperatingFlag) {
         observedOperatingFlag = aObservedOperatingFlag;
     }
 
@@ -415,7 +389,7 @@ public class InspectionsAud implements Serializable {
      *
      * @return the current value of observedPortableFlag
      */
-    public String getObservedPortableFlag() {
+    public Character getObservedPortableFlag() {
         return observedPortableFlag;
     }
 
@@ -424,7 +398,7 @@ public class InspectionsAud implements Serializable {
      *
      * @param aObservedPortableFlag the new value for observedPortableFlag
      */
-    public void setObservedPortableFlag(String aObservedPortableFlag) {
+    public void setObservedPortableFlag(Character aObservedPortableFlag) {
         observedPortableFlag = aObservedPortableFlag;
     }
 
@@ -451,7 +425,7 @@ public class InspectionsAud implements Serializable {
      *
      * @return the current value of placardAffixedFlag
      */
-    public String getPlacardAffixedFlag() {
+    public Character getPlacardAffixedFlag() {
         return placardAffixedFlag;
     }
 
@@ -460,7 +434,7 @@ public class InspectionsAud implements Serializable {
      *
      * @param aPlacardAffixedFlag the new value for placardAffixedFlag
      */
-    public void setPlacardAffixedFlag(String aPlacardAffixedFlag) {
+    public void setPlacardAffixedFlag(Character aPlacardAffixedFlag) {
         placardAffixedFlag = aPlacardAffixedFlag;
     }
 
@@ -487,7 +461,7 @@ public class InspectionsAud implements Serializable {
      *
      * @return the current value of stickerAffixedFlag
      */
-    public String getStickerAffixedFlag() {
+    public Character getStickerAffixedFlag() {
         return stickerAffixedFlag;
     }
 
@@ -496,7 +470,7 @@ public class InspectionsAud implements Serializable {
      *
      * @param aStickerAffixedFlag the new value for stickerAffixedFlag
      */
-    public void setStickerAffixedFlag(String aStickerAffixedFlag) {
+    public void setStickerAffixedFlag(Character aStickerAffixedFlag) {
         stickerAffixedFlag = aStickerAffixedFlag;
     }
 
@@ -505,7 +479,7 @@ public class InspectionsAud implements Serializable {
      *
      * @return the current value of usingCarbCetBlastMatFlag
      */
-    public String getUsingCarbCetBlastMatFlag() {
+    public Character getUsingCarbCetBlastMatFlag() {
         return usingCarbCetBlastMatFlag;
     }
 
@@ -514,7 +488,7 @@ public class InspectionsAud implements Serializable {
      *
      * @param aUsingCarbCetBlastMatFlag the new value for usingCarbCetBlastMatFlag
      */
-    public void setUsingCarbCetBlastMatFlag(String aUsingCarbCetBlastMatFlag) {
+    public void setUsingCarbCetBlastMatFlag(Character aUsingCarbCetBlastMatFlag) {
         usingCarbCetBlastMatFlag = aUsingCarbCetBlastMatFlag;
     }
 
@@ -523,7 +497,7 @@ public class InspectionsAud implements Serializable {
      *
      * @return the current value of veeDoneFlag
      */
-    public String getVeeDoneFlag() {
+    public Character getVeeDoneFlag() {
         return veeDoneFlag;
     }
 
@@ -532,7 +506,7 @@ public class InspectionsAud implements Serializable {
      *
      * @param aVeeDoneFlag the new value for veeDoneFlag
      */
-    public void setVeeDoneFlag(String aVeeDoneFlag) {
+    public void setVeeDoneFlag(Character aVeeDoneFlag) {
         veeDoneFlag = aVeeDoneFlag;
     }
 
@@ -559,7 +533,7 @@ public class InspectionsAud implements Serializable {
      *
      * @return the current value of inspectionCertifiedFlag
      */
-    public String getInspectionCertifiedFlag() {
+    public Character getInspectionCertifiedFlag() {
         return inspectionCertifiedFlag;
     }
 
@@ -568,7 +542,7 @@ public class InspectionsAud implements Serializable {
      *
      * @param aInspectionCertifiedFlag the new value for inspectionCertifiedFlag
      */
-    public void setInspectionCertifiedFlag(String aInspectionCertifiedFlag) {
+    public void setInspectionCertifiedFlag(Character aInspectionCertifiedFlag) {
         inspectionCertifiedFlag = aInspectionCertifiedFlag;
     }
 
@@ -667,7 +641,7 @@ public class InspectionsAud implements Serializable {
      *
      * @return the current value of legacyDateRenewalStatus
      */
-    public short getLegacyDateRenewalStatus() {
+    public Short getLegacyDateRenewalStatus() {
         return legacyDateRenewalStatus;
     }
 
@@ -676,7 +650,7 @@ public class InspectionsAud implements Serializable {
      *
      * @param aLegacyDateRenewalStatus the new value for legacyDateRenewalStatus
      */
-    public void setLegacyDateRenewalStatus(short aLegacyDateRenewalStatus) {
+    public void setLegacyDateRenewalStatus(Short aLegacyDateRenewalStatus) {
         legacyDateRenewalStatus = aLegacyDateRenewalStatus;
     }
 
@@ -739,7 +713,7 @@ public class InspectionsAud implements Serializable {
      *
      * @return the current value of activeFlag
      */
-    public String getActiveFlag() {
+    public Character getActiveFlag() {
         return activeFlag;
     }
 
@@ -748,7 +722,7 @@ public class InspectionsAud implements Serializable {
      *
      * @param aActiveFlag the new value for activeFlag
      */
-    public void setActiveFlag(String aActiveFlag) {
+    public void setActiveFlag(Character aActiveFlag) {
         activeFlag = aActiveFlag;
     }
 
@@ -784,7 +758,9 @@ public class InspectionsAud implements Serializable {
             return false;
         }
         InspectionsAud that = (InspectionsAud) other;
-        if (this.getIAudUid() != that.getIAudUid()) {
+        Object myIAudUid = this.getIAudUid();
+        Object yourIAudUid = that.getIAudUid();
+        if (myIAudUid==null ? yourIAudUid!=null : !myIAudUid.equals(yourIAudUid)) {
             return false;
         }
         return true;
@@ -811,7 +787,11 @@ public class InspectionsAud implements Serializable {
     public int hashCode() {
         int i;
         int result = 17;
-        i = getIAudUid();
+        if (getIAudUid() == null) {
+            i = 0;
+        } else {
+            i = getIAudUid().hashCode();
+        }
         result = 37*result + i;
         return result;
     }
@@ -836,7 +816,7 @@ public class InspectionsAud implements Serializable {
      */
     public Map<String, Object> getPrimaryKey() {
         Map<String, Object> ret = new LinkedHashMap<String, Object>(6);
-        ret.put("iAudUid", Integer.valueOf(getIAudUid()));
+        ret.put("iAudUid", getIAudUid());
         return ret;
     }
 

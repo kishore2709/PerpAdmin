@@ -14,7 +14,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.Version;
 
 @Entity(name="note_complaints")
 public class NoteComplaints implements Serializable {
@@ -22,34 +21,9 @@ public class NoteComplaints implements Serializable {
     /** Primary key. */
     protected static final String PK = "noteComplaintUid";
 
-    /**
-     * The optimistic lock. Available via standard bean get/set operations.
-     */
-    @Version
-    @Column(name="LOCK_FLAG")
-    private Integer lockFlag;
-
-    /**
-     * Access method for the lockFlag property.
-     *
-     * @return the current value of the lockFlag property
-     */
-    public Integer getLockFlag() {
-        return lockFlag;
-    }
-
-    /**
-     * Sets the value of the lockFlag property.
-     *
-     * @param aLockFlag the new value of the lockFlag property
-     */
-    public void setLockFlag(Integer aLockFlag) {
-        lockFlag = aLockFlag;
-    }
-
     @Id
     @Column(name="NoteComplaint_UID", unique=true, nullable=false, precision=10)
-    private int noteComplaintUid;
+    private Integer noteComplaintUid;
     @Column(name="Subject", length=128)
     private String subject;
     @Column(name="Note_Text", nullable=false, length=2000)
@@ -118,7 +92,7 @@ public class NoteComplaints implements Serializable {
      *
      * @return the current value of noteComplaintUid
      */
-    public int getNoteComplaintUid() {
+    public Integer getNoteComplaintUid() {
         return noteComplaintUid;
     }
 
@@ -127,7 +101,7 @@ public class NoteComplaints implements Serializable {
      *
      * @param aNoteComplaintUid the new value for noteComplaintUid
      */
-    public void setNoteComplaintUid(int aNoteComplaintUid) {
+    public void setNoteComplaintUid(Integer aNoteComplaintUid) {
         noteComplaintUid = aNoteComplaintUid;
     }
 
@@ -541,7 +515,9 @@ public class NoteComplaints implements Serializable {
             return false;
         }
         NoteComplaints that = (NoteComplaints) other;
-        if (this.getNoteComplaintUid() != that.getNoteComplaintUid()) {
+        Object myNoteComplaintUid = this.getNoteComplaintUid();
+        Object yourNoteComplaintUid = that.getNoteComplaintUid();
+        if (myNoteComplaintUid==null ? yourNoteComplaintUid!=null : !myNoteComplaintUid.equals(yourNoteComplaintUid)) {
             return false;
         }
         return true;
@@ -568,7 +544,11 @@ public class NoteComplaints implements Serializable {
     public int hashCode() {
         int i;
         int result = 17;
-        i = getNoteComplaintUid();
+        if (getNoteComplaintUid() == null) {
+            i = 0;
+        } else {
+            i = getNoteComplaintUid().hashCode();
+        }
         result = 37*result + i;
         return result;
     }
@@ -593,7 +573,7 @@ public class NoteComplaints implements Serializable {
      */
     public Map<String, Object> getPrimaryKey() {
         Map<String, Object> ret = new LinkedHashMap<String, Object>(6);
-        ret.put("noteComplaintUid", Integer.valueOf(getNoteComplaintUid()));
+        ret.put("noteComplaintUid", getNoteComplaintUid());
         return ret;
     }
 

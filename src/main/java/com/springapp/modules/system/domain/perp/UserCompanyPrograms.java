@@ -12,7 +12,6 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.Version;
 
 @Entity(name="user_company_programs")
 public class UserCompanyPrograms implements Serializable {
@@ -20,38 +19,13 @@ public class UserCompanyPrograms implements Serializable {
     /** Primary key. */
     protected static final String PK = "userCOmpanyProgramsUid";
 
-    /**
-     * The optimistic lock. Available via standard bean get/set operations.
-     */
-    @Version
-    @Column(name="LOCK_FLAG")
-    private Integer lockFlag;
-
-    /**
-     * Access method for the lockFlag property.
-     *
-     * @return the current value of the lockFlag property
-     */
-    public Integer getLockFlag() {
-        return lockFlag;
-    }
-
-    /**
-     * Sets the value of the lockFlag property.
-     *
-     * @param aLockFlag the new value of the lockFlag property
-     */
-    public void setLockFlag(Integer aLockFlag) {
-        lockFlag = aLockFlag;
-    }
-
     @Id
     @Column(name="User_COmpany_Programs_UID", unique=true, nullable=false, precision=10)
-    private int userCOmpanyProgramsUid;
+    private Integer userCOmpanyProgramsUid;
     @Column(name="Company_Programs_UID", precision=10)
-    private int companyProgramsUid;
+    private Integer companyProgramsUid;
     @Column(name="User_Program_Pref", precision=10)
-    private int userProgramPref;
+    private Integer userProgramPref;
     @Column(name="Create_Modified_By", nullable=false, length=45)
     private String createModifiedBy;
     @Column(name="Create_Modified_Date", nullable=false)
@@ -70,7 +44,7 @@ public class UserCompanyPrograms implements Serializable {
      *
      * @return the current value of userCOmpanyProgramsUid
      */
-    public int getUserCOmpanyProgramsUid() {
+    public Integer getUserCOmpanyProgramsUid() {
         return userCOmpanyProgramsUid;
     }
 
@@ -79,7 +53,7 @@ public class UserCompanyPrograms implements Serializable {
      *
      * @param aUserCOmpanyProgramsUid the new value for userCOmpanyProgramsUid
      */
-    public void setUserCOmpanyProgramsUid(int aUserCOmpanyProgramsUid) {
+    public void setUserCOmpanyProgramsUid(Integer aUserCOmpanyProgramsUid) {
         userCOmpanyProgramsUid = aUserCOmpanyProgramsUid;
     }
 
@@ -88,7 +62,7 @@ public class UserCompanyPrograms implements Serializable {
      *
      * @return the current value of companyProgramsUid
      */
-    public int getCompanyProgramsUid() {
+    public Integer getCompanyProgramsUid() {
         return companyProgramsUid;
     }
 
@@ -97,7 +71,7 @@ public class UserCompanyPrograms implements Serializable {
      *
      * @param aCompanyProgramsUid the new value for companyProgramsUid
      */
-    public void setCompanyProgramsUid(int aCompanyProgramsUid) {
+    public void setCompanyProgramsUid(Integer aCompanyProgramsUid) {
         companyProgramsUid = aCompanyProgramsUid;
     }
 
@@ -106,7 +80,7 @@ public class UserCompanyPrograms implements Serializable {
      *
      * @return the current value of userProgramPref
      */
-    public int getUserProgramPref() {
+    public Integer getUserProgramPref() {
         return userProgramPref;
     }
 
@@ -115,7 +89,7 @@ public class UserCompanyPrograms implements Serializable {
      *
      * @param aUserProgramPref the new value for userProgramPref
      */
-    public void setUserProgramPref(int aUserProgramPref) {
+    public void setUserProgramPref(Integer aUserProgramPref) {
         userProgramPref = aUserProgramPref;
     }
 
@@ -187,7 +161,9 @@ public class UserCompanyPrograms implements Serializable {
             return false;
         }
         UserCompanyPrograms that = (UserCompanyPrograms) other;
-        if (this.getUserCOmpanyProgramsUid() != that.getUserCOmpanyProgramsUid()) {
+        Object myUserCOmpanyProgramsUid = this.getUserCOmpanyProgramsUid();
+        Object yourUserCOmpanyProgramsUid = that.getUserCOmpanyProgramsUid();
+        if (myUserCOmpanyProgramsUid==null ? yourUserCOmpanyProgramsUid!=null : !myUserCOmpanyProgramsUid.equals(yourUserCOmpanyProgramsUid)) {
             return false;
         }
         return true;
@@ -214,7 +190,11 @@ public class UserCompanyPrograms implements Serializable {
     public int hashCode() {
         int i;
         int result = 17;
-        i = getUserCOmpanyProgramsUid();
+        if (getUserCOmpanyProgramsUid() == null) {
+            i = 0;
+        } else {
+            i = getUserCOmpanyProgramsUid().hashCode();
+        }
         result = 37*result + i;
         return result;
     }
@@ -239,7 +219,7 @@ public class UserCompanyPrograms implements Serializable {
      */
     public Map<String, Object> getPrimaryKey() {
         Map<String, Object> ret = new LinkedHashMap<String, Object>(6);
-        ret.put("userCOmpanyProgramsUid", Integer.valueOf(getUserCOmpanyProgramsUid()));
+        ret.put("userCOmpanyProgramsUid", getUserCOmpanyProgramsUid());
         return ret;
     }
 

@@ -12,7 +12,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.Version;
 
 @Entity(name="security_question")
 public class SecurityQuestion implements Serializable {
@@ -20,40 +19,15 @@ public class SecurityQuestion implements Serializable {
     /** Primary key. */
     protected static final String PK = "securityQuestionUid";
 
-    /**
-     * The optimistic lock. Available via standard bean get/set operations.
-     */
-    @Version
-    @Column(name="LOCK_FLAG")
-    private Integer lockFlag;
-
-    /**
-     * Access method for the lockFlag property.
-     *
-     * @return the current value of the lockFlag property
-     */
-    public Integer getLockFlag() {
-        return lockFlag;
-    }
-
-    /**
-     * Sets the value of the lockFlag property.
-     *
-     * @param aLockFlag the new value of the lockFlag property
-     */
-    public void setLockFlag(Integer aLockFlag) {
-        lockFlag = aLockFlag;
-    }
-
     @Id
     @Column(name="Security_Question_UID", unique=true, nullable=false, precision=10)
-    private int securityQuestionUid;
+    private Integer securityQuestionUid;
     @Column(name="Question", nullable=false, length=128)
     private String question;
     @Column(name="Group", nullable=false, precision=10)
-    private int group;
+    private Integer group;
     @Column(name="Active_Flag", nullable=false, length=1)
-    private String activeFlag;
+    private Character activeFlag;
     @Column(name="Create_Modified_By", nullable=false, length=45)
     private String createModifiedBy;
     @Column(name="Create_Modified_Date", nullable=false)
@@ -71,7 +45,7 @@ public class SecurityQuestion implements Serializable {
      *
      * @return the current value of securityQuestionUid
      */
-    public int getSecurityQuestionUid() {
+    public Integer getSecurityQuestionUid() {
         return securityQuestionUid;
     }
 
@@ -80,7 +54,7 @@ public class SecurityQuestion implements Serializable {
      *
      * @param aSecurityQuestionUid the new value for securityQuestionUid
      */
-    public void setSecurityQuestionUid(int aSecurityQuestionUid) {
+    public void setSecurityQuestionUid(Integer aSecurityQuestionUid) {
         securityQuestionUid = aSecurityQuestionUid;
     }
 
@@ -107,7 +81,7 @@ public class SecurityQuestion implements Serializable {
      *
      * @return the current value of group
      */
-    public int getGroup() {
+    public Integer getGroup() {
         return group;
     }
 
@@ -116,7 +90,7 @@ public class SecurityQuestion implements Serializable {
      *
      * @param aGroup the new value for group
      */
-    public void setGroup(int aGroup) {
+    public void setGroup(Integer aGroup) {
         group = aGroup;
     }
 
@@ -125,7 +99,7 @@ public class SecurityQuestion implements Serializable {
      *
      * @return the current value of activeFlag
      */
-    public String getActiveFlag() {
+    public Character getActiveFlag() {
         return activeFlag;
     }
 
@@ -134,7 +108,7 @@ public class SecurityQuestion implements Serializable {
      *
      * @param aActiveFlag the new value for activeFlag
      */
-    public void setActiveFlag(String aActiveFlag) {
+    public void setActiveFlag(Character aActiveFlag) {
         activeFlag = aActiveFlag;
     }
 
@@ -206,7 +180,9 @@ public class SecurityQuestion implements Serializable {
             return false;
         }
         SecurityQuestion that = (SecurityQuestion) other;
-        if (this.getSecurityQuestionUid() != that.getSecurityQuestionUid()) {
+        Object mySecurityQuestionUid = this.getSecurityQuestionUid();
+        Object yourSecurityQuestionUid = that.getSecurityQuestionUid();
+        if (mySecurityQuestionUid==null ? yourSecurityQuestionUid!=null : !mySecurityQuestionUid.equals(yourSecurityQuestionUid)) {
             return false;
         }
         return true;
@@ -233,7 +209,11 @@ public class SecurityQuestion implements Serializable {
     public int hashCode() {
         int i;
         int result = 17;
-        i = getSecurityQuestionUid();
+        if (getSecurityQuestionUid() == null) {
+            i = 0;
+        } else {
+            i = getSecurityQuestionUid().hashCode();
+        }
         result = 37*result + i;
         return result;
     }
@@ -258,7 +238,7 @@ public class SecurityQuestion implements Serializable {
      */
     public Map<String, Object> getPrimaryKey() {
         Map<String, Object> ret = new LinkedHashMap<String, Object>(6);
-        ret.put("securityQuestionUid", Integer.valueOf(getSecurityQuestionUid()));
+        ret.put("securityQuestionUid", getSecurityQuestionUid());
         return ret;
     }
 

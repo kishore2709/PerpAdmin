@@ -14,7 +14,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.Version;
 
 @Entity(name="state_province_code")
 public class StateProvinceCode implements Serializable {
@@ -22,40 +21,15 @@ public class StateProvinceCode implements Serializable {
     /** Primary key. */
     protected static final String PK = "stateProvinceUid";
 
-    /**
-     * The optimistic lock. Available via standard bean get/set operations.
-     */
-    @Version
-    @Column(name="LOCK_FLAG")
-    private Integer lockFlag;
-
-    /**
-     * Access method for the lockFlag property.
-     *
-     * @return the current value of the lockFlag property
-     */
-    public Integer getLockFlag() {
-        return lockFlag;
-    }
-
-    /**
-     * Sets the value of the lockFlag property.
-     *
-     * @param aLockFlag the new value of the lockFlag property
-     */
-    public void setLockFlag(Integer aLockFlag) {
-        lockFlag = aLockFlag;
-    }
-
     @Id
     @Column(name="State_Province_UID", unique=true, nullable=false, precision=10)
-    private int stateProvinceUid;
+    private Integer stateProvinceUid;
     @Column(name="Name", nullable=false, length=60)
     private String name;
     @Column(name="Short_Name", length=10)
     private String shortName;
     @Column(name="Active_Flag", nullable=false, length=1)
-    private String activeFlag;
+    private Character activeFlag;
     @Column(name="Create_Modified_By", nullable=false, length=45)
     private String createModifiedBy;
     @Column(name="Create_Modified_Date", nullable=false)
@@ -78,7 +52,7 @@ public class StateProvinceCode implements Serializable {
      *
      * @return the current value of stateProvinceUid
      */
-    public int getStateProvinceUid() {
+    public Integer getStateProvinceUid() {
         return stateProvinceUid;
     }
 
@@ -87,7 +61,7 @@ public class StateProvinceCode implements Serializable {
      *
      * @param aStateProvinceUid the new value for stateProvinceUid
      */
-    public void setStateProvinceUid(int aStateProvinceUid) {
+    public void setStateProvinceUid(Integer aStateProvinceUid) {
         stateProvinceUid = aStateProvinceUid;
     }
 
@@ -132,7 +106,7 @@ public class StateProvinceCode implements Serializable {
      *
      * @return the current value of activeFlag
      */
-    public String getActiveFlag() {
+    public Character getActiveFlag() {
         return activeFlag;
     }
 
@@ -141,7 +115,7 @@ public class StateProvinceCode implements Serializable {
      *
      * @param aActiveFlag the new value for activeFlag
      */
-    public void setActiveFlag(String aActiveFlag) {
+    public void setActiveFlag(Character aActiveFlag) {
         activeFlag = aActiveFlag;
     }
 
@@ -249,7 +223,9 @@ public class StateProvinceCode implements Serializable {
             return false;
         }
         StateProvinceCode that = (StateProvinceCode) other;
-        if (this.getStateProvinceUid() != that.getStateProvinceUid()) {
+        Object myStateProvinceUid = this.getStateProvinceUid();
+        Object yourStateProvinceUid = that.getStateProvinceUid();
+        if (myStateProvinceUid==null ? yourStateProvinceUid!=null : !myStateProvinceUid.equals(yourStateProvinceUid)) {
             return false;
         }
         return true;
@@ -276,7 +252,11 @@ public class StateProvinceCode implements Serializable {
     public int hashCode() {
         int i;
         int result = 17;
-        i = getStateProvinceUid();
+        if (getStateProvinceUid() == null) {
+            i = 0;
+        } else {
+            i = getStateProvinceUid().hashCode();
+        }
         result = 37*result + i;
         return result;
     }
@@ -301,7 +281,7 @@ public class StateProvinceCode implements Serializable {
      */
     public Map<String, Object> getPrimaryKey() {
         Map<String, Object> ret = new LinkedHashMap<String, Object>(6);
-        ret.put("stateProvinceUid", Integer.valueOf(getStateProvinceUid()));
+        ret.put("stateProvinceUid", getStateProvinceUid());
         return ret;
     }
 

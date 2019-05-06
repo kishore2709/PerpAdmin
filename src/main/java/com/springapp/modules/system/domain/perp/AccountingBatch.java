@@ -15,7 +15,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.Version;
 
 @Entity(name="accounting_batch")
 public class AccountingBatch implements Serializable {
@@ -23,42 +22,17 @@ public class AccountingBatch implements Serializable {
     /** Primary key. */
     protected static final String PK = "accountingBatchUid";
 
-    /**
-     * The optimistic lock. Available via standard bean get/set operations.
-     */
-    @Version
-    @Column(name="LOCK_FLAG")
-    private Integer lockFlag;
-
-    /**
-     * Access method for the lockFlag property.
-     *
-     * @return the current value of the lockFlag property
-     */
-    public Integer getLockFlag() {
-        return lockFlag;
-    }
-
-    /**
-     * Sets the value of the lockFlag property.
-     *
-     * @param aLockFlag the new value of the lockFlag property
-     */
-    public void setLockFlag(Integer aLockFlag) {
-        lockFlag = aLockFlag;
-    }
-
     @Id
     @Column(name="Accounting_Batch_UID", unique=true, nullable=false, precision=10)
-    private int accountingBatchUid;
+    private Integer accountingBatchUid;
     @Column(name="Batch_Date")
     private Timestamp batchDate;
     @Column(name="Batch_Payment_Total", precision=15, scale=5)
     private BigDecimal batchPaymentTotal;
     @Column(name="Batch_Status", precision=5)
-    private short batchStatus;
+    private Short batchStatus;
     @Column(name="Active_Flag", nullable=false, length=1)
-    private String activeFlag;
+    private Character activeFlag;
     @Column(name="Create_Modified_By", nullable=false, length=45)
     private String createModifiedBy;
     @Column(name="Create_Modified_Date", nullable=false)
@@ -79,7 +53,7 @@ public class AccountingBatch implements Serializable {
      *
      * @return the current value of accountingBatchUid
      */
-    public int getAccountingBatchUid() {
+    public Integer getAccountingBatchUid() {
         return accountingBatchUid;
     }
 
@@ -88,7 +62,7 @@ public class AccountingBatch implements Serializable {
      *
      * @param aAccountingBatchUid the new value for accountingBatchUid
      */
-    public void setAccountingBatchUid(int aAccountingBatchUid) {
+    public void setAccountingBatchUid(Integer aAccountingBatchUid) {
         accountingBatchUid = aAccountingBatchUid;
     }
 
@@ -133,7 +107,7 @@ public class AccountingBatch implements Serializable {
      *
      * @return the current value of batchStatus
      */
-    public short getBatchStatus() {
+    public Short getBatchStatus() {
         return batchStatus;
     }
 
@@ -142,7 +116,7 @@ public class AccountingBatch implements Serializable {
      *
      * @param aBatchStatus the new value for batchStatus
      */
-    public void setBatchStatus(short aBatchStatus) {
+    public void setBatchStatus(Short aBatchStatus) {
         batchStatus = aBatchStatus;
     }
 
@@ -151,7 +125,7 @@ public class AccountingBatch implements Serializable {
      *
      * @return the current value of activeFlag
      */
-    public String getActiveFlag() {
+    public Character getActiveFlag() {
         return activeFlag;
     }
 
@@ -160,7 +134,7 @@ public class AccountingBatch implements Serializable {
      *
      * @param aActiveFlag the new value for activeFlag
      */
-    public void setActiveFlag(String aActiveFlag) {
+    public void setActiveFlag(Character aActiveFlag) {
         activeFlag = aActiveFlag;
     }
 
@@ -250,7 +224,9 @@ public class AccountingBatch implements Serializable {
             return false;
         }
         AccountingBatch that = (AccountingBatch) other;
-        if (this.getAccountingBatchUid() != that.getAccountingBatchUid()) {
+        Object myAccountingBatchUid = this.getAccountingBatchUid();
+        Object yourAccountingBatchUid = that.getAccountingBatchUid();
+        if (myAccountingBatchUid==null ? yourAccountingBatchUid!=null : !myAccountingBatchUid.equals(yourAccountingBatchUid)) {
             return false;
         }
         return true;
@@ -277,7 +253,11 @@ public class AccountingBatch implements Serializable {
     public int hashCode() {
         int i;
         int result = 17;
-        i = getAccountingBatchUid();
+        if (getAccountingBatchUid() == null) {
+            i = 0;
+        } else {
+            i = getAccountingBatchUid().hashCode();
+        }
         result = 37*result + i;
         return result;
     }
@@ -302,7 +282,7 @@ public class AccountingBatch implements Serializable {
      */
     public Map<String, Object> getPrimaryKey() {
         Map<String, Object> ret = new LinkedHashMap<String, Object>(6);
-        ret.put("accountingBatchUid", Integer.valueOf(getAccountingBatchUid()));
+        ret.put("accountingBatchUid", getAccountingBatchUid());
         return ret;
     }
 

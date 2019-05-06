@@ -10,7 +10,6 @@ import java.util.Map;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.Version;
 
 @Entity(name="user_role_aud")
 public class UserRoleAud implements Serializable {
@@ -18,38 +17,13 @@ public class UserRoleAud implements Serializable {
     /** Primary key. */
     protected static final String PK = "userRoleAudUid";
 
-    /**
-     * The optimistic lock. Available via standard bean get/set operations.
-     */
-    @Version
-    @Column(name="LOCK_FLAG")
-    private Integer lockFlag;
-
-    /**
-     * Access method for the lockFlag property.
-     *
-     * @return the current value of the lockFlag property
-     */
-    public Integer getLockFlag() {
-        return lockFlag;
-    }
-
-    /**
-     * Sets the value of the lockFlag property.
-     *
-     * @param aLockFlag the new value of the lockFlag property
-     */
-    public void setLockFlag(Integer aLockFlag) {
-        lockFlag = aLockFlag;
-    }
-
     @Id
     @Column(name="User_Role_Aud_UID", unique=true, nullable=false, precision=10)
-    private int userRoleAudUid;
+    private Integer userRoleAudUid;
     @Column(name="Users_UID", nullable=false, precision=10)
-    private int usersUid;
+    private Integer usersUid;
     @Column(name="ROLES_UID", nullable=false, precision=10)
-    private int rolesUid;
+    private Integer rolesUid;
     @Column(name="Create_Modified_By", nullable=false, length=45)
     private String createModifiedBy;
     @Column(name="Create_Modified_Date", nullable=false)
@@ -67,7 +41,7 @@ public class UserRoleAud implements Serializable {
      *
      * @return the current value of userRoleAudUid
      */
-    public int getUserRoleAudUid() {
+    public Integer getUserRoleAudUid() {
         return userRoleAudUid;
     }
 
@@ -76,7 +50,7 @@ public class UserRoleAud implements Serializable {
      *
      * @param aUserRoleAudUid the new value for userRoleAudUid
      */
-    public void setUserRoleAudUid(int aUserRoleAudUid) {
+    public void setUserRoleAudUid(Integer aUserRoleAudUid) {
         userRoleAudUid = aUserRoleAudUid;
     }
 
@@ -85,7 +59,7 @@ public class UserRoleAud implements Serializable {
      *
      * @return the current value of usersUid
      */
-    public int getUsersUid() {
+    public Integer getUsersUid() {
         return usersUid;
     }
 
@@ -94,7 +68,7 @@ public class UserRoleAud implements Serializable {
      *
      * @param aUsersUid the new value for usersUid
      */
-    public void setUsersUid(int aUsersUid) {
+    public void setUsersUid(Integer aUsersUid) {
         usersUid = aUsersUid;
     }
 
@@ -103,7 +77,7 @@ public class UserRoleAud implements Serializable {
      *
      * @return the current value of rolesUid
      */
-    public int getRolesUid() {
+    public Integer getRolesUid() {
         return rolesUid;
     }
 
@@ -112,7 +86,7 @@ public class UserRoleAud implements Serializable {
      *
      * @param aRolesUid the new value for rolesUid
      */
-    public void setRolesUid(int aRolesUid) {
+    public void setRolesUid(Integer aRolesUid) {
         rolesUid = aRolesUid;
     }
 
@@ -184,7 +158,9 @@ public class UserRoleAud implements Serializable {
             return false;
         }
         UserRoleAud that = (UserRoleAud) other;
-        if (this.getUserRoleAudUid() != that.getUserRoleAudUid()) {
+        Object myUserRoleAudUid = this.getUserRoleAudUid();
+        Object yourUserRoleAudUid = that.getUserRoleAudUid();
+        if (myUserRoleAudUid==null ? yourUserRoleAudUid!=null : !myUserRoleAudUid.equals(yourUserRoleAudUid)) {
             return false;
         }
         return true;
@@ -211,7 +187,11 @@ public class UserRoleAud implements Serializable {
     public int hashCode() {
         int i;
         int result = 17;
-        i = getUserRoleAudUid();
+        if (getUserRoleAudUid() == null) {
+            i = 0;
+        } else {
+            i = getUserRoleAudUid().hashCode();
+        }
         result = 37*result + i;
         return result;
     }
@@ -236,7 +216,7 @@ public class UserRoleAud implements Serializable {
      */
     public Map<String, Object> getPrimaryKey() {
         Map<String, Object> ret = new LinkedHashMap<String, Object>(6);
-        ret.put("userRoleAudUid", Integer.valueOf(getUserRoleAudUid()));
+        ret.put("userRoleAudUid", getUserRoleAudUid());
         return ret;
     }
 

@@ -10,7 +10,6 @@ import java.util.Map;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.Version;
 
 @Entity(name="doc_template_action_relation_aud")
 public class DocTemplateActionRelationAud implements Serializable {
@@ -18,38 +17,13 @@ public class DocTemplateActionRelationAud implements Serializable {
     /** Primary key. */
     protected static final String PK = "dtarAudUid";
 
-    /**
-     * The optimistic lock. Available via standard bean get/set operations.
-     */
-    @Version
-    @Column(name="LOCK_FLAG")
-    private Integer lockFlag;
-
-    /**
-     * Access method for the lockFlag property.
-     *
-     * @return the current value of the lockFlag property
-     */
-    public Integer getLockFlag() {
-        return lockFlag;
-    }
-
-    /**
-     * Sets the value of the lockFlag property.
-     *
-     * @param aLockFlag the new value of the lockFlag property
-     */
-    public void setLockFlag(Integer aLockFlag) {
-        lockFlag = aLockFlag;
-    }
-
     @Id
     @Column(name="DTARAud_UID", unique=true, nullable=false, precision=10)
-    private int dtarAudUid;
+    private Integer dtarAudUid;
     @Column(name="DecisionAction_UID", nullable=false, precision=10)
-    private int decisionActionUid;
+    private Integer decisionActionUid;
     @Column(name="DocTemplate_UID", nullable=false, precision=10)
-    private int docTemplateUid;
+    private Integer docTemplateUid;
     @Column(name="Create_Modified_By", nullable=false, length=45)
     private String createModifiedBy;
     @Column(name="Create_Modified_Date", nullable=false)
@@ -67,7 +41,7 @@ public class DocTemplateActionRelationAud implements Serializable {
      *
      * @return the current value of dtarAudUid
      */
-    public int getDtarAudUid() {
+    public Integer getDtarAudUid() {
         return dtarAudUid;
     }
 
@@ -76,7 +50,7 @@ public class DocTemplateActionRelationAud implements Serializable {
      *
      * @param aDtarAudUid the new value for dtarAudUid
      */
-    public void setDtarAudUid(int aDtarAudUid) {
+    public void setDtarAudUid(Integer aDtarAudUid) {
         dtarAudUid = aDtarAudUid;
     }
 
@@ -85,7 +59,7 @@ public class DocTemplateActionRelationAud implements Serializable {
      *
      * @return the current value of decisionActionUid
      */
-    public int getDecisionActionUid() {
+    public Integer getDecisionActionUid() {
         return decisionActionUid;
     }
 
@@ -94,7 +68,7 @@ public class DocTemplateActionRelationAud implements Serializable {
      *
      * @param aDecisionActionUid the new value for decisionActionUid
      */
-    public void setDecisionActionUid(int aDecisionActionUid) {
+    public void setDecisionActionUid(Integer aDecisionActionUid) {
         decisionActionUid = aDecisionActionUid;
     }
 
@@ -103,7 +77,7 @@ public class DocTemplateActionRelationAud implements Serializable {
      *
      * @return the current value of docTemplateUid
      */
-    public int getDocTemplateUid() {
+    public Integer getDocTemplateUid() {
         return docTemplateUid;
     }
 
@@ -112,7 +86,7 @@ public class DocTemplateActionRelationAud implements Serializable {
      *
      * @param aDocTemplateUid the new value for docTemplateUid
      */
-    public void setDocTemplateUid(int aDocTemplateUid) {
+    public void setDocTemplateUid(Integer aDocTemplateUid) {
         docTemplateUid = aDocTemplateUid;
     }
 
@@ -184,7 +158,9 @@ public class DocTemplateActionRelationAud implements Serializable {
             return false;
         }
         DocTemplateActionRelationAud that = (DocTemplateActionRelationAud) other;
-        if (this.getDtarAudUid() != that.getDtarAudUid()) {
+        Object myDtarAudUid = this.getDtarAudUid();
+        Object yourDtarAudUid = that.getDtarAudUid();
+        if (myDtarAudUid==null ? yourDtarAudUid!=null : !myDtarAudUid.equals(yourDtarAudUid)) {
             return false;
         }
         return true;
@@ -211,7 +187,11 @@ public class DocTemplateActionRelationAud implements Serializable {
     public int hashCode() {
         int i;
         int result = 17;
-        i = getDtarAudUid();
+        if (getDtarAudUid() == null) {
+            i = 0;
+        } else {
+            i = getDtarAudUid().hashCode();
+        }
         result = 37*result + i;
         return result;
     }
@@ -236,7 +216,7 @@ public class DocTemplateActionRelationAud implements Serializable {
      */
     public Map<String, Object> getPrimaryKey() {
         Map<String, Object> ret = new LinkedHashMap<String, Object>(6);
-        ret.put("dtarAudUid", Integer.valueOf(getDtarAudUid()));
+        ret.put("dtarAudUid", getDtarAudUid());
         return ret;
     }
 

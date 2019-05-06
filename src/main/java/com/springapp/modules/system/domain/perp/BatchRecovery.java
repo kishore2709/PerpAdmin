@@ -12,7 +12,6 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.Version;
 
 @Entity(name="batch_recovery")
 public class BatchRecovery implements Serializable {
@@ -20,42 +19,17 @@ public class BatchRecovery implements Serializable {
     /** Primary key. */
     protected static final String PK = "batchRecoveryUid";
 
-    /**
-     * The optimistic lock. Available via standard bean get/set operations.
-     */
-    @Version
-    @Column(name="LOCK_FLAG")
-    private Integer lockFlag;
-
-    /**
-     * Access method for the lockFlag property.
-     *
-     * @return the current value of the lockFlag property
-     */
-    public Integer getLockFlag() {
-        return lockFlag;
-    }
-
-    /**
-     * Sets the value of the lockFlag property.
-     *
-     * @param aLockFlag the new value of the lockFlag property
-     */
-    public void setLockFlag(Integer aLockFlag) {
-        lockFlag = aLockFlag;
-    }
-
     @Id
     @Column(name="Batch_Recovery_UID", unique=true, nullable=false, precision=10)
-    private int batchRecoveryUid;
+    private Integer batchRecoveryUid;
     @Column(name="Element", nullable=false, length=45)
     private String element;
     @Column(name="Error_Flag", nullable=false, length=1)
-    private String errorFlag;
+    private Character errorFlag;
     @Column(name="Error_Text", length=2000)
     private String errorText;
     @Column(name="TraceNum", precision=10)
-    private int traceNum;
+    private Integer traceNum;
     @Column(name="Create_Modify_By", nullable=false, length=45)
     private String createModifyBy;
     @Column(name="Create_Modify_Date", nullable=false)
@@ -74,7 +48,7 @@ public class BatchRecovery implements Serializable {
      *
      * @return the current value of batchRecoveryUid
      */
-    public int getBatchRecoveryUid() {
+    public Integer getBatchRecoveryUid() {
         return batchRecoveryUid;
     }
 
@@ -83,7 +57,7 @@ public class BatchRecovery implements Serializable {
      *
      * @param aBatchRecoveryUid the new value for batchRecoveryUid
      */
-    public void setBatchRecoveryUid(int aBatchRecoveryUid) {
+    public void setBatchRecoveryUid(Integer aBatchRecoveryUid) {
         batchRecoveryUid = aBatchRecoveryUid;
     }
 
@@ -110,7 +84,7 @@ public class BatchRecovery implements Serializable {
      *
      * @return the current value of errorFlag
      */
-    public String getErrorFlag() {
+    public Character getErrorFlag() {
         return errorFlag;
     }
 
@@ -119,7 +93,7 @@ public class BatchRecovery implements Serializable {
      *
      * @param aErrorFlag the new value for errorFlag
      */
-    public void setErrorFlag(String aErrorFlag) {
+    public void setErrorFlag(Character aErrorFlag) {
         errorFlag = aErrorFlag;
     }
 
@@ -146,7 +120,7 @@ public class BatchRecovery implements Serializable {
      *
      * @return the current value of traceNum
      */
-    public int getTraceNum() {
+    public Integer getTraceNum() {
         return traceNum;
     }
 
@@ -155,7 +129,7 @@ public class BatchRecovery implements Serializable {
      *
      * @param aTraceNum the new value for traceNum
      */
-    public void setTraceNum(int aTraceNum) {
+    public void setTraceNum(Integer aTraceNum) {
         traceNum = aTraceNum;
     }
 
@@ -227,7 +201,9 @@ public class BatchRecovery implements Serializable {
             return false;
         }
         BatchRecovery that = (BatchRecovery) other;
-        if (this.getBatchRecoveryUid() != that.getBatchRecoveryUid()) {
+        Object myBatchRecoveryUid = this.getBatchRecoveryUid();
+        Object yourBatchRecoveryUid = that.getBatchRecoveryUid();
+        if (myBatchRecoveryUid==null ? yourBatchRecoveryUid!=null : !myBatchRecoveryUid.equals(yourBatchRecoveryUid)) {
             return false;
         }
         return true;
@@ -254,7 +230,11 @@ public class BatchRecovery implements Serializable {
     public int hashCode() {
         int i;
         int result = 17;
-        i = getBatchRecoveryUid();
+        if (getBatchRecoveryUid() == null) {
+            i = 0;
+        } else {
+            i = getBatchRecoveryUid().hashCode();
+        }
         result = 37*result + i;
         return result;
     }
@@ -279,7 +259,7 @@ public class BatchRecovery implements Serializable {
      */
     public Map<String, Object> getPrimaryKey() {
         Map<String, Object> ret = new LinkedHashMap<String, Object>(6);
-        ret.put("batchRecoveryUid", Integer.valueOf(getBatchRecoveryUid()));
+        ret.put("batchRecoveryUid", getBatchRecoveryUid());
         return ret;
     }
 

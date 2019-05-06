@@ -16,7 +16,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Version;
 
 @Entity
 @Table(name="company", indexes={@Index(name="company_OON_IX", columnList="OON", unique=true)})
@@ -25,34 +24,9 @@ public class Company implements Serializable {
     /** Primary key. */
     protected static final String PK = "companyUid";
 
-    /**
-     * The optimistic lock. Available via standard bean get/set operations.
-     */
-    @Version
-    @Column(name="LOCK_FLAG")
-    private Integer lockFlag;
-
-    /**
-     * Access method for the lockFlag property.
-     *
-     * @return the current value of the lockFlag property
-     */
-    public Integer getLockFlag() {
-        return lockFlag;
-    }
-
-    /**
-     * Sets the value of the lockFlag property.
-     *
-     * @param aLockFlag the new value of the lockFlag property
-     */
-    public void setLockFlag(Integer aLockFlag) {
-        lockFlag = aLockFlag;
-    }
-
     @Id
     @Column(name="Company_UID", unique=true, nullable=false, precision=10)
-    private int companyUid;
+    private Integer companyUid;
     @Column(name="Company_Name", length=100)
     private String companyName;
     @Column(name="OON", unique=true, length=25)
@@ -60,15 +34,15 @@ public class Company implements Serializable {
     @Column(name="Taxid_ARBN", nullable=false, length=25)
     private String taxidArbn;
     @Column(name="Active_Flag", nullable=false, length=1)
-    private String activeFlag;
+    private Character activeFlag;
     @Column(name="Batch_Upload_Flag", length=1)
-    private String batchUploadFlag;
+    private Character batchUploadFlag;
     @Column(name="Ftp_Pswd", length=64)
     private String ftpPswd;
     @Column(name="Manages_Companies_Flag", nullable=false, length=1)
-    private String managesCompaniesFlag;
+    private Character managesCompaniesFlag;
     @Column(name="Registers_Equipment_Flag", nullable=false, length=1)
-    private String registersEquipmentFlag;
+    private Character registersEquipmentFlag;
     @Column(name="Old_Company_Number", length=60)
     private String oldCompanyNumber;
     @Column(name="DOT_Number", length=20)
@@ -80,29 +54,29 @@ public class Company implements Serializable {
     @Column(name="WS_Token", length=256)
     private String wsToken;
     @Column(name="WS_Flag", nullable=false, length=1)
-    private String wsFlag;
+    private Character wsFlag;
     @Column(name="Create_Modified_By", nullable=false, length=45)
     private String createModifiedBy;
     @Column(name="Create_Modified_Date", nullable=false)
     private Timestamp createModifiedDate;
     @Column(name="FleetCalc_Flag", length=1)
-    private String fleetCalcFlag;
+    private Character fleetCalcFlag;
     @Column(name="Confidential_Flag", length=1)
-    private String confidentialFlag;
+    private Character confidentialFlag;
     @Column(name="PEPS_Flag", nullable=false, length=1)
-    private String pepsFlag;
+    private Character pepsFlag;
     @Column(name="Military_Flag", nullable=false, length=1)
-    private String militaryFlag;
+    private Character militaryFlag;
     @Column(name="Rental_Co_Flag", nullable=false, length=1)
-    private String rentalCoFlag;
+    private Character rentalCoFlag;
     @Column(name="Perp_Equip_Duration", precision=10)
-    private int perpEquipDuration;
+    private Integer perpEquipDuration;
     @Column(name="MilitaryDistrict_UID", precision=10)
-    private int militaryDistrictUid;
+    private Integer militaryDistrictUid;
     @Column(name="AGSource_Flag", nullable=false, length=1)
-    private String agSourceFlag;
+    private Character agSourceFlag;
     @Column(name="Public_Flag", nullable=false, length=1)
-    private String publicFlag;
+    private Character publicFlag;
     @OneToMany(mappedBy="company2")
     private Set<CompanyRelations> companyRelations2;
     @OneToMany(mappedBy="company")
@@ -164,7 +138,7 @@ public class Company implements Serializable {
      *
      * @return the current value of companyUid
      */
-    public int getCompanyUid() {
+    public Integer getCompanyUid() {
         return companyUid;
     }
 
@@ -173,7 +147,7 @@ public class Company implements Serializable {
      *
      * @param aCompanyUid the new value for companyUid
      */
-    public void setCompanyUid(int aCompanyUid) {
+    public void setCompanyUid(Integer aCompanyUid) {
         companyUid = aCompanyUid;
     }
 
@@ -236,7 +210,7 @@ public class Company implements Serializable {
      *
      * @return the current value of activeFlag
      */
-    public String getActiveFlag() {
+    public Character getActiveFlag() {
         return activeFlag;
     }
 
@@ -245,7 +219,7 @@ public class Company implements Serializable {
      *
      * @param aActiveFlag the new value for activeFlag
      */
-    public void setActiveFlag(String aActiveFlag) {
+    public void setActiveFlag(Character aActiveFlag) {
         activeFlag = aActiveFlag;
     }
 
@@ -254,7 +228,7 @@ public class Company implements Serializable {
      *
      * @return the current value of batchUploadFlag
      */
-    public String getBatchUploadFlag() {
+    public Character getBatchUploadFlag() {
         return batchUploadFlag;
     }
 
@@ -263,7 +237,7 @@ public class Company implements Serializable {
      *
      * @param aBatchUploadFlag the new value for batchUploadFlag
      */
-    public void setBatchUploadFlag(String aBatchUploadFlag) {
+    public void setBatchUploadFlag(Character aBatchUploadFlag) {
         batchUploadFlag = aBatchUploadFlag;
     }
 
@@ -290,7 +264,7 @@ public class Company implements Serializable {
      *
      * @return the current value of managesCompaniesFlag
      */
-    public String getManagesCompaniesFlag() {
+    public Character getManagesCompaniesFlag() {
         return managesCompaniesFlag;
     }
 
@@ -299,7 +273,7 @@ public class Company implements Serializable {
      *
      * @param aManagesCompaniesFlag the new value for managesCompaniesFlag
      */
-    public void setManagesCompaniesFlag(String aManagesCompaniesFlag) {
+    public void setManagesCompaniesFlag(Character aManagesCompaniesFlag) {
         managesCompaniesFlag = aManagesCompaniesFlag;
     }
 
@@ -308,7 +282,7 @@ public class Company implements Serializable {
      *
      * @return the current value of registersEquipmentFlag
      */
-    public String getRegistersEquipmentFlag() {
+    public Character getRegistersEquipmentFlag() {
         return registersEquipmentFlag;
     }
 
@@ -317,7 +291,7 @@ public class Company implements Serializable {
      *
      * @param aRegistersEquipmentFlag the new value for registersEquipmentFlag
      */
-    public void setRegistersEquipmentFlag(String aRegistersEquipmentFlag) {
+    public void setRegistersEquipmentFlag(Character aRegistersEquipmentFlag) {
         registersEquipmentFlag = aRegistersEquipmentFlag;
     }
 
@@ -416,7 +390,7 @@ public class Company implements Serializable {
      *
      * @return the current value of wsFlag
      */
-    public String getWsFlag() {
+    public Character getWsFlag() {
         return wsFlag;
     }
 
@@ -425,7 +399,7 @@ public class Company implements Serializable {
      *
      * @param aWsFlag the new value for wsFlag
      */
-    public void setWsFlag(String aWsFlag) {
+    public void setWsFlag(Character aWsFlag) {
         wsFlag = aWsFlag;
     }
 
@@ -470,7 +444,7 @@ public class Company implements Serializable {
      *
      * @return the current value of fleetCalcFlag
      */
-    public String getFleetCalcFlag() {
+    public Character getFleetCalcFlag() {
         return fleetCalcFlag;
     }
 
@@ -479,7 +453,7 @@ public class Company implements Serializable {
      *
      * @param aFleetCalcFlag the new value for fleetCalcFlag
      */
-    public void setFleetCalcFlag(String aFleetCalcFlag) {
+    public void setFleetCalcFlag(Character aFleetCalcFlag) {
         fleetCalcFlag = aFleetCalcFlag;
     }
 
@@ -488,7 +462,7 @@ public class Company implements Serializable {
      *
      * @return the current value of confidentialFlag
      */
-    public String getConfidentialFlag() {
+    public Character getConfidentialFlag() {
         return confidentialFlag;
     }
 
@@ -497,7 +471,7 @@ public class Company implements Serializable {
      *
      * @param aConfidentialFlag the new value for confidentialFlag
      */
-    public void setConfidentialFlag(String aConfidentialFlag) {
+    public void setConfidentialFlag(Character aConfidentialFlag) {
         confidentialFlag = aConfidentialFlag;
     }
 
@@ -506,7 +480,7 @@ public class Company implements Serializable {
      *
      * @return the current value of pepsFlag
      */
-    public String getPepsFlag() {
+    public Character getPepsFlag() {
         return pepsFlag;
     }
 
@@ -515,7 +489,7 @@ public class Company implements Serializable {
      *
      * @param aPepsFlag the new value for pepsFlag
      */
-    public void setPepsFlag(String aPepsFlag) {
+    public void setPepsFlag(Character aPepsFlag) {
         pepsFlag = aPepsFlag;
     }
 
@@ -524,7 +498,7 @@ public class Company implements Serializable {
      *
      * @return the current value of militaryFlag
      */
-    public String getMilitaryFlag() {
+    public Character getMilitaryFlag() {
         return militaryFlag;
     }
 
@@ -533,7 +507,7 @@ public class Company implements Serializable {
      *
      * @param aMilitaryFlag the new value for militaryFlag
      */
-    public void setMilitaryFlag(String aMilitaryFlag) {
+    public void setMilitaryFlag(Character aMilitaryFlag) {
         militaryFlag = aMilitaryFlag;
     }
 
@@ -542,7 +516,7 @@ public class Company implements Serializable {
      *
      * @return the current value of rentalCoFlag
      */
-    public String getRentalCoFlag() {
+    public Character getRentalCoFlag() {
         return rentalCoFlag;
     }
 
@@ -551,7 +525,7 @@ public class Company implements Serializable {
      *
      * @param aRentalCoFlag the new value for rentalCoFlag
      */
-    public void setRentalCoFlag(String aRentalCoFlag) {
+    public void setRentalCoFlag(Character aRentalCoFlag) {
         rentalCoFlag = aRentalCoFlag;
     }
 
@@ -560,7 +534,7 @@ public class Company implements Serializable {
      *
      * @return the current value of perpEquipDuration
      */
-    public int getPerpEquipDuration() {
+    public Integer getPerpEquipDuration() {
         return perpEquipDuration;
     }
 
@@ -569,7 +543,7 @@ public class Company implements Serializable {
      *
      * @param aPerpEquipDuration the new value for perpEquipDuration
      */
-    public void setPerpEquipDuration(int aPerpEquipDuration) {
+    public void setPerpEquipDuration(Integer aPerpEquipDuration) {
         perpEquipDuration = aPerpEquipDuration;
     }
 
@@ -578,7 +552,7 @@ public class Company implements Serializable {
      *
      * @return the current value of militaryDistrictUid
      */
-    public int getMilitaryDistrictUid() {
+    public Integer getMilitaryDistrictUid() {
         return militaryDistrictUid;
     }
 
@@ -587,7 +561,7 @@ public class Company implements Serializable {
      *
      * @param aMilitaryDistrictUid the new value for militaryDistrictUid
      */
-    public void setMilitaryDistrictUid(int aMilitaryDistrictUid) {
+    public void setMilitaryDistrictUid(Integer aMilitaryDistrictUid) {
         militaryDistrictUid = aMilitaryDistrictUid;
     }
 
@@ -596,7 +570,7 @@ public class Company implements Serializable {
      *
      * @return the current value of agSourceFlag
      */
-    public String getAgSourceFlag() {
+    public Character getAgSourceFlag() {
         return agSourceFlag;
     }
 
@@ -605,7 +579,7 @@ public class Company implements Serializable {
      *
      * @param aAgSourceFlag the new value for agSourceFlag
      */
-    public void setAgSourceFlag(String aAgSourceFlag) {
+    public void setAgSourceFlag(Character aAgSourceFlag) {
         agSourceFlag = aAgSourceFlag;
     }
 
@@ -614,7 +588,7 @@ public class Company implements Serializable {
      *
      * @return the current value of publicFlag
      */
-    public String getPublicFlag() {
+    public Character getPublicFlag() {
         return publicFlag;
     }
 
@@ -623,7 +597,7 @@ public class Company implements Serializable {
      *
      * @param aPublicFlag the new value for publicFlag
      */
-    public void setPublicFlag(String aPublicFlag) {
+    public void setPublicFlag(Character aPublicFlag) {
         publicFlag = aPublicFlag;
     }
 
@@ -1073,7 +1047,9 @@ public class Company implements Serializable {
             return false;
         }
         Company that = (Company) other;
-        if (this.getCompanyUid() != that.getCompanyUid()) {
+        Object myCompanyUid = this.getCompanyUid();
+        Object yourCompanyUid = that.getCompanyUid();
+        if (myCompanyUid==null ? yourCompanyUid!=null : !myCompanyUid.equals(yourCompanyUid)) {
             return false;
         }
         return true;
@@ -1100,7 +1076,11 @@ public class Company implements Serializable {
     public int hashCode() {
         int i;
         int result = 17;
-        i = getCompanyUid();
+        if (getCompanyUid() == null) {
+            i = 0;
+        } else {
+            i = getCompanyUid().hashCode();
+        }
         result = 37*result + i;
         return result;
     }
@@ -1125,7 +1105,7 @@ public class Company implements Serializable {
      */
     public Map<String, Object> getPrimaryKey() {
         Map<String, Object> ret = new LinkedHashMap<String, Object>(6);
-        ret.put("companyUid", Integer.valueOf(getCompanyUid()));
+        ret.put("companyUid", getCompanyUid());
         return ret;
     }
 

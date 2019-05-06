@@ -13,7 +13,6 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.Version;
 
 @Entity(name="company_licenses")
 public class CompanyLicenses implements Serializable {
@@ -21,40 +20,15 @@ public class CompanyLicenses implements Serializable {
     /** Primary key. */
     protected static final String PK = "coLicenseUid";
 
-    /**
-     * The optimistic lock. Available via standard bean get/set operations.
-     */
-    @Version
-    @Column(name="LOCK_FLAG")
-    private Integer lockFlag;
-
-    /**
-     * Access method for the lockFlag property.
-     *
-     * @return the current value of the lockFlag property
-     */
-    public Integer getLockFlag() {
-        return lockFlag;
-    }
-
-    /**
-     * Sets the value of the lockFlag property.
-     *
-     * @param aLockFlag the new value of the lockFlag property
-     */
-    public void setLockFlag(Integer aLockFlag) {
-        lockFlag = aLockFlag;
-    }
-
     @Id
     @Column(name="CoLicense_UID", unique=true, nullable=false, precision=10)
-    private int coLicenseUid;
+    private Integer coLicenseUid;
     @Column(name="License_No", nullable=false, length=30)
     private String licenseNo;
     @Column(name="Exp_Date")
     private Date expDate;
     @Column(name="Active_Flag", nullable=false, length=1)
-    private String activeFlag;
+    private Character activeFlag;
     @Column(name="Create_Modified_By", nullable=false, length=45)
     private String createModifiedBy;
     @Column(name="Create_Modified_Date", nullable=false)
@@ -76,7 +50,7 @@ public class CompanyLicenses implements Serializable {
      *
      * @return the current value of coLicenseUid
      */
-    public int getCoLicenseUid() {
+    public Integer getCoLicenseUid() {
         return coLicenseUid;
     }
 
@@ -85,7 +59,7 @@ public class CompanyLicenses implements Serializable {
      *
      * @param aCoLicenseUid the new value for coLicenseUid
      */
-    public void setCoLicenseUid(int aCoLicenseUid) {
+    public void setCoLicenseUid(Integer aCoLicenseUid) {
         coLicenseUid = aCoLicenseUid;
     }
 
@@ -130,7 +104,7 @@ public class CompanyLicenses implements Serializable {
      *
      * @return the current value of activeFlag
      */
-    public String getActiveFlag() {
+    public Character getActiveFlag() {
         return activeFlag;
     }
 
@@ -139,7 +113,7 @@ public class CompanyLicenses implements Serializable {
      *
      * @param aActiveFlag the new value for activeFlag
      */
-    public void setActiveFlag(String aActiveFlag) {
+    public void setActiveFlag(Character aActiveFlag) {
         activeFlag = aActiveFlag;
     }
 
@@ -229,7 +203,9 @@ public class CompanyLicenses implements Serializable {
             return false;
         }
         CompanyLicenses that = (CompanyLicenses) other;
-        if (this.getCoLicenseUid() != that.getCoLicenseUid()) {
+        Object myCoLicenseUid = this.getCoLicenseUid();
+        Object yourCoLicenseUid = that.getCoLicenseUid();
+        if (myCoLicenseUid==null ? yourCoLicenseUid!=null : !myCoLicenseUid.equals(yourCoLicenseUid)) {
             return false;
         }
         return true;
@@ -256,7 +232,11 @@ public class CompanyLicenses implements Serializable {
     public int hashCode() {
         int i;
         int result = 17;
-        i = getCoLicenseUid();
+        if (getCoLicenseUid() == null) {
+            i = 0;
+        } else {
+            i = getCoLicenseUid().hashCode();
+        }
         result = 37*result + i;
         return result;
     }
@@ -281,7 +261,7 @@ public class CompanyLicenses implements Serializable {
      */
     public Map<String, Object> getPrimaryKey() {
         Map<String, Object> ret = new LinkedHashMap<String, Object>(6);
-        ret.put("coLicenseUid", Integer.valueOf(getCoLicenseUid()));
+        ret.put("coLicenseUid", getCoLicenseUid());
         return ret;
     }
 

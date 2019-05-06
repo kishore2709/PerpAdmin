@@ -11,7 +11,6 @@ import java.util.Map;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.Version;
 
 @Entity(name="fleet_emission_details")
 public class FleetEmissionDetails implements Serializable {
@@ -19,36 +18,11 @@ public class FleetEmissionDetails implements Serializable {
     /** Primary key. */
     protected static final String PK = "distFleetEmisRowUid";
 
-    /**
-     * The optimistic lock. Available via standard bean get/set operations.
-     */
-    @Version
-    @Column(name="LOCK_FLAG")
-    private Integer lockFlag;
-
-    /**
-     * Access method for the lockFlag property.
-     *
-     * @return the current value of the lockFlag property
-     */
-    public Integer getLockFlag() {
-        return lockFlag;
-    }
-
-    /**
-     * Sets the value of the lockFlag property.
-     *
-     * @param aLockFlag the new value of the lockFlag property
-     */
-    public void setLockFlag(Integer aLockFlag) {
-        lockFlag = aLockFlag;
-    }
-
     @Id
     @Column(name="DistFleetEmisRow_UID", unique=true, nullable=false, precision=10)
-    private int distFleetEmisRowUid;
+    private Integer distFleetEmisRowUid;
     @Column(name="Perp_Registration_UID", precision=10)
-    private int perpRegistrationUid;
+    private Integer perpRegistrationUid;
     @Column(name="District_Permit_Number", length=20)
     private String districtPermitNumber;
     @Column(name="Company_Unit_ID", length=20)
@@ -56,31 +30,31 @@ public class FleetEmissionDetails implements Serializable {
     @Column(name="Engine_Family_Name", length=20)
     private String engineFamilyName;
     @Column(name="BrakeHPValue", precision=10)
-    private int brakeHpValue;
+    private Integer brakeHpValue;
     @Column(name="Pm_Emission_Factor", precision=5, scale=4)
     private BigDecimal pmEmissionFactor;
     @Column(name="Fuel_Modifier", length=20)
     private String fuelModifier;
     @Column(name="Electric_Use_Percent", precision=10)
-    private int electricUsePercent;
+    private Integer electricUsePercent;
     @Column(name="PM_Emission_Factor_Override", precision=5, scale=4)
     private BigDecimal pmEmissionFactorOverride;
     @Column(name="Filter_Control_Efficiency", precision=10)
-    private int filterControlEfficiency;
+    private Integer filterControlEfficiency;
     @Column(name="Net_PM_Emission_Factor", precision=4, scale=2)
     private BigDecimal netPmEmissionFactor;
     @Column(name="Weighted_Emission_Factor", precision=10, scale=2)
     private BigDecimal weightedEmissionFactor;
     @Column(name="Active_Flag", nullable=false, length=1)
-    private String activeFlag;
+    private Character activeFlag;
     @Column(name="Create_Modified_By", nullable=false, length=45)
     private String createModifiedBy;
     @Column(name="Create_Modified_Date", nullable=false)
     private Timestamp createModifiedDate;
     @Column(name="Company_UID", nullable=false, precision=10)
-    private int companyUid;
+    private Integer companyUid;
     @Column(name="Report_Year", precision=10)
-    private int reportYear;
+    private Integer reportYear;
     @Column(name="Export_Date")
     private Timestamp exportDate;
 
@@ -94,7 +68,7 @@ public class FleetEmissionDetails implements Serializable {
      *
      * @return the current value of distFleetEmisRowUid
      */
-    public int getDistFleetEmisRowUid() {
+    public Integer getDistFleetEmisRowUid() {
         return distFleetEmisRowUid;
     }
 
@@ -103,7 +77,7 @@ public class FleetEmissionDetails implements Serializable {
      *
      * @param aDistFleetEmisRowUid the new value for distFleetEmisRowUid
      */
-    public void setDistFleetEmisRowUid(int aDistFleetEmisRowUid) {
+    public void setDistFleetEmisRowUid(Integer aDistFleetEmisRowUid) {
         distFleetEmisRowUid = aDistFleetEmisRowUid;
     }
 
@@ -112,7 +86,7 @@ public class FleetEmissionDetails implements Serializable {
      *
      * @return the current value of perpRegistrationUid
      */
-    public int getPerpRegistrationUid() {
+    public Integer getPerpRegistrationUid() {
         return perpRegistrationUid;
     }
 
@@ -121,7 +95,7 @@ public class FleetEmissionDetails implements Serializable {
      *
      * @param aPerpRegistrationUid the new value for perpRegistrationUid
      */
-    public void setPerpRegistrationUid(int aPerpRegistrationUid) {
+    public void setPerpRegistrationUid(Integer aPerpRegistrationUid) {
         perpRegistrationUid = aPerpRegistrationUid;
     }
 
@@ -184,7 +158,7 @@ public class FleetEmissionDetails implements Serializable {
      *
      * @return the current value of brakeHpValue
      */
-    public int getBrakeHpValue() {
+    public Integer getBrakeHpValue() {
         return brakeHpValue;
     }
 
@@ -193,7 +167,7 @@ public class FleetEmissionDetails implements Serializable {
      *
      * @param aBrakeHpValue the new value for brakeHpValue
      */
-    public void setBrakeHpValue(int aBrakeHpValue) {
+    public void setBrakeHpValue(Integer aBrakeHpValue) {
         brakeHpValue = aBrakeHpValue;
     }
 
@@ -238,7 +212,7 @@ public class FleetEmissionDetails implements Serializable {
      *
      * @return the current value of electricUsePercent
      */
-    public int getElectricUsePercent() {
+    public Integer getElectricUsePercent() {
         return electricUsePercent;
     }
 
@@ -247,7 +221,7 @@ public class FleetEmissionDetails implements Serializable {
      *
      * @param aElectricUsePercent the new value for electricUsePercent
      */
-    public void setElectricUsePercent(int aElectricUsePercent) {
+    public void setElectricUsePercent(Integer aElectricUsePercent) {
         electricUsePercent = aElectricUsePercent;
     }
 
@@ -274,7 +248,7 @@ public class FleetEmissionDetails implements Serializable {
      *
      * @return the current value of filterControlEfficiency
      */
-    public int getFilterControlEfficiency() {
+    public Integer getFilterControlEfficiency() {
         return filterControlEfficiency;
     }
 
@@ -283,7 +257,7 @@ public class FleetEmissionDetails implements Serializable {
      *
      * @param aFilterControlEfficiency the new value for filterControlEfficiency
      */
-    public void setFilterControlEfficiency(int aFilterControlEfficiency) {
+    public void setFilterControlEfficiency(Integer aFilterControlEfficiency) {
         filterControlEfficiency = aFilterControlEfficiency;
     }
 
@@ -328,7 +302,7 @@ public class FleetEmissionDetails implements Serializable {
      *
      * @return the current value of activeFlag
      */
-    public String getActiveFlag() {
+    public Character getActiveFlag() {
         return activeFlag;
     }
 
@@ -337,7 +311,7 @@ public class FleetEmissionDetails implements Serializable {
      *
      * @param aActiveFlag the new value for activeFlag
      */
-    public void setActiveFlag(String aActiveFlag) {
+    public void setActiveFlag(Character aActiveFlag) {
         activeFlag = aActiveFlag;
     }
 
@@ -382,7 +356,7 @@ public class FleetEmissionDetails implements Serializable {
      *
      * @return the current value of companyUid
      */
-    public int getCompanyUid() {
+    public Integer getCompanyUid() {
         return companyUid;
     }
 
@@ -391,7 +365,7 @@ public class FleetEmissionDetails implements Serializable {
      *
      * @param aCompanyUid the new value for companyUid
      */
-    public void setCompanyUid(int aCompanyUid) {
+    public void setCompanyUid(Integer aCompanyUid) {
         companyUid = aCompanyUid;
     }
 
@@ -400,7 +374,7 @@ public class FleetEmissionDetails implements Serializable {
      *
      * @return the current value of reportYear
      */
-    public int getReportYear() {
+    public Integer getReportYear() {
         return reportYear;
     }
 
@@ -409,7 +383,7 @@ public class FleetEmissionDetails implements Serializable {
      *
      * @param aReportYear the new value for reportYear
      */
-    public void setReportYear(int aReportYear) {
+    public void setReportYear(Integer aReportYear) {
         reportYear = aReportYear;
     }
 
@@ -445,7 +419,9 @@ public class FleetEmissionDetails implements Serializable {
             return false;
         }
         FleetEmissionDetails that = (FleetEmissionDetails) other;
-        if (this.getDistFleetEmisRowUid() != that.getDistFleetEmisRowUid()) {
+        Object myDistFleetEmisRowUid = this.getDistFleetEmisRowUid();
+        Object yourDistFleetEmisRowUid = that.getDistFleetEmisRowUid();
+        if (myDistFleetEmisRowUid==null ? yourDistFleetEmisRowUid!=null : !myDistFleetEmisRowUid.equals(yourDistFleetEmisRowUid)) {
             return false;
         }
         return true;
@@ -472,7 +448,11 @@ public class FleetEmissionDetails implements Serializable {
     public int hashCode() {
         int i;
         int result = 17;
-        i = getDistFleetEmisRowUid();
+        if (getDistFleetEmisRowUid() == null) {
+            i = 0;
+        } else {
+            i = getDistFleetEmisRowUid().hashCode();
+        }
         result = 37*result + i;
         return result;
     }
@@ -497,7 +477,7 @@ public class FleetEmissionDetails implements Serializable {
      */
     public Map<String, Object> getPrimaryKey() {
         Map<String, Object> ret = new LinkedHashMap<String, Object>(6);
-        ret.put("distFleetEmisRowUid", Integer.valueOf(getDistFleetEmisRowUid()));
+        ret.put("distFleetEmisRowUid", getDistFleetEmisRowUid());
         return ret;
     }
 

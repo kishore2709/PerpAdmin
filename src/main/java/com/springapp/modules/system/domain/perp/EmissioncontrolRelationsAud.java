@@ -10,7 +10,6 @@ import java.util.Map;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.Version;
 
 @Entity(name="emissioncontrol_relations_aud")
 public class EmissioncontrolRelationsAud implements Serializable {
@@ -18,38 +17,13 @@ public class EmissioncontrolRelationsAud implements Serializable {
     /** Primary key. */
     protected static final String PK = "ecrAudUid";
 
-    /**
-     * The optimistic lock. Available via standard bean get/set operations.
-     */
-    @Version
-    @Column(name="LOCK_FLAG")
-    private Integer lockFlag;
-
-    /**
-     * Access method for the lockFlag property.
-     *
-     * @return the current value of the lockFlag property
-     */
-    public Integer getLockFlag() {
-        return lockFlag;
-    }
-
-    /**
-     * Sets the value of the lockFlag property.
-     *
-     * @param aLockFlag the new value of the lockFlag property
-     */
-    public void setLockFlag(Integer aLockFlag) {
-        lockFlag = aLockFlag;
-    }
-
     @Id
     @Column(name="ECRAud_UID", unique=true, nullable=false, precision=10)
-    private int ecrAudUid;
+    private Integer ecrAudUid;
     @Column(name="EmissionControlType_UID", nullable=false, precision=10)
-    private int emissionControlTypeUid;
+    private Integer emissionControlTypeUid;
     @Column(name="RegItemDet_UID", nullable=false, precision=10)
-    private int regItemDetUid;
+    private Integer regItemDetUid;
     @Column(name="Other_Type_Text", length=255)
     private String otherTypeText;
     @Column(name="Create_Modified_By", nullable=false, length=45)
@@ -69,7 +43,7 @@ public class EmissioncontrolRelationsAud implements Serializable {
      *
      * @return the current value of ecrAudUid
      */
-    public int getEcrAudUid() {
+    public Integer getEcrAudUid() {
         return ecrAudUid;
     }
 
@@ -78,7 +52,7 @@ public class EmissioncontrolRelationsAud implements Serializable {
      *
      * @param aEcrAudUid the new value for ecrAudUid
      */
-    public void setEcrAudUid(int aEcrAudUid) {
+    public void setEcrAudUid(Integer aEcrAudUid) {
         ecrAudUid = aEcrAudUid;
     }
 
@@ -87,7 +61,7 @@ public class EmissioncontrolRelationsAud implements Serializable {
      *
      * @return the current value of emissionControlTypeUid
      */
-    public int getEmissionControlTypeUid() {
+    public Integer getEmissionControlTypeUid() {
         return emissionControlTypeUid;
     }
 
@@ -96,7 +70,7 @@ public class EmissioncontrolRelationsAud implements Serializable {
      *
      * @param aEmissionControlTypeUid the new value for emissionControlTypeUid
      */
-    public void setEmissionControlTypeUid(int aEmissionControlTypeUid) {
+    public void setEmissionControlTypeUid(Integer aEmissionControlTypeUid) {
         emissionControlTypeUid = aEmissionControlTypeUid;
     }
 
@@ -105,7 +79,7 @@ public class EmissioncontrolRelationsAud implements Serializable {
      *
      * @return the current value of regItemDetUid
      */
-    public int getRegItemDetUid() {
+    public Integer getRegItemDetUid() {
         return regItemDetUid;
     }
 
@@ -114,7 +88,7 @@ public class EmissioncontrolRelationsAud implements Serializable {
      *
      * @param aRegItemDetUid the new value for regItemDetUid
      */
-    public void setRegItemDetUid(int aRegItemDetUid) {
+    public void setRegItemDetUid(Integer aRegItemDetUid) {
         regItemDetUid = aRegItemDetUid;
     }
 
@@ -204,7 +178,9 @@ public class EmissioncontrolRelationsAud implements Serializable {
             return false;
         }
         EmissioncontrolRelationsAud that = (EmissioncontrolRelationsAud) other;
-        if (this.getEcrAudUid() != that.getEcrAudUid()) {
+        Object myEcrAudUid = this.getEcrAudUid();
+        Object yourEcrAudUid = that.getEcrAudUid();
+        if (myEcrAudUid==null ? yourEcrAudUid!=null : !myEcrAudUid.equals(yourEcrAudUid)) {
             return false;
         }
         return true;
@@ -231,7 +207,11 @@ public class EmissioncontrolRelationsAud implements Serializable {
     public int hashCode() {
         int i;
         int result = 17;
-        i = getEcrAudUid();
+        if (getEcrAudUid() == null) {
+            i = 0;
+        } else {
+            i = getEcrAudUid().hashCode();
+        }
         result = 37*result + i;
         return result;
     }
@@ -256,7 +236,7 @@ public class EmissioncontrolRelationsAud implements Serializable {
      */
     public Map<String, Object> getPrimaryKey() {
         Map<String, Object> ret = new LinkedHashMap<String, Object>(6);
-        ret.put("ecrAudUid", Integer.valueOf(getEcrAudUid()));
+        ret.put("ecrAudUid", getEcrAudUid());
         return ret;
     }
 

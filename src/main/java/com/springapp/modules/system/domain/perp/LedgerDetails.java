@@ -15,7 +15,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.Version;
 
 @Entity(name="ledger_details")
 public class LedgerDetails implements Serializable {
@@ -23,34 +22,9 @@ public class LedgerDetails implements Serializable {
     /** Primary key. */
     protected static final String PK = "ledgerDetailsUid";
 
-    /**
-     * The optimistic lock. Available via standard bean get/set operations.
-     */
-    @Version
-    @Column(name="LOCK_FLAG")
-    private Integer lockFlag;
-
-    /**
-     * Access method for the lockFlag property.
-     *
-     * @return the current value of the lockFlag property
-     */
-    public Integer getLockFlag() {
-        return lockFlag;
-    }
-
-    /**
-     * Sets the value of the lockFlag property.
-     *
-     * @param aLockFlag the new value of the lockFlag property
-     */
-    public void setLockFlag(Integer aLockFlag) {
-        lockFlag = aLockFlag;
-    }
-
     @Id
     @Column(name="LedgerDetails_UID", unique=true, nullable=false, precision=10)
-    private int ledgerDetailsUid;
+    private Integer ledgerDetailsUid;
     @Column(name="Payment_Number", length=45)
     private String paymentNumber;
     @Column(name="Check_No", length=20)
@@ -64,13 +38,13 @@ public class LedgerDetails implements Serializable {
     @Column(name="Payment_Confirmation_No", length=80)
     private String paymentConfirmationNo;
     @Column(name="Payment_Mailed_In_Flag", nullable=false, length=1)
-    private String paymentMailedInFlag;
+    private Character paymentMailedInFlag;
     @Column(name="LedgerDet_Comment", length=256)
     private String ledgerDetComment;
     @Column(name="App_Summary_Desc", length=256)
     private String appSummaryDesc;
     @Column(name="Active_Flag", nullable=false, length=1)
-    private String activeFlag;
+    private Character activeFlag;
     @Column(name="Create_Modified_By", nullable=false, length=45)
     private String createModifiedBy;
     @Column(name="Create_Modified_Date", nullable=false)
@@ -97,7 +71,7 @@ public class LedgerDetails implements Serializable {
      *
      * @return the current value of ledgerDetailsUid
      */
-    public int getLedgerDetailsUid() {
+    public Integer getLedgerDetailsUid() {
         return ledgerDetailsUid;
     }
 
@@ -106,7 +80,7 @@ public class LedgerDetails implements Serializable {
      *
      * @param aLedgerDetailsUid the new value for ledgerDetailsUid
      */
-    public void setLedgerDetailsUid(int aLedgerDetailsUid) {
+    public void setLedgerDetailsUid(Integer aLedgerDetailsUid) {
         ledgerDetailsUid = aLedgerDetailsUid;
     }
 
@@ -223,7 +197,7 @@ public class LedgerDetails implements Serializable {
      *
      * @return the current value of paymentMailedInFlag
      */
-    public String getPaymentMailedInFlag() {
+    public Character getPaymentMailedInFlag() {
         return paymentMailedInFlag;
     }
 
@@ -232,7 +206,7 @@ public class LedgerDetails implements Serializable {
      *
      * @param aPaymentMailedInFlag the new value for paymentMailedInFlag
      */
-    public void setPaymentMailedInFlag(String aPaymentMailedInFlag) {
+    public void setPaymentMailedInFlag(Character aPaymentMailedInFlag) {
         paymentMailedInFlag = aPaymentMailedInFlag;
     }
 
@@ -277,7 +251,7 @@ public class LedgerDetails implements Serializable {
      *
      * @return the current value of activeFlag
      */
-    public String getActiveFlag() {
+    public Character getActiveFlag() {
         return activeFlag;
     }
 
@@ -286,7 +260,7 @@ public class LedgerDetails implements Serializable {
      *
      * @param aActiveFlag the new value for activeFlag
      */
-    public void setActiveFlag(String aActiveFlag) {
+    public void setActiveFlag(Character aActiveFlag) {
         activeFlag = aActiveFlag;
     }
 
@@ -412,7 +386,9 @@ public class LedgerDetails implements Serializable {
             return false;
         }
         LedgerDetails that = (LedgerDetails) other;
-        if (this.getLedgerDetailsUid() != that.getLedgerDetailsUid()) {
+        Object myLedgerDetailsUid = this.getLedgerDetailsUid();
+        Object yourLedgerDetailsUid = that.getLedgerDetailsUid();
+        if (myLedgerDetailsUid==null ? yourLedgerDetailsUid!=null : !myLedgerDetailsUid.equals(yourLedgerDetailsUid)) {
             return false;
         }
         return true;
@@ -439,7 +415,11 @@ public class LedgerDetails implements Serializable {
     public int hashCode() {
         int i;
         int result = 17;
-        i = getLedgerDetailsUid();
+        if (getLedgerDetailsUid() == null) {
+            i = 0;
+        } else {
+            i = getLedgerDetailsUid().hashCode();
+        }
         result = 37*result + i;
         return result;
     }
@@ -464,7 +444,7 @@ public class LedgerDetails implements Serializable {
      */
     public Map<String, Object> getPrimaryKey() {
         Map<String, Object> ret = new LinkedHashMap<String, Object>(6);
-        ret.put("ledgerDetailsUid", Integer.valueOf(getLedgerDetailsUid()));
+        ret.put("ledgerDetailsUid", getLedgerDetailsUid());
         return ret;
     }
 

@@ -13,7 +13,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
-import javax.persistence.Version;
 
 @Entity(name="role_permission_relation")
 public class RolePermissionRelation implements Serializable {
@@ -21,40 +20,15 @@ public class RolePermissionRelation implements Serializable {
     /** Primary key. */
     protected static final String PK = "rolePermissionRelationUid";
 
-    /**
-     * The optimistic lock. Available via standard bean get/set operations.
-     */
-    @Version
-    @Column(name="LOCK_FLAG")
-    private Integer lockFlag;
-
-    /**
-     * Access method for the lockFlag property.
-     *
-     * @return the current value of the lockFlag property
-     */
-    public Integer getLockFlag() {
-        return lockFlag;
-    }
-
-    /**
-     * Sets the value of the lockFlag property.
-     *
-     * @param aLockFlag the new value of the lockFlag property
-     */
-    public void setLockFlag(Integer aLockFlag) {
-        lockFlag = aLockFlag;
-    }
-
     @Id
     @Column(name="Role_Permission_Relation_UID", unique=true, nullable=false, precision=10)
-    private int rolePermissionRelationUid;
+    private Integer rolePermissionRelationUid;
     @Column(name="Create_Modified_By", nullable=false, length=45)
     private String createModifiedBy;
     @Column(name="Create_Modified_Date", nullable=false)
     private Timestamp createModifiedDate;
     @Column(name="Active_Flag", nullable=false, length=1)
-    private String activeFlag;
+    private Character activeFlag;
     @ManyToOne
     @JoinColumn(name="Roles_UID")
     private Roles roles;
@@ -72,7 +46,7 @@ public class RolePermissionRelation implements Serializable {
      *
      * @return the current value of rolePermissionRelationUid
      */
-    public int getRolePermissionRelationUid() {
+    public Integer getRolePermissionRelationUid() {
         return rolePermissionRelationUid;
     }
 
@@ -81,7 +55,7 @@ public class RolePermissionRelation implements Serializable {
      *
      * @param aRolePermissionRelationUid the new value for rolePermissionRelationUid
      */
-    public void setRolePermissionRelationUid(int aRolePermissionRelationUid) {
+    public void setRolePermissionRelationUid(Integer aRolePermissionRelationUid) {
         rolePermissionRelationUid = aRolePermissionRelationUid;
     }
 
@@ -126,7 +100,7 @@ public class RolePermissionRelation implements Serializable {
      *
      * @return the current value of activeFlag
      */
-    public String getActiveFlag() {
+    public Character getActiveFlag() {
         return activeFlag;
     }
 
@@ -135,7 +109,7 @@ public class RolePermissionRelation implements Serializable {
      *
      * @param aActiveFlag the new value for activeFlag
      */
-    public void setActiveFlag(String aActiveFlag) {
+    public void setActiveFlag(Character aActiveFlag) {
         activeFlag = aActiveFlag;
     }
 
@@ -189,7 +163,9 @@ public class RolePermissionRelation implements Serializable {
             return false;
         }
         RolePermissionRelation that = (RolePermissionRelation) other;
-        if (this.getRolePermissionRelationUid() != that.getRolePermissionRelationUid()) {
+        Object myRolePermissionRelationUid = this.getRolePermissionRelationUid();
+        Object yourRolePermissionRelationUid = that.getRolePermissionRelationUid();
+        if (myRolePermissionRelationUid==null ? yourRolePermissionRelationUid!=null : !myRolePermissionRelationUid.equals(yourRolePermissionRelationUid)) {
             return false;
         }
         return true;
@@ -216,7 +192,11 @@ public class RolePermissionRelation implements Serializable {
     public int hashCode() {
         int i;
         int result = 17;
-        i = getRolePermissionRelationUid();
+        if (getRolePermissionRelationUid() == null) {
+            i = 0;
+        } else {
+            i = getRolePermissionRelationUid().hashCode();
+        }
         result = 37*result + i;
         return result;
     }
@@ -241,7 +221,7 @@ public class RolePermissionRelation implements Serializable {
      */
     public Map<String, Object> getPrimaryKey() {
         Map<String, Object> ret = new LinkedHashMap<String, Object>(6);
-        ret.put("rolePermissionRelationUid", Integer.valueOf(getRolePermissionRelationUid()));
+        ret.put("rolePermissionRelationUid", getRolePermissionRelationUid());
         return ret;
     }
 

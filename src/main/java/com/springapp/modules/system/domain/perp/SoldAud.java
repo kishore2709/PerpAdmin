@@ -11,7 +11,6 @@ import java.util.Map;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.Version;
 
 @Entity(name="sold_aud")
 public class SoldAud implements Serializable {
@@ -19,38 +18,13 @@ public class SoldAud implements Serializable {
     /** Primary key. */
     protected static final String PK = "soldAudUid";
 
-    /**
-     * The optimistic lock. Available via standard bean get/set operations.
-     */
-    @Version
-    @Column(name="LOCK_FLAG")
-    private Integer lockFlag;
-
-    /**
-     * Access method for the lockFlag property.
-     *
-     * @return the current value of the lockFlag property
-     */
-    public Integer getLockFlag() {
-        return lockFlag;
-    }
-
-    /**
-     * Sets the value of the lockFlag property.
-     *
-     * @param aLockFlag the new value of the lockFlag property
-     */
-    public void setLockFlag(Integer aLockFlag) {
-        lockFlag = aLockFlag;
-    }
-
     @Id
     @Column(name="Sold_Aud_UID", unique=true, nullable=false, precision=10)
-    private int soldAudUid;
+    private Integer soldAudUid;
     @Column(name="Sold_UID", nullable=false, precision=10)
-    private int soldUid;
+    private Integer soldUid;
     @Column(name="TRU_UID", nullable=false, precision=10)
-    private int truUid;
+    private Integer truUid;
     @Column(name="Date_of_Sale", nullable=false)
     private Date dateOfSale;
     @Column(name="Create_Modified_By", nullable=false, length=45)
@@ -70,7 +44,7 @@ public class SoldAud implements Serializable {
      *
      * @return the current value of soldAudUid
      */
-    public int getSoldAudUid() {
+    public Integer getSoldAudUid() {
         return soldAudUid;
     }
 
@@ -79,7 +53,7 @@ public class SoldAud implements Serializable {
      *
      * @param aSoldAudUid the new value for soldAudUid
      */
-    public void setSoldAudUid(int aSoldAudUid) {
+    public void setSoldAudUid(Integer aSoldAudUid) {
         soldAudUid = aSoldAudUid;
     }
 
@@ -88,7 +62,7 @@ public class SoldAud implements Serializable {
      *
      * @return the current value of soldUid
      */
-    public int getSoldUid() {
+    public Integer getSoldUid() {
         return soldUid;
     }
 
@@ -97,7 +71,7 @@ public class SoldAud implements Serializable {
      *
      * @param aSoldUid the new value for soldUid
      */
-    public void setSoldUid(int aSoldUid) {
+    public void setSoldUid(Integer aSoldUid) {
         soldUid = aSoldUid;
     }
 
@@ -106,7 +80,7 @@ public class SoldAud implements Serializable {
      *
      * @return the current value of truUid
      */
-    public int getTruUid() {
+    public Integer getTruUid() {
         return truUid;
     }
 
@@ -115,7 +89,7 @@ public class SoldAud implements Serializable {
      *
      * @param aTruUid the new value for truUid
      */
-    public void setTruUid(int aTruUid) {
+    public void setTruUid(Integer aTruUid) {
         truUid = aTruUid;
     }
 
@@ -205,7 +179,9 @@ public class SoldAud implements Serializable {
             return false;
         }
         SoldAud that = (SoldAud) other;
-        if (this.getSoldAudUid() != that.getSoldAudUid()) {
+        Object mySoldAudUid = this.getSoldAudUid();
+        Object yourSoldAudUid = that.getSoldAudUid();
+        if (mySoldAudUid==null ? yourSoldAudUid!=null : !mySoldAudUid.equals(yourSoldAudUid)) {
             return false;
         }
         return true;
@@ -232,7 +208,11 @@ public class SoldAud implements Serializable {
     public int hashCode() {
         int i;
         int result = 17;
-        i = getSoldAudUid();
+        if (getSoldAudUid() == null) {
+            i = 0;
+        } else {
+            i = getSoldAudUid().hashCode();
+        }
         result = 37*result + i;
         return result;
     }
@@ -257,7 +237,7 @@ public class SoldAud implements Serializable {
      */
     public Map<String, Object> getPrimaryKey() {
         Map<String, Object> ret = new LinkedHashMap<String, Object>(6);
-        ret.put("soldAudUid", Integer.valueOf(getSoldAudUid()));
+        ret.put("soldAudUid", getSoldAudUid());
         return ret;
     }
 

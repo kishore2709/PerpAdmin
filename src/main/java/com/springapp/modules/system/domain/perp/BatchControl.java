@@ -12,7 +12,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.Version;
 
 @Entity(name="batch_control")
 public class BatchControl implements Serializable {
@@ -20,44 +19,19 @@ public class BatchControl implements Serializable {
     /** Primary key. */
     protected static final String PK = "batchControlUid";
 
-    /**
-     * The optimistic lock. Available via standard bean get/set operations.
-     */
-    @Version
-    @Column(name="LOCK_FLAG")
-    private Integer lockFlag;
-
-    /**
-     * Access method for the lockFlag property.
-     *
-     * @return the current value of the lockFlag property
-     */
-    public Integer getLockFlag() {
-        return lockFlag;
-    }
-
-    /**
-     * Sets the value of the lockFlag property.
-     *
-     * @param aLockFlag the new value of the lockFlag property
-     */
-    public void setLockFlag(Integer aLockFlag) {
-        lockFlag = aLockFlag;
-    }
-
     @Id
     @Column(name="BATCH_CONTROL_UID", unique=true, nullable=false, precision=10)
-    private int batchControlUid;
+    private Integer batchControlUid;
     @Column(name="Company_UID", precision=10)
-    private int companyUid;
+    private Integer companyUid;
     @Column(name="User_UID", precision=10)
-    private int userUid;
+    private Integer userUid;
     @Column(name="Status", length=128)
     private String status;
     @Column(name="Notes", length=128)
     private String notes;
     @Column(name="Records_Processed", precision=10)
-    private int recordsProcessed;
+    private Integer recordsProcessed;
     @Column(name="Orig_Filename", length=512)
     private String origFilename;
     @Column(name="File_Uploaded_Date", nullable=false)
@@ -65,15 +39,15 @@ public class BatchControl implements Serializable {
     @Column(name="Sys_Filename", length=128)
     private String sysFilename;
     @Column(name="Processed_Flag", length=1)
-    private String processedFlag;
+    private Character processedFlag;
     @Column(name="Archived_Flag", length=1)
-    private String archivedFlag;
+    private Character archivedFlag;
     @Column(name="Create_Modify_By", nullable=false, length=45)
     private String createModifyBy;
     @Column(name="Create_Modify_Date", nullable=false)
     private Timestamp createModifyDate;
     @Column(name="BatchControlType_UID", precision=10)
-    private int batchControlTypeUid;
+    private Integer batchControlTypeUid;
     @OneToMany(mappedBy="batchControl")
     private Set<BatchErrors> batchErrors;
     @OneToMany(mappedBy="batchControl")
@@ -89,7 +63,7 @@ public class BatchControl implements Serializable {
      *
      * @return the current value of batchControlUid
      */
-    public int getBatchControlUid() {
+    public Integer getBatchControlUid() {
         return batchControlUid;
     }
 
@@ -98,7 +72,7 @@ public class BatchControl implements Serializable {
      *
      * @param aBatchControlUid the new value for batchControlUid
      */
-    public void setBatchControlUid(int aBatchControlUid) {
+    public void setBatchControlUid(Integer aBatchControlUid) {
         batchControlUid = aBatchControlUid;
     }
 
@@ -107,7 +81,7 @@ public class BatchControl implements Serializable {
      *
      * @return the current value of companyUid
      */
-    public int getCompanyUid() {
+    public Integer getCompanyUid() {
         return companyUid;
     }
 
@@ -116,7 +90,7 @@ public class BatchControl implements Serializable {
      *
      * @param aCompanyUid the new value for companyUid
      */
-    public void setCompanyUid(int aCompanyUid) {
+    public void setCompanyUid(Integer aCompanyUid) {
         companyUid = aCompanyUid;
     }
 
@@ -125,7 +99,7 @@ public class BatchControl implements Serializable {
      *
      * @return the current value of userUid
      */
-    public int getUserUid() {
+    public Integer getUserUid() {
         return userUid;
     }
 
@@ -134,7 +108,7 @@ public class BatchControl implements Serializable {
      *
      * @param aUserUid the new value for userUid
      */
-    public void setUserUid(int aUserUid) {
+    public void setUserUid(Integer aUserUid) {
         userUid = aUserUid;
     }
 
@@ -179,7 +153,7 @@ public class BatchControl implements Serializable {
      *
      * @return the current value of recordsProcessed
      */
-    public int getRecordsProcessed() {
+    public Integer getRecordsProcessed() {
         return recordsProcessed;
     }
 
@@ -188,7 +162,7 @@ public class BatchControl implements Serializable {
      *
      * @param aRecordsProcessed the new value for recordsProcessed
      */
-    public void setRecordsProcessed(int aRecordsProcessed) {
+    public void setRecordsProcessed(Integer aRecordsProcessed) {
         recordsProcessed = aRecordsProcessed;
     }
 
@@ -251,7 +225,7 @@ public class BatchControl implements Serializable {
      *
      * @return the current value of processedFlag
      */
-    public String getProcessedFlag() {
+    public Character getProcessedFlag() {
         return processedFlag;
     }
 
@@ -260,7 +234,7 @@ public class BatchControl implements Serializable {
      *
      * @param aProcessedFlag the new value for processedFlag
      */
-    public void setProcessedFlag(String aProcessedFlag) {
+    public void setProcessedFlag(Character aProcessedFlag) {
         processedFlag = aProcessedFlag;
     }
 
@@ -269,7 +243,7 @@ public class BatchControl implements Serializable {
      *
      * @return the current value of archivedFlag
      */
-    public String getArchivedFlag() {
+    public Character getArchivedFlag() {
         return archivedFlag;
     }
 
@@ -278,7 +252,7 @@ public class BatchControl implements Serializable {
      *
      * @param aArchivedFlag the new value for archivedFlag
      */
-    public void setArchivedFlag(String aArchivedFlag) {
+    public void setArchivedFlag(Character aArchivedFlag) {
         archivedFlag = aArchivedFlag;
     }
 
@@ -323,7 +297,7 @@ public class BatchControl implements Serializable {
      *
      * @return the current value of batchControlTypeUid
      */
-    public int getBatchControlTypeUid() {
+    public Integer getBatchControlTypeUid() {
         return batchControlTypeUid;
     }
 
@@ -332,7 +306,7 @@ public class BatchControl implements Serializable {
      *
      * @param aBatchControlTypeUid the new value for batchControlTypeUid
      */
-    public void setBatchControlTypeUid(int aBatchControlTypeUid) {
+    public void setBatchControlTypeUid(Integer aBatchControlTypeUid) {
         batchControlTypeUid = aBatchControlTypeUid;
     }
 
@@ -386,7 +360,9 @@ public class BatchControl implements Serializable {
             return false;
         }
         BatchControl that = (BatchControl) other;
-        if (this.getBatchControlUid() != that.getBatchControlUid()) {
+        Object myBatchControlUid = this.getBatchControlUid();
+        Object yourBatchControlUid = that.getBatchControlUid();
+        if (myBatchControlUid==null ? yourBatchControlUid!=null : !myBatchControlUid.equals(yourBatchControlUid)) {
             return false;
         }
         return true;
@@ -413,7 +389,11 @@ public class BatchControl implements Serializable {
     public int hashCode() {
         int i;
         int result = 17;
-        i = getBatchControlUid();
+        if (getBatchControlUid() == null) {
+            i = 0;
+        } else {
+            i = getBatchControlUid().hashCode();
+        }
         result = 37*result + i;
         return result;
     }
@@ -438,7 +418,7 @@ public class BatchControl implements Serializable {
      */
     public Map<String, Object> getPrimaryKey() {
         Map<String, Object> ret = new LinkedHashMap<String, Object>(6);
-        ret.put("batchControlUid", Integer.valueOf(getBatchControlUid()));
+        ret.put("batchControlUid", getBatchControlUid());
         return ret;
     }
 

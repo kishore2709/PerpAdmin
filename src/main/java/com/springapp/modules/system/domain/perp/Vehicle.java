@@ -15,7 +15,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.Version;
 
 @Entity(name="vehicle")
 public class Vehicle implements Serializable {
@@ -23,34 +22,9 @@ public class Vehicle implements Serializable {
     /** Primary key. */
     protected static final String PK = "vehicleUid";
 
-    /**
-     * The optimistic lock. Available via standard bean get/set operations.
-     */
-    @Version
-    @Column(name="LOCK_FLAG")
-    private Integer lockFlag;
-
-    /**
-     * Access method for the lockFlag property.
-     *
-     * @return the current value of the lockFlag property
-     */
-    public Integer getLockFlag() {
-        return lockFlag;
-    }
-
-    /**
-     * Sets the value of the lockFlag property.
-     *
-     * @param aLockFlag the new value of the lockFlag property
-     */
-    public void setLockFlag(Integer aLockFlag) {
-        lockFlag = aLockFlag;
-    }
-
     @Id
     @Column(name="Vehicle_UID", unique=true, nullable=false, precision=10)
-    private int vehicleUid;
+    private Integer vehicleUid;
     @Column(name="Vehicle_Model_Year", length=45)
     private String vehicleModelYear;
     @Column(name="Vehicle_ID", length=45)
@@ -68,9 +42,9 @@ public class Vehicle implements Serializable {
     @Column(name="Dtr_Number", length=45)
     private String dtrNumber;
     @Column(name="Drayage_Label_Request")
-    private boolean drayageLabelRequest;
+    private Boolean drayageLabelRequest;
     @Column(name="Active_Flag", nullable=false, length=1)
-    private String activeFlag;
+    private Character activeFlag;
     @Column(name="Create_Modified_By", nullable=false, length=45)
     private String createModifiedBy;
     @Column(name="Create_Modified_Date", nullable=false)
@@ -120,7 +94,7 @@ public class Vehicle implements Serializable {
      *
      * @return the current value of vehicleUid
      */
-    public int getVehicleUid() {
+    public Integer getVehicleUid() {
         return vehicleUid;
     }
 
@@ -129,7 +103,7 @@ public class Vehicle implements Serializable {
      *
      * @param aVehicleUid the new value for vehicleUid
      */
-    public void setVehicleUid(int aVehicleUid) {
+    public void setVehicleUid(Integer aVehicleUid) {
         vehicleUid = aVehicleUid;
     }
 
@@ -280,9 +254,9 @@ public class Vehicle implements Serializable {
     /**
      * Access method for drayageLabelRequest.
      *
-     * @return true if and only if drayageLabelRequest is currently true
+     * @return the current value of drayageLabelRequest
      */
-    public boolean getDrayageLabelRequest() {
+    public Boolean getDrayageLabelRequest() {
         return drayageLabelRequest;
     }
 
@@ -291,7 +265,7 @@ public class Vehicle implements Serializable {
      *
      * @param aDrayageLabelRequest the new value for drayageLabelRequest
      */
-    public void setDrayageLabelRequest(boolean aDrayageLabelRequest) {
+    public void setDrayageLabelRequest(Boolean aDrayageLabelRequest) {
         drayageLabelRequest = aDrayageLabelRequest;
     }
 
@@ -300,7 +274,7 @@ public class Vehicle implements Serializable {
      *
      * @return the current value of activeFlag
      */
-    public String getActiveFlag() {
+    public Character getActiveFlag() {
         return activeFlag;
     }
 
@@ -309,7 +283,7 @@ public class Vehicle implements Serializable {
      *
      * @param aActiveFlag the new value for activeFlag
      */
-    public void setActiveFlag(String aActiveFlag) {
+    public void setActiveFlag(Character aActiveFlag) {
         activeFlag = aActiveFlag;
     }
 
@@ -615,7 +589,9 @@ public class Vehicle implements Serializable {
             return false;
         }
         Vehicle that = (Vehicle) other;
-        if (this.getVehicleUid() != that.getVehicleUid()) {
+        Object myVehicleUid = this.getVehicleUid();
+        Object yourVehicleUid = that.getVehicleUid();
+        if (myVehicleUid==null ? yourVehicleUid!=null : !myVehicleUid.equals(yourVehicleUid)) {
             return false;
         }
         return true;
@@ -642,7 +618,11 @@ public class Vehicle implements Serializable {
     public int hashCode() {
         int i;
         int result = 17;
-        i = getVehicleUid();
+        if (getVehicleUid() == null) {
+            i = 0;
+        } else {
+            i = getVehicleUid().hashCode();
+        }
         result = 37*result + i;
         return result;
     }
@@ -667,7 +647,7 @@ public class Vehicle implements Serializable {
      */
     public Map<String, Object> getPrimaryKey() {
         Map<String, Object> ret = new LinkedHashMap<String, Object>(6);
-        ret.put("vehicleUid", Integer.valueOf(getVehicleUid()));
+        ret.put("vehicleUid", getVehicleUid());
         return ret;
     }
 

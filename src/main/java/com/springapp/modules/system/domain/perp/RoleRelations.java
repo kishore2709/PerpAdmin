@@ -12,7 +12,6 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.Version;
 
 @Entity(name="role_relations")
 public class RoleRelations implements Serializable {
@@ -20,34 +19,9 @@ public class RoleRelations implements Serializable {
     /** Primary key. */
     protected static final String PK = "roleRelationsUid";
 
-    /**
-     * The optimistic lock. Available via standard bean get/set operations.
-     */
-    @Version
-    @Column(name="LOCK_FLAG")
-    private Integer lockFlag;
-
-    /**
-     * Access method for the lockFlag property.
-     *
-     * @return the current value of the lockFlag property
-     */
-    public Integer getLockFlag() {
-        return lockFlag;
-    }
-
-    /**
-     * Sets the value of the lockFlag property.
-     *
-     * @param aLockFlag the new value of the lockFlag property
-     */
-    public void setLockFlag(Integer aLockFlag) {
-        lockFlag = aLockFlag;
-    }
-
     @Id
     @Column(name="Role_Relations_UID", unique=true, nullable=false, precision=10)
-    private int roleRelationsUid;
+    private Integer roleRelationsUid;
     @Column(name="Create_Modified_By", nullable=false, length=45)
     private String createModifiedBy;
     @Column(name="Create_Modified_Date", nullable=false)
@@ -69,7 +43,7 @@ public class RoleRelations implements Serializable {
      *
      * @return the current value of roleRelationsUid
      */
-    public int getRoleRelationsUid() {
+    public Integer getRoleRelationsUid() {
         return roleRelationsUid;
     }
 
@@ -78,7 +52,7 @@ public class RoleRelations implements Serializable {
      *
      * @param aRoleRelationsUid the new value for roleRelationsUid
      */
-    public void setRoleRelationsUid(int aRoleRelationsUid) {
+    public void setRoleRelationsUid(Integer aRoleRelationsUid) {
         roleRelationsUid = aRoleRelationsUid;
     }
 
@@ -168,7 +142,9 @@ public class RoleRelations implements Serializable {
             return false;
         }
         RoleRelations that = (RoleRelations) other;
-        if (this.getRoleRelationsUid() != that.getRoleRelationsUid()) {
+        Object myRoleRelationsUid = this.getRoleRelationsUid();
+        Object yourRoleRelationsUid = that.getRoleRelationsUid();
+        if (myRoleRelationsUid==null ? yourRoleRelationsUid!=null : !myRoleRelationsUid.equals(yourRoleRelationsUid)) {
             return false;
         }
         return true;
@@ -195,7 +171,11 @@ public class RoleRelations implements Serializable {
     public int hashCode() {
         int i;
         int result = 17;
-        i = getRoleRelationsUid();
+        if (getRoleRelationsUid() == null) {
+            i = 0;
+        } else {
+            i = getRoleRelationsUid().hashCode();
+        }
         result = 37*result + i;
         return result;
     }
@@ -220,7 +200,7 @@ public class RoleRelations implements Serializable {
      */
     public Map<String, Object> getPrimaryKey() {
         Map<String, Object> ret = new LinkedHashMap<String, Object>(6);
-        ret.put("roleRelationsUid", Integer.valueOf(getRoleRelationsUid()));
+        ret.put("roleRelationsUid", getRoleRelationsUid());
         return ret;
     }
 

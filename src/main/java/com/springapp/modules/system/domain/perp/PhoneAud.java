@@ -10,7 +10,6 @@ import java.util.Map;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.Version;
 
 @Entity(name="phone_aud")
 public class PhoneAud implements Serializable {
@@ -18,44 +17,19 @@ public class PhoneAud implements Serializable {
     /** Primary key. */
     protected static final String PK = "phoneAudUid";
 
-    /**
-     * The optimistic lock. Available via standard bean get/set operations.
-     */
-    @Version
-    @Column(name="LOCK_FLAG")
-    private Integer lockFlag;
-
-    /**
-     * Access method for the lockFlag property.
-     *
-     * @return the current value of the lockFlag property
-     */
-    public Integer getLockFlag() {
-        return lockFlag;
-    }
-
-    /**
-     * Sets the value of the lockFlag property.
-     *
-     * @param aLockFlag the new value of the lockFlag property
-     */
-    public void setLockFlag(Integer aLockFlag) {
-        lockFlag = aLockFlag;
-    }
-
     @Id
     @Column(name="Phone_Aud_UID", unique=true, nullable=false, precision=10)
-    private int phoneAudUid;
+    private Integer phoneAudUid;
     @Column(name="Phone_UID", nullable=false, precision=10)
-    private int phoneUid;
+    private Integer phoneUid;
     @Column(name="Phone_Type_UID", nullable=false, precision=10)
-    private int phoneTypeUid;
+    private Integer phoneTypeUid;
     @Column(name="Contact_UID", precision=10)
-    private int contactUid;
+    private Integer contactUid;
     @Column(name="Users_UID", precision=10)
-    private int usersUid;
+    private Integer usersUid;
     @Column(name="Company_UID", precision=10)
-    private int companyUid;
+    private Integer companyUid;
     @Column(name="Phone_Number", nullable=false, length=45)
     private String phoneNumber;
     @Column(name="Extension", length=10)
@@ -77,7 +51,7 @@ public class PhoneAud implements Serializable {
      *
      * @return the current value of phoneAudUid
      */
-    public int getPhoneAudUid() {
+    public Integer getPhoneAudUid() {
         return phoneAudUid;
     }
 
@@ -86,7 +60,7 @@ public class PhoneAud implements Serializable {
      *
      * @param aPhoneAudUid the new value for phoneAudUid
      */
-    public void setPhoneAudUid(int aPhoneAudUid) {
+    public void setPhoneAudUid(Integer aPhoneAudUid) {
         phoneAudUid = aPhoneAudUid;
     }
 
@@ -95,7 +69,7 @@ public class PhoneAud implements Serializable {
      *
      * @return the current value of phoneUid
      */
-    public int getPhoneUid() {
+    public Integer getPhoneUid() {
         return phoneUid;
     }
 
@@ -104,7 +78,7 @@ public class PhoneAud implements Serializable {
      *
      * @param aPhoneUid the new value for phoneUid
      */
-    public void setPhoneUid(int aPhoneUid) {
+    public void setPhoneUid(Integer aPhoneUid) {
         phoneUid = aPhoneUid;
     }
 
@@ -113,7 +87,7 @@ public class PhoneAud implements Serializable {
      *
      * @return the current value of phoneTypeUid
      */
-    public int getPhoneTypeUid() {
+    public Integer getPhoneTypeUid() {
         return phoneTypeUid;
     }
 
@@ -122,7 +96,7 @@ public class PhoneAud implements Serializable {
      *
      * @param aPhoneTypeUid the new value for phoneTypeUid
      */
-    public void setPhoneTypeUid(int aPhoneTypeUid) {
+    public void setPhoneTypeUid(Integer aPhoneTypeUid) {
         phoneTypeUid = aPhoneTypeUid;
     }
 
@@ -131,7 +105,7 @@ public class PhoneAud implements Serializable {
      *
      * @return the current value of contactUid
      */
-    public int getContactUid() {
+    public Integer getContactUid() {
         return contactUid;
     }
 
@@ -140,7 +114,7 @@ public class PhoneAud implements Serializable {
      *
      * @param aContactUid the new value for contactUid
      */
-    public void setContactUid(int aContactUid) {
+    public void setContactUid(Integer aContactUid) {
         contactUid = aContactUid;
     }
 
@@ -149,7 +123,7 @@ public class PhoneAud implements Serializable {
      *
      * @return the current value of usersUid
      */
-    public int getUsersUid() {
+    public Integer getUsersUid() {
         return usersUid;
     }
 
@@ -158,7 +132,7 @@ public class PhoneAud implements Serializable {
      *
      * @param aUsersUid the new value for usersUid
      */
-    public void setUsersUid(int aUsersUid) {
+    public void setUsersUid(Integer aUsersUid) {
         usersUid = aUsersUid;
     }
 
@@ -167,7 +141,7 @@ public class PhoneAud implements Serializable {
      *
      * @return the current value of companyUid
      */
-    public int getCompanyUid() {
+    public Integer getCompanyUid() {
         return companyUid;
     }
 
@@ -176,7 +150,7 @@ public class PhoneAud implements Serializable {
      *
      * @param aCompanyUid the new value for companyUid
      */
-    public void setCompanyUid(int aCompanyUid) {
+    public void setCompanyUid(Integer aCompanyUid) {
         companyUid = aCompanyUid;
     }
 
@@ -284,7 +258,9 @@ public class PhoneAud implements Serializable {
             return false;
         }
         PhoneAud that = (PhoneAud) other;
-        if (this.getPhoneAudUid() != that.getPhoneAudUid()) {
+        Object myPhoneAudUid = this.getPhoneAudUid();
+        Object yourPhoneAudUid = that.getPhoneAudUid();
+        if (myPhoneAudUid==null ? yourPhoneAudUid!=null : !myPhoneAudUid.equals(yourPhoneAudUid)) {
             return false;
         }
         return true;
@@ -311,7 +287,11 @@ public class PhoneAud implements Serializable {
     public int hashCode() {
         int i;
         int result = 17;
-        i = getPhoneAudUid();
+        if (getPhoneAudUid() == null) {
+            i = 0;
+        } else {
+            i = getPhoneAudUid().hashCode();
+        }
         result = 37*result + i;
         return result;
     }
@@ -336,7 +316,7 @@ public class PhoneAud implements Serializable {
      */
     public Map<String, Object> getPrimaryKey() {
         Map<String, Object> ret = new LinkedHashMap<String, Object>(6);
-        ret.put("phoneAudUid", Integer.valueOf(getPhoneAudUid()));
+        ret.put("phoneAudUid", getPhoneAudUid());
         return ret;
     }
 

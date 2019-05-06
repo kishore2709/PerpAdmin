@@ -16,7 +16,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.Version;
 
 @Entity(name="ledger")
 public class Ledger implements Serializable {
@@ -24,34 +23,9 @@ public class Ledger implements Serializable {
     /** Primary key. */
     protected static final String PK = "ledgerUid";
 
-    /**
-     * The optimistic lock. Available via standard bean get/set operations.
-     */
-    @Version
-    @Column(name="LOCK_FLAG")
-    private Integer lockFlag;
-
-    /**
-     * Access method for the lockFlag property.
-     *
-     * @return the current value of the lockFlag property
-     */
-    public Integer getLockFlag() {
-        return lockFlag;
-    }
-
-    /**
-     * Sets the value of the lockFlag property.
-     *
-     * @param aLockFlag the new value of the lockFlag property
-     */
-    public void setLockFlag(Integer aLockFlag) {
-        lockFlag = aLockFlag;
-    }
-
     @Id
     @Column(name="Ledger_UID", unique=true, nullable=false, precision=10)
-    private int ledgerUid;
+    private Integer ledgerUid;
     @Column(name="Referenced_pid", length=45)
     private String referencedPid;
     @Column(name="Refund_PID", length=45)
@@ -61,7 +35,7 @@ public class Ledger implements Serializable {
     @Column(name="Creation_Date")
     private Date creationDate;
     @Column(name="Active_Flag", nullable=false, length=1)
-    private String activeFlag;
+    private Character activeFlag;
     @Column(name="Create_Modified_By", nullable=false, length=45)
     private String createModifiedBy;
     @Column(name="Create_Modified_Date", nullable=false)
@@ -102,7 +76,7 @@ public class Ledger implements Serializable {
      *
      * @return the current value of ledgerUid
      */
-    public int getLedgerUid() {
+    public Integer getLedgerUid() {
         return ledgerUid;
     }
 
@@ -111,7 +85,7 @@ public class Ledger implements Serializable {
      *
      * @param aLedgerUid the new value for ledgerUid
      */
-    public void setLedgerUid(int aLedgerUid) {
+    public void setLedgerUid(Integer aLedgerUid) {
         ledgerUid = aLedgerUid;
     }
 
@@ -192,7 +166,7 @@ public class Ledger implements Serializable {
      *
      * @return the current value of activeFlag
      */
-    public String getActiveFlag() {
+    public Character getActiveFlag() {
         return activeFlag;
     }
 
@@ -201,7 +175,7 @@ public class Ledger implements Serializable {
      *
      * @param aActiveFlag the new value for activeFlag
      */
-    public void setActiveFlag(String aActiveFlag) {
+    public void setActiveFlag(Character aActiveFlag) {
         activeFlag = aActiveFlag;
     }
 
@@ -417,7 +391,9 @@ public class Ledger implements Serializable {
             return false;
         }
         Ledger that = (Ledger) other;
-        if (this.getLedgerUid() != that.getLedgerUid()) {
+        Object myLedgerUid = this.getLedgerUid();
+        Object yourLedgerUid = that.getLedgerUid();
+        if (myLedgerUid==null ? yourLedgerUid!=null : !myLedgerUid.equals(yourLedgerUid)) {
             return false;
         }
         return true;
@@ -444,7 +420,11 @@ public class Ledger implements Serializable {
     public int hashCode() {
         int i;
         int result = 17;
-        i = getLedgerUid();
+        if (getLedgerUid() == null) {
+            i = 0;
+        } else {
+            i = getLedgerUid().hashCode();
+        }
         result = 37*result + i;
         return result;
     }
@@ -469,7 +449,7 @@ public class Ledger implements Serializable {
      */
     public Map<String, Object> getPrimaryKey() {
         Map<String, Object> ret = new LinkedHashMap<String, Object>(6);
-        ret.put("ledgerUid", Integer.valueOf(getLedgerUid()));
+        ret.put("ledgerUid", getLedgerUid());
         return ret;
     }
 

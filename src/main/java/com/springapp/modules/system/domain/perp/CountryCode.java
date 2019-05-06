@@ -12,7 +12,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.Version;
 
 @Entity(name="country_code")
 public class CountryCode implements Serializable {
@@ -20,40 +19,15 @@ public class CountryCode implements Serializable {
     /** Primary key. */
     protected static final String PK = "countryCodeUid";
 
-    /**
-     * The optimistic lock. Available via standard bean get/set operations.
-     */
-    @Version
-    @Column(name="LOCK_FLAG")
-    private Integer lockFlag;
-
-    /**
-     * Access method for the lockFlag property.
-     *
-     * @return the current value of the lockFlag property
-     */
-    public Integer getLockFlag() {
-        return lockFlag;
-    }
-
-    /**
-     * Sets the value of the lockFlag property.
-     *
-     * @param aLockFlag the new value of the lockFlag property
-     */
-    public void setLockFlag(Integer aLockFlag) {
-        lockFlag = aLockFlag;
-    }
-
     @Id
     @Column(name="Country_Code_UID", unique=true, nullable=false, precision=10)
-    private int countryCodeUid;
+    private Integer countryCodeUid;
     @Column(name="Country", nullable=false, length=60)
     private String country;
     @Column(name="Country_Short_Name", length=45)
     private String countryShortName;
     @Column(name="Active_Flag", nullable=false, length=1)
-    private String activeFlag;
+    private Character activeFlag;
     @Column(name="Create_Modified_By", nullable=false, length=45)
     private String createModifiedBy;
     @Column(name="Create_Modified_Date", nullable=false)
@@ -75,7 +49,7 @@ public class CountryCode implements Serializable {
      *
      * @return the current value of countryCodeUid
      */
-    public int getCountryCodeUid() {
+    public Integer getCountryCodeUid() {
         return countryCodeUid;
     }
 
@@ -84,7 +58,7 @@ public class CountryCode implements Serializable {
      *
      * @param aCountryCodeUid the new value for countryCodeUid
      */
-    public void setCountryCodeUid(int aCountryCodeUid) {
+    public void setCountryCodeUid(Integer aCountryCodeUid) {
         countryCodeUid = aCountryCodeUid;
     }
 
@@ -129,7 +103,7 @@ public class CountryCode implements Serializable {
      *
      * @return the current value of activeFlag
      */
-    public String getActiveFlag() {
+    public Character getActiveFlag() {
         return activeFlag;
     }
 
@@ -138,7 +112,7 @@ public class CountryCode implements Serializable {
      *
      * @param aActiveFlag the new value for activeFlag
      */
-    public void setActiveFlag(String aActiveFlag) {
+    public void setActiveFlag(Character aActiveFlag) {
         activeFlag = aActiveFlag;
     }
 
@@ -246,7 +220,9 @@ public class CountryCode implements Serializable {
             return false;
         }
         CountryCode that = (CountryCode) other;
-        if (this.getCountryCodeUid() != that.getCountryCodeUid()) {
+        Object myCountryCodeUid = this.getCountryCodeUid();
+        Object yourCountryCodeUid = that.getCountryCodeUid();
+        if (myCountryCodeUid==null ? yourCountryCodeUid!=null : !myCountryCodeUid.equals(yourCountryCodeUid)) {
             return false;
         }
         return true;
@@ -273,7 +249,11 @@ public class CountryCode implements Serializable {
     public int hashCode() {
         int i;
         int result = 17;
-        i = getCountryCodeUid();
+        if (getCountryCodeUid() == null) {
+            i = 0;
+        } else {
+            i = getCountryCodeUid().hashCode();
+        }
         result = 37*result + i;
         return result;
     }
@@ -298,7 +278,7 @@ public class CountryCode implements Serializable {
      */
     public Map<String, Object> getPrimaryKey() {
         Map<String, Object> ret = new LinkedHashMap<String, Object>(6);
-        ret.put("countryCodeUid", Integer.valueOf(getCountryCodeUid()));
+        ret.put("countryCodeUid", getCountryCodeUid());
         return ret;
     }
 

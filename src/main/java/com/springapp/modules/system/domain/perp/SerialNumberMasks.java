@@ -12,7 +12,6 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.Version;
 
 @Entity(name="serial_number_masks")
 public class SerialNumberMasks implements Serializable {
@@ -20,34 +19,9 @@ public class SerialNumberMasks implements Serializable {
     /** Primary key. */
     protected static final String PK = "serialNumberMasksUid";
 
-    /**
-     * The optimistic lock. Available via standard bean get/set operations.
-     */
-    @Version
-    @Column(name="LOCK_FLAG")
-    private Integer lockFlag;
-
-    /**
-     * Access method for the lockFlag property.
-     *
-     * @return the current value of the lockFlag property
-     */
-    public Integer getLockFlag() {
-        return lockFlag;
-    }
-
-    /**
-     * Sets the value of the lockFlag property.
-     *
-     * @param aLockFlag the new value of the lockFlag property
-     */
-    public void setLockFlag(Integer aLockFlag) {
-        lockFlag = aLockFlag;
-    }
-
     @Id
     @Column(name="SerialNumberMasks_UID", unique=true, nullable=false, precision=10)
-    private int serialNumberMasksUid;
+    private Integer serialNumberMasksUid;
     @Column(name="Mask_Name", nullable=false, length=45)
     private String maskName;
     @Column(name="Mask_Format", nullable=false, length=45)
@@ -55,11 +29,11 @@ public class SerialNumberMasks implements Serializable {
     @Column(name="Mask_Reg_Exp", length=128)
     private String maskRegExp;
     @Column(name="Min_Number", precision=10)
-    private int minNumber;
+    private Integer minNumber;
     @Column(name="Max_Number", precision=10)
-    private int maxNumber;
+    private Integer maxNumber;
     @Column(name="Active_Flag", nullable=false, length=1)
-    private String activeFlag;
+    private Character activeFlag;
     @Column(name="Identifier", nullable=false, length=20)
     private String identifier;
     @Column(name="Create_Modified_By", nullable=false, length=45)
@@ -80,7 +54,7 @@ public class SerialNumberMasks implements Serializable {
      *
      * @return the current value of serialNumberMasksUid
      */
-    public int getSerialNumberMasksUid() {
+    public Integer getSerialNumberMasksUid() {
         return serialNumberMasksUid;
     }
 
@@ -89,7 +63,7 @@ public class SerialNumberMasks implements Serializable {
      *
      * @param aSerialNumberMasksUid the new value for serialNumberMasksUid
      */
-    public void setSerialNumberMasksUid(int aSerialNumberMasksUid) {
+    public void setSerialNumberMasksUid(Integer aSerialNumberMasksUid) {
         serialNumberMasksUid = aSerialNumberMasksUid;
     }
 
@@ -152,7 +126,7 @@ public class SerialNumberMasks implements Serializable {
      *
      * @return the current value of minNumber
      */
-    public int getMinNumber() {
+    public Integer getMinNumber() {
         return minNumber;
     }
 
@@ -161,7 +135,7 @@ public class SerialNumberMasks implements Serializable {
      *
      * @param aMinNumber the new value for minNumber
      */
-    public void setMinNumber(int aMinNumber) {
+    public void setMinNumber(Integer aMinNumber) {
         minNumber = aMinNumber;
     }
 
@@ -170,7 +144,7 @@ public class SerialNumberMasks implements Serializable {
      *
      * @return the current value of maxNumber
      */
-    public int getMaxNumber() {
+    public Integer getMaxNumber() {
         return maxNumber;
     }
 
@@ -179,7 +153,7 @@ public class SerialNumberMasks implements Serializable {
      *
      * @param aMaxNumber the new value for maxNumber
      */
-    public void setMaxNumber(int aMaxNumber) {
+    public void setMaxNumber(Integer aMaxNumber) {
         maxNumber = aMaxNumber;
     }
 
@@ -188,7 +162,7 @@ public class SerialNumberMasks implements Serializable {
      *
      * @return the current value of activeFlag
      */
-    public String getActiveFlag() {
+    public Character getActiveFlag() {
         return activeFlag;
     }
 
@@ -197,7 +171,7 @@ public class SerialNumberMasks implements Serializable {
      *
      * @param aActiveFlag the new value for activeFlag
      */
-    public void setActiveFlag(String aActiveFlag) {
+    public void setActiveFlag(Character aActiveFlag) {
         activeFlag = aActiveFlag;
     }
 
@@ -287,7 +261,9 @@ public class SerialNumberMasks implements Serializable {
             return false;
         }
         SerialNumberMasks that = (SerialNumberMasks) other;
-        if (this.getSerialNumberMasksUid() != that.getSerialNumberMasksUid()) {
+        Object mySerialNumberMasksUid = this.getSerialNumberMasksUid();
+        Object yourSerialNumberMasksUid = that.getSerialNumberMasksUid();
+        if (mySerialNumberMasksUid==null ? yourSerialNumberMasksUid!=null : !mySerialNumberMasksUid.equals(yourSerialNumberMasksUid)) {
             return false;
         }
         return true;
@@ -314,7 +290,11 @@ public class SerialNumberMasks implements Serializable {
     public int hashCode() {
         int i;
         int result = 17;
-        i = getSerialNumberMasksUid();
+        if (getSerialNumberMasksUid() == null) {
+            i = 0;
+        } else {
+            i = getSerialNumberMasksUid().hashCode();
+        }
         result = 37*result + i;
         return result;
     }
@@ -339,7 +319,7 @@ public class SerialNumberMasks implements Serializable {
      */
     public Map<String, Object> getPrimaryKey() {
         Map<String, Object> ret = new LinkedHashMap<String, Object>(6);
-        ret.put("serialNumberMasksUid", Integer.valueOf(getSerialNumberMasksUid()));
+        ret.put("serialNumberMasksUid", getSerialNumberMasksUid());
         return ret;
     }
 

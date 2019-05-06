@@ -10,7 +10,6 @@ import java.util.Map;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.Version;
 
 @Entity(name="email_aud")
 public class EmailAud implements Serializable {
@@ -18,42 +17,17 @@ public class EmailAud implements Serializable {
     /** Primary key. */
     protected static final String PK = "emailAudUid";
 
-    /**
-     * The optimistic lock. Available via standard bean get/set operations.
-     */
-    @Version
-    @Column(name="LOCK_FLAG")
-    private Integer lockFlag;
-
-    /**
-     * Access method for the lockFlag property.
-     *
-     * @return the current value of the lockFlag property
-     */
-    public Integer getLockFlag() {
-        return lockFlag;
-    }
-
-    /**
-     * Sets the value of the lockFlag property.
-     *
-     * @param aLockFlag the new value of the lockFlag property
-     */
-    public void setLockFlag(Integer aLockFlag) {
-        lockFlag = aLockFlag;
-    }
-
     @Id
     @Column(name="Email_Aud_UID", unique=true, nullable=false, precision=10)
-    private int emailAudUid;
+    private Integer emailAudUid;
     @Column(name="Email_UID", nullable=false, precision=10)
-    private int emailUid;
+    private Integer emailUid;
     @Column(name="Email_Type_UID", nullable=false, precision=10)
-    private int emailTypeUid;
+    private Integer emailTypeUid;
     @Column(name="Users_UID", precision=10)
-    private int usersUid;
+    private Integer usersUid;
     @Column(name="Contact_UID", precision=10)
-    private int contactUid;
+    private Integer contactUid;
     @Column(name="Email_Address", nullable=false, length=128)
     private String emailAddress;
     @Column(name="Create_Modified_By", nullable=false, length=45)
@@ -73,7 +47,7 @@ public class EmailAud implements Serializable {
      *
      * @return the current value of emailAudUid
      */
-    public int getEmailAudUid() {
+    public Integer getEmailAudUid() {
         return emailAudUid;
     }
 
@@ -82,7 +56,7 @@ public class EmailAud implements Serializable {
      *
      * @param aEmailAudUid the new value for emailAudUid
      */
-    public void setEmailAudUid(int aEmailAudUid) {
+    public void setEmailAudUid(Integer aEmailAudUid) {
         emailAudUid = aEmailAudUid;
     }
 
@@ -91,7 +65,7 @@ public class EmailAud implements Serializable {
      *
      * @return the current value of emailUid
      */
-    public int getEmailUid() {
+    public Integer getEmailUid() {
         return emailUid;
     }
 
@@ -100,7 +74,7 @@ public class EmailAud implements Serializable {
      *
      * @param aEmailUid the new value for emailUid
      */
-    public void setEmailUid(int aEmailUid) {
+    public void setEmailUid(Integer aEmailUid) {
         emailUid = aEmailUid;
     }
 
@@ -109,7 +83,7 @@ public class EmailAud implements Serializable {
      *
      * @return the current value of emailTypeUid
      */
-    public int getEmailTypeUid() {
+    public Integer getEmailTypeUid() {
         return emailTypeUid;
     }
 
@@ -118,7 +92,7 @@ public class EmailAud implements Serializable {
      *
      * @param aEmailTypeUid the new value for emailTypeUid
      */
-    public void setEmailTypeUid(int aEmailTypeUid) {
+    public void setEmailTypeUid(Integer aEmailTypeUid) {
         emailTypeUid = aEmailTypeUid;
     }
 
@@ -127,7 +101,7 @@ public class EmailAud implements Serializable {
      *
      * @return the current value of usersUid
      */
-    public int getUsersUid() {
+    public Integer getUsersUid() {
         return usersUid;
     }
 
@@ -136,7 +110,7 @@ public class EmailAud implements Serializable {
      *
      * @param aUsersUid the new value for usersUid
      */
-    public void setUsersUid(int aUsersUid) {
+    public void setUsersUid(Integer aUsersUid) {
         usersUid = aUsersUid;
     }
 
@@ -145,7 +119,7 @@ public class EmailAud implements Serializable {
      *
      * @return the current value of contactUid
      */
-    public int getContactUid() {
+    public Integer getContactUid() {
         return contactUid;
     }
 
@@ -154,7 +128,7 @@ public class EmailAud implements Serializable {
      *
      * @param aContactUid the new value for contactUid
      */
-    public void setContactUid(int aContactUid) {
+    public void setContactUid(Integer aContactUid) {
         contactUid = aContactUid;
     }
 
@@ -244,7 +218,9 @@ public class EmailAud implements Serializable {
             return false;
         }
         EmailAud that = (EmailAud) other;
-        if (this.getEmailAudUid() != that.getEmailAudUid()) {
+        Object myEmailAudUid = this.getEmailAudUid();
+        Object yourEmailAudUid = that.getEmailAudUid();
+        if (myEmailAudUid==null ? yourEmailAudUid!=null : !myEmailAudUid.equals(yourEmailAudUid)) {
             return false;
         }
         return true;
@@ -271,7 +247,11 @@ public class EmailAud implements Serializable {
     public int hashCode() {
         int i;
         int result = 17;
-        i = getEmailAudUid();
+        if (getEmailAudUid() == null) {
+            i = 0;
+        } else {
+            i = getEmailAudUid().hashCode();
+        }
         result = 37*result + i;
         return result;
     }
@@ -296,7 +276,7 @@ public class EmailAud implements Serializable {
      */
     public Map<String, Object> getPrimaryKey() {
         Map<String, Object> ret = new LinkedHashMap<String, Object>(6);
-        ret.put("emailAudUid", Integer.valueOf(getEmailAudUid()));
+        ret.put("emailAudUid", getEmailAudUid());
         return ret;
     }
 

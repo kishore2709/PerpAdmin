@@ -12,7 +12,6 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.Version;
 
 @Entity(name="user_security")
 public class UserSecurity implements Serializable {
@@ -20,33 +19,9 @@ public class UserSecurity implements Serializable {
     /** Primary key. */
     protected static final String PK = "UserSecurityPrimary";
 
-    /**
-     * The optimistic lock. Available via standard bean get/set operations.
-     */
-    @Version
-    @Column(name="LOCK_FLAG")
-    private Integer lockFlag;
-
-    /**
-     * Access method for the lockFlag property.
-     *
-     * @return the current value of the lockFlag property
-     */
-    public Integer getLockFlag() {
-        return lockFlag;
-    }
-
-    /**
-     * Sets the value of the lockFlag property.
-     *
-     * @param aLockFlag the new value of the lockFlag property
-     */
-    public void setLockFlag(Integer aLockFlag) {
-        lockFlag = aLockFlag;
-    }
     @Id
     @Column(name="User_Security_UID", nullable=false, precision=10)
-    private int userSecurityUid;
+    private Integer userSecurityUid;
     @Column(name="Question_Answer", nullable=false, length=64)
     private String questionAnswer;
     @Column(name="Create_Modified_By", nullable=false, length=45)
@@ -70,7 +45,7 @@ public class UserSecurity implements Serializable {
      *
      * @return the current value of userSecurityUid
      */
-    public int getUserSecurityUid() {
+    public Integer getUserSecurityUid() {
         return userSecurityUid;
     }
 
@@ -79,7 +54,7 @@ public class UserSecurity implements Serializable {
      *
      * @param aUserSecurityUid the new value for userSecurityUid
      */
-    public void setUserSecurityUid(int aUserSecurityUid) {
+    public void setUserSecurityUid(Integer aUserSecurityUid) {
         userSecurityUid = aUserSecurityUid;
     }
 
@@ -174,7 +149,7 @@ public class UserSecurity implements Serializable {
     }
 
     /** Temporary value holder for group key fragment securityQuestionSecurityQuestionUid */
-    private transient int tempSecurityQuestionSecurityQuestionUid;
+    private transient Integer tempSecurityQuestionSecurityQuestionUid;
 
     /**
      * Gets the key fragment securityQuestionUid for member securityQuestion.
@@ -186,7 +161,7 @@ public class UserSecurity implements Serializable {
      * @return Current (or temporary) value of the key fragment
      * @see SecurityQuestion
      */
-    public int getSecurityQuestionSecurityQuestionUid() {
+    public Integer getSecurityQuestionSecurityQuestionUid() {
         return (getSecurityQuestion() == null ? tempSecurityQuestionSecurityQuestionUid : getSecurityQuestion().getSecurityQuestionUid());
     }
 
@@ -200,7 +175,7 @@ public class UserSecurity implements Serializable {
      * @param aSecurityQuestionUid New value for the key fragment
      * @see SecurityQuestion
      */
-    public void setSecurityQuestionSecurityQuestionUid(int aSecurityQuestionUid) {
+    public void setSecurityQuestionSecurityQuestionUid(Integer aSecurityQuestionUid) {
         if (getSecurityQuestion() == null) {
             tempSecurityQuestionSecurityQuestionUid = aSecurityQuestionUid;
         } else {
@@ -209,7 +184,7 @@ public class UserSecurity implements Serializable {
     }
 
     /** Temporary value holder for group key fragment usersUsersUid */
-    private transient int tempUsersUsersUid;
+    private transient Integer tempUsersUsersUid;
 
     /**
      * Gets the key fragment usersUid for member users.
@@ -221,7 +196,7 @@ public class UserSecurity implements Serializable {
      * @return Current (or temporary) value of the key fragment
      * @see Users
      */
-    public int getUsersUsersUid() {
+    public Integer getUsersUsersUid() {
         return (getUsers() == null ? tempUsersUsersUid : getUsers().getUsersUid());
     }
 
@@ -235,7 +210,7 @@ public class UserSecurity implements Serializable {
      * @param aUsersUid New value for the key fragment
      * @see Users
      */
-    public void setUsersUsersUid(int aUsersUid) {
+    public void setUsersUsersUid(Integer aUsersUid) {
         if (getUsers() == null) {
             tempUsersUsersUid = aUsersUid;
         } else {
@@ -257,13 +232,19 @@ public class UserSecurity implements Serializable {
             return false;
         }
         UserSecurity that = (UserSecurity) other;
-        if (this.getUserSecurityUid() != that.getUserSecurityUid()) {
+        Object myUserSecurityUid = this.getUserSecurityUid();
+        Object yourUserSecurityUid = that.getUserSecurityUid();
+        if (myUserSecurityUid==null ? yourUserSecurityUid!=null : !myUserSecurityUid.equals(yourUserSecurityUid)) {
             return false;
         }
-        if (this.getSecurityQuestionSecurityQuestionUid() != that.getSecurityQuestionSecurityQuestionUid()) {
+        Object mySecurityQuestionSecurityQuestionUid = this.getSecurityQuestionSecurityQuestionUid();
+        Object yourSecurityQuestionSecurityQuestionUid = that.getSecurityQuestionSecurityQuestionUid();
+        if (mySecurityQuestionSecurityQuestionUid==null ? yourSecurityQuestionSecurityQuestionUid!=null : !mySecurityQuestionSecurityQuestionUid.equals(yourSecurityQuestionSecurityQuestionUid)) {
             return false;
         }
-        if (this.getUsersUsersUid() != that.getUsersUsersUid()) {
+        Object myUsersUsersUid = this.getUsersUsersUid();
+        Object yourUsersUsersUid = that.getUsersUsersUid();
+        if (myUsersUsersUid==null ? yourUsersUsersUid!=null : !myUsersUsersUid.equals(yourUsersUsersUid)) {
             return false;
         }
         return true;
@@ -290,11 +271,23 @@ public class UserSecurity implements Serializable {
     public int hashCode() {
         int i;
         int result = 17;
-        i = getUserSecurityUid();
+        if (getUserSecurityUid() == null) {
+            i = 0;
+        } else {
+            i = getUserSecurityUid().hashCode();
+        }
         result = 37*result + i;
-        i = getSecurityQuestionSecurityQuestionUid();
+        if (getSecurityQuestionSecurityQuestionUid() == null) {
+            i = 0;
+        } else {
+            i = getSecurityQuestionSecurityQuestionUid().hashCode();
+        }
         result = 37*result + i;
-        i = getUsersUsersUid();
+        if (getUsersUsersUid() == null) {
+            i = 0;
+        } else {
+            i = getUsersUsersUid().hashCode();
+        }
         result = 37*result + i;
         return result;
     }
@@ -321,9 +314,9 @@ public class UserSecurity implements Serializable {
      */
     public Map<String, Object> getPrimaryKey() {
         Map<String, Object> ret = new LinkedHashMap<String, Object>(6);
-        ret.put("userSecurityUid", Integer.valueOf(getUserSecurityUid()));
-        ret.put("securityQuestionSecurityQuestionUid", Integer.valueOf(getSecurityQuestionSecurityQuestionUid()));
-        ret.put("usersUsersUid", Integer.valueOf(getUsersUsersUid()));
+        ret.put("userSecurityUid", getUserSecurityUid());
+        ret.put("securityQuestionSecurityQuestionUid", getSecurityQuestionSecurityQuestionUid());
+        ret.put("usersUsersUid", getUsersUsersUid());
         return ret;
     }
 

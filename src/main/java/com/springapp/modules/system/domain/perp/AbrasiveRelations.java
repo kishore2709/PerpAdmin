@@ -12,38 +12,12 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.Version;
 
 @Entity(name="abrasive_relations")
 public class AbrasiveRelations implements Serializable {
 
     /** Primary key. */
     protected static final String PK = "AbrasiveRelationsPrimary";
-
-    /**
-     * The optimistic lock. Available via standard bean get/set operations.
-     */
-    @Version
-    @Column(name="LOCK_FLAG")
-    private Integer lockFlag;
-
-    /**
-     * Access method for the lockFlag property.
-     *
-     * @return the current value of the lockFlag property
-     */
-    public Integer getLockFlag() {
-        return lockFlag;
-    }
-
-    /**
-     * Sets the value of the lockFlag property.
-     *
-     * @param aLockFlag the new value of the lockFlag property
-     */
-    public void setLockFlag(Integer aLockFlag) {
-        lockFlag = aLockFlag;
-    }
 
     @Column(name="Other_Type_Text", length=255)
     private String otherTypeText;
@@ -54,7 +28,6 @@ public class AbrasiveRelations implements Serializable {
     @ManyToOne(optional=false)
     @JoinColumn(name="AbrasiveType_UID", nullable=false)
     private AbrasiveTypes abrasiveTypes;
-    
     @Id
     @ManyToOne(optional=false)
     @JoinColumn(name="RegItemDet_UID", nullable=false)
@@ -156,7 +129,7 @@ public class AbrasiveRelations implements Serializable {
     }
 
     /** Temporary value holder for group key fragment abrasiveTypesUid */
-    private transient int tempAbrasiveTypesUid;
+    private transient Integer tempAbrasiveTypesUid;
 
     /**
      * Gets the key fragment uid for member abrasiveTypes.
@@ -168,7 +141,7 @@ public class AbrasiveRelations implements Serializable {
      * @return Current (or temporary) value of the key fragment
      * @see AbrasiveTypes
      */
-    public int getAbrasiveTypesUid() {
+    public Integer getAbrasiveTypesUid() {
         return (getAbrasiveTypes() == null ? tempAbrasiveTypesUid : getAbrasiveTypes().getUid());
     }
 
@@ -182,7 +155,7 @@ public class AbrasiveRelations implements Serializable {
      * @param aUid New value for the key fragment
      * @see AbrasiveTypes
      */
-    public void setAbrasiveTypesUid(int aUid) {
+    public void setAbrasiveTypesUid(Integer aUid) {
         if (getAbrasiveTypes() == null) {
             tempAbrasiveTypesUid = aUid;
         } else {
@@ -191,7 +164,7 @@ public class AbrasiveRelations implements Serializable {
     }
 
     /** Temporary value holder for group key fragment regitemDetailsRegItemDetUid */
-    private transient int tempRegitemDetailsRegItemDetUid;
+    private transient Integer tempRegitemDetailsRegItemDetUid;
 
     /**
      * Gets the key fragment regItemDetUid for member regitemDetails.
@@ -203,7 +176,7 @@ public class AbrasiveRelations implements Serializable {
      * @return Current (or temporary) value of the key fragment
      * @see RegitemDetails
      */
-    public int getRegitemDetailsRegItemDetUid() {
+    public Integer getRegitemDetailsRegItemDetUid() {
         return (getRegitemDetails() == null ? tempRegitemDetailsRegItemDetUid : getRegitemDetails().getRegItemDetUid());
     }
 
@@ -217,7 +190,7 @@ public class AbrasiveRelations implements Serializable {
      * @param aRegItemDetUid New value for the key fragment
      * @see RegitemDetails
      */
-    public void setRegitemDetailsRegItemDetUid(int aRegItemDetUid) {
+    public void setRegitemDetailsRegItemDetUid(Integer aRegItemDetUid) {
         if (getRegitemDetails() == null) {
             tempRegitemDetailsRegItemDetUid = aRegItemDetUid;
         } else {
@@ -239,10 +212,14 @@ public class AbrasiveRelations implements Serializable {
             return false;
         }
         AbrasiveRelations that = (AbrasiveRelations) other;
-        if (this.getAbrasiveTypesUid() != that.getAbrasiveTypesUid()) {
+        Object myAbrasiveTypesUid = this.getAbrasiveTypesUid();
+        Object yourAbrasiveTypesUid = that.getAbrasiveTypesUid();
+        if (myAbrasiveTypesUid==null ? yourAbrasiveTypesUid!=null : !myAbrasiveTypesUid.equals(yourAbrasiveTypesUid)) {
             return false;
         }
-        if (this.getRegitemDetailsRegItemDetUid() != that.getRegitemDetailsRegItemDetUid()) {
+        Object myRegitemDetailsRegItemDetUid = this.getRegitemDetailsRegItemDetUid();
+        Object yourRegitemDetailsRegItemDetUid = that.getRegitemDetailsRegItemDetUid();
+        if (myRegitemDetailsRegItemDetUid==null ? yourRegitemDetailsRegItemDetUid!=null : !myRegitemDetailsRegItemDetUid.equals(yourRegitemDetailsRegItemDetUid)) {
             return false;
         }
         return true;
@@ -269,9 +246,17 @@ public class AbrasiveRelations implements Serializable {
     public int hashCode() {
         int i;
         int result = 17;
-        i = getAbrasiveTypesUid();
+        if (getAbrasiveTypesUid() == null) {
+            i = 0;
+        } else {
+            i = getAbrasiveTypesUid().hashCode();
+        }
         result = 37*result + i;
-        i = getRegitemDetailsRegItemDetUid();
+        if (getRegitemDetailsRegItemDetUid() == null) {
+            i = 0;
+        } else {
+            i = getRegitemDetailsRegItemDetUid().hashCode();
+        }
         result = 37*result + i;
         return result;
     }
@@ -297,8 +282,8 @@ public class AbrasiveRelations implements Serializable {
      */
     public Map<String, Object> getPrimaryKey() {
         Map<String, Object> ret = new LinkedHashMap<String, Object>(6);
-        ret.put("abrasiveTypesUid", Integer.valueOf(getAbrasiveTypesUid()));
-        ret.put("regitemDetailsRegItemDetUid", Integer.valueOf(getRegitemDetailsRegItemDetUid()));
+        ret.put("abrasiveTypesUid", getAbrasiveTypesUid());
+        ret.put("regitemDetailsRegItemDetUid", getRegitemDetailsRegItemDetUid());
         return ret;
     }
 

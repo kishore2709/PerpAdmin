@@ -10,7 +10,6 @@ import java.util.Map;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.Version;
 
 @Entity(name="blastingtype_relations_aud")
 public class BlastingtypeRelationsAud implements Serializable {
@@ -18,38 +17,13 @@ public class BlastingtypeRelationsAud implements Serializable {
     /** Primary key. */
     protected static final String PK = "btrAudUid";
 
-    /**
-     * The optimistic lock. Available via standard bean get/set operations.
-     */
-    @Version
-    @Column(name="LOCK_FLAG")
-    private Integer lockFlag;
-
-    /**
-     * Access method for the lockFlag property.
-     *
-     * @return the current value of the lockFlag property
-     */
-    public Integer getLockFlag() {
-        return lockFlag;
-    }
-
-    /**
-     * Sets the value of the lockFlag property.
-     *
-     * @param aLockFlag the new value of the lockFlag property
-     */
-    public void setLockFlag(Integer aLockFlag) {
-        lockFlag = aLockFlag;
-    }
-
     @Id
     @Column(name="BTRAud_UID", unique=true, nullable=false, precision=10)
-    private int btrAudUid;
+    private Integer btrAudUid;
     @Column(name="BlastingType_UID", nullable=false, precision=10)
-    private int blastingTypeUid;
+    private Integer blastingTypeUid;
     @Column(name="RegItemDet_UID", nullable=false, precision=10)
-    private int regItemDetUid;
+    private Integer regItemDetUid;
     @Column(name="Other_Type_Text", length=255)
     private String otherTypeText;
     @Column(name="Create_Modified_By", nullable=false, length=45)
@@ -69,7 +43,7 @@ public class BlastingtypeRelationsAud implements Serializable {
      *
      * @return the current value of btrAudUid
      */
-    public int getBtrAudUid() {
+    public Integer getBtrAudUid() {
         return btrAudUid;
     }
 
@@ -78,7 +52,7 @@ public class BlastingtypeRelationsAud implements Serializable {
      *
      * @param aBtrAudUid the new value for btrAudUid
      */
-    public void setBtrAudUid(int aBtrAudUid) {
+    public void setBtrAudUid(Integer aBtrAudUid) {
         btrAudUid = aBtrAudUid;
     }
 
@@ -87,7 +61,7 @@ public class BlastingtypeRelationsAud implements Serializable {
      *
      * @return the current value of blastingTypeUid
      */
-    public int getBlastingTypeUid() {
+    public Integer getBlastingTypeUid() {
         return blastingTypeUid;
     }
 
@@ -96,7 +70,7 @@ public class BlastingtypeRelationsAud implements Serializable {
      *
      * @param aBlastingTypeUid the new value for blastingTypeUid
      */
-    public void setBlastingTypeUid(int aBlastingTypeUid) {
+    public void setBlastingTypeUid(Integer aBlastingTypeUid) {
         blastingTypeUid = aBlastingTypeUid;
     }
 
@@ -105,7 +79,7 @@ public class BlastingtypeRelationsAud implements Serializable {
      *
      * @return the current value of regItemDetUid
      */
-    public int getRegItemDetUid() {
+    public Integer getRegItemDetUid() {
         return regItemDetUid;
     }
 
@@ -114,7 +88,7 @@ public class BlastingtypeRelationsAud implements Serializable {
      *
      * @param aRegItemDetUid the new value for regItemDetUid
      */
-    public void setRegItemDetUid(int aRegItemDetUid) {
+    public void setRegItemDetUid(Integer aRegItemDetUid) {
         regItemDetUid = aRegItemDetUid;
     }
 
@@ -204,7 +178,9 @@ public class BlastingtypeRelationsAud implements Serializable {
             return false;
         }
         BlastingtypeRelationsAud that = (BlastingtypeRelationsAud) other;
-        if (this.getBtrAudUid() != that.getBtrAudUid()) {
+        Object myBtrAudUid = this.getBtrAudUid();
+        Object yourBtrAudUid = that.getBtrAudUid();
+        if (myBtrAudUid==null ? yourBtrAudUid!=null : !myBtrAudUid.equals(yourBtrAudUid)) {
             return false;
         }
         return true;
@@ -231,7 +207,11 @@ public class BlastingtypeRelationsAud implements Serializable {
     public int hashCode() {
         int i;
         int result = 17;
-        i = getBtrAudUid();
+        if (getBtrAudUid() == null) {
+            i = 0;
+        } else {
+            i = getBtrAudUid().hashCode();
+        }
         result = 37*result + i;
         return result;
     }
@@ -256,7 +236,7 @@ public class BlastingtypeRelationsAud implements Serializable {
      */
     public Map<String, Object> getPrimaryKey() {
         Map<String, Object> ret = new LinkedHashMap<String, Object>(6);
-        ret.put("btrAudUid", Integer.valueOf(getBtrAudUid()));
+        ret.put("btrAudUid", getBtrAudUid());
         return ret;
     }
 

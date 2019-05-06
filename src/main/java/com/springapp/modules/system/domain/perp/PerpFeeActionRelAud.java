@@ -10,7 +10,6 @@ import java.util.Map;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.Version;
 
 @Entity(name="perp_fee_action_rel_aud")
 public class PerpFeeActionRelAud implements Serializable {
@@ -18,38 +17,13 @@ public class PerpFeeActionRelAud implements Serializable {
     /** Primary key. */
     protected static final String PK = "pfarAudUid";
 
-    /**
-     * The optimistic lock. Available via standard bean get/set operations.
-     */
-    @Version
-    @Column(name="LOCK_FLAG")
-    private Integer lockFlag;
-
-    /**
-     * Access method for the lockFlag property.
-     *
-     * @return the current value of the lockFlag property
-     */
-    public Integer getLockFlag() {
-        return lockFlag;
-    }
-
-    /**
-     * Sets the value of the lockFlag property.
-     *
-     * @param aLockFlag the new value of the lockFlag property
-     */
-    public void setLockFlag(Integer aLockFlag) {
-        lockFlag = aLockFlag;
-    }
-
     @Id
     @Column(name="PFARAud_UID", unique=true, nullable=false, precision=10)
-    private int pfarAudUid;
+    private Integer pfarAudUid;
     @Column(name="AppRegItemActions_UID", nullable=false, precision=10)
-    private int appRegItemActionsUid;
+    private Integer appRegItemActionsUid;
     @Column(name="PerpFeeLookup_UID", nullable=false, precision=10)
-    private int perpFeeLookupUid;
+    private Integer perpFeeLookupUid;
     @Column(name="Create_Modified_By", length=45)
     private String createModifiedBy;
     @Column(name="Create_Modified_Date")
@@ -67,7 +41,7 @@ public class PerpFeeActionRelAud implements Serializable {
      *
      * @return the current value of pfarAudUid
      */
-    public int getPfarAudUid() {
+    public Integer getPfarAudUid() {
         return pfarAudUid;
     }
 
@@ -76,7 +50,7 @@ public class PerpFeeActionRelAud implements Serializable {
      *
      * @param aPfarAudUid the new value for pfarAudUid
      */
-    public void setPfarAudUid(int aPfarAudUid) {
+    public void setPfarAudUid(Integer aPfarAudUid) {
         pfarAudUid = aPfarAudUid;
     }
 
@@ -85,7 +59,7 @@ public class PerpFeeActionRelAud implements Serializable {
      *
      * @return the current value of appRegItemActionsUid
      */
-    public int getAppRegItemActionsUid() {
+    public Integer getAppRegItemActionsUid() {
         return appRegItemActionsUid;
     }
 
@@ -94,7 +68,7 @@ public class PerpFeeActionRelAud implements Serializable {
      *
      * @param aAppRegItemActionsUid the new value for appRegItemActionsUid
      */
-    public void setAppRegItemActionsUid(int aAppRegItemActionsUid) {
+    public void setAppRegItemActionsUid(Integer aAppRegItemActionsUid) {
         appRegItemActionsUid = aAppRegItemActionsUid;
     }
 
@@ -103,7 +77,7 @@ public class PerpFeeActionRelAud implements Serializable {
      *
      * @return the current value of perpFeeLookupUid
      */
-    public int getPerpFeeLookupUid() {
+    public Integer getPerpFeeLookupUid() {
         return perpFeeLookupUid;
     }
 
@@ -112,7 +86,7 @@ public class PerpFeeActionRelAud implements Serializable {
      *
      * @param aPerpFeeLookupUid the new value for perpFeeLookupUid
      */
-    public void setPerpFeeLookupUid(int aPerpFeeLookupUid) {
+    public void setPerpFeeLookupUid(Integer aPerpFeeLookupUid) {
         perpFeeLookupUid = aPerpFeeLookupUid;
     }
 
@@ -184,7 +158,9 @@ public class PerpFeeActionRelAud implements Serializable {
             return false;
         }
         PerpFeeActionRelAud that = (PerpFeeActionRelAud) other;
-        if (this.getPfarAudUid() != that.getPfarAudUid()) {
+        Object myPfarAudUid = this.getPfarAudUid();
+        Object yourPfarAudUid = that.getPfarAudUid();
+        if (myPfarAudUid==null ? yourPfarAudUid!=null : !myPfarAudUid.equals(yourPfarAudUid)) {
             return false;
         }
         return true;
@@ -211,7 +187,11 @@ public class PerpFeeActionRelAud implements Serializable {
     public int hashCode() {
         int i;
         int result = 17;
-        i = getPfarAudUid();
+        if (getPfarAudUid() == null) {
+            i = 0;
+        } else {
+            i = getPfarAudUid().hashCode();
+        }
         result = 37*result + i;
         return result;
     }
@@ -236,7 +216,7 @@ public class PerpFeeActionRelAud implements Serializable {
      */
     public Map<String, Object> getPrimaryKey() {
         Map<String, Object> ret = new LinkedHashMap<String, Object>(6);
-        ret.put("pfarAudUid", Integer.valueOf(getPfarAudUid()));
+        ret.put("pfarAudUid", getPfarAudUid());
         return ret;
     }
 

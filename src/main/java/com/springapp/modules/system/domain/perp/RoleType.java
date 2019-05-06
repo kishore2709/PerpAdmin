@@ -12,7 +12,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.Version;
 
 @Entity(name="role_type")
 public class RoleType implements Serializable {
@@ -20,38 +19,13 @@ public class RoleType implements Serializable {
     /** Primary key. */
     protected static final String PK = "roleTypeUid";
 
-    /**
-     * The optimistic lock. Available via standard bean get/set operations.
-     */
-    @Version
-    @Column(name="LOCK_FLAG")
-    private Integer lockFlag;
-
-    /**
-     * Access method for the lockFlag property.
-     *
-     * @return the current value of the lockFlag property
-     */
-    public Integer getLockFlag() {
-        return lockFlag;
-    }
-
-    /**
-     * Sets the value of the lockFlag property.
-     *
-     * @param aLockFlag the new value of the lockFlag property
-     */
-    public void setLockFlag(Integer aLockFlag) {
-        lockFlag = aLockFlag;
-    }
-
     @Id
     @Column(name="Role_Type_UID", unique=true, nullable=false, precision=10)
-    private int roleTypeUid;
+    private Integer roleTypeUid;
     @Column(name="Role_Type", nullable=false, length=45)
     private String roleType;
     @Column(name="Active_Flag", nullable=false, length=1)
-    private String activeFlag;
+    private Character activeFlag;
     @Column(name="Create_Modified_By", nullable=false, length=45)
     private String createModifiedBy;
     @Column(name="Create_Modified_Date", nullable=false)
@@ -69,7 +43,7 @@ public class RoleType implements Serializable {
      *
      * @return the current value of roleTypeUid
      */
-    public int getRoleTypeUid() {
+    public Integer getRoleTypeUid() {
         return roleTypeUid;
     }
 
@@ -78,7 +52,7 @@ public class RoleType implements Serializable {
      *
      * @param aRoleTypeUid the new value for roleTypeUid
      */
-    public void setRoleTypeUid(int aRoleTypeUid) {
+    public void setRoleTypeUid(Integer aRoleTypeUid) {
         roleTypeUid = aRoleTypeUid;
     }
 
@@ -105,7 +79,7 @@ public class RoleType implements Serializable {
      *
      * @return the current value of activeFlag
      */
-    public String getActiveFlag() {
+    public Character getActiveFlag() {
         return activeFlag;
     }
 
@@ -114,7 +88,7 @@ public class RoleType implements Serializable {
      *
      * @param aActiveFlag the new value for activeFlag
      */
-    public void setActiveFlag(String aActiveFlag) {
+    public void setActiveFlag(Character aActiveFlag) {
         activeFlag = aActiveFlag;
     }
 
@@ -186,7 +160,9 @@ public class RoleType implements Serializable {
             return false;
         }
         RoleType that = (RoleType) other;
-        if (this.getRoleTypeUid() != that.getRoleTypeUid()) {
+        Object myRoleTypeUid = this.getRoleTypeUid();
+        Object yourRoleTypeUid = that.getRoleTypeUid();
+        if (myRoleTypeUid==null ? yourRoleTypeUid!=null : !myRoleTypeUid.equals(yourRoleTypeUid)) {
             return false;
         }
         return true;
@@ -213,7 +189,11 @@ public class RoleType implements Serializable {
     public int hashCode() {
         int i;
         int result = 17;
-        i = getRoleTypeUid();
+        if (getRoleTypeUid() == null) {
+            i = 0;
+        } else {
+            i = getRoleTypeUid().hashCode();
+        }
         result = 37*result + i;
         return result;
     }
@@ -238,7 +218,7 @@ public class RoleType implements Serializable {
      */
     public Map<String, Object> getPrimaryKey() {
         Map<String, Object> ret = new LinkedHashMap<String, Object>(6);
-        ret.put("roleTypeUid", Integer.valueOf(getRoleTypeUid()));
+        ret.put("roleTypeUid", getRoleTypeUid());
         return ret;
     }
 

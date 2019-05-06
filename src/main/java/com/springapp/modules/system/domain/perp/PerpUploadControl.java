@@ -10,7 +10,6 @@ import java.util.Map;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.Version;
 
 @Entity(name="perp_upload_control")
 public class PerpUploadControl implements Serializable {
@@ -18,44 +17,19 @@ public class PerpUploadControl implements Serializable {
     /** Primary key. */
     protected static final String PK = "perpUploadControlUid";
 
-    /**
-     * The optimistic lock. Available via standard bean get/set operations.
-     */
-    @Version
-    @Column(name="LOCK_FLAG")
-    private Integer lockFlag;
-
-    /**
-     * Access method for the lockFlag property.
-     *
-     * @return the current value of the lockFlag property
-     */
-    public Integer getLockFlag() {
-        return lockFlag;
-    }
-
-    /**
-     * Sets the value of the lockFlag property.
-     *
-     * @param aLockFlag the new value of the lockFlag property
-     */
-    public void setLockFlag(Integer aLockFlag) {
-        lockFlag = aLockFlag;
-    }
-
     @Id
     @Column(name="PERP_UPLOAD_CONTROL_UID", unique=true, nullable=false, precision=10)
-    private int perpUploadControlUid;
+    private Integer perpUploadControlUid;
     @Column(name="Company_UID", precision=10)
-    private int companyUid;
+    private Integer companyUid;
     @Column(name="User_UID", precision=10)
-    private int userUid;
+    private Integer userUid;
     @Column(name="Status", length=128)
     private String status;
     @Column(name="Notes", length=128)
     private String notes;
     @Column(name="Records_Processed", precision=10)
-    private int recordsProcessed;
+    private Integer recordsProcessed;
     @Column(name="Orig_Filename", length=512)
     private String origFilename;
     @Column(name="File_Uploaded_Date", nullable=false)
@@ -63,9 +37,9 @@ public class PerpUploadControl implements Serializable {
     @Column(name="Sys_Filename", length=128)
     private String sysFilename;
     @Column(name="Processed_Flag", length=1)
-    private String processedFlag;
+    private Character processedFlag;
     @Column(name="Archived_Flag", length=1)
-    private String archivedFlag;
+    private Character archivedFlag;
     @Column(name="Create_Modify_By", nullable=false, length=45)
     private String createModifyBy;
     @Column(name="Create_Modify_Date", nullable=false)
@@ -81,7 +55,7 @@ public class PerpUploadControl implements Serializable {
      *
      * @return the current value of perpUploadControlUid
      */
-    public int getPerpUploadControlUid() {
+    public Integer getPerpUploadControlUid() {
         return perpUploadControlUid;
     }
 
@@ -90,7 +64,7 @@ public class PerpUploadControl implements Serializable {
      *
      * @param aPerpUploadControlUid the new value for perpUploadControlUid
      */
-    public void setPerpUploadControlUid(int aPerpUploadControlUid) {
+    public void setPerpUploadControlUid(Integer aPerpUploadControlUid) {
         perpUploadControlUid = aPerpUploadControlUid;
     }
 
@@ -99,7 +73,7 @@ public class PerpUploadControl implements Serializable {
      *
      * @return the current value of companyUid
      */
-    public int getCompanyUid() {
+    public Integer getCompanyUid() {
         return companyUid;
     }
 
@@ -108,7 +82,7 @@ public class PerpUploadControl implements Serializable {
      *
      * @param aCompanyUid the new value for companyUid
      */
-    public void setCompanyUid(int aCompanyUid) {
+    public void setCompanyUid(Integer aCompanyUid) {
         companyUid = aCompanyUid;
     }
 
@@ -117,7 +91,7 @@ public class PerpUploadControl implements Serializable {
      *
      * @return the current value of userUid
      */
-    public int getUserUid() {
+    public Integer getUserUid() {
         return userUid;
     }
 
@@ -126,7 +100,7 @@ public class PerpUploadControl implements Serializable {
      *
      * @param aUserUid the new value for userUid
      */
-    public void setUserUid(int aUserUid) {
+    public void setUserUid(Integer aUserUid) {
         userUid = aUserUid;
     }
 
@@ -171,7 +145,7 @@ public class PerpUploadControl implements Serializable {
      *
      * @return the current value of recordsProcessed
      */
-    public int getRecordsProcessed() {
+    public Integer getRecordsProcessed() {
         return recordsProcessed;
     }
 
@@ -180,7 +154,7 @@ public class PerpUploadControl implements Serializable {
      *
      * @param aRecordsProcessed the new value for recordsProcessed
      */
-    public void setRecordsProcessed(int aRecordsProcessed) {
+    public void setRecordsProcessed(Integer aRecordsProcessed) {
         recordsProcessed = aRecordsProcessed;
     }
 
@@ -243,7 +217,7 @@ public class PerpUploadControl implements Serializable {
      *
      * @return the current value of processedFlag
      */
-    public String getProcessedFlag() {
+    public Character getProcessedFlag() {
         return processedFlag;
     }
 
@@ -252,7 +226,7 @@ public class PerpUploadControl implements Serializable {
      *
      * @param aProcessedFlag the new value for processedFlag
      */
-    public void setProcessedFlag(String aProcessedFlag) {
+    public void setProcessedFlag(Character aProcessedFlag) {
         processedFlag = aProcessedFlag;
     }
 
@@ -261,7 +235,7 @@ public class PerpUploadControl implements Serializable {
      *
      * @return the current value of archivedFlag
      */
-    public String getArchivedFlag() {
+    public Character getArchivedFlag() {
         return archivedFlag;
     }
 
@@ -270,7 +244,7 @@ public class PerpUploadControl implements Serializable {
      *
      * @param aArchivedFlag the new value for archivedFlag
      */
-    public void setArchivedFlag(String aArchivedFlag) {
+    public void setArchivedFlag(Character aArchivedFlag) {
         archivedFlag = aArchivedFlag;
     }
 
@@ -324,7 +298,9 @@ public class PerpUploadControl implements Serializable {
             return false;
         }
         PerpUploadControl that = (PerpUploadControl) other;
-        if (this.getPerpUploadControlUid() != that.getPerpUploadControlUid()) {
+        Object myPerpUploadControlUid = this.getPerpUploadControlUid();
+        Object yourPerpUploadControlUid = that.getPerpUploadControlUid();
+        if (myPerpUploadControlUid==null ? yourPerpUploadControlUid!=null : !myPerpUploadControlUid.equals(yourPerpUploadControlUid)) {
             return false;
         }
         return true;
@@ -351,7 +327,11 @@ public class PerpUploadControl implements Serializable {
     public int hashCode() {
         int i;
         int result = 17;
-        i = getPerpUploadControlUid();
+        if (getPerpUploadControlUid() == null) {
+            i = 0;
+        } else {
+            i = getPerpUploadControlUid().hashCode();
+        }
         result = 37*result + i;
         return result;
     }
@@ -376,7 +356,7 @@ public class PerpUploadControl implements Serializable {
      */
     public Map<String, Object> getPrimaryKey() {
         Map<String, Object> ret = new LinkedHashMap<String, Object>(6);
-        ret.put("perpUploadControlUid", Integer.valueOf(getPerpUploadControlUid()));
+        ret.put("perpUploadControlUid", getPerpUploadControlUid());
         return ret;
     }
 

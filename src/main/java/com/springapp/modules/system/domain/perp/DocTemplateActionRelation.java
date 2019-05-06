@@ -12,38 +12,12 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.Version;
 
 @Entity(name="doc_template_action_relation")
 public class DocTemplateActionRelation implements Serializable {
 
     /** Primary key. */
     protected static final String PK = "DocTemplateActionRelationPrimary";
-
-    /**
-     * The optimistic lock. Available via standard bean get/set operations.
-     */
-    @Version
-    @Column(name="LOCK_FLAG")
-    private Integer lockFlag;
-
-    /**
-     * Access method for the lockFlag property.
-     *
-     * @return the current value of the lockFlag property
-     */
-    public Integer getLockFlag() {
-        return lockFlag;
-    }
-
-    /**
-     * Sets the value of the lockFlag property.
-     *
-     * @param aLockFlag the new value of the lockFlag property
-     */
-    public void setLockFlag(Integer aLockFlag) {
-        lockFlag = aLockFlag;
-    }
 
     @Column(name="Create_Modified_By", nullable=false, length=45)
     private String createModifiedBy;
@@ -52,8 +26,8 @@ public class DocTemplateActionRelation implements Serializable {
     @ManyToOne(optional=false)
     @JoinColumn(name="DecisionAction_UID", nullable=false)
     private AppRegitemActions appRegitemActions;
-    @ManyToOne(optional=false)
     @Id
+    @ManyToOne(optional=false)
     @JoinColumn(name="DocTemplate_UID", nullable=false)
     private DocTemplateLookup docTemplateLookup;
 
@@ -135,7 +109,7 @@ public class DocTemplateActionRelation implements Serializable {
     }
 
     /** Temporary value holder for group key fragment appRegitemActionsUid */
-    private transient int tempAppRegitemActionsUid;
+    private transient Integer tempAppRegitemActionsUid;
 
     /**
      * Gets the key fragment uid for member appRegitemActions.
@@ -147,7 +121,7 @@ public class DocTemplateActionRelation implements Serializable {
      * @return Current (or temporary) value of the key fragment
      * @see AppRegitemActions
      */
-    public int getAppRegitemActionsUid() {
+    public Integer getAppRegitemActionsUid() {
         return (getAppRegitemActions() == null ? tempAppRegitemActionsUid : getAppRegitemActions().getUid());
     }
 
@@ -161,7 +135,7 @@ public class DocTemplateActionRelation implements Serializable {
      * @param aUid New value for the key fragment
      * @see AppRegitemActions
      */
-    public void setAppRegitemActionsUid(int aUid) {
+    public void setAppRegitemActionsUid(Integer aUid) {
         if (getAppRegitemActions() == null) {
             tempAppRegitemActionsUid = aUid;
         } else {
@@ -170,7 +144,7 @@ public class DocTemplateActionRelation implements Serializable {
     }
 
     /** Temporary value holder for group key fragment docTemplateLookupDocTemplateUid */
-    private transient int tempDocTemplateLookupDocTemplateUid;
+    private transient Integer tempDocTemplateLookupDocTemplateUid;
 
     /**
      * Gets the key fragment docTemplateUid for member docTemplateLookup.
@@ -182,7 +156,7 @@ public class DocTemplateActionRelation implements Serializable {
      * @return Current (or temporary) value of the key fragment
      * @see DocTemplateLookup
      */
-    public int getDocTemplateLookupDocTemplateUid() {
+    public Integer getDocTemplateLookupDocTemplateUid() {
         return (getDocTemplateLookup() == null ? tempDocTemplateLookupDocTemplateUid : getDocTemplateLookup().getDocTemplateUid());
     }
 
@@ -196,7 +170,7 @@ public class DocTemplateActionRelation implements Serializable {
      * @param aDocTemplateUid New value for the key fragment
      * @see DocTemplateLookup
      */
-    public void setDocTemplateLookupDocTemplateUid(int aDocTemplateUid) {
+    public void setDocTemplateLookupDocTemplateUid(Integer aDocTemplateUid) {
         if (getDocTemplateLookup() == null) {
             tempDocTemplateLookupDocTemplateUid = aDocTemplateUid;
         } else {
@@ -218,10 +192,14 @@ public class DocTemplateActionRelation implements Serializable {
             return false;
         }
         DocTemplateActionRelation that = (DocTemplateActionRelation) other;
-        if (this.getAppRegitemActionsUid() != that.getAppRegitemActionsUid()) {
+        Object myAppRegitemActionsUid = this.getAppRegitemActionsUid();
+        Object yourAppRegitemActionsUid = that.getAppRegitemActionsUid();
+        if (myAppRegitemActionsUid==null ? yourAppRegitemActionsUid!=null : !myAppRegitemActionsUid.equals(yourAppRegitemActionsUid)) {
             return false;
         }
-        if (this.getDocTemplateLookupDocTemplateUid() != that.getDocTemplateLookupDocTemplateUid()) {
+        Object myDocTemplateLookupDocTemplateUid = this.getDocTemplateLookupDocTemplateUid();
+        Object yourDocTemplateLookupDocTemplateUid = that.getDocTemplateLookupDocTemplateUid();
+        if (myDocTemplateLookupDocTemplateUid==null ? yourDocTemplateLookupDocTemplateUid!=null : !myDocTemplateLookupDocTemplateUid.equals(yourDocTemplateLookupDocTemplateUid)) {
             return false;
         }
         return true;
@@ -248,9 +226,17 @@ public class DocTemplateActionRelation implements Serializable {
     public int hashCode() {
         int i;
         int result = 17;
-        i = getAppRegitemActionsUid();
+        if (getAppRegitemActionsUid() == null) {
+            i = 0;
+        } else {
+            i = getAppRegitemActionsUid().hashCode();
+        }
         result = 37*result + i;
-        i = getDocTemplateLookupDocTemplateUid();
+        if (getDocTemplateLookupDocTemplateUid() == null) {
+            i = 0;
+        } else {
+            i = getDocTemplateLookupDocTemplateUid().hashCode();
+        }
         result = 37*result + i;
         return result;
     }
@@ -276,8 +262,8 @@ public class DocTemplateActionRelation implements Serializable {
      */
     public Map<String, Object> getPrimaryKey() {
         Map<String, Object> ret = new LinkedHashMap<String, Object>(6);
-        ret.put("appRegitemActionsUid", Integer.valueOf(getAppRegitemActionsUid()));
-        ret.put("docTemplateLookupDocTemplateUid", Integer.valueOf(getDocTemplateLookupDocTemplateUid()));
+        ret.put("appRegitemActionsUid", getAppRegitemActionsUid());
+        ret.put("docTemplateLookupDocTemplateUid", getDocTemplateLookupDocTemplateUid());
         return ret;
     }
 

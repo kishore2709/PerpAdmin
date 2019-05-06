@@ -14,7 +14,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.Version;
 
 @Entity(name="terminal")
 public class Terminal implements Serializable {
@@ -22,40 +21,15 @@ public class Terminal implements Serializable {
     /** Primary key. */
     protected static final String PK = "terminalUid";
 
-    /**
-     * The optimistic lock. Available via standard bean get/set operations.
-     */
-    @Version
-    @Column(name="LOCK_FLAG")
-    private Integer lockFlag;
-
-    /**
-     * Access method for the lockFlag property.
-     *
-     * @return the current value of the lockFlag property
-     */
-    public Integer getLockFlag() {
-        return lockFlag;
-    }
-
-    /**
-     * Sets the value of the lockFlag property.
-     *
-     * @param aLockFlag the new value of the lockFlag property
-     */
-    public void setLockFlag(Integer aLockFlag) {
-        lockFlag = aLockFlag;
-    }
-
     @Id
     @Column(name="Terminal_UID", unique=true, nullable=false, precision=10)
-    private int terminalUid;
+    private Integer terminalUid;
     @Column(name="Terminal_Name", nullable=false, length=45)
     private String terminalName;
     @Column(name="Terminal_Description", length=256)
     private String terminalDescription;
     @Column(name="Active_Flag", nullable=false, length=1)
-    private String activeFlag;
+    private Character activeFlag;
     @Column(name="Create_Modified_By", nullable=false, length=45)
     private String createModifiedBy;
     @Column(name="Create_Modified_Date", nullable=false)
@@ -69,8 +43,6 @@ public class Terminal implements Serializable {
     private Set<Contact> contact;
     @OneToMany(mappedBy="terminal")
     private Set<NoteComplaints> noteComplaints;
-    @OneToMany(mappedBy="terminal")
-    private Set<TerminalTruRelation> terminalTruRelation;
     @ManyToOne
     @JoinColumn(name="Terminal_Type_UID")
     private TerminalType terminalType;
@@ -85,7 +57,7 @@ public class Terminal implements Serializable {
      *
      * @return the current value of terminalUid
      */
-    public int getTerminalUid() {
+    public Integer getTerminalUid() {
         return terminalUid;
     }
 
@@ -94,7 +66,7 @@ public class Terminal implements Serializable {
      *
      * @param aTerminalUid the new value for terminalUid
      */
-    public void setTerminalUid(int aTerminalUid) {
+    public void setTerminalUid(Integer aTerminalUid) {
         terminalUid = aTerminalUid;
     }
 
@@ -139,7 +111,7 @@ public class Terminal implements Serializable {
      *
      * @return the current value of activeFlag
      */
-    public String getActiveFlag() {
+    public Character getActiveFlag() {
         return activeFlag;
     }
 
@@ -148,7 +120,7 @@ public class Terminal implements Serializable {
      *
      * @param aActiveFlag the new value for activeFlag
      */
-    public void setActiveFlag(String aActiveFlag) {
+    public void setActiveFlag(Character aActiveFlag) {
         activeFlag = aActiveFlag;
     }
 
@@ -261,24 +233,6 @@ public class Terminal implements Serializable {
     }
 
     /**
-     * Access method for terminalTruRelation.
-     *
-     * @return the current value of terminalTruRelation
-     */
-    public Set<TerminalTruRelation> getTerminalTruRelation() {
-        return terminalTruRelation;
-    }
-
-    /**
-     * Setter method for terminalTruRelation.
-     *
-     * @param aTerminalTruRelation the new value for terminalTruRelation
-     */
-    public void setTerminalTruRelation(Set<TerminalTruRelation> aTerminalTruRelation) {
-        terminalTruRelation = aTerminalTruRelation;
-    }
-
-    /**
      * Access method for terminalType.
      *
      * @return the current value of terminalType
@@ -310,7 +264,9 @@ public class Terminal implements Serializable {
             return false;
         }
         Terminal that = (Terminal) other;
-        if (this.getTerminalUid() != that.getTerminalUid()) {
+        Object myTerminalUid = this.getTerminalUid();
+        Object yourTerminalUid = that.getTerminalUid();
+        if (myTerminalUid==null ? yourTerminalUid!=null : !myTerminalUid.equals(yourTerminalUid)) {
             return false;
         }
         return true;
@@ -337,7 +293,11 @@ public class Terminal implements Serializable {
     public int hashCode() {
         int i;
         int result = 17;
-        i = getTerminalUid();
+        if (getTerminalUid() == null) {
+            i = 0;
+        } else {
+            i = getTerminalUid().hashCode();
+        }
         result = 37*result + i;
         return result;
     }
@@ -362,7 +322,7 @@ public class Terminal implements Serializable {
      */
     public Map<String, Object> getPrimaryKey() {
         Map<String, Object> ret = new LinkedHashMap<String, Object>(6);
-        ret.put("terminalUid", Integer.valueOf(getTerminalUid()));
+        ret.put("terminalUid", getTerminalUid());
         return ret;
     }
 

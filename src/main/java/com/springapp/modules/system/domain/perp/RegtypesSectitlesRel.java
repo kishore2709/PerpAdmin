@@ -14,7 +14,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.Version;
 
 @Entity(name="regtypes_sectitles_rel")
 public class RegtypesSectitlesRel implements Serializable {
@@ -22,38 +21,13 @@ public class RegtypesSectitlesRel implements Serializable {
     /** Primary key. */
     protected static final String PK = "rtstRelUid";
 
-    /**
-     * The optimistic lock. Available via standard bean get/set operations.
-     */
-    @Version
-    @Column(name="LOCK_FLAG")
-    private Integer lockFlag;
-
-    /**
-     * Access method for the lockFlag property.
-     *
-     * @return the current value of the lockFlag property
-     */
-    public Integer getLockFlag() {
-        return lockFlag;
-    }
-
-    /**
-     * Sets the value of the lockFlag property.
-     *
-     * @param aLockFlag the new value of the lockFlag property
-     */
-    public void setLockFlag(Integer aLockFlag) {
-        lockFlag = aLockFlag;
-    }
-
     @Id
     @Column(name="RTSTRel_UID", unique=true, nullable=false, precision=10)
-    private int rtstRelUid;
+    private Integer rtstRelUid;
     @Column(name="Section_Sort", precision=10)
-    private int sectionSort;
+    private Integer sectionSort;
     @Column(name="Active_Flag", nullable=false, length=1)
-    private String activeFlag;
+    private Character activeFlag;
     @Column(name="Create_Modified_By", nullable=false, length=45)
     private String createModifiedBy;
     @Column(name="Create_Modified_Date", nullable=false)
@@ -77,7 +51,7 @@ public class RegtypesSectitlesRel implements Serializable {
      *
      * @return the current value of rtstRelUid
      */
-    public int getRtstRelUid() {
+    public Integer getRtstRelUid() {
         return rtstRelUid;
     }
 
@@ -86,7 +60,7 @@ public class RegtypesSectitlesRel implements Serializable {
      *
      * @param aRtstRelUid the new value for rtstRelUid
      */
-    public void setRtstRelUid(int aRtstRelUid) {
+    public void setRtstRelUid(Integer aRtstRelUid) {
         rtstRelUid = aRtstRelUid;
     }
 
@@ -95,7 +69,7 @@ public class RegtypesSectitlesRel implements Serializable {
      *
      * @return the current value of sectionSort
      */
-    public int getSectionSort() {
+    public Integer getSectionSort() {
         return sectionSort;
     }
 
@@ -104,7 +78,7 @@ public class RegtypesSectitlesRel implements Serializable {
      *
      * @param aSectionSort the new value for sectionSort
      */
-    public void setSectionSort(int aSectionSort) {
+    public void setSectionSort(Integer aSectionSort) {
         sectionSort = aSectionSort;
     }
 
@@ -113,7 +87,7 @@ public class RegtypesSectitlesRel implements Serializable {
      *
      * @return the current value of activeFlag
      */
-    public String getActiveFlag() {
+    public Character getActiveFlag() {
         return activeFlag;
     }
 
@@ -122,7 +96,7 @@ public class RegtypesSectitlesRel implements Serializable {
      *
      * @param aActiveFlag the new value for activeFlag
      */
-    public void setActiveFlag(String aActiveFlag) {
+    public void setActiveFlag(Character aActiveFlag) {
         activeFlag = aActiveFlag;
     }
 
@@ -230,7 +204,9 @@ public class RegtypesSectitlesRel implements Serializable {
             return false;
         }
         RegtypesSectitlesRel that = (RegtypesSectitlesRel) other;
-        if (this.getRtstRelUid() != that.getRtstRelUid()) {
+        Object myRtstRelUid = this.getRtstRelUid();
+        Object yourRtstRelUid = that.getRtstRelUid();
+        if (myRtstRelUid==null ? yourRtstRelUid!=null : !myRtstRelUid.equals(yourRtstRelUid)) {
             return false;
         }
         return true;
@@ -257,7 +233,11 @@ public class RegtypesSectitlesRel implements Serializable {
     public int hashCode() {
         int i;
         int result = 17;
-        i = getRtstRelUid();
+        if (getRtstRelUid() == null) {
+            i = 0;
+        } else {
+            i = getRtstRelUid().hashCode();
+        }
         result = 37*result + i;
         return result;
     }
@@ -282,7 +262,7 @@ public class RegtypesSectitlesRel implements Serializable {
      */
     public Map<String, Object> getPrimaryKey() {
         Map<String, Object> ret = new LinkedHashMap<String, Object>(6);
-        ret.put("rtstRelUid", Integer.valueOf(getRtstRelUid()));
+        ret.put("rtstRelUid", getRtstRelUid());
         return ret;
     }
 

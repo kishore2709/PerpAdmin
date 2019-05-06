@@ -13,7 +13,6 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.Version;
 
 @Entity(name="ledger_ledgerdetails_association")
 public class LedgerLedgerdetailsAssociation implements Serializable {
@@ -21,37 +20,12 @@ public class LedgerLedgerdetailsAssociation implements Serializable {
     /** Primary key. */
     protected static final String PK = "LedgerLedgerdetailsAssociationPrimary";
 
-    /**
-     * The optimistic lock. Available via standard bean get/set operations.
-     */
-    @Version
-    @Column(name="LOCK_FLAG")
-    private Integer lockFlag;
-
-    /**
-     * Access method for the lockFlag property.
-     *
-     * @return the current value of the lockFlag property
-     */
-    public Integer getLockFlag() {
-        return lockFlag;
-    }
-
-    /**
-     * Sets the value of the lockFlag property.
-     *
-     * @param aLockFlag the new value of the lockFlag property
-     */
-    public void setLockFlag(Integer aLockFlag) {
-        lockFlag = aLockFlag;
-    }
-
     @Column(name="Group_ID", precision=10)
-    private int groupId;
+    private Integer groupId;
     @Column(name="Payment_Amt", precision=10, scale=2)
     private BigDecimal paymentAmt;
     @Column(name="Active_Flag", nullable=false, length=1)
-    private String activeFlag;
+    private Character activeFlag;
     @Column(name="Create_Modified_By", nullable=false, length=45)
     private String createModifiedBy;
     @Column(name="Create_Modified_Date", nullable=false)
@@ -74,7 +48,7 @@ public class LedgerLedgerdetailsAssociation implements Serializable {
      *
      * @return the current value of groupId
      */
-    public int getGroupId() {
+    public Integer getGroupId() {
         return groupId;
     }
 
@@ -83,7 +57,7 @@ public class LedgerLedgerdetailsAssociation implements Serializable {
      *
      * @param aGroupId the new value for groupId
      */
-    public void setGroupId(int aGroupId) {
+    public void setGroupId(Integer aGroupId) {
         groupId = aGroupId;
     }
 
@@ -110,7 +84,7 @@ public class LedgerLedgerdetailsAssociation implements Serializable {
      *
      * @return the current value of activeFlag
      */
-    public String getActiveFlag() {
+    public Character getActiveFlag() {
         return activeFlag;
     }
 
@@ -119,7 +93,7 @@ public class LedgerLedgerdetailsAssociation implements Serializable {
      *
      * @param aActiveFlag the new value for activeFlag
      */
-    public void setActiveFlag(String aActiveFlag) {
+    public void setActiveFlag(Character aActiveFlag) {
         activeFlag = aActiveFlag;
     }
 
@@ -196,7 +170,7 @@ public class LedgerLedgerdetailsAssociation implements Serializable {
     }
 
     /** Temporary value holder for group key fragment ledgerLedgerUid */
-    private transient int tempLedgerLedgerUid;
+    private transient Integer tempLedgerLedgerUid;
 
     /**
      * Gets the key fragment ledgerUid for member ledger.
@@ -208,7 +182,7 @@ public class LedgerLedgerdetailsAssociation implements Serializable {
      * @return Current (or temporary) value of the key fragment
      * @see Ledger
      */
-    public int getLedgerLedgerUid() {
+    public Integer getLedgerLedgerUid() {
         return (getLedger() == null ? tempLedgerLedgerUid : getLedger().getLedgerUid());
     }
 
@@ -222,7 +196,7 @@ public class LedgerLedgerdetailsAssociation implements Serializable {
      * @param aLedgerUid New value for the key fragment
      * @see Ledger
      */
-    public void setLedgerLedgerUid(int aLedgerUid) {
+    public void setLedgerLedgerUid(Integer aLedgerUid) {
         if (getLedger() == null) {
             tempLedgerLedgerUid = aLedgerUid;
         } else {
@@ -231,7 +205,7 @@ public class LedgerLedgerdetailsAssociation implements Serializable {
     }
 
     /** Temporary value holder for group key fragment ledgerDetailsLedgerDetailsUid */
-    private transient int tempLedgerDetailsLedgerDetailsUid;
+    private transient Integer tempLedgerDetailsLedgerDetailsUid;
 
     /**
      * Gets the key fragment ledgerDetailsUid for member ledgerDetails.
@@ -243,7 +217,7 @@ public class LedgerLedgerdetailsAssociation implements Serializable {
      * @return Current (or temporary) value of the key fragment
      * @see LedgerDetails
      */
-    public int getLedgerDetailsLedgerDetailsUid() {
+    public Integer getLedgerDetailsLedgerDetailsUid() {
         return (getLedgerDetails() == null ? tempLedgerDetailsLedgerDetailsUid : getLedgerDetails().getLedgerDetailsUid());
     }
 
@@ -257,7 +231,7 @@ public class LedgerLedgerdetailsAssociation implements Serializable {
      * @param aLedgerDetailsUid New value for the key fragment
      * @see LedgerDetails
      */
-    public void setLedgerDetailsLedgerDetailsUid(int aLedgerDetailsUid) {
+    public void setLedgerDetailsLedgerDetailsUid(Integer aLedgerDetailsUid) {
         if (getLedgerDetails() == null) {
             tempLedgerDetailsLedgerDetailsUid = aLedgerDetailsUid;
         } else {
@@ -279,10 +253,14 @@ public class LedgerLedgerdetailsAssociation implements Serializable {
             return false;
         }
         LedgerLedgerdetailsAssociation that = (LedgerLedgerdetailsAssociation) other;
-        if (this.getLedgerLedgerUid() != that.getLedgerLedgerUid()) {
+        Object myLedgerLedgerUid = this.getLedgerLedgerUid();
+        Object yourLedgerLedgerUid = that.getLedgerLedgerUid();
+        if (myLedgerLedgerUid==null ? yourLedgerLedgerUid!=null : !myLedgerLedgerUid.equals(yourLedgerLedgerUid)) {
             return false;
         }
-        if (this.getLedgerDetailsLedgerDetailsUid() != that.getLedgerDetailsLedgerDetailsUid()) {
+        Object myLedgerDetailsLedgerDetailsUid = this.getLedgerDetailsLedgerDetailsUid();
+        Object yourLedgerDetailsLedgerDetailsUid = that.getLedgerDetailsLedgerDetailsUid();
+        if (myLedgerDetailsLedgerDetailsUid==null ? yourLedgerDetailsLedgerDetailsUid!=null : !myLedgerDetailsLedgerDetailsUid.equals(yourLedgerDetailsLedgerDetailsUid)) {
             return false;
         }
         return true;
@@ -309,9 +287,17 @@ public class LedgerLedgerdetailsAssociation implements Serializable {
     public int hashCode() {
         int i;
         int result = 17;
-        i = getLedgerLedgerUid();
+        if (getLedgerLedgerUid() == null) {
+            i = 0;
+        } else {
+            i = getLedgerLedgerUid().hashCode();
+        }
         result = 37*result + i;
-        i = getLedgerDetailsLedgerDetailsUid();
+        if (getLedgerDetailsLedgerDetailsUid() == null) {
+            i = 0;
+        } else {
+            i = getLedgerDetailsLedgerDetailsUid().hashCode();
+        }
         result = 37*result + i;
         return result;
     }
@@ -337,8 +323,8 @@ public class LedgerLedgerdetailsAssociation implements Serializable {
      */
     public Map<String, Object> getPrimaryKey() {
         Map<String, Object> ret = new LinkedHashMap<String, Object>(6);
-        ret.put("ledgerLedgerUid", Integer.valueOf(getLedgerLedgerUid()));
-        ret.put("ledgerDetailsLedgerDetailsUid", Integer.valueOf(getLedgerDetailsLedgerDetailsUid()));
+        ret.put("ledgerLedgerUid", getLedgerLedgerUid());
+        ret.put("ledgerDetailsLedgerDetailsUid", getLedgerDetailsLedgerDetailsUid());
         return ret;
     }
 

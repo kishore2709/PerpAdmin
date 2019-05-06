@@ -12,7 +12,6 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.Version;
 
 @Entity(name="company_relations")
 public class CompanyRelations implements Serializable {
@@ -20,34 +19,9 @@ public class CompanyRelations implements Serializable {
     /** Primary key. */
     protected static final String PK = "companyRelationsUid";
 
-    /**
-     * The optimistic lock. Available via standard bean get/set operations.
-     */
-    @Version
-    @Column(name="LOCK_FLAG")
-    private Integer lockFlag;
-
-    /**
-     * Access method for the lockFlag property.
-     *
-     * @return the current value of the lockFlag property
-     */
-    public Integer getLockFlag() {
-        return lockFlag;
-    }
-
-    /**
-     * Sets the value of the lockFlag property.
-     *
-     * @param aLockFlag the new value of the lockFlag property
-     */
-    public void setLockFlag(Integer aLockFlag) {
-        lockFlag = aLockFlag;
-    }
-
     @Id
     @Column(name="Company_Relations_UID", unique=true, nullable=false, precision=10)
-    private int companyRelationsUid;
+    private Integer companyRelationsUid;
     @Column(name="Create_Modified_By", nullable=false, length=45)
     private String createModifiedBy;
     @Column(name="Create_Modified_Date", nullable=false)
@@ -72,7 +46,7 @@ public class CompanyRelations implements Serializable {
      *
      * @return the current value of companyRelationsUid
      */
-    public int getCompanyRelationsUid() {
+    public Integer getCompanyRelationsUid() {
         return companyRelationsUid;
     }
 
@@ -81,7 +55,7 @@ public class CompanyRelations implements Serializable {
      *
      * @param aCompanyRelationsUid the new value for companyRelationsUid
      */
-    public void setCompanyRelationsUid(int aCompanyRelationsUid) {
+    public void setCompanyRelationsUid(Integer aCompanyRelationsUid) {
         companyRelationsUid = aCompanyRelationsUid;
     }
 
@@ -189,7 +163,9 @@ public class CompanyRelations implements Serializable {
             return false;
         }
         CompanyRelations that = (CompanyRelations) other;
-        if (this.getCompanyRelationsUid() != that.getCompanyRelationsUid()) {
+        Object myCompanyRelationsUid = this.getCompanyRelationsUid();
+        Object yourCompanyRelationsUid = that.getCompanyRelationsUid();
+        if (myCompanyRelationsUid==null ? yourCompanyRelationsUid!=null : !myCompanyRelationsUid.equals(yourCompanyRelationsUid)) {
             return false;
         }
         return true;
@@ -216,7 +192,11 @@ public class CompanyRelations implements Serializable {
     public int hashCode() {
         int i;
         int result = 17;
-        i = getCompanyRelationsUid();
+        if (getCompanyRelationsUid() == null) {
+            i = 0;
+        } else {
+            i = getCompanyRelationsUid().hashCode();
+        }
         result = 37*result + i;
         return result;
     }
@@ -241,7 +221,7 @@ public class CompanyRelations implements Serializable {
      */
     public Map<String, Object> getPrimaryKey() {
         Map<String, Object> ret = new LinkedHashMap<String, Object>(6);
-        ret.put("companyRelationsUid", Integer.valueOf(getCompanyRelationsUid()));
+        ret.put("companyRelationsUid", getCompanyRelationsUid());
         return ret;
     }
 

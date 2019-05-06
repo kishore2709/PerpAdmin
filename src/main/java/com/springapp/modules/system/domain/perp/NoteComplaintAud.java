@@ -10,7 +10,6 @@ import java.util.Map;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.Version;
 
 @Entity(name="note_complaint_aud")
 public class NoteComplaintAud implements Serializable {
@@ -18,48 +17,23 @@ public class NoteComplaintAud implements Serializable {
     /** Primary key. */
     protected static final String PK = "noteComplaintAudUid";
 
-    /**
-     * The optimistic lock. Available via standard bean get/set operations.
-     */
-    @Version
-    @Column(name="LOCK_FLAG")
-    private Integer lockFlag;
-
-    /**
-     * Access method for the lockFlag property.
-     *
-     * @return the current value of the lockFlag property
-     */
-    public Integer getLockFlag() {
-        return lockFlag;
-    }
-
-    /**
-     * Sets the value of the lockFlag property.
-     *
-     * @param aLockFlag the new value of the lockFlag property
-     */
-    public void setLockFlag(Integer aLockFlag) {
-        lockFlag = aLockFlag;
-    }
-
     @Id
     @Column(name="NoteComplaint_Aud_UID", unique=true, nullable=false, precision=10)
-    private int noteComplaintAudUid;
+    private Integer noteComplaintAudUid;
     @Column(name="NoteComplaint_UID", nullable=false, precision=10)
-    private int noteComplaintUid;
+    private Integer noteComplaintUid;
     @Column(name="Note_Category_UID", precision=10)
-    private int noteCategoryUid;
+    private Integer noteCategoryUid;
     @Column(name="Note_Type_UID", precision=10)
-    private int noteTypeUid;
+    private Integer noteTypeUid;
     @Column(name="Complaint_Topics_UID", precision=10)
-    private int complaintTopicsUid;
+    private Integer complaintTopicsUid;
     @Column(name="Complaint_Status_UID", precision=10)
-    private int complaintStatusUid;
+    private Integer complaintStatusUid;
     @Column(name="Complaint_Priority_Type_UID", precision=10)
-    private int complaintPriorityTypeUid;
+    private Integer complaintPriorityTypeUid;
     @Column(name="Parent_UID", precision=10)
-    private int parentUid;
+    private Integer parentUid;
     @Column(name="Subject", length=128)
     private String subject;
     @Column(name="Note_Text", length=2000)
@@ -69,15 +43,15 @@ public class NoteComplaintAud implements Serializable {
     @Column(name="Msg_End_Datetime")
     private Timestamp msgEndDatetime;
     @Column(name="Terminal_UID", precision=10)
-    private int terminalUid;
+    private Integer terminalUid;
     @Column(name="Company_UID", precision=10)
-    private int companyUid;
+    private Integer companyUid;
     @Column(name="TRU_UID", precision=10)
-    private int truUid;
+    private Integer truUid;
     @Column(name="Vehicle_UID", precision=10)
-    private int vehicleUid;
+    private Integer vehicleUid;
     @Column(name="SO_UID", precision=10)
-    private int soUid;
+    private Integer soUid;
     @Column(name="Create_Modified_By", nullable=false, length=45)
     private String createModifiedBy;
     @Column(name="Create_Modified_Date", nullable=false)
@@ -85,7 +59,7 @@ public class NoteComplaintAud implements Serializable {
     @Column(name="Operation", nullable=false, length=10)
     private String operation;
     @Column(name="RegItem_UID", precision=10)
-    private int regItemUid;
+    private Integer regItemUid;
 
     /** Default constructor. */
     public NoteComplaintAud() {
@@ -97,7 +71,7 @@ public class NoteComplaintAud implements Serializable {
      *
      * @return the current value of noteComplaintAudUid
      */
-    public int getNoteComplaintAudUid() {
+    public Integer getNoteComplaintAudUid() {
         return noteComplaintAudUid;
     }
 
@@ -106,7 +80,7 @@ public class NoteComplaintAud implements Serializable {
      *
      * @param aNoteComplaintAudUid the new value for noteComplaintAudUid
      */
-    public void setNoteComplaintAudUid(int aNoteComplaintAudUid) {
+    public void setNoteComplaintAudUid(Integer aNoteComplaintAudUid) {
         noteComplaintAudUid = aNoteComplaintAudUid;
     }
 
@@ -115,7 +89,7 @@ public class NoteComplaintAud implements Serializable {
      *
      * @return the current value of noteComplaintUid
      */
-    public int getNoteComplaintUid() {
+    public Integer getNoteComplaintUid() {
         return noteComplaintUid;
     }
 
@@ -124,7 +98,7 @@ public class NoteComplaintAud implements Serializable {
      *
      * @param aNoteComplaintUid the new value for noteComplaintUid
      */
-    public void setNoteComplaintUid(int aNoteComplaintUid) {
+    public void setNoteComplaintUid(Integer aNoteComplaintUid) {
         noteComplaintUid = aNoteComplaintUid;
     }
 
@@ -133,7 +107,7 @@ public class NoteComplaintAud implements Serializable {
      *
      * @return the current value of noteCategoryUid
      */
-    public int getNoteCategoryUid() {
+    public Integer getNoteCategoryUid() {
         return noteCategoryUid;
     }
 
@@ -142,7 +116,7 @@ public class NoteComplaintAud implements Serializable {
      *
      * @param aNoteCategoryUid the new value for noteCategoryUid
      */
-    public void setNoteCategoryUid(int aNoteCategoryUid) {
+    public void setNoteCategoryUid(Integer aNoteCategoryUid) {
         noteCategoryUid = aNoteCategoryUid;
     }
 
@@ -151,7 +125,7 @@ public class NoteComplaintAud implements Serializable {
      *
      * @return the current value of noteTypeUid
      */
-    public int getNoteTypeUid() {
+    public Integer getNoteTypeUid() {
         return noteTypeUid;
     }
 
@@ -160,7 +134,7 @@ public class NoteComplaintAud implements Serializable {
      *
      * @param aNoteTypeUid the new value for noteTypeUid
      */
-    public void setNoteTypeUid(int aNoteTypeUid) {
+    public void setNoteTypeUid(Integer aNoteTypeUid) {
         noteTypeUid = aNoteTypeUid;
     }
 
@@ -169,7 +143,7 @@ public class NoteComplaintAud implements Serializable {
      *
      * @return the current value of complaintTopicsUid
      */
-    public int getComplaintTopicsUid() {
+    public Integer getComplaintTopicsUid() {
         return complaintTopicsUid;
     }
 
@@ -178,7 +152,7 @@ public class NoteComplaintAud implements Serializable {
      *
      * @param aComplaintTopicsUid the new value for complaintTopicsUid
      */
-    public void setComplaintTopicsUid(int aComplaintTopicsUid) {
+    public void setComplaintTopicsUid(Integer aComplaintTopicsUid) {
         complaintTopicsUid = aComplaintTopicsUid;
     }
 
@@ -187,7 +161,7 @@ public class NoteComplaintAud implements Serializable {
      *
      * @return the current value of complaintStatusUid
      */
-    public int getComplaintStatusUid() {
+    public Integer getComplaintStatusUid() {
         return complaintStatusUid;
     }
 
@@ -196,7 +170,7 @@ public class NoteComplaintAud implements Serializable {
      *
      * @param aComplaintStatusUid the new value for complaintStatusUid
      */
-    public void setComplaintStatusUid(int aComplaintStatusUid) {
+    public void setComplaintStatusUid(Integer aComplaintStatusUid) {
         complaintStatusUid = aComplaintStatusUid;
     }
 
@@ -205,7 +179,7 @@ public class NoteComplaintAud implements Serializable {
      *
      * @return the current value of complaintPriorityTypeUid
      */
-    public int getComplaintPriorityTypeUid() {
+    public Integer getComplaintPriorityTypeUid() {
         return complaintPriorityTypeUid;
     }
 
@@ -214,7 +188,7 @@ public class NoteComplaintAud implements Serializable {
      *
      * @param aComplaintPriorityTypeUid the new value for complaintPriorityTypeUid
      */
-    public void setComplaintPriorityTypeUid(int aComplaintPriorityTypeUid) {
+    public void setComplaintPriorityTypeUid(Integer aComplaintPriorityTypeUid) {
         complaintPriorityTypeUid = aComplaintPriorityTypeUid;
     }
 
@@ -223,7 +197,7 @@ public class NoteComplaintAud implements Serializable {
      *
      * @return the current value of parentUid
      */
-    public int getParentUid() {
+    public Integer getParentUid() {
         return parentUid;
     }
 
@@ -232,7 +206,7 @@ public class NoteComplaintAud implements Serializable {
      *
      * @param aParentUid the new value for parentUid
      */
-    public void setParentUid(int aParentUid) {
+    public void setParentUid(Integer aParentUid) {
         parentUid = aParentUid;
     }
 
@@ -313,7 +287,7 @@ public class NoteComplaintAud implements Serializable {
      *
      * @return the current value of terminalUid
      */
-    public int getTerminalUid() {
+    public Integer getTerminalUid() {
         return terminalUid;
     }
 
@@ -322,7 +296,7 @@ public class NoteComplaintAud implements Serializable {
      *
      * @param aTerminalUid the new value for terminalUid
      */
-    public void setTerminalUid(int aTerminalUid) {
+    public void setTerminalUid(Integer aTerminalUid) {
         terminalUid = aTerminalUid;
     }
 
@@ -331,7 +305,7 @@ public class NoteComplaintAud implements Serializable {
      *
      * @return the current value of companyUid
      */
-    public int getCompanyUid() {
+    public Integer getCompanyUid() {
         return companyUid;
     }
 
@@ -340,7 +314,7 @@ public class NoteComplaintAud implements Serializable {
      *
      * @param aCompanyUid the new value for companyUid
      */
-    public void setCompanyUid(int aCompanyUid) {
+    public void setCompanyUid(Integer aCompanyUid) {
         companyUid = aCompanyUid;
     }
 
@@ -349,7 +323,7 @@ public class NoteComplaintAud implements Serializable {
      *
      * @return the current value of truUid
      */
-    public int getTruUid() {
+    public Integer getTruUid() {
         return truUid;
     }
 
@@ -358,7 +332,7 @@ public class NoteComplaintAud implements Serializable {
      *
      * @param aTruUid the new value for truUid
      */
-    public void setTruUid(int aTruUid) {
+    public void setTruUid(Integer aTruUid) {
         truUid = aTruUid;
     }
 
@@ -367,7 +341,7 @@ public class NoteComplaintAud implements Serializable {
      *
      * @return the current value of vehicleUid
      */
-    public int getVehicleUid() {
+    public Integer getVehicleUid() {
         return vehicleUid;
     }
 
@@ -376,7 +350,7 @@ public class NoteComplaintAud implements Serializable {
      *
      * @param aVehicleUid the new value for vehicleUid
      */
-    public void setVehicleUid(int aVehicleUid) {
+    public void setVehicleUid(Integer aVehicleUid) {
         vehicleUid = aVehicleUid;
     }
 
@@ -385,7 +359,7 @@ public class NoteComplaintAud implements Serializable {
      *
      * @return the current value of soUid
      */
-    public int getSoUid() {
+    public Integer getSoUid() {
         return soUid;
     }
 
@@ -394,7 +368,7 @@ public class NoteComplaintAud implements Serializable {
      *
      * @param aSoUid the new value for soUid
      */
-    public void setSoUid(int aSoUid) {
+    public void setSoUid(Integer aSoUid) {
         soUid = aSoUid;
     }
 
@@ -457,7 +431,7 @@ public class NoteComplaintAud implements Serializable {
      *
      * @return the current value of regItemUid
      */
-    public int getRegItemUid() {
+    public Integer getRegItemUid() {
         return regItemUid;
     }
 
@@ -466,7 +440,7 @@ public class NoteComplaintAud implements Serializable {
      *
      * @param aRegItemUid the new value for regItemUid
      */
-    public void setRegItemUid(int aRegItemUid) {
+    public void setRegItemUid(Integer aRegItemUid) {
         regItemUid = aRegItemUid;
     }
 
@@ -484,7 +458,9 @@ public class NoteComplaintAud implements Serializable {
             return false;
         }
         NoteComplaintAud that = (NoteComplaintAud) other;
-        if (this.getNoteComplaintAudUid() != that.getNoteComplaintAudUid()) {
+        Object myNoteComplaintAudUid = this.getNoteComplaintAudUid();
+        Object yourNoteComplaintAudUid = that.getNoteComplaintAudUid();
+        if (myNoteComplaintAudUid==null ? yourNoteComplaintAudUid!=null : !myNoteComplaintAudUid.equals(yourNoteComplaintAudUid)) {
             return false;
         }
         return true;
@@ -511,7 +487,11 @@ public class NoteComplaintAud implements Serializable {
     public int hashCode() {
         int i;
         int result = 17;
-        i = getNoteComplaintAudUid();
+        if (getNoteComplaintAudUid() == null) {
+            i = 0;
+        } else {
+            i = getNoteComplaintAudUid().hashCode();
+        }
         result = 37*result + i;
         return result;
     }
@@ -536,7 +516,7 @@ public class NoteComplaintAud implements Serializable {
      */
     public Map<String, Object> getPrimaryKey() {
         Map<String, Object> ret = new LinkedHashMap<String, Object>(6);
-        ret.put("noteComplaintAudUid", Integer.valueOf(getNoteComplaintAudUid()));
+        ret.put("noteComplaintAudUid", getNoteComplaintAudUid());
         return ret;
     }
 

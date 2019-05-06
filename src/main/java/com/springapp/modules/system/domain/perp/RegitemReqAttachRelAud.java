@@ -10,7 +10,6 @@ import java.util.Map;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.Version;
 
 @Entity(name="regitem_req_attach_rel_aud")
 public class RegitemReqAttachRelAud implements Serializable {
@@ -18,46 +17,21 @@ public class RegitemReqAttachRelAud implements Serializable {
     /** Primary key. */
     protected static final String PK = "rirarAudUid";
 
-    /**
-     * The optimistic lock. Available via standard bean get/set operations.
-     */
-    @Version
-    @Column(name="LOCK_FLAG")
-    private Integer lockFlag;
-
-    /**
-     * Access method for the lockFlag property.
-     *
-     * @return the current value of the lockFlag property
-     */
-    public Integer getLockFlag() {
-        return lockFlag;
-    }
-
-    /**
-     * Sets the value of the lockFlag property.
-     *
-     * @param aLockFlag the new value of the lockFlag property
-     */
-    public void setLockFlag(Integer aLockFlag) {
-        lockFlag = aLockFlag;
-    }
-
     @Id
     @Column(name="RIRARAud_UID", unique=true, nullable=false, precision=10)
-    private int rirarAudUid;
+    private Integer rirarAudUid;
     @Column(name="RIRARel_UID", nullable=false, precision=10)
-    private int riraRelUid;
+    private Integer riraRelUid;
     @Column(name="RegItem_UID", precision=10)
-    private int regItemUid;
+    private Integer regItemUid;
     @Column(name="AttachementType_UID", precision=10)
-    private int attachementTypeUid;
+    private Integer attachementTypeUid;
     @Column(name="Note_Attachment_UID", precision=10)
-    private int noteAttachmentUid;
+    private Integer noteAttachmentUid;
     @Column(name="Inspection_UID", precision=10)
-    private int inspectionUid;
+    private Integer inspectionUid;
     @Column(name="Active_Flag", nullable=false, length=1)
-    private String activeFlag;
+    private Character activeFlag;
     @Column(name="Create_Modified_By", nullable=false, length=45)
     private String createModifiedBy;
     @Column(name="Create_Modified_Date", nullable=false)
@@ -75,7 +49,7 @@ public class RegitemReqAttachRelAud implements Serializable {
      *
      * @return the current value of rirarAudUid
      */
-    public int getRirarAudUid() {
+    public Integer getRirarAudUid() {
         return rirarAudUid;
     }
 
@@ -84,7 +58,7 @@ public class RegitemReqAttachRelAud implements Serializable {
      *
      * @param aRirarAudUid the new value for rirarAudUid
      */
-    public void setRirarAudUid(int aRirarAudUid) {
+    public void setRirarAudUid(Integer aRirarAudUid) {
         rirarAudUid = aRirarAudUid;
     }
 
@@ -93,7 +67,7 @@ public class RegitemReqAttachRelAud implements Serializable {
      *
      * @return the current value of riraRelUid
      */
-    public int getRiraRelUid() {
+    public Integer getRiraRelUid() {
         return riraRelUid;
     }
 
@@ -102,7 +76,7 @@ public class RegitemReqAttachRelAud implements Serializable {
      *
      * @param aRiraRelUid the new value for riraRelUid
      */
-    public void setRiraRelUid(int aRiraRelUid) {
+    public void setRiraRelUid(Integer aRiraRelUid) {
         riraRelUid = aRiraRelUid;
     }
 
@@ -111,7 +85,7 @@ public class RegitemReqAttachRelAud implements Serializable {
      *
      * @return the current value of regItemUid
      */
-    public int getRegItemUid() {
+    public Integer getRegItemUid() {
         return regItemUid;
     }
 
@@ -120,7 +94,7 @@ public class RegitemReqAttachRelAud implements Serializable {
      *
      * @param aRegItemUid the new value for regItemUid
      */
-    public void setRegItemUid(int aRegItemUid) {
+    public void setRegItemUid(Integer aRegItemUid) {
         regItemUid = aRegItemUid;
     }
 
@@ -129,7 +103,7 @@ public class RegitemReqAttachRelAud implements Serializable {
      *
      * @return the current value of attachementTypeUid
      */
-    public int getAttachementTypeUid() {
+    public Integer getAttachementTypeUid() {
         return attachementTypeUid;
     }
 
@@ -138,7 +112,7 @@ public class RegitemReqAttachRelAud implements Serializable {
      *
      * @param aAttachementTypeUid the new value for attachementTypeUid
      */
-    public void setAttachementTypeUid(int aAttachementTypeUid) {
+    public void setAttachementTypeUid(Integer aAttachementTypeUid) {
         attachementTypeUid = aAttachementTypeUid;
     }
 
@@ -147,7 +121,7 @@ public class RegitemReqAttachRelAud implements Serializable {
      *
      * @return the current value of noteAttachmentUid
      */
-    public int getNoteAttachmentUid() {
+    public Integer getNoteAttachmentUid() {
         return noteAttachmentUid;
     }
 
@@ -156,7 +130,7 @@ public class RegitemReqAttachRelAud implements Serializable {
      *
      * @param aNoteAttachmentUid the new value for noteAttachmentUid
      */
-    public void setNoteAttachmentUid(int aNoteAttachmentUid) {
+    public void setNoteAttachmentUid(Integer aNoteAttachmentUid) {
         noteAttachmentUid = aNoteAttachmentUid;
     }
 
@@ -165,7 +139,7 @@ public class RegitemReqAttachRelAud implements Serializable {
      *
      * @return the current value of inspectionUid
      */
-    public int getInspectionUid() {
+    public Integer getInspectionUid() {
         return inspectionUid;
     }
 
@@ -174,7 +148,7 @@ public class RegitemReqAttachRelAud implements Serializable {
      *
      * @param aInspectionUid the new value for inspectionUid
      */
-    public void setInspectionUid(int aInspectionUid) {
+    public void setInspectionUid(Integer aInspectionUid) {
         inspectionUid = aInspectionUid;
     }
 
@@ -183,7 +157,7 @@ public class RegitemReqAttachRelAud implements Serializable {
      *
      * @return the current value of activeFlag
      */
-    public String getActiveFlag() {
+    public Character getActiveFlag() {
         return activeFlag;
     }
 
@@ -192,7 +166,7 @@ public class RegitemReqAttachRelAud implements Serializable {
      *
      * @param aActiveFlag the new value for activeFlag
      */
-    public void setActiveFlag(String aActiveFlag) {
+    public void setActiveFlag(Character aActiveFlag) {
         activeFlag = aActiveFlag;
     }
 
@@ -264,7 +238,9 @@ public class RegitemReqAttachRelAud implements Serializable {
             return false;
         }
         RegitemReqAttachRelAud that = (RegitemReqAttachRelAud) other;
-        if (this.getRirarAudUid() != that.getRirarAudUid()) {
+        Object myRirarAudUid = this.getRirarAudUid();
+        Object yourRirarAudUid = that.getRirarAudUid();
+        if (myRirarAudUid==null ? yourRirarAudUid!=null : !myRirarAudUid.equals(yourRirarAudUid)) {
             return false;
         }
         return true;
@@ -291,7 +267,11 @@ public class RegitemReqAttachRelAud implements Serializable {
     public int hashCode() {
         int i;
         int result = 17;
-        i = getRirarAudUid();
+        if (getRirarAudUid() == null) {
+            i = 0;
+        } else {
+            i = getRirarAudUid().hashCode();
+        }
         result = 37*result + i;
         return result;
     }
@@ -316,7 +296,7 @@ public class RegitemReqAttachRelAud implements Serializable {
      */
     public Map<String, Object> getPrimaryKey() {
         Map<String, Object> ret = new LinkedHashMap<String, Object>(6);
-        ret.put("rirarAudUid", Integer.valueOf(getRirarAudUid()));
+        ret.put("rirarAudUid", getRirarAudUid());
         return ret;
     }
 

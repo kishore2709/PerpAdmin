@@ -15,7 +15,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.Version;
 
 @Entity(name="compliance_information")
 public class ComplianceInformation implements Serializable {
@@ -23,34 +22,9 @@ public class ComplianceInformation implements Serializable {
     /** Primary key. */
     protected static final String PK = "complianceInformationUid";
 
-    /**
-     * The optimistic lock. Available via standard bean get/set operations.
-     */
-    @Version
-    @Column(name="LOCK_FLAG")
-    private Integer lockFlag;
-
-    /**
-     * Access method for the lockFlag property.
-     *
-     * @return the current value of the lockFlag property
-     */
-    public Integer getLockFlag() {
-        return lockFlag;
-    }
-
-    /**
-     * Sets the value of the lockFlag property.
-     *
-     * @param aLockFlag the new value of the lockFlag property
-     */
-    public void setLockFlag(Integer aLockFlag) {
-        lockFlag = aLockFlag;
-    }
-
     @Id
     @Column(name="Compliance_Information_UID", unique=true, nullable=false, precision=10)
-    private int complianceInformationUid;
+    private Integer complianceInformationUid;
     @Column(name="Received_Date")
     private Date receivedDate;
     @Column(name="Cert_Date")
@@ -66,7 +40,7 @@ public class ComplianceInformation implements Serializable {
     @Column(name="VDECS_Install_Date")
     private Date vdecsInstallDate;
     @Column(name="Electronic_Tracking_Supplier_UID", precision=10)
-    private int electronicTrackingSupplierUid;
+    private Integer electronicTrackingSupplierUid;
     @Column(name="Other_Desc", length=45)
     private String otherDesc;
     @Column(name="Alt_Tech_Install_Date")
@@ -74,17 +48,17 @@ public class ComplianceInformation implements Serializable {
     @Column(name="Exempt_Extend", length=10)
     private String exemptExtend;
     @Column(name="Extend_Years", precision=10)
-    private int extendYears;
+    private Integer extendYears;
     @Column(name="Create_Modified_By", nullable=false, length=45)
     private String createModifiedBy;
     @Column(name="Create_Modified_Date", nullable=false)
     private Timestamp createModifiedDate;
     @Column(name="tru_uletru_extension_flag", nullable=false, length=1)
-    private String truUletruExtensionFlag;
+    private Character truUletruExtensionFlag;
     @Column(name="tru_uletru_extension_date")
     private Timestamp truUletruExtensionDate;
     @Column(name="tru_letru_extension_flag", nullable=false, length=1)
-    private String truLetruExtensionFlag;
+    private Character truLetruExtensionFlag;
     @Column(name="tru_letru_extension_date")
     private Timestamp truLetruExtensionDate;
     @Column(name="tru_exempt_date")
@@ -122,7 +96,7 @@ public class ComplianceInformation implements Serializable {
      *
      * @return the current value of complianceInformationUid
      */
-    public int getComplianceInformationUid() {
+    public Integer getComplianceInformationUid() {
         return complianceInformationUid;
     }
 
@@ -131,7 +105,7 @@ public class ComplianceInformation implements Serializable {
      *
      * @param aComplianceInformationUid the new value for complianceInformationUid
      */
-    public void setComplianceInformationUid(int aComplianceInformationUid) {
+    public void setComplianceInformationUid(Integer aComplianceInformationUid) {
         complianceInformationUid = aComplianceInformationUid;
     }
 
@@ -266,7 +240,7 @@ public class ComplianceInformation implements Serializable {
      *
      * @return the current value of electronicTrackingSupplierUid
      */
-    public int getElectronicTrackingSupplierUid() {
+    public Integer getElectronicTrackingSupplierUid() {
         return electronicTrackingSupplierUid;
     }
 
@@ -275,7 +249,7 @@ public class ComplianceInformation implements Serializable {
      *
      * @param aElectronicTrackingSupplierUid the new value for electronicTrackingSupplierUid
      */
-    public void setElectronicTrackingSupplierUid(int aElectronicTrackingSupplierUid) {
+    public void setElectronicTrackingSupplierUid(Integer aElectronicTrackingSupplierUid) {
         electronicTrackingSupplierUid = aElectronicTrackingSupplierUid;
     }
 
@@ -338,7 +312,7 @@ public class ComplianceInformation implements Serializable {
      *
      * @return the current value of extendYears
      */
-    public int getExtendYears() {
+    public Integer getExtendYears() {
         return extendYears;
     }
 
@@ -347,7 +321,7 @@ public class ComplianceInformation implements Serializable {
      *
      * @param aExtendYears the new value for extendYears
      */
-    public void setExtendYears(int aExtendYears) {
+    public void setExtendYears(Integer aExtendYears) {
         extendYears = aExtendYears;
     }
 
@@ -392,7 +366,7 @@ public class ComplianceInformation implements Serializable {
      *
      * @return the current value of truUletruExtensionFlag
      */
-    public String getTruUletruExtensionFlag() {
+    public Character getTruUletruExtensionFlag() {
         return truUletruExtensionFlag;
     }
 
@@ -401,7 +375,7 @@ public class ComplianceInformation implements Serializable {
      *
      * @param aTruUletruExtensionFlag the new value for truUletruExtensionFlag
      */
-    public void setTruUletruExtensionFlag(String aTruUletruExtensionFlag) {
+    public void setTruUletruExtensionFlag(Character aTruUletruExtensionFlag) {
         truUletruExtensionFlag = aTruUletruExtensionFlag;
     }
 
@@ -428,7 +402,7 @@ public class ComplianceInformation implements Serializable {
      *
      * @return the current value of truLetruExtensionFlag
      */
-    public String getTruLetruExtensionFlag() {
+    public Character getTruLetruExtensionFlag() {
         return truLetruExtensionFlag;
     }
 
@@ -437,7 +411,7 @@ public class ComplianceInformation implements Serializable {
      *
      * @param aTruLetruExtensionFlag the new value for truLetruExtensionFlag
      */
-    public void setTruLetruExtensionFlag(String aTruLetruExtensionFlag) {
+    public void setTruLetruExtensionFlag(Character aTruLetruExtensionFlag) {
         truLetruExtensionFlag = aTruLetruExtensionFlag;
     }
 
@@ -635,7 +609,9 @@ public class ComplianceInformation implements Serializable {
             return false;
         }
         ComplianceInformation that = (ComplianceInformation) other;
-        if (this.getComplianceInformationUid() != that.getComplianceInformationUid()) {
+        Object myComplianceInformationUid = this.getComplianceInformationUid();
+        Object yourComplianceInformationUid = that.getComplianceInformationUid();
+        if (myComplianceInformationUid==null ? yourComplianceInformationUid!=null : !myComplianceInformationUid.equals(yourComplianceInformationUid)) {
             return false;
         }
         return true;
@@ -662,7 +638,11 @@ public class ComplianceInformation implements Serializable {
     public int hashCode() {
         int i;
         int result = 17;
-        i = getComplianceInformationUid();
+        if (getComplianceInformationUid() == null) {
+            i = 0;
+        } else {
+            i = getComplianceInformationUid().hashCode();
+        }
         result = 37*result + i;
         return result;
     }
@@ -687,7 +667,7 @@ public class ComplianceInformation implements Serializable {
      */
     public Map<String, Object> getPrimaryKey() {
         Map<String, Object> ret = new LinkedHashMap<String, Object>(6);
-        ret.put("complianceInformationUid", Integer.valueOf(getComplianceInformationUid()));
+        ret.put("complianceInformationUid", getComplianceInformationUid());
         return ret;
     }
 

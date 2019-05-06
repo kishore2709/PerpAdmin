@@ -11,7 +11,6 @@ import java.util.Map;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.Version;
 
 @Entity(name="arber_db_update_version_log")
 public class ArberDbUpdateVersionLog implements Serializable {
@@ -19,34 +18,9 @@ public class ArberDbUpdateVersionLog implements Serializable {
     /** Primary key. */
     protected static final String PK = "adbuvlUid";
 
-    /**
-     * The optimistic lock. Available via standard bean get/set operations.
-     */
-    @Version
-    @Column(name="LOCK_FLAG")
-    private Integer lockFlag;
-
-    /**
-     * Access method for the lockFlag property.
-     *
-     * @return the current value of the lockFlag property
-     */
-    public Integer getLockFlag() {
-        return lockFlag;
-    }
-
-    /**
-     * Sets the value of the lockFlag property.
-     *
-     * @param aLockFlag the new value of the lockFlag property
-     */
-    public void setLockFlag(Integer aLockFlag) {
-        lockFlag = aLockFlag;
-    }
-
     @Id
     @Column(name="ADBUVL_UID", unique=true, nullable=false, precision=10)
-    private int adbuvlUid;
+    private Integer adbuvlUid;
     @Column(name="Version_No", nullable=false, precision=10, scale=2)
     private BigDecimal versionNo;
     @Column(name="Notes", length=512)
@@ -66,7 +40,7 @@ public class ArberDbUpdateVersionLog implements Serializable {
      *
      * @return the current value of adbuvlUid
      */
-    public int getAdbuvlUid() {
+    public Integer getAdbuvlUid() {
         return adbuvlUid;
     }
 
@@ -75,7 +49,7 @@ public class ArberDbUpdateVersionLog implements Serializable {
      *
      * @param aAdbuvlUid the new value for adbuvlUid
      */
-    public void setAdbuvlUid(int aAdbuvlUid) {
+    public void setAdbuvlUid(Integer aAdbuvlUid) {
         adbuvlUid = aAdbuvlUid;
     }
 
@@ -165,7 +139,9 @@ public class ArberDbUpdateVersionLog implements Serializable {
             return false;
         }
         ArberDbUpdateVersionLog that = (ArberDbUpdateVersionLog) other;
-        if (this.getAdbuvlUid() != that.getAdbuvlUid()) {
+        Object myAdbuvlUid = this.getAdbuvlUid();
+        Object yourAdbuvlUid = that.getAdbuvlUid();
+        if (myAdbuvlUid==null ? yourAdbuvlUid!=null : !myAdbuvlUid.equals(yourAdbuvlUid)) {
             return false;
         }
         return true;
@@ -192,7 +168,11 @@ public class ArberDbUpdateVersionLog implements Serializable {
     public int hashCode() {
         int i;
         int result = 17;
-        i = getAdbuvlUid();
+        if (getAdbuvlUid() == null) {
+            i = 0;
+        } else {
+            i = getAdbuvlUid().hashCode();
+        }
         result = 37*result + i;
         return result;
     }
@@ -217,7 +197,7 @@ public class ArberDbUpdateVersionLog implements Serializable {
      */
     public Map<String, Object> getPrimaryKey() {
         Map<String, Object> ret = new LinkedHashMap<String, Object>(6);
-        ret.put("adbuvlUid", Integer.valueOf(getAdbuvlUid()));
+        ret.put("adbuvlUid", getAdbuvlUid());
         return ret;
     }
 

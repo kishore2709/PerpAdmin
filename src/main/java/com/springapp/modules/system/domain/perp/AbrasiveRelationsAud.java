@@ -10,7 +10,6 @@ import java.util.Map;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.Version;
 
 @Entity(name="abrasive_relations_aud")
 public class AbrasiveRelationsAud implements Serializable {
@@ -18,38 +17,13 @@ public class AbrasiveRelationsAud implements Serializable {
     /** Primary key. */
     protected static final String PK = "arAudUid";
 
-    /**
-     * The optimistic lock. Available via standard bean get/set operations.
-     */
-    @Version
-    @Column(name="LOCK_FLAG")
-    private Integer lockFlag;
-
-    /**
-     * Access method for the lockFlag property.
-     *
-     * @return the current value of the lockFlag property
-     */
-    public Integer getLockFlag() {
-        return lockFlag;
-    }
-
-    /**
-     * Sets the value of the lockFlag property.
-     *
-     * @param aLockFlag the new value of the lockFlag property
-     */
-    public void setLockFlag(Integer aLockFlag) {
-        lockFlag = aLockFlag;
-    }
-
     @Id
     @Column(name="ARAud_UID", unique=true, nullable=false, precision=10)
-    private int arAudUid;
+    private Integer arAudUid;
     @Column(name="AbrasiveType_UID", nullable=false, precision=10)
-    private int abrasiveTypeUid;
+    private Integer abrasiveTypeUid;
     @Column(name="RegItemDet_UID", nullable=false, precision=10)
-    private int regItemDetUid;
+    private Integer regItemDetUid;
     @Column(name="Other_Type_Text", length=255)
     private String otherTypeText;
     @Column(name="Create_Modified_By", nullable=false, length=45)
@@ -69,7 +43,7 @@ public class AbrasiveRelationsAud implements Serializable {
      *
      * @return the current value of arAudUid
      */
-    public int getArAudUid() {
+    public Integer getArAudUid() {
         return arAudUid;
     }
 
@@ -78,7 +52,7 @@ public class AbrasiveRelationsAud implements Serializable {
      *
      * @param aArAudUid the new value for arAudUid
      */
-    public void setArAudUid(int aArAudUid) {
+    public void setArAudUid(Integer aArAudUid) {
         arAudUid = aArAudUid;
     }
 
@@ -87,7 +61,7 @@ public class AbrasiveRelationsAud implements Serializable {
      *
      * @return the current value of abrasiveTypeUid
      */
-    public int getAbrasiveTypeUid() {
+    public Integer getAbrasiveTypeUid() {
         return abrasiveTypeUid;
     }
 
@@ -96,7 +70,7 @@ public class AbrasiveRelationsAud implements Serializable {
      *
      * @param aAbrasiveTypeUid the new value for abrasiveTypeUid
      */
-    public void setAbrasiveTypeUid(int aAbrasiveTypeUid) {
+    public void setAbrasiveTypeUid(Integer aAbrasiveTypeUid) {
         abrasiveTypeUid = aAbrasiveTypeUid;
     }
 
@@ -105,7 +79,7 @@ public class AbrasiveRelationsAud implements Serializable {
      *
      * @return the current value of regItemDetUid
      */
-    public int getRegItemDetUid() {
+    public Integer getRegItemDetUid() {
         return regItemDetUid;
     }
 
@@ -114,7 +88,7 @@ public class AbrasiveRelationsAud implements Serializable {
      *
      * @param aRegItemDetUid the new value for regItemDetUid
      */
-    public void setRegItemDetUid(int aRegItemDetUid) {
+    public void setRegItemDetUid(Integer aRegItemDetUid) {
         regItemDetUid = aRegItemDetUid;
     }
 
@@ -204,7 +178,9 @@ public class AbrasiveRelationsAud implements Serializable {
             return false;
         }
         AbrasiveRelationsAud that = (AbrasiveRelationsAud) other;
-        if (this.getArAudUid() != that.getArAudUid()) {
+        Object myArAudUid = this.getArAudUid();
+        Object yourArAudUid = that.getArAudUid();
+        if (myArAudUid==null ? yourArAudUid!=null : !myArAudUid.equals(yourArAudUid)) {
             return false;
         }
         return true;
@@ -231,7 +207,11 @@ public class AbrasiveRelationsAud implements Serializable {
     public int hashCode() {
         int i;
         int result = 17;
-        i = getArAudUid();
+        if (getArAudUid() == null) {
+            i = 0;
+        } else {
+            i = getArAudUid().hashCode();
+        }
         result = 37*result + i;
         return result;
     }
@@ -256,7 +236,7 @@ public class AbrasiveRelationsAud implements Serializable {
      */
     public Map<String, Object> getPrimaryKey() {
         Map<String, Object> ret = new LinkedHashMap<String, Object>(6);
-        ret.put("arAudUid", Integer.valueOf(getArAudUid()));
+        ret.put("arAudUid", getArAudUid());
         return ret;
     }
 

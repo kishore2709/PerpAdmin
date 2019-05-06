@@ -10,7 +10,6 @@ import java.util.Map;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.Version;
 
 @Entity(name="arb_log")
 public class ArbLog implements Serializable {
@@ -18,42 +17,17 @@ public class ArbLog implements Serializable {
     /** Primary key. */
     protected static final String PK = "arbLogUid";
 
-    /**
-     * The optimistic lock. Available via standard bean get/set operations.
-     */
-    @Version
-    @Column(name="LOCK_FLAG")
-    private Integer lockFlag;
-
-    /**
-     * Access method for the lockFlag property.
-     *
-     * @return the current value of the lockFlag property
-     */
-    public Integer getLockFlag() {
-        return lockFlag;
-    }
-
-    /**
-     * Sets the value of the lockFlag property.
-     *
-     * @param aLockFlag the new value of the lockFlag property
-     */
-    public void setLockFlag(Integer aLockFlag) {
-        lockFlag = aLockFlag;
-    }
-
     @Id
     @Column(name="ARB_LOG_UID", unique=true, nullable=false, precision=10)
-    private int arbLogUid;
+    private Integer arbLogUid;
     @Column(name="Operation", length=64)
     private String operation;
     @Column(name="Date_Time_Stamp")
     private Timestamp dateTimeStamp;
     @Column(name="Error_Flag")
-    private boolean errorFlag;
+    private Boolean errorFlag;
     @Column(name="User_UID", precision=10)
-    private int userUid;
+    private Integer userUid;
     @Column(name="Notes", length=128)
     private String notes;
 
@@ -67,7 +41,7 @@ public class ArbLog implements Serializable {
      *
      * @return the current value of arbLogUid
      */
-    public int getArbLogUid() {
+    public Integer getArbLogUid() {
         return arbLogUid;
     }
 
@@ -76,7 +50,7 @@ public class ArbLog implements Serializable {
      *
      * @param aArbLogUid the new value for arbLogUid
      */
-    public void setArbLogUid(int aArbLogUid) {
+    public void setArbLogUid(Integer aArbLogUid) {
         arbLogUid = aArbLogUid;
     }
 
@@ -119,9 +93,9 @@ public class ArbLog implements Serializable {
     /**
      * Access method for errorFlag.
      *
-     * @return true if and only if errorFlag is currently true
+     * @return the current value of errorFlag
      */
-    public boolean getErrorFlag() {
+    public Boolean getErrorFlag() {
         return errorFlag;
     }
 
@@ -130,7 +104,7 @@ public class ArbLog implements Serializable {
      *
      * @param aErrorFlag the new value for errorFlag
      */
-    public void setErrorFlag(boolean aErrorFlag) {
+    public void setErrorFlag(Boolean aErrorFlag) {
         errorFlag = aErrorFlag;
     }
 
@@ -139,7 +113,7 @@ public class ArbLog implements Serializable {
      *
      * @return the current value of userUid
      */
-    public int getUserUid() {
+    public Integer getUserUid() {
         return userUid;
     }
 
@@ -148,7 +122,7 @@ public class ArbLog implements Serializable {
      *
      * @param aUserUid the new value for userUid
      */
-    public void setUserUid(int aUserUid) {
+    public void setUserUid(Integer aUserUid) {
         userUid = aUserUid;
     }
 
@@ -184,7 +158,9 @@ public class ArbLog implements Serializable {
             return false;
         }
         ArbLog that = (ArbLog) other;
-        if (this.getArbLogUid() != that.getArbLogUid()) {
+        Object myArbLogUid = this.getArbLogUid();
+        Object yourArbLogUid = that.getArbLogUid();
+        if (myArbLogUid==null ? yourArbLogUid!=null : !myArbLogUid.equals(yourArbLogUid)) {
             return false;
         }
         return true;
@@ -211,7 +187,11 @@ public class ArbLog implements Serializable {
     public int hashCode() {
         int i;
         int result = 17;
-        i = getArbLogUid();
+        if (getArbLogUid() == null) {
+            i = 0;
+        } else {
+            i = getArbLogUid().hashCode();
+        }
         result = 37*result + i;
         return result;
     }
@@ -236,7 +216,7 @@ public class ArbLog implements Serializable {
      */
     public Map<String, Object> getPrimaryKey() {
         Map<String, Object> ret = new LinkedHashMap<String, Object>(6);
-        ret.put("arbLogUid", Integer.valueOf(getArbLogUid()));
+        ret.put("arbLogUid", getArbLogUid());
         return ret;
     }
 

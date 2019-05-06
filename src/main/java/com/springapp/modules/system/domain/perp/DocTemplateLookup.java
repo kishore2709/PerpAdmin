@@ -14,7 +14,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.Version;
 
 @Entity(name="doc_template_lookup")
 public class DocTemplateLookup implements Serializable {
@@ -22,34 +21,9 @@ public class DocTemplateLookup implements Serializable {
     /** Primary key. */
     protected static final String PK = "docTemplateUid";
 
-    /**
-     * The optimistic lock. Available via standard bean get/set operations.
-     */
-    @Version
-    @Column(name="LOCK_FLAG")
-    private Integer lockFlag;
-
-    /**
-     * Access method for the lockFlag property.
-     *
-     * @return the current value of the lockFlag property
-     */
-    public Integer getLockFlag() {
-        return lockFlag;
-    }
-
-    /**
-     * Sets the value of the lockFlag property.
-     *
-     * @param aLockFlag the new value of the lockFlag property
-     */
-    public void setLockFlag(Integer aLockFlag) {
-        lockFlag = aLockFlag;
-    }
-
     @Id
     @Column(name="DocTemplate_UID", unique=true, nullable=false, precision=10)
-    private int docTemplateUid;
+    private Integer docTemplateUid;
     @Column(name="Name", nullable=false, length=128)
     private String name;
     @Column(name="Header_Text", length=512)
@@ -57,9 +31,9 @@ public class DocTemplateLookup implements Serializable {
     @Column(name="Footer_Text", length=255)
     private String footerText;
     @Column(name="Transaction_Flag", length=1)
-    private String transactionFlag;
+    private Character transactionFlag;
     @Column(name="Active_Flag", nullable=false, length=1)
-    private String activeFlag;
+    private Character activeFlag;
     @Column(name="Create_Modified_By", nullable=false, length=45)
     private String createModifiedBy;
     @Column(name="Create_Modified_Date", nullable=false)
@@ -95,7 +69,7 @@ public class DocTemplateLookup implements Serializable {
      *
      * @return the current value of docTemplateUid
      */
-    public int getDocTemplateUid() {
+    public Integer getDocTemplateUid() {
         return docTemplateUid;
     }
 
@@ -104,7 +78,7 @@ public class DocTemplateLookup implements Serializable {
      *
      * @param aDocTemplateUid the new value for docTemplateUid
      */
-    public void setDocTemplateUid(int aDocTemplateUid) {
+    public void setDocTemplateUid(Integer aDocTemplateUid) {
         docTemplateUid = aDocTemplateUid;
     }
 
@@ -167,7 +141,7 @@ public class DocTemplateLookup implements Serializable {
      *
      * @return the current value of transactionFlag
      */
-    public String getTransactionFlag() {
+    public Character getTransactionFlag() {
         return transactionFlag;
     }
 
@@ -176,7 +150,7 @@ public class DocTemplateLookup implements Serializable {
      *
      * @param aTransactionFlag the new value for transactionFlag
      */
-    public void setTransactionFlag(String aTransactionFlag) {
+    public void setTransactionFlag(Character aTransactionFlag) {
         transactionFlag = aTransactionFlag;
     }
 
@@ -185,7 +159,7 @@ public class DocTemplateLookup implements Serializable {
      *
      * @return the current value of activeFlag
      */
-    public String getActiveFlag() {
+    public Character getActiveFlag() {
         return activeFlag;
     }
 
@@ -194,7 +168,7 @@ public class DocTemplateLookup implements Serializable {
      *
      * @param aActiveFlag the new value for activeFlag
      */
-    public void setActiveFlag(String aActiveFlag) {
+    public void setActiveFlag(Character aActiveFlag) {
         activeFlag = aActiveFlag;
     }
 
@@ -374,7 +348,9 @@ public class DocTemplateLookup implements Serializable {
             return false;
         }
         DocTemplateLookup that = (DocTemplateLookup) other;
-        if (this.getDocTemplateUid() != that.getDocTemplateUid()) {
+        Object myDocTemplateUid = this.getDocTemplateUid();
+        Object yourDocTemplateUid = that.getDocTemplateUid();
+        if (myDocTemplateUid==null ? yourDocTemplateUid!=null : !myDocTemplateUid.equals(yourDocTemplateUid)) {
             return false;
         }
         return true;
@@ -401,7 +377,11 @@ public class DocTemplateLookup implements Serializable {
     public int hashCode() {
         int i;
         int result = 17;
-        i = getDocTemplateUid();
+        if (getDocTemplateUid() == null) {
+            i = 0;
+        } else {
+            i = getDocTemplateUid().hashCode();
+        }
         result = 37*result + i;
         return result;
     }
@@ -426,7 +406,7 @@ public class DocTemplateLookup implements Serializable {
      */
     public Map<String, Object> getPrimaryKey() {
         Map<String, Object> ret = new LinkedHashMap<String, Object>(6);
-        ret.put("docTemplateUid", Integer.valueOf(getDocTemplateUid()));
+        ret.put("docTemplateUid", getDocTemplateUid());
         return ret;
     }
 

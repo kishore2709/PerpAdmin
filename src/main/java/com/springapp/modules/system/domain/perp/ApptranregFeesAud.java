@@ -11,7 +11,6 @@ import java.util.Map;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.Version;
 
 @Entity(name="apptranreg_fees_aud")
 public class ApptranregFeesAud implements Serializable {
@@ -19,46 +18,21 @@ public class ApptranregFeesAud implements Serializable {
     /** Primary key. */
     protected static final String PK = "atrfAudUid";
 
-    /**
-     * The optimistic lock. Available via standard bean get/set operations.
-     */
-    @Version
-    @Column(name="LOCK_FLAG")
-    private Integer lockFlag;
-
-    /**
-     * Access method for the lockFlag property.
-     *
-     * @return the current value of the lockFlag property
-     */
-    public Integer getLockFlag() {
-        return lockFlag;
-    }
-
-    /**
-     * Sets the value of the lockFlag property.
-     *
-     * @param aLockFlag the new value of the lockFlag property
-     */
-    public void setLockFlag(Integer aLockFlag) {
-        lockFlag = aLockFlag;
-    }
-
     @Id
     @Column(name="ATRFAud_UID", unique=true, nullable=false, precision=10)
-    private int atrfAudUid;
+    private Integer atrfAudUid;
     @Column(name="AppTransRegFee_UID", nullable=false, precision=10)
-    private int appTransRegFeeUid;
+    private Integer appTransRegFeeUid;
     @Column(name="AppTransRegRel_UID", nullable=false, precision=10)
-    private int appTransRegRelUid;
+    private Integer appTransRegRelUid;
     @Column(name="FeeName_UID", nullable=false, precision=10)
-    private int feeNameUid;
+    private Integer feeNameUid;
     @Column(name="DistrictFeeType_UID", nullable=false, precision=10)
-    private int districtFeeTypeUid;
+    private Integer districtFeeTypeUid;
     @Column(name="DiscountTypes_UID", nullable=false, precision=10)
-    private int discountTypesUid;
+    private Integer discountTypesUid;
     @Column(name="BackFee_Flag", nullable=false, length=1)
-    private String backFeeFlag;
+    private Character backFeeFlag;
     @Column(name="Actual_Amt", nullable=false, precision=10, scale=2)
     private BigDecimal actualAmt;
     @Column(name="Calculate_Amt", nullable=false, precision=10, scale=2)
@@ -66,9 +40,9 @@ public class ApptranregFeesAud implements Serializable {
     @Column(name="Override_Comment", length=128)
     private String overrideComment;
     @Column(name="AdjustmentFee_Flag", nullable=false, length=1)
-    private String adjustmentFeeFlag;
+    private Character adjustmentFeeFlag;
     @Column(name="Ledger_UID", precision=10)
-    private int ledgerUid;
+    private Integer ledgerUid;
     @Column(name="Create_Modified_By", nullable=false, length=45)
     private String createModifiedBy;
     @Column(name="Create_Modified_Date", nullable=false)
@@ -86,7 +60,7 @@ public class ApptranregFeesAud implements Serializable {
      *
      * @return the current value of atrfAudUid
      */
-    public int getAtrfAudUid() {
+    public Integer getAtrfAudUid() {
         return atrfAudUid;
     }
 
@@ -95,7 +69,7 @@ public class ApptranregFeesAud implements Serializable {
      *
      * @param aAtrfAudUid the new value for atrfAudUid
      */
-    public void setAtrfAudUid(int aAtrfAudUid) {
+    public void setAtrfAudUid(Integer aAtrfAudUid) {
         atrfAudUid = aAtrfAudUid;
     }
 
@@ -104,7 +78,7 @@ public class ApptranregFeesAud implements Serializable {
      *
      * @return the current value of appTransRegFeeUid
      */
-    public int getAppTransRegFeeUid() {
+    public Integer getAppTransRegFeeUid() {
         return appTransRegFeeUid;
     }
 
@@ -113,7 +87,7 @@ public class ApptranregFeesAud implements Serializable {
      *
      * @param aAppTransRegFeeUid the new value for appTransRegFeeUid
      */
-    public void setAppTransRegFeeUid(int aAppTransRegFeeUid) {
+    public void setAppTransRegFeeUid(Integer aAppTransRegFeeUid) {
         appTransRegFeeUid = aAppTransRegFeeUid;
     }
 
@@ -122,7 +96,7 @@ public class ApptranregFeesAud implements Serializable {
      *
      * @return the current value of appTransRegRelUid
      */
-    public int getAppTransRegRelUid() {
+    public Integer getAppTransRegRelUid() {
         return appTransRegRelUid;
     }
 
@@ -131,7 +105,7 @@ public class ApptranregFeesAud implements Serializable {
      *
      * @param aAppTransRegRelUid the new value for appTransRegRelUid
      */
-    public void setAppTransRegRelUid(int aAppTransRegRelUid) {
+    public void setAppTransRegRelUid(Integer aAppTransRegRelUid) {
         appTransRegRelUid = aAppTransRegRelUid;
     }
 
@@ -140,7 +114,7 @@ public class ApptranregFeesAud implements Serializable {
      *
      * @return the current value of feeNameUid
      */
-    public int getFeeNameUid() {
+    public Integer getFeeNameUid() {
         return feeNameUid;
     }
 
@@ -149,7 +123,7 @@ public class ApptranregFeesAud implements Serializable {
      *
      * @param aFeeNameUid the new value for feeNameUid
      */
-    public void setFeeNameUid(int aFeeNameUid) {
+    public void setFeeNameUid(Integer aFeeNameUid) {
         feeNameUid = aFeeNameUid;
     }
 
@@ -158,7 +132,7 @@ public class ApptranregFeesAud implements Serializable {
      *
      * @return the current value of districtFeeTypeUid
      */
-    public int getDistrictFeeTypeUid() {
+    public Integer getDistrictFeeTypeUid() {
         return districtFeeTypeUid;
     }
 
@@ -167,7 +141,7 @@ public class ApptranregFeesAud implements Serializable {
      *
      * @param aDistrictFeeTypeUid the new value for districtFeeTypeUid
      */
-    public void setDistrictFeeTypeUid(int aDistrictFeeTypeUid) {
+    public void setDistrictFeeTypeUid(Integer aDistrictFeeTypeUid) {
         districtFeeTypeUid = aDistrictFeeTypeUid;
     }
 
@@ -176,7 +150,7 @@ public class ApptranregFeesAud implements Serializable {
      *
      * @return the current value of discountTypesUid
      */
-    public int getDiscountTypesUid() {
+    public Integer getDiscountTypesUid() {
         return discountTypesUid;
     }
 
@@ -185,7 +159,7 @@ public class ApptranregFeesAud implements Serializable {
      *
      * @param aDiscountTypesUid the new value for discountTypesUid
      */
-    public void setDiscountTypesUid(int aDiscountTypesUid) {
+    public void setDiscountTypesUid(Integer aDiscountTypesUid) {
         discountTypesUid = aDiscountTypesUid;
     }
 
@@ -194,7 +168,7 @@ public class ApptranregFeesAud implements Serializable {
      *
      * @return the current value of backFeeFlag
      */
-    public String getBackFeeFlag() {
+    public Character getBackFeeFlag() {
         return backFeeFlag;
     }
 
@@ -203,7 +177,7 @@ public class ApptranregFeesAud implements Serializable {
      *
      * @param aBackFeeFlag the new value for backFeeFlag
      */
-    public void setBackFeeFlag(String aBackFeeFlag) {
+    public void setBackFeeFlag(Character aBackFeeFlag) {
         backFeeFlag = aBackFeeFlag;
     }
 
@@ -266,7 +240,7 @@ public class ApptranregFeesAud implements Serializable {
      *
      * @return the current value of adjustmentFeeFlag
      */
-    public String getAdjustmentFeeFlag() {
+    public Character getAdjustmentFeeFlag() {
         return adjustmentFeeFlag;
     }
 
@@ -275,7 +249,7 @@ public class ApptranregFeesAud implements Serializable {
      *
      * @param aAdjustmentFeeFlag the new value for adjustmentFeeFlag
      */
-    public void setAdjustmentFeeFlag(String aAdjustmentFeeFlag) {
+    public void setAdjustmentFeeFlag(Character aAdjustmentFeeFlag) {
         adjustmentFeeFlag = aAdjustmentFeeFlag;
     }
 
@@ -284,7 +258,7 @@ public class ApptranregFeesAud implements Serializable {
      *
      * @return the current value of ledgerUid
      */
-    public int getLedgerUid() {
+    public Integer getLedgerUid() {
         return ledgerUid;
     }
 
@@ -293,7 +267,7 @@ public class ApptranregFeesAud implements Serializable {
      *
      * @param aLedgerUid the new value for ledgerUid
      */
-    public void setLedgerUid(int aLedgerUid) {
+    public void setLedgerUid(Integer aLedgerUid) {
         ledgerUid = aLedgerUid;
     }
 
@@ -365,7 +339,9 @@ public class ApptranregFeesAud implements Serializable {
             return false;
         }
         ApptranregFeesAud that = (ApptranregFeesAud) other;
-        if (this.getAtrfAudUid() != that.getAtrfAudUid()) {
+        Object myAtrfAudUid = this.getAtrfAudUid();
+        Object yourAtrfAudUid = that.getAtrfAudUid();
+        if (myAtrfAudUid==null ? yourAtrfAudUid!=null : !myAtrfAudUid.equals(yourAtrfAudUid)) {
             return false;
         }
         return true;
@@ -392,7 +368,11 @@ public class ApptranregFeesAud implements Serializable {
     public int hashCode() {
         int i;
         int result = 17;
-        i = getAtrfAudUid();
+        if (getAtrfAudUid() == null) {
+            i = 0;
+        } else {
+            i = getAtrfAudUid().hashCode();
+        }
         result = 37*result + i;
         return result;
     }
@@ -417,7 +397,7 @@ public class ApptranregFeesAud implements Serializable {
      */
     public Map<String, Object> getPrimaryKey() {
         Map<String, Object> ret = new LinkedHashMap<String, Object>(6);
-        ret.put("atrfAudUid", Integer.valueOf(getAtrfAudUid()));
+        ret.put("atrfAudUid", getAtrfAudUid());
         return ret;
     }
 

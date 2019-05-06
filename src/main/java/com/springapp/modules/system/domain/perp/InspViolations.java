@@ -12,7 +12,6 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.Version;
 
 @Entity(name="insp_violations")
 public class InspViolations implements Serializable {
@@ -20,36 +19,11 @@ public class InspViolations implements Serializable {
     /** Primary key. */
     protected static final String PK = "inspViolationUid";
 
-    /**
-     * The optimistic lock. Available via standard bean get/set operations.
-     */
-    @Version
-    @Column(name="LOCK_FLAG")
-    private Integer lockFlag;
-
-    /**
-     * Access method for the lockFlag property.
-     *
-     * @return the current value of the lockFlag property
-     */
-    public Integer getLockFlag() {
-        return lockFlag;
-    }
-
-    /**
-     * Sets the value of the lockFlag property.
-     *
-     * @param aLockFlag the new value of the lockFlag property
-     */
-    public void setLockFlag(Integer aLockFlag) {
-        lockFlag = aLockFlag;
-    }
-
     @Id
     @Column(name="InspViolation_UID", unique=true, nullable=false, precision=10)
-    private int inspViolationUid;
+    private Integer inspViolationUid;
     @Column(name="Compliance_Flag", length=1)
-    private String complianceFlag;
+    private Character complianceFlag;
     @Column(name="Sections", length=50)
     private String sections;
     @Column(name="Section_Numbers", length=50)
@@ -77,7 +51,7 @@ public class InspViolations implements Serializable {
      *
      * @return the current value of inspViolationUid
      */
-    public int getInspViolationUid() {
+    public Integer getInspViolationUid() {
         return inspViolationUid;
     }
 
@@ -86,7 +60,7 @@ public class InspViolations implements Serializable {
      *
      * @param aInspViolationUid the new value for inspViolationUid
      */
-    public void setInspViolationUid(int aInspViolationUid) {
+    public void setInspViolationUid(Integer aInspViolationUid) {
         inspViolationUid = aInspViolationUid;
     }
 
@@ -95,7 +69,7 @@ public class InspViolations implements Serializable {
      *
      * @return the current value of complianceFlag
      */
-    public String getComplianceFlag() {
+    public Character getComplianceFlag() {
         return complianceFlag;
     }
 
@@ -104,7 +78,7 @@ public class InspViolations implements Serializable {
      *
      * @param aComplianceFlag the new value for complianceFlag
      */
-    public void setComplianceFlag(String aComplianceFlag) {
+    public void setComplianceFlag(Character aComplianceFlag) {
         complianceFlag = aComplianceFlag;
     }
 
@@ -248,7 +222,9 @@ public class InspViolations implements Serializable {
             return false;
         }
         InspViolations that = (InspViolations) other;
-        if (this.getInspViolationUid() != that.getInspViolationUid()) {
+        Object myInspViolationUid = this.getInspViolationUid();
+        Object yourInspViolationUid = that.getInspViolationUid();
+        if (myInspViolationUid==null ? yourInspViolationUid!=null : !myInspViolationUid.equals(yourInspViolationUid)) {
             return false;
         }
         return true;
@@ -275,7 +251,11 @@ public class InspViolations implements Serializable {
     public int hashCode() {
         int i;
         int result = 17;
-        i = getInspViolationUid();
+        if (getInspViolationUid() == null) {
+            i = 0;
+        } else {
+            i = getInspViolationUid().hashCode();
+        }
         result = 37*result + i;
         return result;
     }
@@ -300,7 +280,7 @@ public class InspViolations implements Serializable {
      */
     public Map<String, Object> getPrimaryKey() {
         Map<String, Object> ret = new LinkedHashMap<String, Object>(6);
-        ret.put("inspViolationUid", Integer.valueOf(getInspViolationUid()));
+        ret.put("inspViolationUid", getInspViolationUid());
         return ret;
     }
 

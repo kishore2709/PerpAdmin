@@ -12,7 +12,6 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.Version;
 
 @Entity(name="opcontemp_opcon_rel")
 public class OpcontempOpconRel implements Serializable {
@@ -20,33 +19,8 @@ public class OpcontempOpconRel implements Serializable {
     /** Primary key. */
     protected static final String PK = "OpcontempOpconRelPrimary";
 
-    /**
-     * The optimistic lock. Available via standard bean get/set operations.
-     */
-    @Version
-    @Column(name="LOCK_FLAG")
-    private Integer lockFlag;
-
-    /**
-     * Access method for the lockFlag property.
-     *
-     * @return the current value of the lockFlag property
-     */
-    public Integer getLockFlag() {
-        return lockFlag;
-    }
-
-    /**
-     * Sets the value of the lockFlag property.
-     *
-     * @param aLockFlag the new value of the lockFlag property
-     */
-    public void setLockFlag(Integer aLockFlag) {
-        lockFlag = aLockFlag;
-    }
-
     @Column(name="Default_Flag", nullable=false, length=1)
-    private String defaultFlag;
+    private Character defaultFlag;
     @Column(name="Create_Modified_By", nullable=false, length=45)
     private String createModifiedBy;
     @Column(name="Create_Modified_Date", nullable=false)
@@ -69,7 +43,7 @@ public class OpcontempOpconRel implements Serializable {
      *
      * @return the current value of defaultFlag
      */
-    public String getDefaultFlag() {
+    public Character getDefaultFlag() {
         return defaultFlag;
     }
 
@@ -78,7 +52,7 @@ public class OpcontempOpconRel implements Serializable {
      *
      * @param aDefaultFlag the new value for defaultFlag
      */
-    public void setDefaultFlag(String aDefaultFlag) {
+    public void setDefaultFlag(Character aDefaultFlag) {
         defaultFlag = aDefaultFlag;
     }
 
@@ -117,6 +91,7 @@ public class OpcontempOpconRel implements Serializable {
     public void setCreateModifiedDate(Timestamp aCreateModifiedDate) {
         createModifiedDate = aCreateModifiedDate;
     }
+
     /**
      * Access method for operatingConditions.
      *
@@ -154,7 +129,7 @@ public class OpcontempOpconRel implements Serializable {
     }
 
     /** Temporary value holder for group key fragment opconTemplatesOpConTemplateUid */
-    private transient int tempOpconTemplatesOpConTemplateUid;
+    private transient Integer tempOpconTemplatesOpConTemplateUid;
 
     /**
      * Gets the key fragment opConTemplateUid for member opconTemplates.
@@ -166,7 +141,7 @@ public class OpcontempOpconRel implements Serializable {
      * @return Current (or temporary) value of the key fragment
      * @see OpconTemplates
      */
-    public int getOpconTemplatesOpConTemplateUid() {
+    public Integer getOpconTemplatesOpConTemplateUid() {
         return (getOpconTemplates() == null ? tempOpconTemplatesOpConTemplateUid : getOpconTemplates().getOpConTemplateUid());
     }
 
@@ -180,7 +155,7 @@ public class OpcontempOpconRel implements Serializable {
      * @param aOpConTemplateUid New value for the key fragment
      * @see OpconTemplates
      */
-    public void setOpconTemplatesOpConTemplateUid(int aOpConTemplateUid) {
+    public void setOpconTemplatesOpConTemplateUid(Integer aOpConTemplateUid) {
         if (getOpconTemplates() == null) {
             tempOpconTemplatesOpConTemplateUid = aOpConTemplateUid;
         } else {
@@ -202,7 +177,9 @@ public class OpcontempOpconRel implements Serializable {
             return false;
         }
         OpcontempOpconRel that = (OpcontempOpconRel) other;
-        if (this.getOpconTemplatesOpConTemplateUid() != that.getOpconTemplatesOpConTemplateUid()) {
+        Object myOpconTemplatesOpConTemplateUid = this.getOpconTemplatesOpConTemplateUid();
+        Object yourOpconTemplatesOpConTemplateUid = that.getOpconTemplatesOpConTemplateUid();
+        if (myOpconTemplatesOpConTemplateUid==null ? yourOpconTemplatesOpConTemplateUid!=null : !myOpconTemplatesOpConTemplateUid.equals(yourOpconTemplatesOpConTemplateUid)) {
             return false;
         }
         return true;
@@ -229,7 +206,11 @@ public class OpcontempOpconRel implements Serializable {
     public int hashCode() {
         int i;
         int result = 17;
-        i = getOpconTemplatesOpConTemplateUid();
+        if (getOpconTemplatesOpConTemplateUid() == null) {
+            i = 0;
+        } else {
+            i = getOpconTemplatesOpConTemplateUid().hashCode();
+        }
         result = 37*result + i;
         return result;
     }
@@ -254,7 +235,7 @@ public class OpcontempOpconRel implements Serializable {
      */
     public Map<String, Object> getPrimaryKey() {
         Map<String, Object> ret = new LinkedHashMap<String, Object>(6);
-        ret.put("opconTemplatesOpConTemplateUid", Integer.valueOf(getOpconTemplatesOpConTemplateUid()));
+        ret.put("opconTemplatesOpConTemplateUid", getOpconTemplatesOpConTemplateUid());
         return ret;
     }
 

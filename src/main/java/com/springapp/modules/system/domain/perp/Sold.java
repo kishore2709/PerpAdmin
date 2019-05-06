@@ -12,8 +12,9 @@ import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.Version;
 
 @Entity(name="sold")
 public class Sold implements Serializable {
@@ -21,34 +22,9 @@ public class Sold implements Serializable {
     /** Primary key. */
     protected static final String PK = "soldUid";
 
-    /**
-     * The optimistic lock. Available via standard bean get/set operations.
-     */
-    @Version
-    @Column(name="LOCK_FLAG")
-    private Integer lockFlag;
-
-    /**
-     * Access method for the lockFlag property.
-     *
-     * @return the current value of the lockFlag property
-     */
-    public Integer getLockFlag() {
-        return lockFlag;
-    }
-
-    /**
-     * Sets the value of the lockFlag property.
-     *
-     * @param aLockFlag the new value of the lockFlag property
-     */
-    public void setLockFlag(Integer aLockFlag) {
-        lockFlag = aLockFlag;
-    }
-
     @Id
     @Column(name="Sold_UID", unique=true, nullable=false, precision=10)
-    private int soldUid;
+    private Integer soldUid;
     @Column(name="Date_of_Sale", nullable=false)
     private Date dateOfSale;
     @Column(name="Create_Modified_By", nullable=false, length=45)
@@ -57,7 +33,6 @@ public class Sold implements Serializable {
     private Timestamp createModifiedDate;
     @OneToMany(mappedBy="sold")
     private Set<Contact> contact;
-
     /** Default constructor. */
     public Sold() {
         super();
@@ -68,7 +43,7 @@ public class Sold implements Serializable {
      *
      * @return the current value of soldUid
      */
-    public int getSoldUid() {
+    public Integer getSoldUid() {
         return soldUid;
     }
 
@@ -77,7 +52,7 @@ public class Sold implements Serializable {
      *
      * @param aSoldUid the new value for soldUid
      */
-    public void setSoldUid(int aSoldUid) {
+    public void setSoldUid(Integer aSoldUid) {
         soldUid = aSoldUid;
     }
 
@@ -167,7 +142,9 @@ public class Sold implements Serializable {
             return false;
         }
         Sold that = (Sold) other;
-        if (this.getSoldUid() != that.getSoldUid()) {
+        Object mySoldUid = this.getSoldUid();
+        Object yourSoldUid = that.getSoldUid();
+        if (mySoldUid==null ? yourSoldUid!=null : !mySoldUid.equals(yourSoldUid)) {
             return false;
         }
         return true;
@@ -194,7 +171,11 @@ public class Sold implements Serializable {
     public int hashCode() {
         int i;
         int result = 17;
-        i = getSoldUid();
+        if (getSoldUid() == null) {
+            i = 0;
+        } else {
+            i = getSoldUid().hashCode();
+        }
         result = 37*result + i;
         return result;
     }
@@ -219,7 +200,7 @@ public class Sold implements Serializable {
      */
     public Map<String, Object> getPrimaryKey() {
         Map<String, Object> ret = new LinkedHashMap<String, Object>(6);
-        ret.put("soldUid", Integer.valueOf(getSoldUid()));
+        ret.put("soldUid", getSoldUid());
         return ret;
     }
 

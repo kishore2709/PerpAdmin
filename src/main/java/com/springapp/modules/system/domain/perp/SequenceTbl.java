@@ -10,7 +10,6 @@ import java.util.Map;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.Version;
 
 @Entity(name="sequence_tbl")
 public class SequenceTbl implements Serializable {
@@ -18,38 +17,13 @@ public class SequenceTbl implements Serializable {
     /** Primary key. */
     protected static final String PK = "sequenceTblUid";
 
-    /**
-     * The optimistic lock. Available via standard bean get/set operations.
-     */
-    @Version
-    @Column(name="LOCK_FLAG")
-    private Integer lockFlag;
-
-    /**
-     * Access method for the lockFlag property.
-     *
-     * @return the current value of the lockFlag property
-     */
-    public Integer getLockFlag() {
-        return lockFlag;
-    }
-
-    /**
-     * Sets the value of the lockFlag property.
-     *
-     * @param aLockFlag the new value of the lockFlag property
-     */
-    public void setLockFlag(Integer aLockFlag) {
-        lockFlag = aLockFlag;
-    }
-
     @Id
     @Column(name="Sequence_Tbl_UID", unique=true, nullable=false, precision=10)
-    private int sequenceTblUid;
+    private Integer sequenceTblUid;
     @Column(name="Sequence_Name", nullable=false, length=45)
     private String sequenceName;
     @Column(name="Sequence_Num", nullable=false, precision=10)
-    private int sequenceNum;
+    private Integer sequenceNum;
     @Column(name="Active_Year")
     private Date activeYear;
 
@@ -63,7 +37,7 @@ public class SequenceTbl implements Serializable {
      *
      * @return the current value of sequenceTblUid
      */
-    public int getSequenceTblUid() {
+    public Integer getSequenceTblUid() {
         return sequenceTblUid;
     }
 
@@ -72,7 +46,7 @@ public class SequenceTbl implements Serializable {
      *
      * @param aSequenceTblUid the new value for sequenceTblUid
      */
-    public void setSequenceTblUid(int aSequenceTblUid) {
+    public void setSequenceTblUid(Integer aSequenceTblUid) {
         sequenceTblUid = aSequenceTblUid;
     }
 
@@ -99,7 +73,7 @@ public class SequenceTbl implements Serializable {
      *
      * @return the current value of sequenceNum
      */
-    public int getSequenceNum() {
+    public Integer getSequenceNum() {
         return sequenceNum;
     }
 
@@ -108,7 +82,7 @@ public class SequenceTbl implements Serializable {
      *
      * @param aSequenceNum the new value for sequenceNum
      */
-    public void setSequenceNum(int aSequenceNum) {
+    public void setSequenceNum(Integer aSequenceNum) {
         sequenceNum = aSequenceNum;
     }
 
@@ -144,7 +118,9 @@ public class SequenceTbl implements Serializable {
             return false;
         }
         SequenceTbl that = (SequenceTbl) other;
-        if (this.getSequenceTblUid() != that.getSequenceTblUid()) {
+        Object mySequenceTblUid = this.getSequenceTblUid();
+        Object yourSequenceTblUid = that.getSequenceTblUid();
+        if (mySequenceTblUid==null ? yourSequenceTblUid!=null : !mySequenceTblUid.equals(yourSequenceTblUid)) {
             return false;
         }
         return true;
@@ -171,7 +147,11 @@ public class SequenceTbl implements Serializable {
     public int hashCode() {
         int i;
         int result = 17;
-        i = getSequenceTblUid();
+        if (getSequenceTblUid() == null) {
+            i = 0;
+        } else {
+            i = getSequenceTblUid().hashCode();
+        }
         result = 37*result + i;
         return result;
     }
@@ -196,7 +176,7 @@ public class SequenceTbl implements Serializable {
      */
     public Map<String, Object> getPrimaryKey() {
         Map<String, Object> ret = new LinkedHashMap<String, Object>(6);
-        ret.put("sequenceTblUid", Integer.valueOf(getSequenceTblUid()));
+        ret.put("sequenceTblUid", getSequenceTblUid());
         return ret;
     }
 
