@@ -10,7 +10,7 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.data.jpa.convert.threeten.Jsr310JpaConverters;
 import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
 
-@SpringBootApplication(exclude={SecurityAutoConfiguration.class})
+@SpringBootApplication
 //@SpringBootApplication(scanBasePackages={"com.confidential","com.springapp.modules.system.service"})
 @EntityScan(basePackageClasses = { 
 		RunApplication.class,
