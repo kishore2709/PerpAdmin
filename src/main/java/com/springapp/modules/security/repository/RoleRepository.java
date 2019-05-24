@@ -17,7 +17,7 @@ public interface RoleRepository extends JpaRepository<Role, Long>, JpaSpecificat
      */
 	Optional<Role> findByName(String name);
 
-    Set<Role> findByUsers_Id(Long id);
+    Set<Role> findByUsers_Id(Integer integer);
 
     Set<Role> findByMenus_Id(Long id);
 }

@@ -16,7 +16,7 @@ import com.springapp.modules.security.repository.PermissionRepository;
 import com.springapp.modules.security.repository.RoleRepository;
 import com.springapp.modules.system.domain.Permission;
 import com.springapp.modules.system.domain.Role;
-import com.springapp.modules.system.domain.User;
+import com.springapp.modules.system.domain.perp.Users;
 
 
 @Service
@@ -30,11 +30,11 @@ public class JwtPermissionService {
     private PermissionRepository permissionRepository;
 
     @Cacheable(key = "'loadPermissionByUser:' + #p0.username")
-    public Collection<GrantedAuthority> mapToGrantedAuthorities(User user) {
+    public Collection<GrantedAuthority> mapToGrantedAuthorities(Users user) {
 
         System.out.println("--------------------loadPermissionByUser:" + user.getUsername() + "---------------------");
 
-        Set<Role> roles = roleRepository.findByUsers_Id(user.getId());
+        Set<Role> roles = roleRepository.findByUsers_Id(user.getUsersUid());
 
         Set<Permission> permissions = new HashSet<>();
         for (Role role : roles) {

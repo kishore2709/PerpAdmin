@@ -91,13 +91,12 @@ public class AuthController<Auth> {
 	  
 	  u.setRoles(Collections.singleton(userRole));
 	  
-	  User result = userRepository.save(u);
+	//  User result = userRepository.save(u);
 	  
-	  URI location = ServletUriComponentsBuilder.fromCurrentContextPath().path(
-	  "/api/users/{username}") .buildAndExpand(result.getUsername()).toUri();
-	  System.out.println("User registered successfully"); return
-	  ResponseEntity.created(location).body(new ApiResponse(true,
-	  "User registered successfully")); 
+	  //URI location = ServletUriComponentsBuilder.fromCurrentContextPath().path("/api/users/{username}") .buildAndExpand(result.getUsername()).toUri();
+	  System.out.println("User registered successfully"); 
+	 //return ResponseEntity.created(location).body(new ApiResponse(true,"User registered successfully")); 
+	return null;
 	  }
 
 }

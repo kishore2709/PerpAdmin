@@ -74,13 +74,13 @@ public class JwtTokenUtil {
                   .compact();
       }
 
-    public Long getUserIdFromJWT(String token) {
+    public Integer getUserIdFromJWT(String token) {
         Claims claims = Jwts.parser()
                 .setSigningKey(jwtSecret)
                 .parseClaimsJws(token)
                 .getBody();
 
-        return Long.parseLong(claims.getSubject());
+        return Integer.parseInt(claims.getSubject());
     }
 
     public boolean validateToken(String authToken) {
@@ -138,7 +138,7 @@ public class JwtTokenUtil {
         // here you specify tokens, for that the expiration is ignored
         return false;
     }
-    public UsernamePasswordAuthenticationToken getAuthentication( Long userId) {
+    public UsernamePasswordAuthenticationToken getAuthentication( Integer userId) {
    	 UserDetails userDetails = userDetailsService.loadUserById(userId);
         UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
         return  authentication;
@@ -159,7 +159,7 @@ public class JwtTokenUtil {
         return (
                 username.equals(user.getUsername())
                         && !isTokenExpired(token)
-                        && !isCreatedBeforeLastPasswordReset(created, user.getLastPasswordResetDate())
+                      //  && !isCreatedBeforeLastPasswordReset(created, user.getLastPasswordResetDate())
         );
     }
     private Date calculateExpirationDate(Date createdDate) {

@@ -4,7 +4,7 @@ import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 
-import com.springapp.modules.system.domain.User;
+import com.springapp.modules.system.domain.perp.Users;
 import com.springapp.modules.system.service.dto.UserDTO;
 
 @CacheConfig(cacheNames = "user")
@@ -16,7 +16,7 @@ public interface UserService {
      * @return
      */
     @Cacheable(key = "#p0")
-    UserDTO findById(long id);
+    UserDTO findById(int id);
 
     /**
      * create
@@ -24,21 +24,21 @@ public interface UserService {
      * @return
      */
     @CacheEvict(allEntries = true)
-    UserDTO create(User resources);
+    UserDTO create(Users resources);
 
     /**
      * update
      * @param resources
      */
     @CacheEvict(allEntries = true)
-    void update(User resources);
+    void update(Users resources);
 
     /**
      * delete
      * @param id
      */
     @CacheEvict(allEntries = true)
-    void delete(Long id);
+    void delete(Integer id);
 
     /**
      * findByName
@@ -46,7 +46,7 @@ public interface UserService {
      * @return
      */
     @Cacheable(key = "'loadUserByUsername:'+#p0")
-    User findByName(String userName);
+    Users findByName(String userName);
 
     /**
      * 修改密码

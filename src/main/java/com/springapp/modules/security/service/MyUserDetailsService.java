@@ -1,8 +1,6 @@
 package com.springapp.modules.security.service;
 
 
-import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -13,9 +11,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.springapp.modules.security.JwtUser;
 import com.springapp.modules.security.repository.UserRepository;
-import com.springapp.modules.system.domain.Dept;
-import com.springapp.modules.system.domain.Job;
-import com.springapp.modules.system.domain.User;
+import com.springapp.modules.system.domain.perp.Users;
+
 
 
 @Service
@@ -33,7 +30,7 @@ public class MyUserDetailsService implements UserDetailsService {
             throws UsernameNotFoundException {
         // Let people login with either username or email
      
-    	User user = userRepository.findByUsername(usernameOrEmail)
+    	Users user = userRepository.findByUsername(usernameOrEmail)
                 .orElseThrow(() -> 
                         new UsernameNotFoundException("User not found with username or email : " + usernameOrEmail)
         );
@@ -46,28 +43,28 @@ public class MyUserDetailsService implements UserDetailsService {
     }
 
     // This method is used by JWTAuthenticationFilter
-    public UserDetails loadUserById(Long id) {
-        User user = userRepository.findById(id).orElseThrow(
+    public UserDetails loadUserById(Integer id) {
+    	Users user = userRepository.findById(id).orElseThrow(
             () -> new UsernameNotFoundException("User not found with id : " + id)
         );
 
         return createJwtUser(user);
     }
     
-    public UserDetails createJwtUser(User user) {
+    public UserDetails createJwtUser(Users user) {
+    	
         return new JwtUser(
-        		user.getId(),
+        		user.getUsersUid(),
                 user.getUsername(),
                 user.getPassword(),
-                user.getAvatar(),
                 user.getEmail(),
                 user.getPhone(),
-                Optional.ofNullable(user.getDept()).map(Dept::getName).orElse(null),
-                Optional.ofNullable(user.getJob()).map(Job::getName).orElse(null),
-                permissionService.mapToGrantedAuthorities(user),
-                user.getEnabled(),
-                user.getCreateTime(),
-                user.getLastPasswordResetTime()
+               // Optional.ofNullable(user.getDept()).map(Dept::getName).orElse(null),
+              //  Optional.ofNullable(user.getJob()).map(Job::getName).orElse(null),
+               permissionService.mapToGrantedAuthorities(user),
+                user.getActiveFlag(),
+                user.getCreateModifiedDate()
+               // ,user.getLastPasswordResetTime()
         );
     }
 	/*

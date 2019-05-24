@@ -3,12 +3,17 @@ package com.springapp.modules.security;
 import java.sql.Timestamp;
 import java.util.Collection;
 import java.util.Date;
+import java.util.Set;
 import java.util.stream.Collectors;
+
+import javax.persistence.OneToMany;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.springapp.modules.system.domain.perp.Email;
+import com.springapp.modules.system.domain.perp.Phone;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -16,34 +21,45 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public class JwtUser implements UserDetails {
-
+	/*
+	user.getUsersUid(),
+    user.getUsername(),
+    user.getPassword(),
+    user.getEmail(),
+    user.getPhone(),
+   // Optional.ofNullable(user.getDept()).map(Dept::getName).orElse(null),
+  //  Optional.ofNullable(user.getJob()).map(Job::getName).orElse(null),
+   // permissionService.mapToGrantedAuthorities(user),
+    user.getActiveFlag(),
+    user.getCreateModifiedDate()
+*/
     @JsonIgnore
-    private final Long id;
+    private final Integer id;
 
     private final String username;
 
     @JsonIgnore
     private final String password;
 
-    private final String avatar;
+   // private final String avatar;
 
-    private final String email;
+    private Set<Email> email;
 
-    private final String phone;
+    private Set<Phone> phone;
 
-    private final String dept;
+ //   private final String dept;
 
-    private final String job;
+  //  private final String job;
 
-    @JsonIgnore
+   @JsonIgnore
     private final Collection<GrantedAuthority> authorities;
 
-    private final boolean enabled;
+    private final Character enabled;
 
     private Timestamp createTime;
 
-    @JsonIgnore
-    private final Date lastPasswordResetDate;
+    //@JsonIgnore
+    //private final Date lastPasswordResetDate;
 
     @JsonIgnore
     @Override
@@ -69,12 +85,17 @@ public class JwtUser implements UserDetails {
         return password;
     }
 
-    @Override
-    public boolean isEnabled() {
-        return enabled;
-    }
 
     public Collection getRoles() {
         return authorities.stream().map(GrantedAuthority::getAuthority).collect(Collectors.toSet());
     }
+
+	@Override
+	public boolean isEnabled() {
+		// TODO Auto-generated method stub
+		if(enabled.equals("Y"))
+			return true;
+		return false;
+	}
+
 }

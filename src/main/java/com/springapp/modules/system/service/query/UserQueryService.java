@@ -25,7 +25,7 @@ import org.springframework.util.ObjectUtils;
 
 import com.springapp.modules.security.repository.UserRepository;
 import com.springapp.modules.system.domain.Dept;
-import com.springapp.modules.system.domain.User;
+import com.springapp.modules.system.domain.perp.Users;
 import com.springapp.modules.system.service.dto.UserDTO;
 import com.springapp.modules.system.service.mapper.UserMapper;
 import com.springapp.utils.PageUtil;
@@ -51,12 +51,12 @@ public class UserQueryService {
      */
     @Cacheable(keyGenerator = "keyGenerator")
     public Object queryAll(UserDTO user, Set<Long> deptIds,Pageable pageable){
-        Page<User> page = userRepo.findAll(new Spec(user,deptIds),pageable);
+        Page<Users> page = userRepo.findAll(new Spec(user,deptIds),pageable);
         return PageUtil.toPage(page.map(userMapper::toDto));
     }
 
 
-    class Spec implements Specification<User> {
+    class Spec implements Specification<Users> {
 
         private UserDTO user;
 
@@ -68,12 +68,12 @@ public class UserQueryService {
         }
 
         @Override
-        public Predicate toPredicate(Root<User> root, CriteriaQuery<?> criteriaQuery, CriteriaBuilder cb) {
+        public Predicate toPredicate(Root<Users> root, CriteriaQuery<?> criteriaQuery, CriteriaBuilder cb) {
 
             List<Predicate> list = new ArrayList<Predicate>();
 
             // 数据权限， 关联查询
-            Join<Dept,User> join = root.join("dept",JoinType.LEFT);
+            Join<Dept,Users> join = root.join("dept",JoinType.LEFT);
             if (!CollectionUtils.isEmpty(deptIds)) {
                 list.add(join.get("id").in(deptIds));
             }

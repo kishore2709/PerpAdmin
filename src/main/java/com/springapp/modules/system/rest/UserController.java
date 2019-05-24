@@ -14,7 +14,7 @@ import com.springapp.aop.log.Log;
 import com.springapp.exception.BadRequestException;
 import com.springapp.modules.security.repository.RoleRepository;
 import com.springapp.modules.security.repository.UserRepository;
-import com.springapp.modules.system.domain.User;
+import com.springapp.modules.system.domain.perp.Users;
 import com.springapp.modules.system.service.UserService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -38,8 +38,8 @@ public class UserController {
 	@Log("New users")
 	@PostMapping(value = "/signup")
 	@PreAuthorize("hasAnyRole('ADMIN','USER_ALL','USER_CREATE')")
-	public ResponseEntity create(@Validated @RequestBody User resources) {
-		if (resources.getId() != null) {
+	public ResponseEntity create(@Validated @RequestBody Users resources) {
+		if (resources.getUsersUid() != null) {
 			throw new BadRequestException("A new " + ENTITY_NAME + " cannot already have an ID");
 		}
 		return new ResponseEntity(userService.create(resources), HttpStatus.CREATED);

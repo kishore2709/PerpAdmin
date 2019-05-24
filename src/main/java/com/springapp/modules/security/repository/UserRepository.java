@@ -8,11 +8,11 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 
-import com.springapp.modules.system.domain.User;
+import com.springapp.modules.system.domain.perp.Users;
 
-public interface UserRepository extends JpaRepository<User, Long>, JpaSpecificationExecutor {
+public interface UserRepository extends JpaRepository<Users, Integer>, JpaSpecificationExecutor {
 
-	Optional<User> findByUsernameOrEmail(String username, String email);
+	Optional<Users> findByUsernameOrEmail(String username, String email);
 	Boolean existsByUsername(String username);
 
     Boolean existsByEmail(String email);
@@ -21,14 +21,14 @@ public interface UserRepository extends JpaRepository<User, Long>, JpaSpecificat
      * @param username
      * @return
      */
-    Optional<User> findByUsername(String username);
+    Optional<Users> findByUsername(String username);
 
     /**
      * findByEmail
      * @param email
      * @return
      */
-    User findByEmail(String email);
+    Users findByEmail(String email);
 
     /**
      * 修改密码
