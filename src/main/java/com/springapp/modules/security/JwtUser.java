@@ -2,11 +2,8 @@ package com.springapp.modules.security;
 
 import java.sql.Timestamp;
 import java.util.Collection;
-import java.util.Date;
 import java.util.Set;
 import java.util.stream.Collectors;
-
-import javax.persistence.OneToMany;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
