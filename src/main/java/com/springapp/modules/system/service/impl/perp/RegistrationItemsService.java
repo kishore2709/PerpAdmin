@@ -20,6 +20,12 @@ public class RegistrationItemsService {
 	 public RegistrationItems findByTrackingNo(Integer trackingNo) {
 	        return registrationItemsRepository.findByTrackingNo(trackingNo);
 	    }
-	 
+
+		public boolean addRegistrationItems(RegistrationItems registrationItems) {
+			// TODO Auto-generated method stub
+			RegistrationItems save = registrationItemsRepository.save(registrationItems);
+
+		        return save != null;
+		}
 
 }

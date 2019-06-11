@@ -7,17 +7,18 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 
 import com.springapp.modules.system.domain.Role;
+import com.springapp.modules.system.domain.perp.UserRole;
 
-public interface RoleRepository extends JpaRepository<Role, Long>, JpaSpecificationExecutor {
+public interface RoleRepository extends JpaRepository<UserRole, Long>, JpaSpecificationExecutor {
 
     /**
      * findByName
      * @param name
      * @return
      */
-	Optional<Role> findByName(String name);
+//	Optional<Role> findByName(String name);
 
-    Set<Role> findByUsers_Id(Integer integer);
+    Set<UserRole> findByUsers_usersUid(Integer integer);
 
-    Set<Role> findByMenus_Id(Long id);
+//    Set<UserRole> findByMenus_Id(Long id);
 }

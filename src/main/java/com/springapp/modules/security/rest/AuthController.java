@@ -1,6 +1,5 @@
 package com.springapp.modules.security.rest;
 
-import java.net.URI;
 import java.util.Collections;
 
 import javax.validation.Valid;
@@ -12,11 +11,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.confidential.AdminPortal.payload.LoginRequest;
 import com.confidential.AdminPortal.payload.SignUpRequest;
-import com.confidential.AdminPortal.payload.response.ApiResponse;
 import com.springapp.exception.AppException;
 import com.springapp.modules.security.AuthoritiesConstants;
 import com.springapp.modules.security.JwtAuthenticationResponse;
@@ -25,8 +22,8 @@ import com.springapp.modules.security.JwtUser;
 import com.springapp.modules.security.repository.RoleRepository;
 import com.springapp.modules.security.repository.UserRepository;
 import com.springapp.modules.security.service.MyUserDetailsService;
-import com.springapp.modules.system.domain.Role;
 import com.springapp.modules.system.domain.User;
+import com.springapp.modules.system.domain.perp.UserRole;
 import com.springapp.utils.EncryptUtils;
 
 import lombok.extern.slf4j.Slf4j;
@@ -56,10 +53,12 @@ public class AuthController<Auth> {
         if(!jwtUser.getPassword().equals(EncryptUtils.encryptPassword(loginRequest.getPassword()))){
             throw new AccountExpiredException("wrong password2");
         }
+        
+        System.out.print(jwtUser);
 
-        if(!jwtUser.isEnabled()){//it is not validated now
-            throw new AccountExpiredException("The account has been disabled, please contact the administrator");
-        }
+//        if(!jwtUser.isEnabled()){//it is not validated now
+//            throw new AccountExpiredException("The account has been disabled, please contact the administrator");
+//        }
 
         final String token = tokenProvider.generateToken(jwtUser);
 		return ResponseEntity.ok(new JwtAuthenticationResponse(token, jwtUser));
@@ -86,10 +85,10 @@ public class AuthController<Auth> {
 		u.setEnabled(false);
 	  u.setPassword(EncryptUtils.encryptPassword(signUpUser.getPassword()));
 	  
-	  Role userRole = roleRepository.findByName(AuthoritiesConstants.NORMAL_USER) .orElseThrow(() ->
-	  new AppException("User Role not set."));
-	  
-	  u.setRoles(Collections.singleton(userRole));
+//	  UserRole userRole = roleRepository.findByName(AuthoritiesConstants.NORMAL_USER) .orElseThrow(() ->
+//	  new AppException("User Role not set."));
+//	  
+//	  u.setRoles(Collections.singleton(userRole));
 	  
 	//  User result = userRepository.save(u);
 	  

@@ -10,9 +10,11 @@ import java.util.Map;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.IdClass;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+@IdClass(UserId.class)
 @Entity(name="user_role")
 public class UserRole implements Serializable {
 
@@ -23,6 +25,7 @@ public class UserRole implements Serializable {
     private String createModifiedBy;
     @Column(name="Create_Modified_Date", nullable=false)
     private Timestamp createModifiedDate;
+    @Id
     @ManyToOne(optional=false)
     @JoinColumn(name="ROLES_UID", nullable=false)
     private Roles roles;

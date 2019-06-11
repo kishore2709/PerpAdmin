@@ -7,6 +7,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import com.google.common.base.Predicates;
+import com.springapp.modules.system.domain.perp.RegistrationItems;
+import com.springapp.modules.system.domain.perp.Users;
 
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.ParameterBuilder;
@@ -26,6 +28,7 @@ public class SwaggerConfig {
     public Docket createRestApi() {
         ParameterBuilder ticketPar = new ParameterBuilder();
         List<Parameter> pars = new ArrayList<Parameter>();
+        Class[] temp = {Users.class, RegistrationItems.class	};
         ticketPar.name("Authorization").description("token")
                 .modelRef(new ModelRef("string"))
                 .parameterType("header")
@@ -38,6 +41,7 @@ public class SwaggerConfig {
                 .select()
                 .paths(Predicates.not(PathSelectors.regex("/error.*")))
                 .build()
+               .ignoredParameterTypes(temp)
                 .globalOperationParameters(pars);
     }
 

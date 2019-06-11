@@ -15,10 +15,13 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
+import com.springapp.modules.security.repository.UserRepository;
 import com.springapp.modules.security.service.MyUserDetailsService;
+import com.springapp.modules.system.domain.perp.Users;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Clock;
@@ -40,7 +43,9 @@ public class JwtTokenUtil {
     @Autowired
     private MyUserDetailsService userDetailsService;
 
-
+    @Autowired
+    UserRepository userRepository;
+    
     @Value("${app.jwtSecret}")
     private String jwtSecret;
 
@@ -55,10 +60,18 @@ public class JwtTokenUtil {
                  roles.add(authority.getAuthority());
              }
          }
+         
+     	Users user = userRepository.findByUsername(userDetails.getUsername())
+                .orElseThrow(() -> 
+                        new UsernameNotFoundException("User not found with username or email : " + userDetails.getUsername())
+        );
+     	
     	  Map<String, Object> claims = new HashMap<>();
     	  claims.put("roles", roles);     
     	  claims.put("username",  userDetails.getUsername());
-          return doGenerateToken(claims, userDetails.getUsername());
+    	  claims.put("userId", user.getUsersUid());
+
+          return doGenerateToken(claims, user.getUsersUid().toString());
       }
 
       private String doGenerateToken(Map<String, Object> claims, String subject) {

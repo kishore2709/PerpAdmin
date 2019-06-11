@@ -14,37 +14,39 @@ import org.springframework.stereotype.Service;
 
 import com.springapp.modules.security.repository.PermissionRepository;
 import com.springapp.modules.security.repository.RoleRepository;
-import com.springapp.modules.system.domain.Permission;
-import com.springapp.modules.system.domain.Role;
+import com.springapp.modules.system.domain.perp.RolePermissionRelation;
+import com.springapp.modules.system.domain.perp.UserRole;
 import com.springapp.modules.system.domain.perp.Users;
-
 
 @Service
 @CacheConfig(cacheNames = "role")
 public class JwtPermissionService {
 
-    @Autowired
-    private RoleRepository roleRepository;
+	@Autowired
+	private RoleRepository roleRepository;
 
-    @Autowired
-    private PermissionRepository permissionRepository;
+	@Autowired
+	private PermissionRepository permissionRepository;
 
-    @Cacheable(key = "'loadPermissionByUser:' + #p0.username")
-    public Collection<GrantedAuthority> mapToGrantedAuthorities(Users user) {
+	@Cacheable(key = "'loadPermissionByUser:' + #p0.username")
+	public Collection<GrantedAuthority> mapToGrantedAuthorities(Users user) {
 
-        System.out.println("--------------------loadPermissionByUser:" + user.getUsername() + "---------------------");
+		System.out.println("--------------------loadPermissionByUser: " + user.getUsername() + " with userID "
+				+ user.getUsersUid() + "-----------------");
 
-        Set<Role> roles = roleRepository.findByUsers_Id(user.getUsersUid());
+		Set<UserRole> roles = roleRepository.findByUsers_usersUid(user.getUsersUid());
+		Set<RolePermissionRelation> permissions = new HashSet<>();
+		for (UserRole role : roles) {
+			Set<UserRole> roleSet = new HashSet<>();
+			roleSet.add(role);
+			permissions.addAll(permissionRepository.findByRoles_rolesUid((role.getRolesRolesUid())));
+		}
 
-        Set<Permission> permissions = new HashSet<>();
-        for (Role role : roles) {
-            Set<Role> roleSet = new HashSet<>();
-            roleSet.add(role);
-            permissions.addAll(permissionRepository.findByRoles_Id(role.getId()));
-        }
+		System.out.println(permissions.iterator().next().getPermissions().getPermissionCodes().getPcDescription());
 
-        return permissions.stream()
-                .map(permission -> new SimpleGrantedAuthority(permission.getName()))
-                .collect(Collectors.toList());
-    }
+		return permissions.stream()
+				.map(permission -> new SimpleGrantedAuthority(
+						permissions.iterator().next().getPermissions().getPermissionCodes().getPcDescription()))
+				.collect(Collectors.toList());
+	}
 }

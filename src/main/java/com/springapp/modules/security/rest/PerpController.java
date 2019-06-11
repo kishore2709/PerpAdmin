@@ -7,12 +7,22 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.alibaba.fastjson.JSONObject;
+import com.springapp.modules.security.exception.RegistrationItemsException;
+import com.springapp.modules.system.domain.perp.RegistrationItems;
+import com.springapp.modules.system.domain.perp.RegitemSubsubtypes;
+import com.springapp.modules.system.domain.perp.RegitemSubtypes;
 import com.springapp.modules.system.service.impl.perp.RegistrationItemsService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -25,31 +35,68 @@ public class PerpController {
 	@Autowired
 	RegistrationItemsService registrationItemsService;
 
-	@RequestMapping(path = "/1", method = GET)
-	public List<Integer> getList() {
-		List<Integer> list = new ArrayList<>();
-		list.add(1);
-		list.add(2);
-		return list;
+	@RequestMapping(value = "/trackingNo/{trackingno}", method = GET)
+	public ResponseEntity<?> getCertificateNoByTracking(@PathVariable("trackingno") Integer trackingno) throws RegistrationItemsException{
+
+		RegistrationItems regItems = registrationItemsService.findByTrackingNo(trackingno);
+			if(regItems == null) {
+	            throw new RegistrationItemsException("Tracking Number not found");
+
+			}
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("trackingNo", regItems.getTrackingNo());
+
+		map.put("certificateNo", regItems.getCertificateNo());
+		map.put("ExpirationDate", regItems.getExpirationDate());
+		map.put("regitemTypes", regItems.getRegitemTypes().getUid());
+		map.put("regitemSubtypes", regItems.getRegitemSubtypes().getUid());
+
+		if (regItems.getRegitemSubsubtypes() != null) {
+			map.put("regitemSubsubtypes", regItems.getRegitemSubsubtypes().getUid());
+		}
+		return ResponseEntity.ok(map );
 	}
 
-	@RequestMapping(value = "/trackingNo/{trackingno}", method = GET)
-	public ResponseEntity<?> getCertificateNoByTracking(@PathVariable("trackingno") Integer trackingno) {
+	@RequestMapping(value = "/updateRegDetails/{trackingno}", method = RequestMethod.PUT)
+	public ResponseEntity<?> updateRegistrationDetailsByTracking(@PathVariable("trackingno") Integer trackingno,
+			@Valid @RequestBody JSONObject registrationItems) {
+		RegistrationItems regItems = registrationItemsService.findByTrackingNo(trackingno);
+
+		log.info(" Before { RegSubtype: " + regItems.getRegitemSubtypes().getDisplay() + " RegSubSubType: "
+				+ regItems.getRegitemSubsubtypes().getDisplay() + " }");
+
+		//setting regitemsubtypes
+		RegitemSubtypes rsubtype = new RegitemSubtypes();
+		rsubtype.setUid(Integer.parseInt(registrationItems.getString("regitemSubtypes")));
+		regItems.setRegitemSubtypes(rsubtype);
+
+		//setting regitemsub subtypes
+
+		RegitemSubsubtypes rsubsubtype = new RegitemSubsubtypes();
+		rsubsubtype.setUid(Integer.parseInt(registrationItems.getString("regitemSubsubtypes")));
+		regItems.setRegitemSubsubtypes(rsubsubtype);
+
+		//updating both the details
+		registrationItemsService.addRegistrationItems(regItems);
+
+		RegistrationItems updatedRegItems = registrationItemsService.findByTrackingNo(trackingno);
+
+		log.info(" After { RegSubtype: " + updatedRegItems.getRegitemSubtypes().getDisplay() + " RegSubSubType: "
+				+ updatedRegItems.getRegitemSubsubtypes().getDisplay() + " }");
 
 		HashMap<String, Object> map = new HashMap<>();
-		map.put("certificateNo", registrationItemsService.findByTrackingNo(trackingno).getCertificateNo());
-		map.put("ExpirationDate", registrationItemsService.findByTrackingNo(trackingno).getExpirationDate());
-		map.put("RegitemTypes", registrationItemsService.findByTrackingNo(trackingno).getRegitemTypes().getDisplay());
-		map.put("RegitemSubtypes",
-				registrationItemsService.findByTrackingNo(trackingno).getRegitemSubtypes().getDisplay());
-//		
-//		if (
-//				registrationItemsService.findByTrackingNo(trackingno).getRegitemSubsubtypes().getDisplay() != null) {
-//			map.put("RegitemSubSubtypes",
-//					registrationItemsService.findByTrackingNo(trackingno).getRegitemSubsubtypes().getDisplay());
-//		}
+		map.put("trackingNo", updatedRegItems.getTrackingNo());
+		map.put("certificateNo", updatedRegItems.getCertificateNo());
+		map.put("ExpirationDate", updatedRegItems.getExpirationDate());
+		map.put("regitemTypes", updatedRegItems.getRegitemTypes().getUid());
+		map.put("regitemSubtypes", updatedRegItems.getRegitemSubtypes().getUid());
+
+		if (updatedRegItems.getRegitemSubsubtypes() != null) {
+			map.put("regitemSubsubtypes", updatedRegItems.getRegitemSubsubtypes().getUid());
+		}
 
 		return ResponseEntity.ok(map);
+
 	}
 
 }

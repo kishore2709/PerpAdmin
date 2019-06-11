@@ -71,6 +71,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 		 "/login",
                         "/index",
                         "/api/registrations/**",
+                        "/api/updateRegDetails/**",
                         "/index.html",
                         "/favicon.ico",
                         "/**/*.png",
