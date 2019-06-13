@@ -36,13 +36,14 @@ public class PerpController {
 	RegistrationItemsService registrationItemsService;
 
 	@RequestMapping(value = "/trackingNo/{trackingno}", method = GET)
-	public ResponseEntity<?> getCertificateNoByTracking(@PathVariable("trackingno") Integer trackingno) throws RegistrationItemsException{
+	public ResponseEntity<?> getCertificateNoByTracking(@PathVariable("trackingno") Integer trackingno)
+			throws RegistrationItemsException {
 
 		RegistrationItems regItems = registrationItemsService.findByTrackingNo(trackingno);
-			if(regItems == null) {
-	            throw new RegistrationItemsException("Tracking Number not found");
+		if (regItems == null) {
+			throw new RegistrationItemsException("Tracking Number not found");
 
-			}
+		}
 		HashMap<String, Object> map = new HashMap<>();
 		map.put("trackingNo", regItems.getTrackingNo());
 
@@ -54,7 +55,7 @@ public class PerpController {
 		if (regItems.getRegitemSubsubtypes() != null) {
 			map.put("regitemSubsubtypes", regItems.getRegitemSubsubtypes().getUid());
 		}
-		return ResponseEntity.ok(map );
+		return ResponseEntity.ok(map);
 	}
 
 	@RequestMapping(value = "/updateRegDetails/{trackingno}", method = RequestMethod.PUT)
@@ -62,27 +63,35 @@ public class PerpController {
 			@Valid @RequestBody JSONObject registrationItems) {
 		RegistrationItems regItems = registrationItemsService.findByTrackingNo(trackingno);
 
-		log.info(" Before { RegSubtype: " + regItems.getRegitemSubtypes().getDisplay() + " RegSubSubType: "
-				+ regItems.getRegitemSubsubtypes().getDisplay() + " }");
+		log.info(" Before { RegSubtype: " + regItems.getRegitemSubtypes().getDisplay());
+		if (regItems.getRegitemSubsubtypes() != null) {
+			log.info(" RegSubSubType: " + regItems.getRegitemSubsubtypes().getDisplay() + " }");
+		}
+		// setting regitemsubtypes
+		if (registrationItems.getString("regitemSubtypes") != null) {
 
-		//setting regitemsubtypes
-		RegitemSubtypes rsubtype = new RegitemSubtypes();
-		rsubtype.setUid(Integer.parseInt(registrationItems.getString("regitemSubtypes")));
-		regItems.setRegitemSubtypes(rsubtype);
+			RegitemSubtypes rsubtype = new RegitemSubtypes();
+			rsubtype.setUid(Integer.parseInt(registrationItems.getString("regitemSubtypes")));
+			regItems.setRegitemSubtypes(rsubtype);
+		}
+		// setting regitemsub subtypes
+		if (registrationItems.getString("regitemSubsubtypes") != null) {
+			if (!registrationItems.getString("regitemSubsubtypes").trim().isEmpty()) {
+				RegitemSubsubtypes rsubsubtype = new RegitemSubsubtypes();
+				if(registrationItems.getString("regitemSubsubtypes").equals("null")) {
+					regItems.setRegitemSubsubtypes(null);
+				}
+				else {
+				rsubsubtype.setUid(Integer.parseInt(registrationItems.getString("regitemSubsubtypes")));
+				regItems.setRegitemSubsubtypes(rsubsubtype);
+				}
+			}
+		}
 
-		//setting regitemsub subtypes
-
-		RegitemSubsubtypes rsubsubtype = new RegitemSubsubtypes();
-		rsubsubtype.setUid(Integer.parseInt(registrationItems.getString("regitemSubsubtypes")));
-		regItems.setRegitemSubsubtypes(rsubsubtype);
-
-		//updating both the details
+		// updating both the details
 		registrationItemsService.addRegistrationItems(regItems);
 
 		RegistrationItems updatedRegItems = registrationItemsService.findByTrackingNo(trackingno);
-
-		log.info(" After { RegSubtype: " + updatedRegItems.getRegitemSubtypes().getDisplay() + " RegSubSubType: "
-				+ updatedRegItems.getRegitemSubsubtypes().getDisplay() + " }");
 
 		HashMap<String, Object> map = new HashMap<>();
 		map.put("trackingNo", updatedRegItems.getTrackingNo());
