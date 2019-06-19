@@ -33,7 +33,7 @@ public class RolePermissionRelation implements Serializable {
     @JoinColumn(name="Roles_UID")
     private Roles roles;
     @ManyToOne
-    @JoinColumns({@JoinColumn(name="Permission_Codes_UID")})
+    @JoinColumns({@JoinColumn(name="Permission_Codes_UID", referencedColumnName="Permission_Codes_UID")})
     private Permissions permissions;
 
     /** Default constructor. */

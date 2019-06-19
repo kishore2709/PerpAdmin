@@ -23,11 +23,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 
-/**
- * 角色
- * @author jie
- * @date 2018-11-22
- */
 @Entity
 @Table(name = "role")
 @Getter
@@ -43,7 +38,6 @@ public class Role implements Serializable {
     @NotBlank
     private String name;
 
-    // 数据权限类型 全部 、 本级 、 自定义
     @Column(name = "data_scope")
     private String dataScope = "本级";
 

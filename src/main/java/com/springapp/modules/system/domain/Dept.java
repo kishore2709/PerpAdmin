@@ -35,7 +35,7 @@ public class Dept implements Serializable {
     private Long id;
 
     /**
-     * 名称
+     * name
      */
     @Column(name = "name",nullable = false)
     @NotBlank
@@ -44,9 +44,7 @@ public class Dept implements Serializable {
     @NotNull
     private Boolean enabled;
 
-    /**
-     * 上级部门
-     */
+    
     @Column(name = "pid",nullable = false)
     @NotNull
     private Long pid;

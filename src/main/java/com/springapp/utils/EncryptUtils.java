@@ -12,7 +12,8 @@ public class EncryptUtils {
 	 private static String strKey = "Passw0rd", strParam = "Passw0rd";
 
 	    /**
-	     * 对称加密
+	     *Symmetric encryption
+
 	     * @param source
 	     * @return
 	     * @throws Exception
@@ -60,7 +61,7 @@ public class EncryptUtils {
 	    }
 
 	    /**
-	     * 对称解密
+	     * Symmetric decryption
 	     * @param source
 	     * @return
 	     * @throws Exception
@@ -81,7 +82,7 @@ public class EncryptUtils {
 	    }
 
 	    /**
-	     * 密码加密
+	     *
 	     * @param password
 	     * @return
 	     */

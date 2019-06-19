@@ -41,7 +41,7 @@ public class SwaggerConfig {
                 .select()
                 .paths(Predicates.not(PathSelectors.regex("/error.*")))
                 .build()
-               .ignoredParameterTypes(temp)
+                .ignoredParameterTypes(temp)
                 .globalOperationParameters(pars);
     }
 

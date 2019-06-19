@@ -6,6 +6,8 @@ import java.util.Date;
 import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.springapp.modules.system.domain.perp.Email;
+import com.springapp.modules.system.domain.perp.Phone;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -21,9 +23,9 @@ public class UserDTO implements Serializable {
 
     private String avatar;
 
-    private String email;
+    private Set<Email> email;
 
-    private String phone;
+    private Set<Phone> phone;
 
     private Boolean enabled;
 
@@ -37,6 +39,8 @@ public class UserDTO implements Serializable {
     @ApiModelProperty(hidden = true)
     private Set<RoleDTO> roles;
 
+    //private Set<EmailDTO> emailDTO;
+    
     @ApiModelProperty(hidden = true)
     private JobDTO job;
 

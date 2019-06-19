@@ -31,7 +31,7 @@ public interface UserRepository extends JpaRepository<Users, Integer>, JpaSpecif
     Users findByEmail(String email);
 
     /**
-     * 修改密码
+     * Changing password
      * @param username
      * @param pass
      */
@@ -49,7 +49,7 @@ public interface UserRepository extends JpaRepository<Users, Integer>, JpaSpecif
     void updateAvatar(String username, String url);
 
     /**
-     * 修改邮箱
+     *Chnage email
      * @param username
      * @param email
      */

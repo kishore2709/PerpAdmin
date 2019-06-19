@@ -5,28 +5,28 @@ import java.util.List;
 public interface EntityMapper<D, E> {
 
     /**
-     * DTO转Entity
+     * DTO to Entity
      * @param dto
      * @return
      */
     E toEntity(D dto);
 
     /**
-     * Entity转DTO
+     * Entity to DTO
      * @param entity
      * @return
      */
     D toDto(E entity);
 
     /**
-     * DTO集合转Entity集合
+     * DTO collection Entity collection
      * @param dtoList
      * @return
      */
     List <E> toEntity(List<D> dtoList);
 
     /**
-     * Entity集合转DTO集合
+     * Entity collection  DTO collection 
      * @param entityList
      * @return
      */

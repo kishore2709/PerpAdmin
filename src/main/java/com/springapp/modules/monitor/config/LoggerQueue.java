@@ -7,13 +7,13 @@ import com.springapp.modules.monitor.domain.LogMessage;
 
 public class LoggerQueue {
 	  /**
-     * 队列大小
+     ** Queue size
      */
     public static final int QUEUE_MAX_SIZE = 10000;
 
     private static LoggerQueue alarmMessageQueue = new LoggerQueue();
     /**
-     * 阻塞队列
+     *Blocking queue
      */
     private BlockingQueue blockingQueue = new LinkedBlockingQueue<>(QUEUE_MAX_SIZE);
 
@@ -25,7 +25,7 @@ public class LoggerQueue {
     }
 
     /**
-     * 消息入队
+     * Message entry
      * @param log
      * @return
      */
@@ -34,7 +34,7 @@ public class LoggerQueue {
     }
 
     /**
-     * 消息出队
+     * Message out
      *
      * @return
      */

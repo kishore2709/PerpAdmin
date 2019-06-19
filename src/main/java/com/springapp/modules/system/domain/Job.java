@@ -33,7 +33,7 @@ public class Job implements Serializable {
     private Long id;
 
     /**
-     * 名称
+     * name
      */
     @Column(name = "name",nullable = false)
     @NotBlank
@@ -44,7 +44,7 @@ public class Job implements Serializable {
     private Long sort;
 
     /**
-     * 状态
+     * status
      */
     @Column(name = "enabled",nullable = false)
     @NotNull
@@ -55,7 +55,8 @@ public class Job implements Serializable {
     private Dept dept;
 
     /**
-     * 创建日期
+     * Creation date
+
      */
     @Column(name = "create_time")
     @CreationTimestamp

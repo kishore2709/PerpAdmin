@@ -47,7 +47,7 @@ public class UserQueryService {
     private UserMapper userMapper;
 
     /**
-     * 分页
+     * Pagination
      */
     @Cacheable(keyGenerator = "keyGenerator")
     public Object queryAll(UserDTO user, Set<Long> deptIds,Pageable pageable){
@@ -72,38 +72,31 @@ public class UserQueryService {
 
             List<Predicate> list = new ArrayList<Predicate>();
 
-            // 数据权限， 关联查询
+            // Data permission, associated query
+
             Join<Dept,Users> join = root.join("dept",JoinType.LEFT);
             if (!CollectionUtils.isEmpty(deptIds)) {
                 list.add(join.get("id").in(deptIds));
             }
 
             if(!ObjectUtils.isEmpty(user.getId())){
-                /**
-                 * 相等
-                 */
+              
                 list.add(cb.equal(root.get("id").as(Long.class),user.getId()));
             }
 
             if(!ObjectUtils.isEmpty(user.getEnabled())){
-                /**
-                 * 相等
-                 */
+             
                 list.add(cb.equal(root.get("enabled").as(Boolean.class),user.getEnabled()));
             }
 
 
             if(!ObjectUtils.isEmpty(user.getUsername())){
-                /**
-                 * 模糊
-                 */
+            
                 list.add(cb.like(root.get("username").as(String.class),"%"+user.getUsername()+"%"));
             }
 
             if(!ObjectUtils.isEmpty(user.getEmail())){
-                /**
-                 * 模糊
-                 */
+              
                 list.add(cb.like(root.get("email").as(String.class),"%"+user.getEmail()+"%"));
             }
 
