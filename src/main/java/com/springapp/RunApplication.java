@@ -7,11 +7,9 @@ import javax.annotation.PostConstruct;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
+import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.data.jpa.convert.threeten.Jsr310JpaConverters;
-
-import springfox.documentation.swagger2.annotations.EnableSwagger2;
-
-import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
 
 //@EnableSwagger2
 @SpringBootApplication
@@ -20,7 +18,7 @@ import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfi
 		RunApplication.class,
 		Jsr310JpaConverters.class 
 })
-public class RunApplication {
+public class RunApplication extends SpringBootServletInitializer{
 
 	@PostConstruct
 	void init() {
@@ -29,5 +27,11 @@ public class RunApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(RunApplication.class, args);
+	}
+	
+	@Override
+	protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
+		// TODO Auto-generated method stub
+		return builder.sources(RunApplication.class);
 	}
 }
