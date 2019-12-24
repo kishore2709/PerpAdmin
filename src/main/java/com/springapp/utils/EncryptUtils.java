@@ -38,7 +38,7 @@ public class EncryptUtils {
 	        for (int n = 0; n < inStr.length; n++) {
 	            stmp = Integer.toHexString(inStr[n] & 0xFF);
 	            if (stmp.length() == 1) {
-	                // 如果是0至F的单位字符串，则添加0
+	                //  If it's a unit string of 0 to F, add 0
 	                out.append("0" + stmp);
 	            } else {
 	                out.append(stmp);
@@ -50,7 +50,7 @@ public class EncryptUtils {
 
 	    public static byte[] hex2byte(byte[] b) {
 	        if ((b.length % 2) != 0){
-	            throw new IllegalArgumentException("长度不是偶数");
+	            throw new IllegalArgumentException("Length is not even");
 	        }
 	        byte[] b2 = new byte[b.length / 2];
 	        for (int n = 0; n < b.length; n += 2) {

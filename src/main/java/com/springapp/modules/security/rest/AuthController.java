@@ -48,12 +48,13 @@ public class AuthController<Auth> {
 	@PostMapping("/signin")
 	public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
 		final JwtUser jwtUser = (JwtUser) userDetailsService.loadUserByUsername(loginRequest.getUsernameOrEmail());
-		log.debug(" login pwd "+loginRequest.getPassword());
-		log.debug("jwt pwd "+jwtUser.getPassword()+" login pwd "+EncryptUtils.encryptPassword(loginRequest.getPassword()));
+		
         if(!jwtUser.getPassword().equals(EncryptUtils.encryptPassword(loginRequest.getPassword()))){
             throw new AccountExpiredException("wrong password2");
         }
         
+        System.out.println(" login pwd "+loginRequest.getPassword());
+        System.out.println("jwt pwd "+jwtUser.getPassword()+" login pwd "+EncryptUtils.encryptPassword(loginRequest.getPassword()));
         System.out.print(jwtUser);
 
 //        if(!jwtUser.isEnabled()){//it is not validated now
