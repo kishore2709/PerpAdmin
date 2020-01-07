@@ -7,7 +7,7 @@ import com.springapp.exception.BadRequestException;
 public class ValidationUtil{
 
     /**
-     * 验证空
+     * 
      * @param optional
      */
     public static void isNull(Optional optional, String entity,String parameter , Object value){
@@ -20,7 +20,7 @@ public class ValidationUtil{
     }
 
     /**
-     * 验证是否为邮箱
+     * Check if it is email
      * @param string
      * @return
      */

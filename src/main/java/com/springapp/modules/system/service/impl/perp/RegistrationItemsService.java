@@ -1,9 +1,11 @@
 
 package com.springapp.modules.system.service.impl.perp;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import org.apache.commons.pool2.impl.AbandonedConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,6 +22,15 @@ public class RegistrationItemsService {
 	 public RegistrationItems findByTrackingNo(Integer trackingNo) {
 	        return registrationItemsRepository.findByTrackingNo(trackingNo);
 	    }
+	 
+	 public List<RegistrationItems> findAll(Integer trackingNo) {
+		 
+		 List<RegistrationItems> registrationItems = new ArrayList<>();
+	         registrationItemsRepository.findAll()
+	         .forEach(registrationItems:: add);
+	         return registrationItems;
+	    }
+
 
 		public boolean addRegistrationItems(RegistrationItems registrationItems) {
 			// TODO Auto-generated method stub

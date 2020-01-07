@@ -40,7 +40,7 @@ public interface UserRepository extends JpaRepository<Users, Integer>, JpaSpecif
     void updatePass(String username, String pass, Date lastPasswordResetTime);
 
     /**
-     * 修改头像
+     *
      * @param username
      * @param url
      */

@@ -37,7 +37,7 @@ public class Permission implements Serializable{
 	private String name;
 
 	/**
-	 * 上级类目
+	 *  
 	 */
 	@NotNull
 	@Column(name = "pid",nullable = false)

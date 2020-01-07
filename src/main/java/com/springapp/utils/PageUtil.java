@@ -11,7 +11,7 @@ import org.springframework.data.domain.Page;
 public class PageUtil extends cn.hutool.core.util.PageUtil {
 
     /**
-     * List 分页
+     * List  
      * @param page
      * @param size
      * @param list
@@ -31,7 +31,7 @@ public class PageUtil extends cn.hutool.core.util.PageUtil {
     }
 
     /**
-     * Page 数据处理，预防redis反序列化报错
+     *  redis deserialization errors
      * @param page
      * @return
      */

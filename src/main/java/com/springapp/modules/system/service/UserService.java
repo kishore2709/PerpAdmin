@@ -49,7 +49,7 @@ public interface UserService {
     Users findByName(String userName);
 
     /**
-     * 修改密码
+     * 
      * @param username
      * @param encryptPassword
      */
@@ -57,7 +57,7 @@ public interface UserService {
     void updatePass(String username, String encryptPassword);
 
     /**
-     * 修改头像
+     * 
      * @param username
      * @param url
      */
@@ -65,7 +65,7 @@ public interface UserService {
     void updateAvatar(String username, String url);
 
     /**
-     * 修改邮箱
+      *
      * @param username
      * @param email
      */

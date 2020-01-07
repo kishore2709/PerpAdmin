@@ -19,7 +19,7 @@ public class DeptDTO implements Serializable {
     private Long id;
 
     /**
-     * 名称
+     *  
      */
     private String name;
 
@@ -27,7 +27,7 @@ public class DeptDTO implements Serializable {
     private Boolean enabled;
 
     /**
-     * 上级部门
+     *  
      */
     private Long pid;
 
