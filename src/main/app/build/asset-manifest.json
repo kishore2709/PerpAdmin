@@ -1,0 +1,22 @@
+{
+  "main.css": "./static/css/main.1bac6927.chunk.css",
+  "main.js": "./static/js/main.d18ddc05.chunk.js",
+  "main.js.map": "./static/js/main.d18ddc05.chunk.js.map",
+  "runtime~main.js": "./static/js/runtime~main.d653cc00.js",
+  "runtime~main.js.map": "./static/js/runtime~main.d653cc00.js.map",
+  "static/css/2.d39b963a.chunk.css": "./static/css/2.d39b963a.chunk.css",
+  "static/js/2.37b5613f.chunk.js": "./static/js/2.37b5613f.chunk.js",
+  "static/js/2.37b5613f.chunk.js.map": "./static/js/2.37b5613f.chunk.js.map",
+  "index.html": "./index.html",
+  "precache-manifest.942987131dff667c1253b73500c6a921.js": "./precache-manifest.942987131dff667c1253b73500c6a921.js",
+  "service-worker.js": "./service-worker.js",
+  "static/css/2.d39b963a.chunk.css.map": "./static/css/2.d39b963a.chunk.css.map",
+  "static/css/main.1bac6927.chunk.css.map": "./static/css/main.1bac6927.chunk.css.map",
+  "static/media/ComingSoon.jpg": "./static/media/ComingSoon.f261b82d.jpg",
+  "static/media/avtar.jpeg": "./static/media/avtar.91e81803.jpeg",
+  "static/media/favicon.ico": "./static/media/favicon.011201ab.ico",
+  "static/media/font-awesome.css": "./static/media/fontawesome-webfont.fee66e71.woff",
+  "static/media/material_bg.png": "./static/media/material_bg.abe4a318.png",
+  "static/media/trakinator_applist.png": "./static/media/trakinator_applist.75e47874.png",
+  "static/media/trakinator_tasklist.png": "./static/media/trakinator_tasklist.72a6791e.png"
+}
