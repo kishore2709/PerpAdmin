@@ -39,9 +39,9 @@ public class JwtUser implements UserDetails {
     private final String password;
 
    // private final String avatar;
-
+    @JsonIgnore
     private Set<Email> email;
-
+    @JsonIgnore
     private Set<Phone> phone;
 
  //   private final String dept;
@@ -50,7 +50,7 @@ public class JwtUser implements UserDetails {
 
    @JsonIgnore
     private final Collection<GrantedAuthority> authorities;
-
+   
     private final Character enabled;
 
     private Timestamp createTime;

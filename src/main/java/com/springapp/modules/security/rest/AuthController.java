@@ -1,7 +1,5 @@
 package com.springapp.modules.security.rest;
 
-import java.util.Collections;
-
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,8 +12,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.confidential.AdminPortal.payload.LoginRequest;
 import com.confidential.AdminPortal.payload.SignUpRequest;
-import com.springapp.exception.AppException;
-import com.springapp.modules.security.AuthoritiesConstants;
 import com.springapp.modules.security.JwtAuthenticationResponse;
 import com.springapp.modules.security.JwtTokenUtil;
 import com.springapp.modules.security.JwtUser;
@@ -23,8 +19,9 @@ import com.springapp.modules.security.repository.RoleRepository;
 import com.springapp.modules.security.repository.UserRepository;
 import com.springapp.modules.security.service.MyUserDetailsService;
 import com.springapp.modules.system.domain.User;
-import com.springapp.modules.system.domain.perp.UserRole;
 import com.springapp.utils.EncryptUtils;
+import com.springapp.utils.EncryptionImpl;
+import com.springapp.utils.EncryptionSvc;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -32,9 +29,9 @@ import lombok.extern.slf4j.Slf4j;
 @RestController
 @RequestMapping("/api/auth")
 public class AuthController<Auth> {
-	
+
 	@Autowired
-    private MyUserDetailsService userDetailsService;
+	private MyUserDetailsService userDetailsService;
 
 	@Autowired
 	UserRepository userRepository;
@@ -48,25 +45,37 @@ public class AuthController<Auth> {
 	@PostMapping("/signin")
 	public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
 		final JwtUser jwtUser = (JwtUser) userDetailsService.loadUserByUsername(loginRequest.getUsernameOrEmail());
-		
-        if(!jwtUser.getPassword().equals(EncryptUtils.encryptPassword(loginRequest.getPassword()))){
-            throw new AccountExpiredException("wrong password2");
-        }
-        
-        System.out.println(" login pwd "+loginRequest.getPassword());
-        System.out.println("jwt pwd "+jwtUser.getPassword()+" login pwd "+EncryptUtils.encryptPassword(loginRequest.getPassword()));
-        System.out.print(jwtUser);
+
+		EncryptionSvc encryptionSvc = new EncryptionImpl();
+		try {
+			if (!jwtUser.getPassword().equals(encryptionSvc.encode(loginRequest.getPassword()))) {
+				throw new AccountExpiredException("wrong password2");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		/*
+		 * if(!jwtUser.getPassword().equals(EncryptUtils.encryptPassword(loginRequest.
+		 * getPassword()))){ throw new AccountExpiredException("wrong password2"); }
+		 */
+
+		//System.out.println(" login pwd " + loginRequest.getPassword());
+		//System.out.println("jwt pwd " + jwtUser.getPassword() + " login pwd "
+	//			+ EncryptUtils.encryptPassword(loginRequest.getPassword()));
+	//	System.out.print(jwtUser);
 
 //        if(!jwtUser.isEnabled()){//it is not validated now
 //            throw new AccountExpiredException("The account has been disabled, please contact the administrator");
 //        }
 
-        final String token = tokenProvider.generateToken(jwtUser);
+		final String token = tokenProvider.generateToken(jwtUser);
 		return ResponseEntity.ok(new JwtAuthenticationResponse(token, jwtUser));
 	}
 
 	@SuppressWarnings("unchecked")
-	@PostMapping("/signup") public ResponseEntity<?> registerUser(@Valid @RequestBody SignUpRequest signUpUser) { 
+	@PostMapping("/signup")
+	public ResponseEntity<?> registerUser(@Valid @RequestBody SignUpRequest signUpUser) {
 		log.debug(" registerUser ");
 		System.out.println(" registerUser ");
 		/*
@@ -79,24 +88,27 @@ public class AuthController<Auth> {
 		 * "Email Address already in use!"),HttpStatus.BAD_REQUEST); }
 		 */
 		User u = new User();
-		
+
 		u.setUsername(signUpUser.getUsername());
 		u.setEmail(signUpUser.getEmail());
 		u.setPhone("1234567890");
 		u.setEnabled(false);
-	  u.setPassword(EncryptUtils.encryptPassword(signUpUser.getPassword()));
-	  
+		u.setPassword(EncryptUtils.encryptPassword(signUpUser.getPassword()));
+
 //	  UserRole userRole = roleRepository.findByName(AuthoritiesConstants.NORMAL_USER) .orElseThrow(() ->
 //	  new AppException("User Role not set."));
 //	  
 //	  u.setRoles(Collections.singleton(userRole));
-	  
-	//  User result = userRepository.save(u);
-	  
-	  //URI location = ServletUriComponentsBuilder.fromCurrentContextPath().path("/api/users/{username}") .buildAndExpand(result.getUsername()).toUri();
-	  System.out.println("User registered successfully"); 
-	 //return ResponseEntity.created(location).body(new ApiResponse(true,"User registered successfully")); 
-	return null;
-	  }
+
+		// User result = userRepository.save(u);
+
+		// URI location =
+		// ServletUriComponentsBuilder.fromCurrentContextPath().path("/api/users/{username}")
+		// .buildAndExpand(result.getUsername()).toUri();
+		System.out.println("User registered successfully");
+		// return ResponseEntity.created(location).body(new ApiResponse(true,"User
+		// registered successfully"));
+		return null;
+	}
 
 }
