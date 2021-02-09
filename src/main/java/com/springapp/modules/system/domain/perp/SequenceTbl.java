@@ -2,14 +2,13 @@
 
 package com.springapp.modules.system.domain.perp;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.io.Serializable;
 import java.sql.Date;
 import java.util.LinkedHashMap;
 import java.util.Map;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
 
 @Entity(name="sequence_tbl")
 public class SequenceTbl implements Serializable {

@@ -35,7 +35,7 @@ public class PerpController {
 	@Autowired
 	RegistrationItemsService registrationItemsService;
 
-	@RequestMapping(value = "/trackingNo/{trackingno}", method = GET)
+	@RequestMapping(value = "/trackingno/{trackingno}", method = GET)
 	public ResponseEntity<?> getCertificateNoByTracking(@PathVariable("trackingno") Integer trackingno)
 			throws RegistrationItemsException {
 
@@ -49,11 +49,11 @@ public class PerpController {
 
 		map.put("certificateNo", regItems.getCertificateNo());
 		map.put("ExpirationDate", regItems.getExpirationDate());
-		map.put("regitemTypes", regItems.getRegitemTypes().getUid());
-		map.put("regitemSubtypes", regItems.getRegitemSubtypes().getUid());
+		map.put("regitemtype", regItems.getRegitemTypes().getUid());
+		map.put("regitemSubtype", regItems.getRegitemSubtypes().getUid());
 
 		if (regItems.getRegitemSubsubtypes() != null) {
-			map.put("regitemSubsubtypes", regItems.getRegitemSubsubtypes().getUid());
+			map.put("regitemSubsubtype", regItems.getRegitemSubsubtypes().getUid());
 		}
 		return ResponseEntity.ok(map);
 	}

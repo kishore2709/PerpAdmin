@@ -2,6 +2,7 @@
 
 package com.springapp.modules.system.domain.perp;
 
+import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.sql.Date;
@@ -9,13 +10,6 @@ import java.sql.Timestamp;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Set;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 
 @Entity(name="apptrans_reg_rel")
 public class ApptransRegRel implements Serializable {

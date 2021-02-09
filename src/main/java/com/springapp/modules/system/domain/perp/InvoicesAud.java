@@ -2,14 +2,13 @@
 
 package com.springapp.modules.system.domain.perp;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.LinkedHashMap;
 import java.util.Map;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
 
 @Entity(name="invoices_aud")
 public class InvoicesAud implements Serializable {

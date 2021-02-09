@@ -8,7 +8,7 @@ import Table from "@material-ui/core/Table";
 import { connect } from "react-redux";
 import {
   getEquipmentByTrackingNo,
-  updateRegTypesByTrackingNo
+  updateRegTypesByTrackingNo,
 } from "../actions/actionsEquipmentSwitch";
 
 import { regSubSubTypes, regSubTypes } from "../data";
@@ -16,18 +16,18 @@ import { regSubSubTypes, regSubTypes } from "../data";
 const styles = {
   toggleDiv: {
     marginTop: 20,
-    marginBottom: 5
+    marginBottom: 5,
   },
   toggleLabel: {
     color: grey[400],
-    fontWeight: 100
+    fontWeight: 100,
   },
   buttons: {
-    marginTop: 30
+    marginTop: 30,
   },
   saveButton: {
-    marginLeft: 5
-  }
+    marginLeft: 5,
+  },
 };
 
 class EquipmentSwitch extends Component {
@@ -40,17 +40,17 @@ class EquipmentSwitch extends Component {
       errors: {},
       onsub: false,
       updated: false,
-      equipType: true
+      equipType: true,
     };
     this.searchTracking = this.searchTracking.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.onUpdateRegDetails = this.onUpdateRegDetails.bind(this);
   }
 
-  searchTracking = e => {
+  searchTracking = (e) => {
     e.preventDefault();
     const trackingNo = {
-      trackingNo: this.state.trackingNo
+      trackingNo: this.state.trackingNo,
     };
     // add dispatch method for searching reg by tracking
     this.props.getEquipmentByTrackingNo(trackingNo);
@@ -63,8 +63,8 @@ class EquipmentSwitch extends Component {
     if (
       props.registration.regitemSubtypes === 1 ||
       props.registration.regitemSubtypes === 2 ||
-      (props.registration.regitemSubtypes === 7 ||
-        props.registration.regitemSubtypes === 9)
+      props.registration.regitemSubtypes === 7 ||
+      props.registration.regitemSubtypes === 9
     ) {
       this.setState({ equipType: false });
     } else {
@@ -74,37 +74,37 @@ class EquipmentSwitch extends Component {
     if (typeof props.registration.regitemSubsubtypes !== "undefined") {
       this.setState({
         regitemSubtypes: props.registration.regitemSubtypes,
-        regitemSubsubtypes: props.registration.regitemSubsubtypes
+        regitemSubsubtypes: props.registration.regitemSubsubtypes,
       });
     } else {
       this.setState({
         regitemSubtypes: props.registration.regitemSubtypes,
-        regitemSubsubtypes: "null"
+        regitemSubsubtypes: "null",
       });
     }
   }
 
-  handleChange = e => {
+  handleChange = (e) => {
     this.setState({ [e.target.id]: e.target.value });
   };
 
-  selectOptionsRegSubTypes = e => {
-    return regSubTypes.map(rsubtypes => (
+  selectOptionsRegSubTypes = (e) => {
+    return regSubTypes.map((rsubtypes) => (
       <option key={rsubtypes.value} value={rsubtypes.value}>
         {rsubtypes.option}
       </option>
     ));
   };
 
-  selectOptionsRegSubSubTypes = e => {
-    return regSubSubTypes.map(rsubsubtypes => (
+  selectOptionsRegSubSubTypes = (e) => {
+    return regSubSubTypes.map((rsubsubtypes) => (
       <option key={rsubsubtypes.value} value={rsubsubtypes.value}>
         {rsubsubtypes.option}
       </option>
     ));
   };
 
-  onUpdateRegDetails = e => {
+  onUpdateRegDetails = (e) => {
     e.preventDefault();
     const regitemSubtypes = this.getRegSubType.value;
     const regitemSubsubtypes = this.getRegSubSubType.value;
@@ -112,7 +112,7 @@ class EquipmentSwitch extends Component {
     const updateRegdetails = {
       trackingNo,
       regitemSubtypes,
-      regitemSubsubtypes
+      regitemSubsubtypes,
     };
     // add dispatch method for updating regdetails by tracking
     this.props.updateRegTypesByTrackingNo(updateRegdetails);
@@ -121,7 +121,7 @@ class EquipmentSwitch extends Component {
     this.setState({ onsub: false, updated: true });
   };
 
-  displayRegDetails = e => {
+  displayRegDetails = (e) => {
     const { registration } = this.props;
 
     if (this.props.error) {
@@ -158,32 +158,20 @@ class EquipmentSwitch extends Component {
                       type="select"
                       className="form-control"
                       id="regitemSubtypes"
-                      ref={select => (this.getRegSubType = select)}
+                      ref={(select) => (this.getRegSubType = select)}
                       onChange={this.handleChange}
                       value={this.state.regitemSubtypes}
                     >
                       <option value="null">Select </option>
                       {this.selectOptionsRegSubTypes()}
                     </select>
-
-                    {/* <select
-                      type="select"
-                      className="form-control"
-                      id="regitemSubtypes"
-                      ref={select => (this.getRegSubType = select)}
-                      onChange={this.handleChange}
-                      value={registration.regitemSubtypes}
-                    >
-                      <option value="">Select</option>
-                      {this.selectOptionsRegSubTypes()}
-                    </select> */}
                   </td>
                   <td>
                     <select
                       type="select"
                       className="form-control"
                       id="regitemSubsubtypes"
-                      ref={select => (this.getRegSubSubType = select)}
+                      ref={(select) => (this.getRegSubSubType = select)}
                       onChange={this.handleChange}
                       value={this.state.regitemSubsubtypes}
                     >
@@ -258,21 +246,18 @@ class EquipmentSwitch extends Component {
   }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   registration: state.equip.regItemDetails,
   auth: state.auth,
-  error: state.equip.error
+  error: state.equip.error,
 });
 
-const mapDispatchToProps = dispatch => ({
-  getEquipmentByTrackingNo: trackingNo =>
+const mapDispatchToProps = (dispatch) => ({
+  getEquipmentByTrackingNo: (trackingNo) =>
     dispatch(getEquipmentByTrackingNo(trackingNo)),
 
-  updateRegTypesByTrackingNo: updateRegdetails =>
-    dispatch(updateRegTypesByTrackingNo(updateRegdetails))
+  updateRegTypesByTrackingNo: (updateRegdetails) =>
+    dispatch(updateRegTypesByTrackingNo(updateRegdetails)),
 });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(EquipmentSwitch);
+export default connect(mapStateToProps, mapDispatchToProps)(EquipmentSwitch);

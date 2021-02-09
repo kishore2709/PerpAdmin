@@ -2,16 +2,15 @@
 
 package com.springapp.modules.system.domain.perp;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import java.io.Serializable;
 import java.sql.Date;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Set;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
 
 @Entity(name="brake_hp_ranges")
 public class BrakeHpRanges implements Serializable {

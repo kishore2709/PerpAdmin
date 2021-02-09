@@ -1,8 +1,8 @@
 package com.springapp.utils;
 
-import java.util.Optional;
-
 import com.springapp.exception.BadRequestException;
+
+import java.util.Optional;
 
 public class ValidationUtil{
 

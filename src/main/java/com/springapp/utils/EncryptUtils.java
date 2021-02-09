@@ -1,12 +1,12 @@
 package com.springapp.utils;
 
+import org.springframework.util.DigestUtils;
+
 import javax.crypto.Cipher;
 import javax.crypto.SecretKey;
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.DESKeySpec;
 import javax.crypto.spec.IvParameterSpec;
-
-import org.springframework.util.DigestUtils;
 
 public class EncryptUtils {
 	 private static String strKey = "Passw0rd", strParam = "Passw0rd";
